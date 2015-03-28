@@ -11,7 +11,24 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
+/* Unauthenticated group */
+Route::group(array('before' => 'guest'), function() {
+
+	/* Sign in (GET) */
+	Route::get('/account/signin', 
+		array('as' => 'account-sign-in',
+			'uses' => 'AccountController@getSignIn'
+	));
+
+});
+
+/* Authenticated group */
+Route::group(array('before' => 'auth'), function() {
+
+	/* Home Page (GET) */
+	Route::get('/', 
+	  array('as' => 'home', 
+	        'uses' => 'PageController@getHome'
+	));
+
 });
