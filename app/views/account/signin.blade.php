@@ -29,7 +29,7 @@
 									</a>
 								</div>
 								<div class="social-login">
-									<a class="btn btn-block btn-lg btn-social btn-facebook">
+									<a class="btn btn-block btn-lg btn-social btn-facebook" href="{{ URL::route('account-sign-in-facebook') }}">
 										<i class="fa fa-facebook"></i> Sign in using Facebook
 									</a>
 								</div>

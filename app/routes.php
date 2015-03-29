@@ -14,10 +14,27 @@
 /* Unauthenticated group */
 Route::group(array('before' => 'guest'), function() {
 
+	/* CSRF protection */
+	Route::group(array('before' => 'csrf'), function() {
+
+		/* Sign in with Facebook (POST) */
+		Route::post('/account/signinwithfacebook', 
+			array('as' => 'account-sign-in-facebook-post',
+				'uses' => 'AccountController@postLoginWithFacebook'
+		));
+
+	});
+
 	/* Sign in (GET) */
 	Route::get('/account/signin', 
 		array('as' => 'account-sign-in',
 			'uses' => 'AccountController@getSignIn'
+	));
+
+	/* Sign in with Facebook (GET) */
+	Route::get('/account/signinwithfacebook', 
+		array('as' => 'account-sign-in-facebook',
+			'uses' => 'AccountController@getLoginWithFacebook'
 	));
 
 });
@@ -30,5 +47,12 @@ Route::group(array('before' => 'auth'), function() {
 	  array('as' => 'home', 
 	        'uses' => 'PageController@getHome'
 	));
+
+	/* Sign out (GET) */
+	Route::get('/account/signout', 
+		array('as' => 'account-sign-out',
+			'uses' => 'AccountController@getSignOut'
+	));
+
 
 });

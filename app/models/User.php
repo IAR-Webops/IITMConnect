@@ -7,6 +7,9 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 
 class User extends Eloquent implements UserInterface, RemindableInterface {
 
+	/* Alowing Eloquent to insert data into our database */
+	protected $fillable = array('rollno', 'active');
+
 	use UserTrait, RemindableTrait;
 
 	/**
@@ -21,6 +24,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 *
 	 * @var array
 	 */
-	protected $hidden = array('password', 'remember_token');
+	protected $hidden = array('remember_token');
 
 }
