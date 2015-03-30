@@ -23,6 +23,12 @@ Route::group(array('before' => 'guest'), function() {
 				'uses' => 'AccountController@postLoginWithFacebook'
 		));
 
+		/* Sign in with Google Plus (POST) */
+		Route::post('/account/signinwithgoogleplus', 
+			array('as' => 'account-sign-in-googleplus-post',
+				'uses' => 'AccountController@postLoginWithGoogleplus'
+		));
+
 	});
 
 	/* Sign in (GET) */
@@ -35,6 +41,12 @@ Route::group(array('before' => 'guest'), function() {
 	Route::get('/account/signinwithfacebook', 
 		array('as' => 'account-sign-in-facebook',
 			'uses' => 'AccountController@getLoginWithFacebook'
+	));
+
+	/* Sign in with Google Plus (GET) */
+	Route::get('/account/signinwithgoogleplus', 
+		array('as' => 'account-sign-in-googleplus',
+			'uses' => 'AccountController@getLoginWithGoogle'
 	));
 
 });

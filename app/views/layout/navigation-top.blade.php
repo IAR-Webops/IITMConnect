@@ -1,0 +1,43 @@
+      <nav class="navbar navbar-inverse navbar-static-top " role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-7">
+            <span class="sr-only">Toggle navigation</span>
+          </button>
+          <a class="navbar-brand" href="#">#iitmconnect</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navbar-collapse-7">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#"><span class="fui-home"></span> | Home</a></li>            
+            <li><a href="#"><span class="fui-mail"></span> | Messages<span class="navbar-unread">1</span></a></li>
+            <li><a href="#">About Us</a></li>
+           </ul>
+          <form class="navbar-form navbar-left" action="#" role="search">
+            <div class="form-group">
+              <div class="input-group">
+                <input class="form-control" id="navbarInput-01" type="search" placeholder="Search">
+                <span class="input-group-btn">
+                  <button type="submit" class="btn"><span class="fui-search"></span></button>
+                </span>
+              </div>
+            </div>
+          </form>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown" >
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fui-user"></span> | {{ Auth::user()->rollno }} <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#"><span class="fui-google-plus"></span> | Google Plus Settings</a></li>
+                <li><a href="#"><span class="fui-linkedin"></span> | Linkedin Settings</a></li>
+                <li><a href="#"><span class="fui-facebook"></span> | Facebook Settings</a></li>
+                <li class="divider"></li>
+                <li><a href="{{ URL::route('account-sign-out') }}"><span class="fui-lock"></span> | Sign Out</a></li>
+              </ul>
+            </li>
+           
+            <li><a href="#"></a></li>
+
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </nav>

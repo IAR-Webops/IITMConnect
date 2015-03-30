@@ -19,7 +19,7 @@
 								</h4>
 								<hr style="color:black; border-style:inset;">
 					            <div class="social-login">
-									<a class="btn btn-block btn-lg btn-social btn-google-plus">
+									<a class="btn btn-block btn-lg btn-social btn-google-plus" href="{{ URL::route('account-sign-in-googleplus') }}">
 										<i class="fa fa-google-plus"></i> Sign in using Google Plus
 									</a>
 								</div>
