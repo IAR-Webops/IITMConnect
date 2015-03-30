@@ -20,7 +20,7 @@ class CreateFacebookUsersTable extends Migration {
             $table->string('facebook_id')->unique();
             $table->string('facebook_name');
             $table->string('facebook_email');
-            $table->string('facebook_accesstoken', 250);                                  
+            $table->string('facebook_accesstoken', 500);                                  
             $table->string('created_at');
             $table->string('updated_at');
         });

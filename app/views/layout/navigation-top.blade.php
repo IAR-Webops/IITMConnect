@@ -28,14 +28,22 @@
             <li class="dropdown" >
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fui-user"></span> | {{ Auth::user()->rollno }} <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="#"><span class="fui-google-plus"></span> | Google Plus Settings</a></li>
-                <li><a href="#"><span class="fui-linkedin"></span> | Linkedin Settings</a></li>
-                <li><a href="#"><span class="fui-facebook"></span> | Facebook Settings</a></li>
+                <li><a href="#"><span class="fui-eye"></span> | View Profile</a></li>
                 <li class="divider"></li>
                 <li><a href="{{ URL::route('account-sign-out') }}"><span class="fui-lock"></span> | Sign Out</a></li>
               </ul>
             </li>
-           
+            <li class="dropdown" >
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <span class="visible-sm visible-xs">Settings<span class="fui-gear"></span></span>
+                <span class="visible-md visible-lg"><span class="fui-gear"></span></span>                
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="#"><span class="fui-google-plus"></span> | Google Plus </a></li>
+                <li><a href="#"><span class="fui-linkedin"></span> | Linkedin </a></li>
+                <li><a href="#"><span class="fui-facebook"></span> | Facebook </a></li>
+              </ul>
+            </li>           
             <li><a href="#"></a></li>
 
           </ul>

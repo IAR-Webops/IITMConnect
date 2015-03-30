@@ -23,7 +23,7 @@ class CreateGoogleplusUsersTable extends Migration {
             $table->string('googleplus_link');
             $table->string('googleplus_picture');
             $table->string('googleplus_gender');
-            $table->string('googleplus_accesstoken', 250);                                  
+            $table->string('googleplus_accesstoken', 500);                                  
             $table->string('created_at');
             $table->string('updated_at');
         });

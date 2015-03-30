@@ -24,7 +24,7 @@
 									</a>
 								</div>
 								<div class="social-login">
-									<a class="btn btn-block btn-lg btn-social btn-linkedin">
+									<a class="btn btn-block btn-lg btn-social btn-linkedin" href="{{ URL::route('account-sign-in-linkedin') }}">
 										<i class="fa fa-linkedin"></i> Sign in using Linkedin
 									</a>
 								</div>

@@ -29,6 +29,12 @@ Route::group(array('before' => 'guest'), function() {
 				'uses' => 'AccountController@postLoginWithGoogleplus'
 		));
 
+		/* Sign in with Linkedin (POST) */
+		Route::post('/account/signinwithlinkedin', 
+			array('as' => 'account-sign-in-linkedin-post',
+				'uses' => 'AccountController@postLoginWithLinkedin'
+		));
+
 	});
 
 	/* Sign in (GET) */
@@ -47,6 +53,12 @@ Route::group(array('before' => 'guest'), function() {
 	Route::get('/account/signinwithgoogleplus', 
 		array('as' => 'account-sign-in-googleplus',
 			'uses' => 'AccountController@getLoginWithGoogle'
+	));
+
+	/* Sign in with Linkedin (GET) */
+	Route::get('/account/signinwithlinkedin', 
+		array('as' => 'account-sign-in-linkedin',
+			'uses' => 'AccountController@getLoginWithLinkedin'
 	));
 
 });
