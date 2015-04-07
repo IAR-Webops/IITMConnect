@@ -66,17 +66,42 @@ Route::group(array('before' => 'guest'), function() {
 /* Authenticated group */
 Route::group(array('before' => 'auth'), function() {
 
+	/* Sign out (GET) */
+	Route::get('/account/signout', 
+		array('as' => 'account-sign-out',
+			'uses' => 'AccountController@getSignOut'
+	));
+
 	/* Home Page (GET) */
 	Route::get('/', 
 	  array('as' => 'home', 
 	        'uses' => 'PageController@getHome'
 	));
 
-	/* Sign out (GET) */
-	Route::get('/account/signout', 
-		array('as' => 'account-sign-out',
-			'uses' => 'AccountController@getSignOut'
+	/* Basic Info Page (GET) */
+	Route::get('/basicinfo', 
+	  array('as' => 'basic-info', 
+	        'uses' => 'PageController@getBasicInfo'
 	));
+
+	/* Home Info Page (GET) */
+	Route::get('/homeinfo', 
+	  array('as' => 'home-info', 
+	        'uses' => 'PageController@getHomeInfo'
+	));
+
+	/* Basic Info Page (GET) */
+	Route::get('/instilifeinfo', 
+	  array('as' => 'insti-life-info', 
+	        'uses' => 'PageController@getInstiLifeInfo'
+	));
+
+	/* Basic Info Page (GET) */
+	Route::get('/socialmediainfo', 
+	  array('as' => 'social-media-info', 
+	        'uses' => 'PageController@getSocialMediaInfo'
+	));
+
 
 
 });

@@ -33,6 +33,8 @@
 										<i class="fa fa-facebook"></i> Sign in using Facebook
 									</a>
 								</div>
+								<hr style="color:black; border-style:inset;">
+								<p class="bg-color-text text-center">Kindly disable Ad Blockers if you are unable to see the Sign In Buttons.</p>
 
 					        </div>        	
 				        </div>

@@ -4,13 +4,13 @@
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-7">
             <span class="sr-only">Toggle navigation</span>
           </button>
-          <a class="navbar-brand" href="#">#iitmconnect</a>
+          <a class="navbar-brand" href="{{ URL::route('home') }}">#iitmconnect</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="navbar-collapse-7">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#"><span class="fui-home"></span> | Home</a></li>            
+            <li class="active"><a href="{{ URL::route('home') }}"><span class="fui-home"></span> | Home</a></li>            
             <li><a href="#"><span class="fui-mail"></span> | Messages<span class="navbar-unread">1</span></a></li>
             <li><a href="#">About Us</a></li>
            </ul>
