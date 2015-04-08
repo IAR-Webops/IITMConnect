@@ -49,7 +49,8 @@
         @endif
 		
         
-        @yield('jscontent')
+       
+
 
 
     <!-- START SCRIPTS -->
@@ -59,6 +60,11 @@
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         {{ HTML::script('js/vendor/video.js'); }}
         {{ HTML::script('js/flat-ui.min.js'); }} 
+        {{ HTML::script('js/application.js'); }} 
+
+        @yield('jsmainbodycontent')
+
+        @yield('jscontent')
 
      
     </body>

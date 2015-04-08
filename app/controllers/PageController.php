@@ -5,7 +5,7 @@ class PageController extends BaseController {
 	/* Home Page (GET) */
 	public function getHome()
 	{
-		return View::make('page.home');
+		return View::make('page.homebody');
 	}
 
 	/* Basic Info Page (GET) */
