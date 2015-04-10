@@ -18,6 +18,22 @@ class PageController extends BaseController {
 		View::share('static_departments',$static_departments);
 		
 		$basic_info = DB::table('basic_infos')->where('user_id', $user_id)->first();
+		if(is_null($basic_info)) {
+			$basic_info = new stdClass();
+			$basic_info->firstname = "";
+			$basic_info->middlename = "";
+			$basic_info->lastname = "";
+			$basic_info->projectguide = "";
+			$basic_info->email = "";
+			$basic_info->phone = "";
+			$basic_info->department = "";
+			$basic_info->optionsRadiosDegree = "";
+			$basic_info->graduatingyear = "";
+			$basic_info->optionsRadiosFuture = "";
+			$basic_info->future_field1 = "";
+			$basic_info->future_field2 = "";
+			
+		} 
 		View::share('basic_info',$basic_info);		
 
 		return View::make('page.basicinfo');
