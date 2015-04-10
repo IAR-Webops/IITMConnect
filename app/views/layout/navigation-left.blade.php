@@ -32,7 +32,7 @@
                         <h4 class="todo-name">
                           Insti Life
                         </h4>
-                        Stuff like Coreship, Coordship, etc
+                        Coreship, Coordship, etc
                       </div>
                     </li>
                   </a>
@@ -52,3 +52,8 @@
             </div>
 
         </div><!-- END - Navigation Left -->
+
+@section('jsmainbodycontent')
+
+
+@stop

@@ -66,6 +66,17 @@ Route::group(array('before' => 'guest'), function() {
 /* Authenticated group */
 Route::group(array('before' => 'auth'), function() {
 
+	/* CSRF protection */
+	Route::group(array('before' => 'csrf'), function() {
+
+		/* Basic Info Page (POST) */
+		Route::post('/basicinfo', 
+			array('as' => 'basic-info-post',
+				'uses' => 'PageController@postBasicInfo'
+		));
+
+	});
+
 	/* Sign out (GET) */
 	Route::get('/account/signout', 
 		array('as' => 'account-sign-out',
