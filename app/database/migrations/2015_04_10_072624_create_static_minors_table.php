@@ -30,8 +30,8 @@ class CreateStaticMinorsTable extends Migration {
 	 */
 	public function down()
 	{
-		//
-		Schema::drop('static_minors');		
+		// Commenting Drop to prevent Static Data Loss.		
+		//Schema::drop('static_minors');		
 
 	}
 

@@ -61,10 +61,18 @@
         {{ HTML::script('js/vendor/video.js'); }}
         {{ HTML::script('js/flat-ui.min.js'); }} 
         {{ HTML::script('js/application.js'); }} 
+        {{ HTML::script('js/notify.min.js'); }} 
 
         @yield('jsmainbodycontent')
 
         @yield('jscontent')
+
+        @if(Session::has('globalalertmessage'))
+            <script type="text/javascript">
+                $.notify("{{ Session::get('globalalertmessage') }}", "{{ Session::get('globalalertclass') }}");
+            </script>
+        @endif
+
 
      
     </body>

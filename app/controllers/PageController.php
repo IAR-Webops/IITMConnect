@@ -9,6 +9,7 @@ class PageController extends BaseController {
 		return View::make('page.homebody');
 	}
 
+	/* ### - Basic Info */
 	/* Basic Info Page (GET) */
 	public function getBasicInfo()
 	{
@@ -32,14 +33,14 @@ class PageController extends BaseController {
 			$basic_info->optionsRadiosFuture = "";
 			$basic_info->future_field1 = "";
 			$basic_info->future_field2 = "";
-			
+
 		} 
 		View::share('basic_info',$basic_info);		
 
 		return View::make('page.basicinfo');
 	}
 
-	/* Basic Info Page (GET) */
+	/* Basic Info Page (POST) */
 	public function postBasicInfo()
 	{
 		$validator = Validator::make(Input::all(),
@@ -111,7 +112,11 @@ class PageController extends BaseController {
 						'future_field2'			=> $future_field2
 		            ));
 						
-				return "Updated Existing Entry";
+				
+				return Redirect::route('basic-info')
+                    ->with('globalalertmessage', 'Basic Information Updated')
+                    ->with('globalalertclass', 'success');
+        
 
 			} else {
 				// Save Basic Info Data in basic_infos using
@@ -132,22 +137,231 @@ class PageController extends BaseController {
 					'future_field2'			=> $future_field2
 				));
 
-				return "Creating new entry";
+				return Redirect::route('basic-info')
+                    ->with('globalalertmessage', 'Basic Information Created')
+                    ->with('globalalertclass', 'success');
 			}
 
 
 			
 
-			return "Saved";
+			return Redirect::route('home');
 
 		}
 		
 	}
 
+	/* ### - Home Info */
 	/* Home Info Page (GET) */
 	public function getHomeInfo()
 	{
+
+		$user_id = Auth::id();
+
+		$home_info = DB::table('home_infos')->where('user_id', $user_id)->first();
+		if(is_null($home_info)) {
+			$home_info = new stdClass();
+			$home_info->fathersname = "";
+			$home_info->mothersname = "";
+			$home_info->permaddline1 = "";
+			$home_info->permaddline2 = "";
+			$home_info->permcity = "";
+			$home_info->permstate = "";
+			$home_info->permpincode = "";
+			$home_info->permcountry = "";
+			$home_info->permphonelandline = "";
+			$home_info->permphonemobile = "";
+			$home_info->checkboxmailadd = "";
+			$home_info->mailaddline1 = "";
+			$home_info->mailaddline2 = "";
+			$home_info->mailcity = "";
+			$home_info->mailstate = "";
+			$home_info->mailpincode = "";
+			$home_info->mailcountry = "";
+			$home_info->mailphonelandline = "";
+			$home_info->mailphonemobile = "";
+		} 
+		View::share('home_info',$home_info);	
+
 		return View::make('page.homeinfo');
+	}
+
+	/* Home Info Page (POST) */
+	public function postHomeInfo()
+	{
+
+		$validator = Validator::make(Input::all(),
+			array(
+				'fathersname' 		=> 'required',
+				'mothersname'			=> 'required',
+				'permaddline1'		=> 'required',
+				'permcity'				=> 'required',
+				'permstate'		=> 'required',
+				'permpincode'		=> 'required',
+				'permcountry'		=> 'required'
+			)
+		);
+
+		//return var_dump(Input::all());
+		if($validator->fails()) {
+			return Redirect::route('home-info')
+				->withErrors($validator)
+				->withInput();   // fills the field with the old inputs what were correct
+
+		} else {
+
+			// Access the Home Info
+			$user_id 				= Auth::id();
+
+			$fathersname 			= Input::get('fathersname');
+			$mothersname 			= Input::get('mothersname');
+			$permaddline1 			= Input::get('permaddline1');
+			$permaddline2 			= Input::get('permaddline2');
+			$permcity 				= Input::get('permcity');
+			$permstate 				= Input::get('permstate');
+			$permpincode 			= Input::get('permpincode');
+			$permcountry 			= Input::get('permcountry');
+			$permphonelandline 		= Input::get('permphonelandline');
+			$permphonemobile 		= Input::get('permphonemobile');
+
+			$checkboxmailadd 		= Input::get('checkboxmailadd');
+
+			if (!$checkboxmailadd == "True") { // Include Mailing Address
+				$mailaddline1 			= Input::get('mailaddline1');
+				$mailaddline2 			= Input::get('mailaddline2');
+				$mailcity 				= Input::get('mailcity');
+				$mailstate 				= Input::get('mailstate');
+				$mailpincode 			= Input::get('mailpincode');
+				$mailcountry 			= Input::get('mailcountry');
+				$mailphonelandline 		= Input::get('mailphonelandline');
+				$mailphonemobile 		= Input::get('mailphonemobile');
+			}
+
+			if ($checkboxmailadd == "True") { // Don't Include Mailing Address while Saving
+
+				// Update existing row in home_infos if it exists. Else create new entry.
+				$home_info = DB::table('home_infos')->where('user_id', $user_id)->first();
+				if(!is_null($home_info)) {
+
+					DB::table('home_infos')
+			            ->where('user_id', $user_id)
+			            ->update(array(
+			            	'user_id'				=> $user_id,				
+							'fathersname' 			=> $fathersname,			
+							'mothersname'			=> $mothersname,
+							'permaddline1'			=> $permaddline1,
+							'permaddline2'			=> $permaddline2,
+							'permcity'				=> $permcity,
+							'permstate'				=> $permstate,
+							'permpincode'			=> $permpincode,
+							'permcountry'			=> $permcountry,
+							'permphonelandline'		=> $permphonelandline,
+							'permphonemobile'		=> $permphonemobile,
+							'checkboxmailadd'		=> $checkboxmailadd
+							
+			            ));
+							
+					return Redirect::route('home-info')
+                    	->with('globalalertmessage', 'Home Information Updated')
+                    	->with('globalalertclass', 'success');
+
+				} else { 
+
+					// Save Home Info Data in home_infos using
+					$userdata = HomeInfo::create(array(
+						'user_id'				=> $user_id,				
+						'fathersname' 			=> $fathersname,			
+						'mothersname'			=> $mothersname,
+						'permaddline1'			=> $permaddline1,
+						'permaddline2'			=> $permaddline2,
+						'permcity'				=> $permcity,
+						'permstate'				=> $permstate,
+						'permpincode'			=> $permpincode,
+						'permcountry'			=> $permcountry,
+						'permphonelandline'		=> $permphonelandline,
+						'permphonemobile'		=> $permphonemobile,
+						'checkboxmailadd'		=> $checkboxmailadd
+					));
+
+					return Redirect::route('home-info')
+                    	->with('globalalertmessage', 'Home Information Created')
+                    	->with('globalalertclass', 'success');
+				}
+
+			} else { // Include Mailing Address while Saving
+
+				// Update existing row in home_infos if it exists. Else create new entry.
+				$home_info = DB::table('home_infos')->where('user_id', $user_id)->first();
+				if(!is_null($home_info)) {
+
+					DB::table('home_infos')
+			            ->where('user_id', $user_id)
+			            ->update(array(
+			            	'user_id'				=> $user_id,				
+							'fathersname' 			=> $fathersname,			
+							'mothersname'			=> $mothersname,
+							'permaddline1'			=> $permaddline1,
+							'permaddline2'			=> $permaddline2,
+							'permcity'				=> $permcity,
+							'permstate'				=> $permstate,
+							'permpincode'			=> $permpincode,
+							'permcountry'			=> $permcountry,
+							'permphonelandline'		=> $permphonelandline,
+							'permphonemobile'		=> $permphonemobile,
+							'checkboxmailadd'		=> $checkboxmailadd,
+
+							'mailaddline1'			=> $mailaddline1,
+							'mailaddline2'			=> $mailaddline2,
+							'mailcity'				=> $mailcity,
+							'mailstate'				=> $mailstate,
+							'mailpincode'			=> $mailpincode,
+							'mailcountry'			=> $mailcountry,
+							'mailphonelandline'		=> $mailphonelandline,
+							'mailphonemobile'		=> $mailphonemobile
+							
+			            ));
+							
+					return Redirect::route('home-info')
+                    	->with('globalalertmessage', 'Home Information Updated')
+                    	->with('globalalertclass', 'success');
+
+				} else {
+					// Save Home Info Data in home_infos using
+					$userdata = HomeInfo::create(array(
+						'user_id'				=> $user_id,				
+						'fathersname' 			=> $fathersname,			
+						'mothersname'			=> $mothersname,
+						'permaddline1'			=> $permaddline1,
+						'permaddline2'			=> $permaddline2,
+						'permcity'				=> $permcity,
+						'permstate'				=> $permstate,
+						'permpincode'			=> $permpincode,
+						'permcountry'			=> $permcountry,
+						'permphonelandline'		=> $permphonelandline,
+						'permphonemobile'		=> $permphonemobile,
+						'checkboxmailadd'		=> $checkboxmailadd,
+
+						'mailaddline1'			=> $mailaddline1,
+						'mailaddline2'			=> $mailaddline2,
+						'mailcity'				=> $mailcity,
+						'mailstate'				=> $mailstate,
+						'mailpincode'			=> $mailpincode,
+						'mailcountry'			=> $mailcountry,
+						'mailphonelandline'		=> $mailphonelandline,
+						'mailphonemobile'		=> $mailphonemobile
+					));
+
+					return Redirect::route('home-info')
+                    	->with('globalalertmessage', 'Home Information Created')
+                    	->with('globalalertclass', 'success');
+				}
+
+
+			}
+
+			return Redirect::route('home');
+
+		}
 	}
 
 	/* Insti Life Info Page (GET) */

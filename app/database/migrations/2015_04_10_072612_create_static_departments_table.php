@@ -31,8 +31,8 @@ class CreateStaticDepartmentsTable extends Migration {
 	 */
 	public function down()
 	{
-		//
-		Schema::drop('static_departments');		
+		// Commenting Drop to prevent Static Data Loss.
+		//Schema::drop('static_departments');		
 	}
 
 }

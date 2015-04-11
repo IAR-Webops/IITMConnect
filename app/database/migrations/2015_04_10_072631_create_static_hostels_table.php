@@ -31,8 +31,8 @@ class CreateStaticHostelsTable extends Migration {
 	 */
 	public function down()
 	{
-		//
-		Schema::drop('static_hostels');		
+		// Commenting Drop to prevent Static Data Loss.
+		//Schema::drop('static_hostels');		
 	}
 
 }

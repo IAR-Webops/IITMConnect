@@ -43,7 +43,7 @@
                         <h4 class="todo-name">
                           Social Media
                         </h4>
-                        Tell us how to follow you
+                        Tell us where to follow you
                       </div>
                     </li>
                   </a>

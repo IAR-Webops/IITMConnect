@@ -30,7 +30,7 @@
           	<!-- Field - Department and Minor -->
           	<div class="form-group">
           		<div class="col-sm-12 col-md-6">
-		            <select data-toggle="select" class="form-control select select-default" name="department" id="department">
+		            <select data-toggle="select" class="form-control select select-default" name="department" id="department" required>
 		              <optgroup label="Department">
 		              	@foreach ($static_departments as $static_department)
 		                <option value="{{$static_department->deptartment_name}}">{{$static_department->deptartment_name}}</option>
@@ -39,7 +39,7 @@
 		            </select>
 		    	</div>
 		    	<div class="col-sm-12 col-md-6">
-		            <select data-toggle="select" class="form-control select select-default" name="minor">
+		            <select data-toggle="select" class="form-control select select-default" name="minor" id="minor" required>
 		              <optgroup label="Minor">
 		                <option value="0">Social Entrepreneurship</option>
 		                <option value="1">Applied Mechanics</option>
@@ -102,7 +102,7 @@
             <!-- Field - Graduating Year -->
           	<div class="form-group">
           		<div class="col-sm-12 col-md-6">
-		            <select data-toggle="select" class="form-control select select-default" name="graduatingyear" id="graduatingyear">
+		            <select data-toggle="select" class="form-control select select-default" name="graduatingyear" id="graduatingyear" required>
 		              <optgroup label="Graduating Year">
 		                <option value="2015">2015</option>
 		                <option value="2014">2014</option>
