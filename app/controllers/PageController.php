@@ -4,7 +4,21 @@ class PageController extends BaseController {
 
 	/* Home Page (GET) */
 	public function getHome()
-	{
+	{	
+		// START - Checklist For Left Menu
+		// !DRY :( - Check alternative
+		$user_id = Auth::id();
+		$info_check = array();
+		$basic_info = DB::table('basic_infos')->where('user_id', $user_id)->first();
+		if(!is_null($basic_info)) {	$info_check['basic'] = "True";	} else { $info_check['basic'] = "False"; }
+		$home_info = DB::table('home_infos')->where('user_id', $user_id)->first();
+		if(!is_null($home_info)) {	$info_check['home'] = "True";	} else { $info_check['home'] = "False"; }
+		$basic_info = DB::table('basic_infos')->where('user_id', $user_id)->first();
+		if(!is_null($basic_info)) {	$info_check['instilife'] = "True";	} else { $info_check['instilife'] = "False"; }
+		$basic_info = DB::table('basic_infos')->where('user_id', $user_id)->first();
+		if(!is_null($basic_info)) {	$info_check['socialmedia'] = "True";	} else { $info_check['socialmedia'] = "False"; }
+		View::share('info_check',$info_check);		
+		// END - Checklist For Left Menu
 
 		return View::make('page.homebody');
 	}
@@ -13,6 +27,21 @@ class PageController extends BaseController {
 	/* Basic Info Page (GET) */
 	public function getBasicInfo()
 	{
+		// START - Checklist For Left Menu
+		// !DRY :( - Check alternative
+		$user_id = Auth::id();
+		$info_check = array();
+		$basic_info = DB::table('basic_infos')->where('user_id', $user_id)->first();
+		if(!is_null($basic_info)) {	$info_check['basic'] = "True";	} else { $info_check['basic'] = "False"; }
+		$home_info = DB::table('home_infos')->where('user_id', $user_id)->first();
+		if(!is_null($home_info)) {	$info_check['home'] = "True";	} else { $info_check['home'] = "False"; }
+		$basic_info = DB::table('basic_infos')->where('user_id', $user_id)->first();
+		if(!is_null($basic_info)) {	$info_check['instilife'] = "True";	} else { $info_check['instilife'] = "False"; }
+		$basic_info = DB::table('basic_infos')->where('user_id', $user_id)->first();
+		if(!is_null($basic_info)) {	$info_check['socialmedia'] = "True";	} else { $info_check['socialmedia'] = "False"; }
+		View::share('info_check',$info_check);		
+		// END - Checklist For Left Menu
+
 		$user_id = Auth::id();
 
 		$static_departments = DB::table('static_departments')->get();
@@ -155,6 +184,20 @@ class PageController extends BaseController {
 	/* Home Info Page (GET) */
 	public function getHomeInfo()
 	{
+		// START - Checklist For Left Menu
+		// !DRY :( - Check alternative
+		$user_id = Auth::id();
+		$info_check = array();
+		$basic_info = DB::table('basic_infos')->where('user_id', $user_id)->first();
+		if(!is_null($basic_info)) {	$info_check['basic'] = "True";	} else { $info_check['basic'] = "False"; }
+		$home_info = DB::table('home_infos')->where('user_id', $user_id)->first();
+		if(!is_null($home_info)) {	$info_check['home'] = "True";	} else { $info_check['home'] = "False"; }
+		$basic_info = DB::table('basic_infos')->where('user_id', $user_id)->first();
+		if(!is_null($basic_info)) {	$info_check['instilife'] = "True";	} else { $info_check['instilife'] = "False"; }
+		$basic_info = DB::table('basic_infos')->where('user_id', $user_id)->first();
+		if(!is_null($basic_info)) {	$info_check['socialmedia'] = "True";	} else { $info_check['socialmedia'] = "False"; }
+		View::share('info_check',$info_check);		
+		// END - Checklist For Left Menu
 
 		$user_id = Auth::id();
 
@@ -367,12 +410,42 @@ class PageController extends BaseController {
 	/* Insti Life Info Page (GET) */
 	public function getInstiLifeInfo()
 	{
+		// START - Checklist For Left Menu
+		// !DRY :( - Check alternative
+		$user_id = Auth::id();
+		$info_check = array();
+		$basic_info = DB::table('basic_infos')->where('user_id', $user_id)->first();
+		if(!is_null($basic_info)) {	$info_check['basic'] = "True";	} else { $info_check['basic'] = "False"; }
+		$home_info = DB::table('home_infos')->where('user_id', $user_id)->first();
+		if(!is_null($home_info)) {	$info_check['home'] = "True";	} else { $info_check['home'] = "False"; }
+		$basic_info = DB::table('basic_infos')->where('user_id', $user_id)->first();
+		if(!is_null($basic_info)) {	$info_check['instilife'] = "True";	} else { $info_check['instilife'] = "False"; }
+		$basic_info = DB::table('basic_infos')->where('user_id', $user_id)->first();
+		if(!is_null($basic_info)) {	$info_check['socialmedia'] = "True";	} else { $info_check['socialmedia'] = "False"; }
+		View::share('info_check',$info_check);		
+		// END - Checklist For Left Menu
+
 		return View::make('page.instilifeinfo');
 	}
 
 	/* Social Media Info Page (GET) */
 	public function getSocialMediaInfo()
 	{
+		// START - Checklist For Left Menu
+		// !DRY :( - Check alternative
+		$user_id = Auth::id();
+		$info_check = array();
+		$basic_info = DB::table('basic_infos')->where('user_id', $user_id)->first();
+		if(!is_null($basic_info)) {	$info_check['basic'] = "True";	} else { $info_check['basic'] = "False"; }
+		$home_info = DB::table('home_infos')->where('user_id', $user_id)->first();
+		if(!is_null($home_info)) {	$info_check['home'] = "True";	} else { $info_check['home'] = "False"; }
+		$basic_info = DB::table('basic_infos')->where('user_id', $user_id)->first();
+		if(!is_null($basic_info)) {	$info_check['instilife'] = "True";	} else { $info_check['instilife'] = "False"; }
+		$basic_info = DB::table('basic_infos')->where('user_id', $user_id)->first();
+		if(!is_null($basic_info)) {	$info_check['socialmedia'] = "True";	} else { $info_check['socialmedia'] = "False"; }
+		View::share('info_check',$info_check);		
+		// END - Checklist For Left Menu
+		
 		return View::make('page.socialmediainfo');
 	}
 

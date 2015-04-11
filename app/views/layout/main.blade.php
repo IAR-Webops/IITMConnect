@@ -64,7 +64,7 @@
         {{ HTML::script('js/notify.min.js'); }} 
 
         @yield('jsmainbodycontent')
-
+        @yield('jsleftnavcontent')
         @yield('jscontent')
 
         @if(Session::has('globalalertmessage'))

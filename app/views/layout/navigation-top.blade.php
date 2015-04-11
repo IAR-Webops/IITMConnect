@@ -11,7 +11,9 @@
         <div class="collapse navbar-collapse" id="navbar-collapse-7">
           <ul class="nav navbar-nav">
             <li class="active"><a href="{{ URL::route('home') }}"><span class="fui-home"></span> | Home</a></li>            
+            <!--
             <li><a href="#"><span class="fui-mail"></span> | Messages<span class="navbar-unread">1</span></a></li>
+            -->
             <li><a href="#">About Us</a></li>
            </ul>
           <form class="navbar-form navbar-left" action="#" role="search">

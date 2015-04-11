@@ -25,3 +25,7 @@
 
 	@endif
 @stop
+
+@section('jscontent')
+	
+@stop

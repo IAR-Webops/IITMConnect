@@ -4,7 +4,7 @@
               <div class="todo">
                 <ul>
                   <a href="{{ URL::route('basic-info') }}" style="color:#798795;">
-                    <li class="todo-done">
+                    <li id="basicinfoli">
                       <div class="todo-icon fui-user"></div>
                       <div class="todo-content">
                         <h4 class="todo-name">
@@ -15,7 +15,7 @@
                     </li>
                   </a>
                   <a href="{{ URL::route('home-info') }}" style="color:#798795;">
-                    <li>
+                    <li id="homeinfoli">
                       <div class="todo-icon fui-home"></div>
                       <div class="todo-content">
                         <h4 class="todo-name">
@@ -26,7 +26,7 @@
                     </li>
                   </a>
                   <a href="{{ URL::route('insti-life-info') }}" style="color:#798795;">                 
-                    <li>
+                    <li id="intilifeinfoli">
                       <div class="todo-icon fui-bookmark"></div>
                       <div class="todo-content">
                         <h4 class="todo-name">
@@ -37,7 +37,7 @@
                     </li>
                   </a>
                   <a href="{{ URL::route('social-media-info') }}" style="color:#798795;">                 
-                    <li>
+                    <li id="socialmediainfoli">
                       <div class="todo-icon fui-twitter"></div>
                       <div class="todo-content">
                         <h4 class="todo-name">
@@ -53,7 +53,20 @@
 
         </div><!-- END - Navigation Left -->
 
-@section('jsmainbodycontent')
+@section('jsleftnavcontent')
+  <script type="text/javascript">
+    if ("{{ $info_check['basic'] }}" == "True") {
+      $('#basicinfoli').addClass('todo-done');
+    };
+    if ("{{ $info_check['home'] }}" == "True") {
+      $('#homeinfoli').addClass('todo-done');
+    };
+    if ("{{ $info_check['instilife'] }}" == "True") {
+      $('#intilifeinfoli').addClass('todo-done');
+    };
+    if ("{{ $info_check['socialmedia'] }}" == "True") {
+      $('#socialmediainfoli').addClass('todo-done');
+    };    
 
-
+  </script>
 @stop
