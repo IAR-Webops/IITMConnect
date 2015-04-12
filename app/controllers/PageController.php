@@ -15,8 +15,8 @@ class PageController extends BaseController {
 		if(!is_null($home_info)) {	$info_check['home'] = "True";	} else { $info_check['home'] = "False"; }
 		$basic_info = DB::table('basic_infos')->where('user_id', $user_id)->first();
 		if(!is_null($basic_info)) {	$info_check['instilife'] = "True";	} else { $info_check['instilife'] = "False"; }
-		$basic_info = DB::table('basic_infos')->where('user_id', $user_id)->first();
-		if(!is_null($basic_info)) {	$info_check['socialmedia'] = "True";	} else { $info_check['socialmedia'] = "False"; }
+		$socialmedia_info = DB::table('socialmedia_infos')->where('user_id', $user_id)->first();
+		if(!is_null($socialmedia_info)) {	$info_check['socialmedia'] = "True";	} else { $info_check['socialmedia'] = "False"; }
 		View::share('info_check',$info_check);		
 		// END - Checklist For Left Menu
 
@@ -37,8 +37,8 @@ class PageController extends BaseController {
 		if(!is_null($home_info)) {	$info_check['home'] = "True";	} else { $info_check['home'] = "False"; }
 		$basic_info = DB::table('basic_infos')->where('user_id', $user_id)->first();
 		if(!is_null($basic_info)) {	$info_check['instilife'] = "True";	} else { $info_check['instilife'] = "False"; }
-		$basic_info = DB::table('basic_infos')->where('user_id', $user_id)->first();
-		if(!is_null($basic_info)) {	$info_check['socialmedia'] = "True";	} else { $info_check['socialmedia'] = "False"; }
+		$socialmedia_info = DB::table('socialmedia_infos')->where('user_id', $user_id)->first();
+		if(!is_null($socialmedia_info)) {	$info_check['socialmedia'] = "True";	} else { $info_check['socialmedia'] = "False"; }
 		View::share('info_check',$info_check);		
 		// END - Checklist For Left Menu
 
@@ -194,8 +194,8 @@ class PageController extends BaseController {
 		if(!is_null($home_info)) {	$info_check['home'] = "True";	} else { $info_check['home'] = "False"; }
 		$basic_info = DB::table('basic_infos')->where('user_id', $user_id)->first();
 		if(!is_null($basic_info)) {	$info_check['instilife'] = "True";	} else { $info_check['instilife'] = "False"; }
-		$basic_info = DB::table('basic_infos')->where('user_id', $user_id)->first();
-		if(!is_null($basic_info)) {	$info_check['socialmedia'] = "True";	} else { $info_check['socialmedia'] = "False"; }
+		$socialmedia_info = DB::table('socialmedia_infos')->where('user_id', $user_id)->first();
+		if(!is_null($socialmedia_info)) {	$info_check['socialmedia'] = "True";	} else { $info_check['socialmedia'] = "False"; }
 		View::share('info_check',$info_check);		
 		// END - Checklist For Left Menu
 
@@ -236,10 +236,10 @@ class PageController extends BaseController {
 		$validator = Validator::make(Input::all(),
 			array(
 				'fathersname' 		=> 'required',
-				'mothersname'			=> 'required',
+				'mothersname'		=> 'required',
 				'permaddline1'		=> 'required',
-				'permcity'				=> 'required',
-				'permstate'		=> 'required',
+				'permcity'			=> 'required',
+				'permstate'			=> 'required',
 				'permpincode'		=> 'required',
 				'permcountry'		=> 'required'
 			)
@@ -420,8 +420,8 @@ class PageController extends BaseController {
 		if(!is_null($home_info)) {	$info_check['home'] = "True";	} else { $info_check['home'] = "False"; }
 		$basic_info = DB::table('basic_infos')->where('user_id', $user_id)->first();
 		if(!is_null($basic_info)) {	$info_check['instilife'] = "True";	} else { $info_check['instilife'] = "False"; }
-		$basic_info = DB::table('basic_infos')->where('user_id', $user_id)->first();
-		if(!is_null($basic_info)) {	$info_check['socialmedia'] = "True";	} else { $info_check['socialmedia'] = "False"; }
+		$socialmedia_info = DB::table('socialmedia_infos')->where('user_id', $user_id)->first();
+		if(!is_null($socialmedia_info)) {	$info_check['socialmedia'] = "True";	} else { $info_check['socialmedia'] = "False"; }
 		View::share('info_check',$info_check);		
 		// END - Checklist For Left Menu
 
@@ -441,12 +441,88 @@ class PageController extends BaseController {
 		if(!is_null($home_info)) {	$info_check['home'] = "True";	} else { $info_check['home'] = "False"; }
 		$basic_info = DB::table('basic_infos')->where('user_id', $user_id)->first();
 		if(!is_null($basic_info)) {	$info_check['instilife'] = "True";	} else { $info_check['instilife'] = "False"; }
-		$basic_info = DB::table('basic_infos')->where('user_id', $user_id)->first();
-		if(!is_null($basic_info)) {	$info_check['socialmedia'] = "True";	} else { $info_check['socialmedia'] = "False"; }
+		$socialmedia_info = DB::table('socialmedia_infos')->where('user_id', $user_id)->first();
+		if(!is_null($socialmedia_info)) {	$info_check['socialmedia'] = "True";	} else { $info_check['socialmedia'] = "False"; }
 		View::share('info_check',$info_check);		
 		// END - Checklist For Left Menu
-		
+
+		$user_id = Auth::id();
+
+		$socialmedia_info = DB::table('socialmedia_infos')->where('user_id', $user_id)->first();
+		if(is_null($socialmedia_info)) {
+			$socialmedia_info = new stdClass();
+			$socialmedia_info->googleplusprofilelink = "";
+			$socialmedia_info->linkedinprofilelink = "";
+			$socialmedia_info->facebookprofilelink = "";			
+
+		} 
+		View::share('socialmedia_info',$socialmedia_info);		
+
 		return View::make('page.socialmediainfo');
+	}
+
+	/* Home Info Page (POST) */
+	public function postSocialmediaInfo()
+	{
+		$validator = Validator::make(Input::all(),
+			array(
+				'googleplusprofilelink' => 'required',
+				'linkedinprofilelink'	=> 'required',
+				'facebookprofilelink'	=> 'required'				
+			)
+		);
+
+		//return var_dump(Input::all());
+		if($validator->fails()) {
+			return Redirect::route('socialmedia-info')
+				->withErrors($validator)
+				->withInput();   // fills the field with the old inputs what were correct
+
+		} else {
+
+			// Access the Socialmedia Info
+			$user_id 				= Auth::id();
+
+			$googleplusprofilelink	= Input::get('googleplusprofilelink');
+			$linkedinprofilelink 	= Input::get('linkedinprofilelink');
+			$facebookprofilelink 	= Input::get('facebookprofilelink');
+
+			// Update existing row in socialmedia_infos if it exists. Else create new entry.
+			$socialmedia_info = DB::table('socialmedia_infos')->where('user_id', $user_id)->first();
+			if(!is_null($socialmedia_info)) {
+
+				DB::table('socialmedia_infos')
+		            ->where('user_id', $user_id)
+		            ->update(array(
+		            	'user_id'				=> $user_id,				
+						'googleplusprofilelink' => $googleplusprofilelink,			
+						'linkedinprofilelink'	=> $linkedinprofilelink,
+						'facebookprofilelink'	=> $facebookprofilelink						
+		            ));
+						
+				
+				return Redirect::route('socialmedia-info')
+                    ->with('globalalertmessage', 'Social Media Information Updated')
+                    ->with('globalalertclass', 'success');
+        
+
+			} else {
+				// Save Socialmedia Info Data in socialmedia_infos using
+				$userdata = SocialmediaInfo::create(array(
+					'user_id'				=> $user_id,				
+					'googleplusprofilelink' => $googleplusprofilelink,			
+					'linkedinprofilelink'	=> $linkedinprofilelink,
+					'facebookprofilelink'	=> $facebookprofilelink	
+				));
+
+				return Redirect::route('socialmedia-info')
+                    ->with('globalalertmessage', 'Social Media Information Created')
+                    ->with('globalalertclass', 'success');
+			}
+
+			return Redirect::route('home');
+
+		}
 	}
 
 }

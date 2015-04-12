@@ -81,6 +81,12 @@ Route::group(array('before' => 'auth'), function() {
 				'uses' => 'PageController@postHomeInfo'
 		));
 
+		/* Socialmedia Info Page (POST) */
+		Route::post('/socialmediainfo', 
+			array('as' => 'socialmedia-info-post',
+				'uses' => 'PageController@postSocialmediaInfo'
+		));
+
 
 	});
 
@@ -110,13 +116,13 @@ Route::group(array('before' => 'auth'), function() {
 
 	/* Insti Life Info Page (GET) */
 	Route::get('/instilifeinfo', 
-	  array('as' => 'insti-life-info', 
+	  array('as' => 'instilife-info', 
 	        'uses' => 'PageController@getInstiLifeInfo'
 	));
 
 	/* Social Media Info Page (GET) */
 	Route::get('/socialmediainfo', 
-	  array('as' => 'social-media-info', 
+	  array('as' => 'socialmedia-info', 
 	        'uses' => 'PageController@getSocialMediaInfo'
 	));
 

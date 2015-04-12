@@ -151,6 +151,7 @@
 			        </div>
           		</div>
           	</div>
+          	<hr>
           	<!-- Field - Submit -->
           	<div class="form-group">
           		<div class="col-sm-12 col-md-6">

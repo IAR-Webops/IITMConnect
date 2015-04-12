@@ -25,7 +25,7 @@
                       </div>
                     </li>
                   </a>
-                  <a href="{{ URL::route('insti-life-info') }}" style="color:#798795;">                 
+                  <a href="{{ URL::route('instilife-info') }}" style="color:#798795;">                 
                     <li id="intilifeinfoli">
                       <div class="todo-icon fui-bookmark"></div>
                       <div class="todo-content">
@@ -36,7 +36,7 @@
                       </div>
                     </li>
                   </a>
-                  <a href="{{ URL::route('social-media-info') }}" style="color:#798795;">                 
+                  <a href="{{ URL::route('socialmedia-info') }}" style="color:#798795;">                 
                     <li id="socialmediainfoli">
                       <div class="todo-icon fui-twitter"></div>
                       <div class="todo-content">

@@ -14,33 +14,33 @@ class CreateHomeInfosTable extends Migration {
 	{
 		//
 		Schema::create('home_infos', function($table)
-        {
-            $table->increments('id');
-            $table->integer('user_id');            
-            $table->string('fathersname');
-            $table->string('mothersname');
-            $table->string('permaddline1');
-            $table->string('permaddline2');
-            $table->string('permcity');
-            $table->string('permstate');
-            $table->string('permpincode');                                
-            $table->string('permcountry');                                
-            $table->string('permphonelandline');                                
-            $table->string('permphonemobile');
-            
-            $table->string('checkboxmailadd');
-            $table->string('mailaddline1');
-            $table->string('mailaddline2');
-            $table->string('mailcity');
-            $table->string('mailstate');
-            $table->string('mailpincode');
-            $table->string('mailcountry');
-            $table->string('mailphonelandline');
-            $table->string('mailphonemobile');
+            {
+                  $table->increments('id');
+                  $table->integer('user_id');            
+                  $table->string('fathersname');
+                  $table->string('mothersname');
+                  $table->string('permaddline1');
+                  $table->string('permaddline2');
+                  $table->string('permcity');
+                  $table->string('permstate');
+                  $table->string('permpincode');                                
+                  $table->string('permcountry');                                
+                  $table->string('permphonelandline');                                
+                  $table->string('permphonemobile');
+                  
+                  $table->string('checkboxmailadd');
+                  $table->string('mailaddline1');
+                  $table->string('mailaddline2');
+                  $table->string('mailcity');
+                  $table->string('mailstate');
+                  $table->string('mailpincode');
+                  $table->string('mailcountry');
+                  $table->string('mailphonelandline');
+                  $table->string('mailphonemobile');
 
-            $table->string('created_at');
-            $table->string('updated_at');
-        });
+                  $table->string('created_at');
+                  $table->string('updated_at');
+            });
 	}
 
 	/**
