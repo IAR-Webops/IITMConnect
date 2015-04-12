@@ -81,6 +81,13 @@ Route::group(array('before' => 'auth'), function() {
 				'uses' => 'PageController@postHomeInfo'
 		));
 
+		/* Instilife Info Page (POST) */
+		Route::post('/instilifeinfo', 
+			array('as' => 'instilife-info-post',
+				'uses' => 'PageController@postInstilifeInfo'
+		));
+
+		
 		/* Socialmedia Info Page (POST) */
 		Route::post('/socialmediainfo', 
 			array('as' => 'socialmedia-info-post',
@@ -119,6 +126,13 @@ Route::group(array('before' => 'auth'), function() {
 	  array('as' => 'instilife-info', 
 	        'uses' => 'PageController@getInstiLifeInfo'
 	));
+
+	/* Instilife Info Page (DELETE) */
+	Route::delete('/instilifeinfo', 
+		array('as' => 'instilife-info-delete',
+			'uses' => 'PageController@deleteInstilifeInfo'
+	));
+
 
 	/* Social Media Info Page (GET) */
 	Route::get('/socialmediainfo', 

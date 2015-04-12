@@ -13,8 +13,8 @@ class PageController extends BaseController {
 		if(!is_null($basic_info)) {	$info_check['basic'] = "True";	} else { $info_check['basic'] = "False"; }
 		$home_info = DB::table('home_infos')->where('user_id', $user_id)->first();
 		if(!is_null($home_info)) {	$info_check['home'] = "True";	} else { $info_check['home'] = "False"; }
-		$basic_info = DB::table('basic_infos')->where('user_id', $user_id)->first();
-		if(!is_null($basic_info)) {	$info_check['instilife'] = "True";	} else { $info_check['instilife'] = "False"; }
+		$instilife_info = DB::table('instilife_infos')->where('user_id', $user_id)->first();
+		if(!is_null($instilife_info)) {	$info_check['instilife'] = "True";	} else { $info_check['instilife'] = "False"; }
 		$socialmedia_info = DB::table('socialmedia_infos')->where('user_id', $user_id)->first();
 		if(!is_null($socialmedia_info)) {	$info_check['socialmedia'] = "True";	} else { $info_check['socialmedia'] = "False"; }
 		View::share('info_check',$info_check);		
@@ -35,8 +35,8 @@ class PageController extends BaseController {
 		if(!is_null($basic_info)) {	$info_check['basic'] = "True";	} else { $info_check['basic'] = "False"; }
 		$home_info = DB::table('home_infos')->where('user_id', $user_id)->first();
 		if(!is_null($home_info)) {	$info_check['home'] = "True";	} else { $info_check['home'] = "False"; }
-		$basic_info = DB::table('basic_infos')->where('user_id', $user_id)->first();
-		if(!is_null($basic_info)) {	$info_check['instilife'] = "True";	} else { $info_check['instilife'] = "False"; }
+		$instilife_info = DB::table('instilife_infos')->where('user_id', $user_id)->first();
+		if(!is_null($instilife_info)) {	$info_check['instilife'] = "True";	} else { $info_check['instilife'] = "False"; }
 		$socialmedia_info = DB::table('socialmedia_infos')->where('user_id', $user_id)->first();
 		if(!is_null($socialmedia_info)) {	$info_check['socialmedia'] = "True";	} else { $info_check['socialmedia'] = "False"; }
 		View::share('info_check',$info_check);		
@@ -167,7 +167,7 @@ class PageController extends BaseController {
 				));
 
 				return Redirect::route('basic-info')
-                    ->with('globalalertmessage', 'Basic Information Created')
+                    ->with('globalalertmessage', 'Basic Information Saved')
                     ->with('globalalertclass', 'success');
 			}
 
@@ -192,8 +192,8 @@ class PageController extends BaseController {
 		if(!is_null($basic_info)) {	$info_check['basic'] = "True";	} else { $info_check['basic'] = "False"; }
 		$home_info = DB::table('home_infos')->where('user_id', $user_id)->first();
 		if(!is_null($home_info)) {	$info_check['home'] = "True";	} else { $info_check['home'] = "False"; }
-		$basic_info = DB::table('basic_infos')->where('user_id', $user_id)->first();
-		if(!is_null($basic_info)) {	$info_check['instilife'] = "True";	} else { $info_check['instilife'] = "False"; }
+		$instilife_info = DB::table('instilife_infos')->where('user_id', $user_id)->first();
+		if(!is_null($instilife_info)) {	$info_check['instilife'] = "True";	} else { $info_check['instilife'] = "False"; }
 		$socialmedia_info = DB::table('socialmedia_infos')->where('user_id', $user_id)->first();
 		if(!is_null($socialmedia_info)) {	$info_check['socialmedia'] = "True";	} else { $info_check['socialmedia'] = "False"; }
 		View::share('info_check',$info_check);		
@@ -327,7 +327,7 @@ class PageController extends BaseController {
 					));
 
 					return Redirect::route('home-info')
-                    	->with('globalalertmessage', 'Home Information Created')
+                    	->with('globalalertmessage', 'Home Information Saved')
                     	->with('globalalertclass', 'success');
 				}
 
@@ -395,7 +395,7 @@ class PageController extends BaseController {
 					));
 
 					return Redirect::route('home-info')
-                    	->with('globalalertmessage', 'Home Information Created')
+                    	->with('globalalertmessage', 'Home Information Saved')
                     	->with('globalalertclass', 'success');
 				}
 
@@ -418,14 +418,104 @@ class PageController extends BaseController {
 		if(!is_null($basic_info)) {	$info_check['basic'] = "True";	} else { $info_check['basic'] = "False"; }
 		$home_info = DB::table('home_infos')->where('user_id', $user_id)->first();
 		if(!is_null($home_info)) {	$info_check['home'] = "True";	} else { $info_check['home'] = "False"; }
-		$basic_info = DB::table('basic_infos')->where('user_id', $user_id)->first();
-		if(!is_null($basic_info)) {	$info_check['instilife'] = "True";	} else { $info_check['instilife'] = "False"; }
+		$instilife_info = DB::table('instilife_infos')->where('user_id', $user_id)->first();
+		if(!is_null($instilife_info)) {	$info_check['instilife'] = "True";	} else { $info_check['instilife'] = "False"; }
 		$socialmedia_info = DB::table('socialmedia_infos')->where('user_id', $user_id)->first();
 		if(!is_null($socialmedia_info)) {	$info_check['socialmedia'] = "True";	} else { $info_check['socialmedia'] = "False"; }
 		View::share('info_check',$info_check);		
 		// END - Checklist For Left Menu
 
+		$instilifedata = DB::table('instilife_infos')->where('user_id', $user_id)->get();
+		//return var_dump($instilifedata);
+		if(!is_null($instilife_info)) {
+			View::share('instilifedata',$instilifedata);		
+		}
+
+		//var_dump($instilifedata);
+
 		return View::make('page.instilifeinfo');
+	}
+
+	/* Insti Life Info Page (DELETE) */
+	public function deleteInstilifeInfo()
+	{
+		$user_id = Auth::id();
+
+		$por_id = Input::get('por_id');
+		$instilife_info = DB::table('instilife_infos')
+		->where('id', $por_id)
+		->where('user_id', $user_id)->first();
+		if(!is_null($instilife_info)) {
+				
+				DB::table('instilife_infos')
+					->where('id', $por_id)
+					->where('user_id', $user_id)
+					->delete();
+				return "PoR deleted";
+
+		} else {
+				
+				return "Requested PoR doesn't Exist";
+		}
+
+		return "Delete request received";
+
+	}
+
+	/* Insti Life Info Page (POST) */
+	public function postInstilifeInfo()
+	{
+		$validator = Validator::make(Input::all(),
+			array(
+				'instilifeinfodata' => 'required'			
+			)
+		);
+
+		//return var_dump(Input::all());
+		if($validator->fails()) {
+			return Redirect::route('instilife-info')
+				->withErrors($validator)
+				->withInput();   // fills the field with the old inputs what were correct
+
+		} else {
+
+			// Access the Insitlife Info
+			$user_id = Auth::id();
+
+			foreach (Input::get('instilifeinfodata') as $inc=>$instilifeinfodataeach) {
+
+				$organization = $instilifeinfodataeach[0];
+				$department = $instilifeinfodataeach[1];
+				$post = $instilifeinfodataeach[2];
+
+			    //foreach ($instilifeinfodataeach as $inputid=>$inputvalue) {
+			        //var_dump($inputvalue);
+			        //echo "<br>";
+			    //}
+
+			    // We will always create new entry will never update existing, because 
+			    // there are multiple PoR's per person. 
+			    // Updating will lead to replacement. 
+				
+				// Save Instilife Info Data in instilife_infos using
+				$userdata = InstilifeInfo::create(array(
+					'user_id'		=> $user_id,				
+					'organization'	=> $organization,			
+					'department'	=> $department,
+					'post'			=> $post	
+				));				
+
+			}
+			
+			return Redirect::route('instilife-info')
+                    ->with('globalalertmessage', 'Insti Life Information Saved')
+                    ->with('globalalertclass', 'success');
+
+
+		}
+		
+		return Redirect::route('home');
+
 	}
 
 	/* Social Media Info Page (GET) */
@@ -439,8 +529,8 @@ class PageController extends BaseController {
 		if(!is_null($basic_info)) {	$info_check['basic'] = "True";	} else { $info_check['basic'] = "False"; }
 		$home_info = DB::table('home_infos')->where('user_id', $user_id)->first();
 		if(!is_null($home_info)) {	$info_check['home'] = "True";	} else { $info_check['home'] = "False"; }
-		$basic_info = DB::table('basic_infos')->where('user_id', $user_id)->first();
-		if(!is_null($basic_info)) {	$info_check['instilife'] = "True";	} else { $info_check['instilife'] = "False"; }
+		$instilife_info = DB::table('instilife_infos')->where('user_id', $user_id)->first();
+		if(!is_null($instilife_info)) {	$info_check['instilife'] = "True";	} else { $info_check['instilife'] = "False"; }
 		$socialmedia_info = DB::table('socialmedia_infos')->where('user_id', $user_id)->first();
 		if(!is_null($socialmedia_info)) {	$info_check['socialmedia'] = "True";	} else { $info_check['socialmedia'] = "False"; }
 		View::share('info_check',$info_check);		
@@ -461,7 +551,7 @@ class PageController extends BaseController {
 		return View::make('page.socialmediainfo');
 	}
 
-	/* Home Info Page (POST) */
+	/* Social Media Info Page (POST) */
 	public function postSocialmediaInfo()
 	{
 		$validator = Validator::make(Input::all(),
@@ -516,7 +606,7 @@ class PageController extends BaseController {
 				));
 
 				return Redirect::route('socialmedia-info')
-                    ->with('globalalertmessage', 'Social Media Information Created')
+                    ->with('globalalertmessage', 'Social Media Information Saved')
                     ->with('globalalertclass', 'success');
 			}
 
