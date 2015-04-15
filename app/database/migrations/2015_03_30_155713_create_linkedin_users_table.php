@@ -19,6 +19,8 @@ class CreateLinkedinUsersTable extends Migration {
             $table->integer('user_id');            
             $table->string('linkedin_id')->unique();
             $table->string('linkedin_name');
+            $table->string('linkedin_firstname');
+            $table->string('linkedin_lastname');            
             $table->string('linkedin_email');
             $table->string('linkedin_link');
             $table->string('linkedin_picture');

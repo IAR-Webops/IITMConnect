@@ -3,7 +3,8 @@
 class LinkedinUser extends Eloquent {
 
 	/* Alowing Eloquent to insert data into our database */
-	protected $fillable = array('user_id', 'linkedin_id', 'linkedin_name', 'linkedin_email','linkedin_link','linkedin_picture','linkedin_headline','linkedin_accesstoken');
+	protected $fillable = array('user_id', 'linkedin_id', 'linkedin_name','linkedin_firstname','linkedin_lastname',
+	 'linkedin_email','linkedin_link','linkedin_picture','linkedin_headline','linkedin_accesstoken');
 
 	/**
 	 * The database table used by the model.

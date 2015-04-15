@@ -41,12 +41,9 @@
 		    	<div class="col-sm-12 col-md-6">
 		            <select data-toggle="select" class="form-control select select-default" name="minor" id="minor" required>
 		              <optgroup label="Minor">
-		                <option value="0">Social Entrepreneurship</option>
-		                <option value="1">Applied Mechanics</option>
-		                <option value="1">Biotechnology</option>
-		                <option value="1">Chemical</option>
-		                <option value="1">Computer Science</option>
-		                <option value="1">Engineering Design</option>
+		              	@foreach ($static_minors as $static_minor)
+		                <option value="{{$static_minor->minor_name}}">{{$static_minor->minor_name}}</option>		                
+						@endforeach		                
 		              </optgroup>
 		            </select>
 		    	</div>
@@ -71,16 +68,7 @@
 	                 PhD
 	              </label>
 	            </div>
-            </div>
-            <!-- Field - Project Guide -->
-            <div class="form-group">
-            	<div class="col-sm-12 col-md-8">
-              		<div class="input-group">
-		              <span class="input-group-addon"><span class="fui-user"></span></span>
-		              <input type="text" class="form-control" name="projectguide" placeholder="Project Guide" value="{{ $basic_info->projectguide }}" required>
-		            </div>
-	            </div>
-            </div>
+            </div>            
             <!-- Field - Email -->
             <div class="form-group">
             	<div class="col-sm-12 col-md-8">
@@ -99,16 +87,43 @@
 		            </div>
 	            </div>
             </div>
+            <!-- Field - Project Guide -->
+            <div class="form-group">
+            	<div class="col-sm-12 col-md-8">
+              		<div class="input-group">
+		              <span class="input-group-addon"><span class="fui-user"></span></span>
+		              <input type="text" class="form-control" name="projectguide" placeholder="Project Guide" value="{{ $basic_info->projectguide }}" required>
+		            </div>
+	            </div>
+            </div>
             <!-- Field - Graduating Year -->
           	<div class="form-group">
           		<div class="col-sm-12 col-md-6">
 		            <select data-toggle="select" class="form-control select select-default" name="graduatingyear" id="graduatingyear" required>
 		              <optgroup label="Graduating Year">
+		              	<option value="2020">2020</option>
+		                <option value="2019">2019</option>
+		                <option value="2018">2018</option>
+		                <option value="2017">2017</option>
+		                <option value="2016">2016</option>
 		                <option value="2015">2015</option>
 		                <option value="2014">2014</option>
 		                <option value="2013">2013</option>
 		                <option value="2012">2012</option>
-		                <option value="2011">2011</option>		                
+		                <option value="2011">2011</option>
+		                <option value="2010">2010</option>
+		                <option value="2009">2009</option>
+		                <option value="2008">2008</option>
+		                <option value="2007">2007</option>
+		                <option value="2006">2006</option>
+		                <option value="2005">2005</option>
+		                <option value="2004">2004</option>
+		                <option value="2003">2003</option>
+		                <option value="2002">2002</option>
+		                <option value="2001">2001</option>
+		                <option value="2000">2000</option>
+
+
 		              </optgroup>
 		            </select>
 		    	</div>		    	
@@ -201,6 +216,8 @@
 			//alert($('#department').val());
 			// Set the Department
 			$('#department').val("{{ $basic_info->department }}");
+			// Set the Minor
+			$('#minor').val("{{ $basic_info->minor }}");
 			// Set the Degree Type
 			switch("{{ $basic_info->optionsRadiosDegree }}") {
 			    case "B. Tech":
@@ -241,6 +258,8 @@
 			        break;
 			    default:
 			        optionsRadiosFuture_id = "radio4job";
+			        $("#companyname").removeAttr("readonly");
+		            $("#companylocation").removeAttr("readonly");
 			        break;
 			} 
 			$("#" + optionsRadiosFuture_id).prop("checked", true);

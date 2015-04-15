@@ -46,6 +46,8 @@ class PageController extends BaseController {
 
 		$static_departments = DB::table('static_departments')->get();
 		View::share('static_departments',$static_departments);
+		$static_minors = DB::table('static_minors')->get();
+		View::share('static_minors',$static_minors);
 		
 		$basic_info = DB::table('basic_infos')->where('user_id', $user_id)->first();
 		if(is_null($basic_info)) {
@@ -107,10 +109,10 @@ class PageController extends BaseController {
 
 			if ($optionsRadiosFuture == 'Job') {
 				$future_field1 		= Input::get('companyname');
-				$future_field2 	= Input::get('companylocation');
+				$future_field2 		= Input::get('companylocation');
 			} elseif ($optionsRadiosFuture == 'Higher Studies') {
 				$future_field1 		= Input::get('universityname');
-				$future_field2 	= Input::get('universitydepartment');
+				$future_field2 		= Input::get('universitydepartment');
 			} elseif ($optionsRadiosFuture == 'Others') {
 				$future_field1 		= Input::get('futureothers');
 				$future_field2		= null;

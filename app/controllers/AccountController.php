@@ -45,6 +45,12 @@ class AccountController extends BaseController {
 
 	        View::share('result',$result);
 
+	        // Fetch The Roll Number from Imported Data based on Email ID
+			$emailid = $result['email'];
+			$fetchrollnumber = $this->getRollnumberWilkommen($emailid);
+			View::share('fetchrollnumber',$fetchrollnumber);
+
+
 	        $useremail = UserEmail::where('user_email', '=', $result['email']);
 	        // Check if User already registered with this Email ID. To fetch his Roll No. automatically.
 			if($useremail->count()) {
@@ -70,12 +76,18 @@ class AccountController extends BaseController {
 	        			'user_id'				=> $user_id,
 						'facebook_id' 			=> $result['id'],
 						'facebook_name'			=> $result['name'],
+						'facebook_firstname'	=> $result['first_name'],
+						'facebook_lastname'		=> $result['last_name'],
+						'facebook_gender'		=> $result['gender'],						
 						'facebook_email'		=> $result['email'],
+						'facebook_picture'		=> $result['email'],						
 						'facebook_accesstoken'	=> $result['accesstoken']
 					));
 	        	}
 
-	        	return Redirect::route('home');
+				return $this->getAutofillFetched('facebook');
+	        	
+	        	//return Redirect::route('home');
 
 			} else {
 
@@ -102,7 +114,11 @@ class AccountController extends BaseController {
 			array(
 				'facebook_id' 			=> 'required',
 				'facebook_name'			=> 'required',
+				'facebook_firstname'	=> 'required',
+				'facebook_lastname'		=> 'required',
+				'facebook_gender'		=> 'required',
 				'facebook_email'		=> 'required',
+				'facebook_picture'		=> 'required',				
 				'facebook_accesstoken'	=> 'required',
 				'rollno'				=> 'required|min:1'
 			)
@@ -117,7 +133,11 @@ class AccountController extends BaseController {
 			// create an account
 			$facebook_id 			= Input::get('facebook_id');
 			$facebook_name 			= Input::get('facebook_name');
+			$facebook_firstname 	= Input::get('facebook_firstname');
+			$facebook_lastname 		= Input::get('facebook_lastname');
+			$facebook_gender 		= Input::get('facebook_gender');
 			$facebook_email 		= Input::get('facebook_email');
+			$facebook_picture 		= Input::get('facebook_picture');
 			$facebook_accesstoken 	= Input::get('facebook_accesstoken');
 			$rollno 				= Input::get('rollno');
 
@@ -153,7 +173,11 @@ class AccountController extends BaseController {
 				'user_id'				=> $user_id,				
 				'facebook_id' 			=> $facebook_id,			
 				'facebook_name'			=> $facebook_name,
-				'facebook_email'		=> $facebook_email,
+				'facebook_firstname'	=> $facebook_firstname,
+				'facebook_lastname'		=> $facebook_lastname,
+				'facebook_gender'		=> $facebook_gender,
+				'facebook_email'		=> $facebook_email,			
+				'facebook_picture'		=> $facebook_picture,
 				'facebook_accesstoken'	=> $facebook_accesstoken
 			));
 
@@ -176,7 +200,9 @@ class AccountController extends BaseController {
 
 		//dd(Input::all());
 
-		return Redirect::route('home');
+		return $this->getAutofillFetched('facebook');
+
+		//return Redirect::route('home');
 
 	}
 
@@ -199,9 +225,17 @@ class AccountController extends BaseController {
 		    //dd($token->getAccessToken());
 			$accesstoken = $token->getAccessToken();
 
-
 	        // Send a request with it
 	        $result = json_decode( $googleService->request( 'https://www.googleapis.com/oauth2/v1/userinfo' ), true );
+
+			//Initialize Empty Result Array to avoid missing Oauth return parameters	        
+	        if (!array_key_exists('gender', $result)) {
+				$result['gender'] = "";
+			}
+			if (!array_key_exists('link', $result)) {
+				$result['link'] = "";
+			}
+
 			$result['accesstoken'] = $accesstoken;	      
 
 	        //Var_dump
@@ -209,6 +243,12 @@ class AccountController extends BaseController {
 	        //dd($result);
 
 			View::share('result',$result);
+
+			// Fetch The Roll Number from Imported Data based on Email ID
+			$emailid = $result['email'];
+			$fetchrollnumber = $this->getRollnumberWilkommen($emailid);
+			View::share('fetchrollnumber',$fetchrollnumber);
+
 
 			$useremail = UserEmail::where('user_email', '=', $result['email']);
 	        // Check if User already registered with this Email ID. To fetch his Roll No. automatically.
@@ -235,6 +275,8 @@ class AccountController extends BaseController {
 	        			'user_id'					=> $user_id,
 						'googleplus_id' 			=> $result['id'],
 						'googleplus_name'			=> $result['name'],
+						'googleplus_firstname'		=> $result['given_name'],
+						'googleplus_lastname'		=> $result['family_name'],						
 						'googleplus_email'			=> $result['email'],
 						'googleplus_link'			=> $result['link'],
 						'googleplus_picture'		=> $result['picture'],
@@ -243,7 +285,9 @@ class AccountController extends BaseController {
 					));
 	        	}
 
-	        	return Redirect::route('home');
+				return $this->getAutofillFetched('googleplus');
+
+	        	//return Redirect::route('home');
 
 			} else {
 
@@ -270,6 +314,8 @@ class AccountController extends BaseController {
 			array(
 				'googleplus_id' 			=> 'required',
 				'googleplus_name'			=> 'required',
+				'googleplus_firstname'		=> 'required',
+				'googleplus_lastname'		=> 'required',				
 				'googleplus_email'			=> 'required',
 				'googleplus_link'			=> 'required',
 				'googleplus_picture'		=> 'required',
@@ -288,6 +334,8 @@ class AccountController extends BaseController {
 			// create an account
 			$googleplus_id 			= Input::get('googleplus_id');
 			$googleplus_name 		= Input::get('googleplus_name');
+			$googleplus_firstname 	= Input::get('googleplus_firstname');
+			$googleplus_lastname 	= Input::get('googleplus_lastname');			
 			$googleplus_email 		= Input::get('googleplus_email');
 			$googleplus_link 		= Input::get('googleplus_link');
 			$googleplus_picture 	= Input::get('googleplus_picture');
@@ -327,6 +375,8 @@ class AccountController extends BaseController {
 				'user_id'					=> $user_id,				
 				'googleplus_id' 			=> $googleplus_id,			
 				'googleplus_name'			=> $googleplus_name,
+				'googleplus_firstname'		=> $googleplus_firstname,
+				'googleplus_lastname'		=> $googleplus_lastname,
 				'googleplus_email'			=> $googleplus_email,				
 				'googleplus_link'			=> $googleplus_link,
 				'googleplus_picture'		=> $googleplus_picture,
@@ -353,7 +403,9 @@ class AccountController extends BaseController {
 
 		//dd(Input::all());
 
-		return Redirect::route('home');
+		return $this->getAutofillFetched('googleplus');
+		
+		//return Redirect::route('home');
 
 	}
 
@@ -385,6 +437,15 @@ class AccountController extends BaseController {
 
 			View::share('result',$result);
 
+			// Fetch The Roll Number from Imported Data based on Email ID
+			$emailid = $result['emailAddress'];
+			$fetchrollnumber = $this->getRollnumberWilkommen($emailid);
+			View::share('fetchrollnumber',$fetchrollnumber);
+
+
+			//return "Received - ".$fetchrollnumber;
+
+
 	        $useremail = UserEmail::where('user_email', '=', $result['emailAddress']);
 	        // Check if User already registered with this Email ID. To fetch his Roll No. automatically.
 			if($useremail->count()) {
@@ -410,6 +471,8 @@ class AccountController extends BaseController {
 	        			'user_id'				=> $user_id,
 						'linkedin_id' 			=> $result['id'],
 						'linkedin_name'			=> $result['name'],
+						'linkedin_firstname'	=> $result['firstName'],
+						'linkedin_lastname'		=> $result['lastName'],
 						'linkedin_email'		=> $result['emailAddress'],
 						'linkedin_link'			=> $result['siteStandardProfileRequest']['url'],
 						'linkedin_picture'		=> $result['pictureUrl'],
@@ -418,7 +481,11 @@ class AccountController extends BaseController {
 					));
 	        	}
 
-	        	return Redirect::route('home');
+				return $this->getAutofillFetched('linkedin');
+
+
+	        	//return Redirect::route('autofill-fetched')
+				//		->with('oauth_client','linkedin');					
 
 			} else {
 
@@ -445,6 +512,8 @@ class AccountController extends BaseController {
 			array(
 				'linkedin_id' 			=> 'required',
 				'linkedin_name'			=> 'required',
+				'linkedin_firstname'	=> 'required',
+				'linkedin_lastname'		=> 'required',
 				'linkedin_email'		=> 'required',
 				'linkedin_link'			=> 'required',
 				'linkedin_picture'		=> 'required',
@@ -463,6 +532,8 @@ class AccountController extends BaseController {
 			// create an account
 			$linkedin_id 			= Input::get('linkedin_id');
 			$linkedin_name 			= Input::get('linkedin_name');
+			$linkedin_firstname 	= Input::get('linkedin_firstname');
+			$linkedin_lastname 		= Input::get('linkedin_lastname');
 			$linkedin_email 		= Input::get('linkedin_email');
 			$linkedin_link 			= Input::get('linkedin_link');
 			$linkedin_picture 		= Input::get('linkedin_picture');
@@ -502,6 +573,8 @@ class AccountController extends BaseController {
 				'user_id'				=> $user_id,				
 				'linkedin_id' 			=> $linkedin_id,			
 				'linkedin_name'			=> $linkedin_name,
+				'linkedin_firstname'	=> $linkedin_firstname,
+				'linkedin_lastname'		=> $linkedin_lastname,
 				'linkedin_email'		=> $linkedin_email,				
 				'linkedin_link'			=> $linkedin_link,
 				'linkedin_picture'		=> $linkedin_picture,
@@ -528,8 +601,101 @@ class AccountController extends BaseController {
 
 		//dd(Input::all());
 
-		return Redirect::route('home');
+		return $this->getAutofillFetched('linkedin');
+
+		//return Redirect::route('autofill-fetched')
+		//			->with('oauth_client','linkedin');
 
 	}
 
-}  
+	/* Autofill Fetched Data from Social Logins */
+	public function getAutofillFetched($oauth_client) {
+
+		// This Function will be called upon every Successfull Login
+		/*
+		* The purpose of this Function is to Autofill the Basic Info form fields with data that is 
+		* fetched using Social Login.
+		*/
+		$user_id = Auth::id();
+
+		$basic_info = DB::table('basic_infos')->where('user_id', $user_id)->first();
+		if(!is_null($basic_info)) {	// Skip Autofill since info Basic Info already exists
+
+			return Redirect::route('home');	
+
+		} else { // Else auto fill since Basic Info is empty
+
+			switch ($oauth_client) {
+				case 'facebook':
+					$facebookuser = DB::table('facebook_users')->where('user_id', $user_id)->first();
+
+					$firstname 	= $facebookuser->facebook_firstname;
+					$lastname 	= $facebookuser->facebook_lastname;
+					$email 		= $facebookuser->facebook_email;
+					
+					//return var_dump($facebookuser);
+					break;
+				case 'googleplus':
+					$googleplususer = DB::table('googleplus_users')->where('user_id', $user_id)->first();
+					
+					$firstname 	= $googleplususer->googleplus_firstname;
+					$lastname 	= $googleplususer->googleplus_lastname;
+					$email 		= $googleplususer->googleplus_email;
+					
+					//return var_dump($googleplususer);					
+					break;
+				case 'linkedin':
+					$linkedinuser = DB::table('linkedin_users')->where('user_id', $user_id)->first();
+
+					$firstname 	= $linkedinuser->linkedin_firstname;
+					$lastname 	= $linkedinuser->linkedin_lastname;
+					$email 		= $linkedinuser->linkedin_email;
+
+					//return var_dump($linkedinuser);				
+					break;
+				
+				default:
+					return "There was an error with getAutofillFetched() oauth_client switch. 
+							Please report this to the WebOps Team.";
+					break;
+			}
+
+			// Add any Data that needs to be added from other Imported Tables here.
+			$phone = $this->getPhonenumberWilkommen($email);
+
+			// Save Basic Info Data in basic_infos using
+			$userdata = BasicInfo::create(array(
+				'user_id'	=> $user_id,				
+				'firstname' => $firstname,			
+				'lastname'	=> $lastname,
+				'email'		=> $email,
+				'phone'		=> $phone
+			));
+
+			return Redirect::route('home');
+				
+		}		
+	}
+
+	/* Fetch Roll Number from Wilkommen based on Email ID */
+	public function getRollnumberWilkommen($emailid) {
+		$getRollnumberWilkommen = DB::table('import_wilkommen')->where('emailid', $emailid)->first();
+		if(!is_null($getRollnumberWilkommen)) {	
+			return $getRollnumberWilkommen->rollnumber;	
+		} else { 
+			return "";
+		}
+		return $emailid;
+	}
+	/* Fetch Phone Number from Wilkommen based on Email ID */
+	public function getPhonenumberWilkommen($emailid) {
+		$getPhonenumberWilkommen = DB::table('import_wilkommen')->where('emailid', $emailid)->first();
+		if(!is_null($getPhonenumberWilkommen)) {	
+			return $getPhonenumberWilkommen->phone;	
+		} else { 
+			return "";
+		}
+		return $emailid;
+	}
+
+}

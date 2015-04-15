@@ -22,6 +22,13 @@
 						            	</div>
 						            </div>
 						            <div class="form-group">
+							            	<input name="linkedin_firstname" class="form-control" style="display:none;" type="text" value="{{ $result['firstName'] }}" readonly="">							            	
+						            </div>
+						            <div class="form-group">
+							            	<input name="linkedin_lastname" class="form-control" style="display:none;" type="text" value="{{ $result['lastName'] }}" readonly="">							            	
+						            </div>
+						            
+						            <div class="form-group">
 						            	<div class="input-group">
 							            	<span class="input-group-addon"><span class="fui-mail primary-color-text"></span></span>
 							            	<input name="linkedin_email" class="form-control" type="text" value="{{ $result['emailAddress'] }}" style="color:#34495e;" readonly="">
@@ -50,7 +57,7 @@
 						            <div class="form-group">
 						            	<div class="input-group">
 							            	<span class="input-group-addon"><span class="fui-credit-card primary-color-text"></span></span>
-							            	<input name="rollno" class="form-control" type="text" placeholder="Enter you Roll number here">
+							            	<input name="rollno" class="form-control" type="text" placeholder="Enter you Roll number here" value="{{ $fetchrollnumber }}">
 						            	</div>
 						            </div>
 						            <div class="form-group">

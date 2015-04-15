@@ -22,6 +22,18 @@
 						            	</div>
 						            </div>
 						            <div class="form-group">
+							            	<input name="facebook_firstname" class="form-control" style="display:none;" type="text" value="{{ $result['first_name'] }}" readonly="">
+						            </div>
+						            <div class="form-group">
+							            	<input name="facebook_lastname" class="form-control" style="display:none;" type="text" value="{{ $result['last_name'] }}" readonly="">
+						            </div>
+						            <div class="form-group">
+							            	<input name="facebook_gender" class="form-control" style="display:none;" type="text" value="{{ $result['gender'] }}" readonly="">
+						            </div>
+						            <div class="form-group">
+							            	<input name="facebook_picture" class="form-control" style="display:none;" type="text" value="{{ $result['email'] }}" readonly="">
+						            </div>						            
+						            <div class="form-group">
 						            	<div class="input-group">
 							            	<span class="input-group-addon"><span class="fui-mail primary-color-text"></span></span>
 							            	<input name="facebook_email" class="form-control" type="text" value="{{ $result['email'] }}" style="color:#34495e;" readonly="">
@@ -34,7 +46,7 @@
 						            <div class="form-group">
 						            	<div class="input-group">
 							            	<span class="input-group-addon"><span class="fui-credit-card primary-color-text"></span></span>
-							            	<input name="rollno" class="form-control" type="text" placeholder="Enter you Roll number here">
+							            	<input name="rollno" class="form-control" type="text" placeholder="Enter you Roll number here" value="{{ $fetchrollnumber }}">
 						            	</div>
 						            </div>
 						            <div class="form-group">

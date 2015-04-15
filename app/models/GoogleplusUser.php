@@ -3,7 +3,8 @@
 class GoogleplusUser extends Eloquent {
 
 	/* Alowing Eloquent to insert data into our database */
-	protected $fillable = array('user_id', 'googleplus_id', 'googleplus_name', 'googleplus_email','googleplus_link','googleplus_picture','googleplus_gender','googleplus_accesstoken');
+	protected $fillable = array('user_id', 'googleplus_id', 'googleplus_name', 'googleplus_firstname', 'googleplus_lastname',
+		'googleplus_email','googleplus_link','googleplus_picture','googleplus_gender','googleplus_accesstoken');
 
 	/**
 	 * The database table used by the model.
