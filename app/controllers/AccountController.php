@@ -681,7 +681,8 @@ class AccountController extends BaseController {
 	public function getRollnumberWilkommen($emailid) {
 		$getRollnumberWilkommen = DB::table('import_wilkommen')->where('emailid', $emailid)->first();
 		if(!is_null($getRollnumberWilkommen)) {	
-			return $getRollnumberWilkommen->rollnumber;	
+			$rollnumberCaps = strtoupper($getRollnumberWilkommen->rollnumber);
+			return $rollnumberCaps;	
 		} else { 
 			return "";
 		}

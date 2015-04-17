@@ -11,7 +11,7 @@
             	<div class="col-sm-12 col-md-8">
               		<div class="input-group">
 		              <span class="input-group-addon"><span class="fui-google-plus"></span></span>
-		              <input type="text" class="form-control" name="googleplusprofilelink" placeholder="Google Plus Profile Link *" value="{{ $socialmedia_info->googleplusprofilelink }}" required>
+		              <input type="text" class="form-control" name="googleplusprofilelink" placeholder="Google Plus Profile Link" value="{{ $socialmedia_info->googleplusprofilelink }}" >
 		            </div>
 	            </div>
             </div>
@@ -20,7 +20,7 @@
             	<div class="col-sm-12 col-md-8">
               		<div class="input-group">
 		              <span class="input-group-addon"><span class="fui-linkedin"></span></span>
-		              <input type="text" class="form-control" name="linkedinprofilelink" placeholder="Linkedin Profile Link *" value="{{ $socialmedia_info->linkedinprofilelink }}" required>
+		              <input type="text" class="form-control" name="linkedinprofilelink" placeholder="Linkedin Profile Link" value="{{ $socialmedia_info->linkedinprofilelink }}" >
 		            </div>
 	            </div>
             </div>
@@ -29,7 +29,7 @@
             	<div class="col-sm-12 col-md-8">
               		<div class="input-group">
 		              <span class="input-group-addon"><span class="fui-facebook"></span></span>
-		              <input type="text" class="form-control" name="facebookprofilelink" placeholder="Facebook Profile Link *" value="{{ $socialmedia_info->facebookprofilelink }}" required>
+		              <input type="text" class="form-control" name="facebookprofilelink" placeholder="Facebook Profile Link" value="{{ $socialmedia_info->facebookprofilelink }}" >
 		            </div>
 	            </div>
             </div>

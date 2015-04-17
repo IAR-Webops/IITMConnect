@@ -14,7 +14,7 @@
             <!--
             <li><a href="#"><span class="fui-mail"></span> | Messages<span class="navbar-unread">1</span></a></li>
             -->
-            <li><a href="#">About Us</a></li>
+            <li><a href="{{ URL::route('about-us') }}">About Us</a></li>
            </ul>
           <form class="navbar-form navbar-left" action="#" role="search">
             <div class="form-group">
@@ -41,9 +41,10 @@
                 <span class="visible-md visible-lg"><span class="fui-gear"></span></span>                
               </a>
               <ul class="dropdown-menu">
-                <li><a href="#"><span class="fui-google-plus"></span> | Google Plus </a></li>
-                <li><a href="#"><span class="fui-linkedin"></span> | Linkedin </a></li>
-                <li><a href="#"><span class="fui-facebook"></span> | Facebook </a></li>
+                <li><a href="#"><span class="fui-google-plus"></span> | 
+                                <span class="fui-linkedin"></span> | 
+                                <span class="fui-facebook"></span> | 
+                                Oauth Settings </a></li>
               </ul>
             </li>           
             <li><a href="#"></a></li>

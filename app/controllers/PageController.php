@@ -7,6 +7,7 @@ class PageController extends BaseController {
 	{	
 		// START - Checklist For Left Menu
 		// !DRY :( - Check alternative
+		// got alternative, will update later. :)
 		$user_id = Auth::id();
 		$info_check = array();
 		$basic_info = DB::table('basic_infos')->where('user_id', $user_id)->first();
@@ -17,8 +18,13 @@ class PageController extends BaseController {
 		if(!is_null($instilife_info)) {	$info_check['instilife'] = "True";	} else { $info_check['instilife'] = "False"; }
 		$socialmedia_info = DB::table('socialmedia_infos')->where('user_id', $user_id)->first();
 		if(!is_null($socialmedia_info)) {	$info_check['socialmedia'] = "True";	} else { $info_check['socialmedia'] = "False"; }
-		View::share('info_check',$info_check);		
+		View::share('info_check',$info_check);
 		// END - Checklist For Left Menu
+
+		// Will use firstname to show customized welcome message
+		// NOTE: Taking variable from basic_info of Left menu checklist. Make sure to solve this dependency 
+		// while drying the Code. 
+		View::share('basic_info',$basic_info);
 
 		return View::make('page.homebody');
 	}
@@ -58,6 +64,7 @@ class PageController extends BaseController {
 			$basic_info->projectguide = "";
 			$basic_info->email = "";
 			$basic_info->phone = "";
+			$basic_info->phonehome = "";			
 			$basic_info->department = "";
 			$basic_info->optionsRadiosDegree = "";
 			$basic_info->graduatingyear = "";
@@ -104,6 +111,7 @@ class PageController extends BaseController {
 			$projectguide 			= Input::get('projectguide');
 			$email 					= Input::get('email');
 			$phone 					= Input::get('phone');
+			$phonehome 				= Input::get('phonehome');			
 			$graduatingyear 		= Input::get('graduatingyear');
 			$optionsRadiosFuture 	= Input::get('optionsRadiosFuture');
 
@@ -137,6 +145,7 @@ class PageController extends BaseController {
 						'projectguide'			=> $projectguide,
 						'email'					=> $email,
 						'phone'					=> $phone,
+						'phonehome'				=> $phonehome,						
 						'graduatingyear'		=> $graduatingyear,
 						'optionsRadiosFuture'	=> $optionsRadiosFuture,
 						'future_field1'			=> $future_field1,
@@ -162,6 +171,7 @@ class PageController extends BaseController {
 					'projectguide'			=> $projectguide,
 					'email'					=> $email,
 					'phone'					=> $phone,
+					'phonehome'				=> $phonehome,											
 					'graduatingyear'		=> $graduatingyear,
 					'optionsRadiosFuture'	=> $optionsRadiosFuture,
 					'future_field1'			=> $future_field1,
@@ -558,9 +568,7 @@ class PageController extends BaseController {
 	{
 		$validator = Validator::make(Input::all(),
 			array(
-				'googleplusprofilelink' => 'required',
-				'linkedinprofilelink'	=> 'required',
-				'facebookprofilelink'	=> 'required'				
+							
 			)
 		);
 
@@ -615,6 +623,12 @@ class PageController extends BaseController {
 			return Redirect::route('home');
 
 		}
+	}
+
+	/* Home Page (GET) */
+	public function getAboutUs()
+	{
+		return View::make('page.aboutus');		
 	}
 
 }

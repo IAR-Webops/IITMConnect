@@ -57,7 +57,7 @@
 						            <div class="form-group">
 						            	<div class="input-group">
 							            	<span class="input-group-addon"><span class="fui-credit-card primary-color-text"></span></span>
-							            	<input name="rollno" class="form-control" type="text" placeholder="Enter you Roll number here" value="{{ $fetchrollnumber }}">
+							            	<input name="rollno" class="form-control text-uppercase" type="text" placeholder="Enter you Roll number here" value="{{ $fetchrollnumber }}">
 						            	</div>
 						            </div>
 						            <div class="form-group">

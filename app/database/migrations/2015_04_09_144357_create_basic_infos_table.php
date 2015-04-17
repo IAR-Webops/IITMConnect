@@ -26,6 +26,7 @@ class CreateBasicInfosTable extends Migration {
             $table->string('projectguide');                                
             $table->string('email');                                
             $table->string('phone');                                
+            $table->string('phonehome');                                
             $table->string('graduatingyear');
             $table->string('optionsRadiosFuture');
             $table->string('future_field1');

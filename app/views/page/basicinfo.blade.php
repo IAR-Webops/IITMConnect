@@ -78,12 +78,21 @@
 		            </div>
 	            </div>
             </div>
-            <!-- Field - Phone -->
+            <!-- Field - Phone Current -->
             <div class="form-group">
             	<div class="col-sm-12 col-md-8">
               		<div class="input-group">
 		              <span class="input-group-addon"><span class="fui-list-small-thumbnails"></span></span>
 		              <input type="text" class="form-control" name="phone" placeholder="Phone" value="{{ $basic_info->phone }}" required>
+		            </div>
+	            </div>
+            </div>
+            <!-- Field - Phone Home -->
+            <div class="form-group">
+            	<div class="col-sm-12 col-md-8">
+              		<div class="input-group">
+		              <span class="input-group-addon"><span class="fui-list-small-thumbnails"></span></span>
+		              <input type="text" class="form-control" name="phonehome" placeholder="Phone ( Home )" value="">
 		            </div>
 	            </div>
             </div>

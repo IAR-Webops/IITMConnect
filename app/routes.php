@@ -140,5 +140,11 @@ Route::group(array('before' => 'auth'), function() {
 	        'uses' => 'PageController@getSocialMediaInfo'
 	));
 
+	/* About Us Page (GET) */
+	Route::get('/aboutus', 
+	  array('as' => 'about-us', 
+	        'uses' => 'PageController@getAboutUs'
+	));
+
 
 });
