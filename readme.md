@@ -9,7 +9,9 @@ The aim of this project is to make #iitmconnect a self sufficient application th
 ## Specifications
 
 Framework : [Laravel](http://laravel.com/docs)
+
 Repository : [IAR-Webops/IITMConnect](https://github.com/IAR-Webops/IITMConnect)
+
 Author : [yashmurty](http://yashmurty.com/)
 
 

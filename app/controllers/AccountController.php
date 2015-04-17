@@ -37,7 +37,17 @@ class AccountController extends BaseController {
 	        $accesstoken = $token->getAccessToken();
 
 	        // Send a request with it
-	        $result = json_decode( $fb->request( '/me' ), true );	        
+	        $result = json_decode( $fb->request( '/me' ), true );	
+
+	        //Initialize Empty Result Array to avoid missing Oauth return parameters	
+			// Not Including "ID","Email","Access Token"
+	        if (!array_key_exists('name', $result)) {	$result['name'] = "";	}
+	        if (!array_key_exists('first_name', $result)) {	$result['first_name'] = "";	}
+	        if (!array_key_exists('last_name', $result)) {	$result['last_name'] = "";	}
+	        if (!array_key_exists('gender', $result)) {	$result['gender'] = "";	}			        
+	        if (!array_key_exists('email', $result)) {	$result['email'] = "";	}
+			if (!array_key_exists('email', $result)) { $result['email'] = "";	}
+
 			$result['accesstoken'] = $accesstoken;	      
 	        //Var_dump
 	        //display whole array().
@@ -228,13 +238,14 @@ class AccountController extends BaseController {
 	        // Send a request with it
 	        $result = json_decode( $googleService->request( 'https://www.googleapis.com/oauth2/v1/userinfo' ), true );
 
-			//Initialize Empty Result Array to avoid missing Oauth return parameters	        
-	        if (!array_key_exists('gender', $result)) {
-				$result['gender'] = "";
-			}
-			if (!array_key_exists('link', $result)) {
-				$result['link'] = "";
-			}
+			//Initialize Empty Result Array to avoid missing Oauth return parameters	
+			// Not Including "ID","Email","Access Token"
+	        if (!array_key_exists('name', $result)) {	$result['name'] = "";	}
+	        if (!array_key_exists('given_name', $result)) {	$result['given_name'] = "";	}
+	        if (!array_key_exists('family_name', $result)) {	$result['family_name'] = "";	}
+	        if (!array_key_exists('link', $result)) {	$result['link'] = "";	}			        
+	        if (!array_key_exists('picture', $result)) {	$result['picture'] = "";	}
+			if (!array_key_exists('gender', $result)) { $result['gender'] = "";	}
 
 			$result['accesstoken'] = $accesstoken;	      
 
@@ -427,6 +438,16 @@ class AccountController extends BaseController {
 
 		    // Send a request with it. Please note that XML is the default format.
 		    $result = json_decode($linkedinService->request('/people/~:(id,num-connections,picture-url,first-name,last-name,email-address,headline,siteStandardProfileRequest)?format=json'), true);
+			
+		    //Initialize Empty Result Array to avoid missing Oauth return parameters	
+			// Not Including "ID","Email","Access Token"
+	        if (!array_key_exists('name', $result)) {	$result['name'] = "";	}
+	        if (!array_key_exists('firstName', $result)) {	$result['firstName'] = "";	}
+	        if (!array_key_exists('lastName', $result)) {	$result['lastName'] = "";	}
+	        if (!array_key_exists('siteStandardProfileRequest', $result)) {	$result['siteStandardProfileRequest'] = "";	}			        
+	        if (!array_key_exists('pictureUrl', $result)) {	$result['pictureUrl'] = "";	}
+			if (!array_key_exists('headline', $result)) { $result['headline'] = "";	}
+
 			$result['name'] = $result['firstName'] . " " . $result['lastName'];
 			$result['accesstoken'] = $accesstoken;	      
 
