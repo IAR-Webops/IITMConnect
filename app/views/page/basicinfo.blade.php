@@ -92,7 +92,7 @@
             	<div class="col-sm-12 col-md-8">
               		<div class="input-group">
 		              <span class="input-group-addon"><span class="fui-list-small-thumbnails"></span></span>
-		              <input type="text" class="form-control" name="phonehome" placeholder="Phone ( Home )" value="">
+		              <input type="text" class="form-control" name="phonehome" placeholder="Phone ( Home )" value="{{ $basic_info->phonehome }}">
 		            </div>
 	            </div>
             </div>
