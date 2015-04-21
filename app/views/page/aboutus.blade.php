@@ -11,6 +11,7 @@
 					<p><strong>#iitmconnect</strong> is the first project that has been taken up by
 					the I&AR Web Operations Team.</p>
 					<p>The purpose of this porject is to help you stay in touch with insti forever.</p>
+					<p>Users registered since April 21, 2015 on <strong>#iitmconnect</strong> : {{$usercount}} </p>
 				</div>
 			</div>
 			<div class="row">

@@ -37,6 +37,9 @@
 						@endforeach		                
 		              </optgroup>
 		            </select>
+		            @if(!$basic_info->department == "")
+		            	<span style="font-size:14px;" >Department Saved : {{ $basic_info->department }}</span>
+		            @endif
 		    	</div>
 		    	<div class="col-sm-12 col-md-6">
 		            <select data-toggle="select" class="form-control select select-default" name="minor" id="minor" required>
@@ -46,6 +49,9 @@
 						@endforeach		                
 		              </optgroup>
 		            </select>
+		            @if(!$basic_info->minor == "")
+		            	<span style="font-size:14px;">Minor Saved : {{ $basic_info->minor }}</span>	
+		            @endif	            
 		    	</div>
 	        </div>
           	<!-- Field - Degree Type -->
@@ -66,6 +72,22 @@
 	              <label class="radio" for="radio4d">
 	                <input type="radio" name="optionsRadiosDegree" data-toggle="radio" value="PhD" id="radio4d" required>
 	                 PhD
+	              </label>
+	              <label class="radio" for="radio4e">
+	                <input type="radio" name="optionsRadiosDegree" data-toggle="radio" value="M. Tech" id="radio4e" required>
+	                 M. Tech
+	              </label>
+	              <label class="radio" for="radio4f">
+	                <input type="radio" name="optionsRadiosDegree" data-toggle="radio" value="MA (HS)" id="radio4f" required>
+	                 MA (HS)
+	              </label>
+	              <label class="radio" for="radio4g">
+	                <input type="radio" name="optionsRadiosDegree" data-toggle="radio" value="MBA" id="radio4g" required>
+	                 MBA
+	              </label>
+	              <label class="radio" for="radio4h">
+	                <input type="radio" name="optionsRadiosDegree" data-toggle="radio" value="M.Sc" id="radio4h" required>
+	                 M.Sc
 	              </label>
 	            </div>
             </div>            
@@ -241,6 +263,18 @@
 			    case "PhD":
 			        optionsRadiosDegree_id = "radio4d";
 			        break;
+			    case "M. Tech":
+			        optionsRadiosDegree_id = "radio4e";
+			        break;
+			    case "MA (HS)":
+			        optionsRadiosDegree_id = "radio4f";
+			        break;
+			    case "MBA":
+			        optionsRadiosDegree_id = "radio4g";
+			        break;
+			    case "M.Sc":
+			        optionsRadiosDegree_id = "radio4h";
+			        break;    
 			    default:
 			        optionsRadiosDegree_id = "radio4a";
 			        break;

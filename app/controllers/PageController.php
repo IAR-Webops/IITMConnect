@@ -628,6 +628,11 @@ class PageController extends BaseController {
 	/* Home Page (GET) */
 	public function getAboutUs()
 	{
+		$user = DB::table('users')->orderBy('created_at', 'desc')->first();
+		$usercount = (int) $user->id;
+		//return $usercount;
+		View::share('usercount', $usercount);		
+
 		return View::make('page.aboutus');		
 	}
 
