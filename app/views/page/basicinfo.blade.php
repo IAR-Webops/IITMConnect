@@ -114,7 +114,7 @@
             	<div class="col-sm-12 col-md-8">
               		<div class="input-group">
 		              <span class="input-group-addon"><span class="fui-list-small-thumbnails"></span></span>
-		              <input type="text" class="form-control" name="phonehome" placeholder="Phone ( Home )" value="{{ $basic_info->phonehome }}">
+		              <input type="text" class="form-control" name="phonehome" placeholder="Phone ( Home )" value="{{ $basic_info->phonehome }}" required>
 		            </div>
 	            </div>
             </div>
@@ -153,10 +153,11 @@
 		                <option value="2002">2002</option>
 		                <option value="2001">2001</option>
 		                <option value="2000">2000</option>
-
-
 		              </optgroup>
 		            </select>
+		            @if(!$basic_info->graduatingyear == "")
+		            	<span style="font-size:14px;">Graduating Year : {{ $basic_info->graduatingyear }}</span>	
+		            @endif
 		    	</div>		    	
 	        </div>
 	        <!-- Field - Future Plans -->

@@ -130,7 +130,7 @@ class AccountController extends BaseController {
 				'facebook_email'		=> 'required',
 				'facebook_picture'		=> 'required',				
 				'facebook_accesstoken'	=> 'required',
-				'rollno'				=> 'required|min:1'
+				'rollno'				=> 'required|min:7'
 			)
 		);
 
@@ -332,7 +332,7 @@ class AccountController extends BaseController {
 				'googleplus_picture'		=> 'required',
 				'googleplus_gender'			=> 'required',
 				'googleplus_accesstoken'	=> 'required',				
-				'rollno'					=> 'required|min:1'
+				'rollno'					=> 'required|min:7'
 			)
 		);
 
@@ -540,7 +540,7 @@ class AccountController extends BaseController {
 				'linkedin_picture'		=> 'required',
 				'linkedin_headline'		=> 'required',
 				'linkedin_accesstoken'	=> 'required',				
-				'rollno'				=> 'required|min:1'
+				'rollno'				=> 'required|min:7'
 			)
 		);
 
