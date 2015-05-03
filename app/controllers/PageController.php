@@ -85,7 +85,6 @@ class PageController extends BaseController {
 			array(
 				'firstname' 		=> 'required',
 				'lastname'			=> 'required',
-				'projectguide'		=> 'required',
 				'email'				=> 'required|email',
 				'phone'				=> 'required|min:10'
 			)

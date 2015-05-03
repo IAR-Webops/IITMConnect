@@ -39,6 +39,8 @@
 		            </select>
 		            @if(!$basic_info->department == "")
 		            	<span style="font-size:14px;" >Department Saved : {{ $basic_info->department }}</span>
+		            @else
+		            	<span style="font-size:14px;" >Choose your Department</span>		            	
 		            @endif
 		    	</div>
 		    	<div class="col-sm-12 col-md-6">
@@ -50,7 +52,9 @@
 		              </optgroup>
 		            </select>
 		            @if(!$basic_info->minor == "")
-		            	<span style="font-size:14px;">Minor Saved : {{ $basic_info->minor }}</span>	
+		            	<span style="font-size:14px;">Minor Saved : {{ $basic_info->minor }}</span>
+		            @else
+		            	<span style="font-size:14px;" >Choose your Minor</span>		            			            
 		            @endif	            
 		    	</div>
 	        </div>
@@ -96,7 +100,7 @@
             	<div class="col-sm-12 col-md-8">
               		<div class="input-group">
 		              <span class="input-group-addon"><span class="fui-mail"></span></span>
-		              <input type="text" class="form-control" name="email" placeholder="Email" value="{{ $basic_info->email }}" required>
+		              <input type="text" class="form-control" name="email" placeholder="Email *" value="{{ $basic_info->email }}" required>
 		            </div>
 	            </div>
             </div>
@@ -105,7 +109,7 @@
             	<div class="col-sm-12 col-md-8">
               		<div class="input-group">
 		              <span class="input-group-addon"><span class="fui-list-small-thumbnails"></span></span>
-		              <input type="text" class="form-control" name="phone" placeholder="Phone" value="{{ $basic_info->phone }}" required>
+		              <input type="text" class="form-control" name="phone" placeholder="Phone *" value="{{ $basic_info->phone }}" required>
 		            </div>
 	            </div>
             </div>
@@ -114,7 +118,7 @@
             	<div class="col-sm-12 col-md-8">
               		<div class="input-group">
 		              <span class="input-group-addon"><span class="fui-list-small-thumbnails"></span></span>
-		              <input type="text" class="form-control" name="phonehome" placeholder="Phone ( Home )" value="{{ $basic_info->phonehome }}" required>
+		              <input type="text" class="form-control" name="phonehome" placeholder="Phone ( Home )" value="{{ $basic_info->phonehome }}">
 		            </div>
 	            </div>
             </div>
@@ -123,7 +127,7 @@
             	<div class="col-sm-12 col-md-8">
               		<div class="input-group">
 		              <span class="input-group-addon"><span class="fui-user"></span></span>
-		              <input type="text" class="form-control" name="projectguide" placeholder="Project Guide" value="{{ $basic_info->projectguide }}" required>
+		              <input type="text" class="form-control" name="projectguide" placeholder="Project Guide" value="{{ $basic_info->projectguide }}" >
 		            </div>
 	            </div>
             </div>
@@ -156,7 +160,9 @@
 		              </optgroup>
 		            </select>
 		            @if(!$basic_info->graduatingyear == "")
-		            	<span style="font-size:14px;">Graduating Year : {{ $basic_info->graduatingyear }}</span>	
+		            	<span style="font-size:14px;">Graduating Year : {{ $basic_info->graduatingyear }}</span>
+		            @else
+		            	<span style="font-size:14px;" >Choose your Graduating Year</span>		            	
 		            @endif
 		    	</div>		    	
 	        </div>
