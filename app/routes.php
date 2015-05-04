@@ -146,5 +146,11 @@ Route::group(array('before' => 'auth'), function() {
 	        'uses' => 'PageController@getAboutUs'
 	));
 
+	/* Oauth Settings Page (GET) */
+	Route::get('/oauthsettings', 
+	  array('as' => 'oauth-settings', 
+	        'uses' => 'PageController@getOauthSettings'
+	));
+
 
 });

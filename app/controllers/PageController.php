@@ -635,4 +635,9 @@ class PageController extends BaseController {
 		return View::make('page.aboutus');		
 	}
 
+	public function getOauthSettings()
+	{
+		return View::make('page.oauthsettings');		
+	}
+
 }

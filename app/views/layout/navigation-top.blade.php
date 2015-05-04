@@ -41,7 +41,7 @@
                 <span class="visible-md visible-lg"><span class="fui-gear"></span></span>                
               </a>
               <ul class="dropdown-menu">
-                <li><a href="#"><span class="fui-google-plus"></span> | 
+                <li><a href="{{ URL::route('oauth-settings') }}"><span class="fui-google-plus"></span> | 
                                 <span class="fui-linkedin"></span> | 
                                 <span class="fui-facebook"></span> | 
                                 Oauth Settings </a></li>
