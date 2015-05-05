@@ -7,28 +7,7 @@
 			<div class="row">
 				<div class="col-sm-12 col-md-offset-3 col-md-6">
 		          <h4 class="text-center">Oauth Settings</h4>        	
-		          <hr>		       
-					<p><strong>#iitmconnect</strong> is the first project that has been taken up by
-					the I&AR Web Operations Team.</p>
-					<p>The purpose of this project is to help you stay in touch with insti forever.</p>
-
-
-					@if($oauth_check['googleplus'] == "True")
-						Googleplus Oauth Detected
-					@else
-						Googleplus Oauth Absent						
-					@endif					
-					@if($oauth_check['linkedin'] == "True")
-						linkedin Oauth Detected
-					@else
-						linkedin Oauth Absent											
-					@endif
-					@if($oauth_check['facebook'] == "True")
-						facebook Oauth Detected
-					@else
-						facebook Oauth Absent											
-					@endif
-
+		          <hr>		       				
 					<table class="table">
 				      <caption>Social Oauth Account Settings</caption>
 				      <thead>
