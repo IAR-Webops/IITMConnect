@@ -7,7 +7,7 @@
           <hr>
         	@if(isset($instilifedata))
 			<table class="table">
-		      <caption>Optional table caption.</caption>
+		      <caption>PoR's</caption>
 		      <thead>
 		        <tr>
 		          <th>Organization</th>

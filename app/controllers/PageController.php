@@ -637,6 +637,21 @@ class PageController extends BaseController {
 
 	public function getOauthSettings()
 	{
+		$user_id = Auth::id();
+		$oauth_check = array();		
+		$googleplus_info = DB::table('googleplus_users')->where('user_id', $user_id)->first();
+		if(!is_null($googleplus_info)) { $oauth_check['googleplus'] = "True"; } else { $oauth_check['googleplus'] = "False"; }
+		$linkedin_info = DB::table('linkedin_users')->where('user_id', $user_id)->first();
+		if(!is_null($linkedin_info)) { $oauth_check['linkedin'] = "True"; } else { $oauth_check['linkedin'] = "False"; }
+		$facebook_info = DB::table('facebook_users')->where('user_id', $user_id)->first();
+		if(!is_null($facebook_info)) { $oauth_check['facebook'] = "True"; } else { $oauth_check['facebook'] = "False"; }
+		
+		View::share('googleplus_info', $googleplus_info);		
+		View::share('linkedin_info', $linkedin_info);		
+		View::share('facebook_info', $facebook_info);						
+
+		View::share('oauth_check', $oauth_check);		
+
 		return View::make('page.oauthsettings');		
 	}
 
