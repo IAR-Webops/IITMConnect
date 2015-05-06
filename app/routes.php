@@ -63,7 +63,9 @@ Route::group(array('before' => 'guest'), function() {
 
 });
 
+###
 /* Authenticated group */
+###
 Route::group(array('before' => 'auth'), function() {
 
 	/* CSRF protection */
@@ -150,6 +152,30 @@ Route::group(array('before' => 'auth'), function() {
 	Route::get('/oauthsettings', 
 	  array('as' => 'oauth-settings', 
 	        'uses' => 'PageController@getOauthSettings'
+	));
+
+	/* Oauth Settings Page (DELETE) */
+	Route::delete('/oauthsettings', 
+		array('as' => 'oauth-settings-delete',
+			'uses' => 'PageController@deleteOauthSettings'
+	));
+
+	/* Add with Facebook (GET) */
+	Route::get('/account/addwithfacebook', 
+		array('as' => 'account-add-facebook',
+			'uses' => 'AccountController@getAddWithFacebook'
+	));
+
+	/* Add Google Plus (GET) */
+	Route::get('/account/addwithgoogleplus', 
+		array('as' => 'account-add-googleplus',
+			'uses' => 'AccountController@getAddWithGoogle'
+	));
+
+	/* Add Linkedin (GET) */
+	Route::get('/account/addwithlinkedin', 
+		array('as' => 'account-add-linkedin',
+			'uses' => 'AccountController@getAddWithLinkedin'
 	));
 
 

@@ -635,6 +635,8 @@ class PageController extends BaseController {
 		return View::make('page.aboutus');		
 	}
 
+	### OAUTH SETTINGS
+	/* Oauth Settings (GET) */
 	public function getOauthSettings()
 	{
 		$user_id = Auth::id();
@@ -646,6 +648,9 @@ class PageController extends BaseController {
 		$facebook_info = DB::table('facebook_users')->where('user_id', $user_id)->first();
 		if(!is_null($facebook_info)) { $oauth_check['facebook'] = "True"; } else { $oauth_check['facebook'] = "False"; }
 		
+		$user_email_info = DB::table('user_emails')->where('user_id', $user_id)->first();
+		View::share('user_email_info', $user_email_info);		
+
 		View::share('googleplus_info', $googleplus_info);		
 		View::share('linkedin_info', $linkedin_info);		
 		View::share('facebook_info', $facebook_info);						
@@ -655,4 +660,33 @@ class PageController extends BaseController {
 		return View::make('page.oauthsettings');		
 	}
 
+	/* Oauth Settings (DELETE) */
+	public function deleteOauthSettings()
+	{
+		$user_id = Auth::id();
+
+		$oauthclient = Input::get('oauthclient');
+		switch ($oauthclient) {
+			case 'googleplus':
+	        	$googleplususer = GoogleplusUser::where('user_id', '=', $user_id)->first();
+	        	$googleplususer->delete();
+	        	return "Googleplus Oauth Account Deleted";
+				break;
+			case 'linkedin':
+				$linkedinuser = LinkedinUser::where('user_id', '=', $user_id)->first();
+	        	$linkedinuser->delete();
+	        	return "Linkedin Oauth Account Deleted";
+				break;
+			case 'facebook':
+				$facebookuser = FacebookUser::where('user_id', '=', $user_id)->first();
+	        	$facebookuser->delete();
+	        	return "Facebook Oauth Account Deleted";
+				break;
+			
+			default:
+				return "No Oauth Detected. Contact Webops Team";
+				break;
+		}
+
+	}
 }

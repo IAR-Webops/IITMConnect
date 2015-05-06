@@ -216,6 +216,81 @@ class AccountController extends BaseController {
 
 	}
 
+
+	/* Add user with facebook */
+	// This funtion will be called by only Logged in Users
+	public function getAddWithFacebook() {
+
+	    // get data from input
+	    $code = Input::get( 'code' );
+
+	    // get fb service
+	    $fb = OAuth::consumer( 'Facebook' );
+
+	    // check if code is valid
+
+	    // if code is provided get user data and sign in
+	    if ( !empty( $code ) ) {
+
+	        // This was a callback request from facebook, get the token
+	        $token = $fb->requestAccessToken( $code );
+	        //dd($token->getAccessToken());
+	        $accesstoken = $token->getAccessToken();
+
+	        // Send a request with it
+	        $result = json_decode( $fb->request( '/me' ), true );	
+
+	        //Initialize Empty Result Array to avoid missing Oauth return parameters	
+			// Not Including "ID","Email","Access Token"
+	        if (!array_key_exists('name', $result)) {	$result['name'] = "";	}
+	        if (!array_key_exists('first_name', $result)) {	$result['first_name'] = "";	}
+	        if (!array_key_exists('last_name', $result)) {	$result['last_name'] = "";	}
+	        if (!array_key_exists('gender', $result)) {	$result['gender'] = "";	}			        
+	        if (!array_key_exists('email', $result)) {	$result['email'] = "";	}
+			if (!array_key_exists('email', $result)) { $result['email'] = "";	}
+
+			$result['accesstoken'] = $accesstoken;	      
+	        //Var_dump
+	        //display whole array().
+	        //dd($result);
+
+			$user_id = Auth::id();
+		        
+        	// Saving Facebook Data if doesn't exist already
+        	$facebookuser = FacebookUser::where('facebook_email', '=', $result['email']);
+        	if($facebookuser->count()) {
+        		return "Cannot Add. User with this email address already exists.";
+        	} else {
+        		$facebookuserdata = FacebookUser::create(array(
+        			'user_id'				=> $user_id,
+					'facebook_id' 			=> $result['id'],
+					'facebook_name'			=> $result['name'],
+					'facebook_firstname'	=> $result['first_name'],
+					'facebook_lastname'		=> $result['last_name'],
+					'facebook_gender'		=> $result['gender'],						
+					'facebook_email'		=> $result['email'],
+					'facebook_picture'		=> $result['email'],						
+					'facebook_accesstoken'	=> $result['accesstoken']
+				));
+				return Redirect::route('oauth-settings')
+                    ->with('globalalertmessage', 'Facebook Oauth Added')
+                    ->with('globalalertclass', 'success');
+        	}
+
+
+
+	    }
+	    // if not ask for permission first
+	    else {
+	        // get fb authorization
+	        $url = $fb->getAuthorizationUri();
+
+	        // return to facebook login url
+	         return Redirect::to( (string)$url );
+	    }
+
+	}
+
 	/* Sign in with Google Plus */
 	public function getLoginWithGoogle() {
 
@@ -419,6 +494,80 @@ class AccountController extends BaseController {
 		//return Redirect::route('home');
 
 	}
+
+	/* Add with Google Plus */
+	// This funtion will be called by only Logged in Users	
+	public function getAddWithGoogle() {
+
+	    // get data from input
+	    $code = Input::get( 'code' );
+
+	    // get google service
+	    $googleService = OAuth::consumer( 'Google' );
+
+	    // check if code is valid
+
+	    // if code is provided get user data and sign in
+	    if ( !empty( $code ) ) {
+
+	        // This was a callback request from google, get the token
+	        $token = $googleService->requestAccessToken( $code );
+		    //dd($token->getAccessToken());
+			$accesstoken = $token->getAccessToken();
+
+	        // Send a request with it
+	        $result = json_decode( $googleService->request( 'https://www.googleapis.com/oauth2/v1/userinfo' ), true );
+
+			//Initialize Empty Result Array to avoid missing Oauth return parameters	
+			// Not Including "ID","Email","Access Token"
+	        if (!array_key_exists('name', $result)) {	$result['name'] = "";	}
+	        if (!array_key_exists('given_name', $result)) {	$result['given_name'] = "";	}
+	        if (!array_key_exists('family_name', $result)) {	$result['family_name'] = "";	}
+	        if (!array_key_exists('link', $result)) {	$result['link'] = "";	}			        
+	        if (!array_key_exists('picture', $result)) {	$result['picture'] = "";	}
+			if (!array_key_exists('gender', $result)) { $result['gender'] = "";	}
+
+			$result['accesstoken'] = $accesstoken;	      
+
+	        //Var_dump
+	        //display whole array().
+	        //dd($result);
+
+			$user_id = Auth::id();
+	        
+        	// Saving Googleplus Data if doesn't exist already
+        	$googleplususer = GoogleplusUser::where('googleplus_email', '=', $result['email']);
+        	if($googleplususer->count()) {
+        		return "Cannot Add Googleplus Oauth. User with this email address already exists.";
+        	} else {
+        		$googleplususerdata = GoogleplusUser::create(array(
+        			'user_id'					=> $user_id,
+					'googleplus_id' 			=> $result['id'],
+					'googleplus_name'			=> $result['name'],
+					'googleplus_firstname'		=> $result['given_name'],
+					'googleplus_lastname'		=> $result['family_name'],						
+					'googleplus_email'			=> $result['email'],
+					'googleplus_link'			=> $result['link'],
+					'googleplus_picture'		=> $result['picture'],
+					'googleplus_gender'			=> $result['gender'],
+					'googleplus_accesstoken'	=> $result['accesstoken']						
+				));
+				return Redirect::route('oauth-settings')
+                	->with('globalalertmessage', 'Google Plus Oauth Added')
+                	->with('globalalertclass', 'success');
+        	}
+
+	    }
+	    // if not ask for permission first
+	    else {
+	        // get googleService authorization
+	        $url = $googleService->getAuthorizationUri();
+
+	        // return to google login url
+	        return Redirect::to( (string)$url );
+	    }
+	}
+
 
 	/* Sign in with Linkedin */
 	public function getLoginWithLinkedin() {
@@ -628,6 +777,79 @@ class AccountController extends BaseController {
 		//			->with('oauth_client','linkedin');
 
 	}
+
+	/* Add with Linkedin */
+	// This funtion will be called by only Logged in Users	
+	public function getAddWithLinkedin() {
+
+		// get data from input
+		$code = Input::get( 'code' );
+
+		$linkedinService = OAuth::consumer( 'Linkedin' );
+
+
+		if ( !empty( $code ) ) {
+
+		    // This was a callback request from linkedin, get the token
+		    $token = $linkedinService->requestAccessToken( $code );
+		    //dd($token->getAccessToken());
+			$accesstoken = $token->getAccessToken();
+
+		    // Send a request with it. Please note that XML is the default format.
+		    $result = json_decode($linkedinService->request('/people/~:(id,num-connections,picture-url,first-name,last-name,email-address,headline,siteStandardProfileRequest)?format=json'), true);
+			
+		    //Initialize Empty Result Array to avoid missing Oauth return parameters	
+			// Not Including "ID","Email","Access Token"
+	        if (!array_key_exists('name', $result)) {	$result['name'] = "";	}
+	        if (!array_key_exists('firstName', $result)) {	$result['firstName'] = "";	}
+	        if (!array_key_exists('lastName', $result)) {	$result['lastName'] = "";	}
+	        if (!array_key_exists('siteStandardProfileRequest', $result)) {	$result['siteStandardProfileRequest'] = "";	}			        
+	        if (!array_key_exists('pictureUrl', $result)) {	$result['pictureUrl'] = "";	}
+			if (!array_key_exists('headline', $result)) { $result['headline'] = "";	}
+
+			$result['name'] = $result['firstName'] . " " . $result['lastName'];
+			$result['accesstoken'] = $accesstoken;	      
+
+		    //Var_dump
+		    //display whole array().
+		    //return $result['siteStandardProfileRequest']['url'];
+		    //dd($result);
+
+			$user_id = Auth::id();
+				    
+        	// Saving Linkedin Data if doesn't exist already
+        	$linkedinuser = LinkedinUser::where('linkedin_email', '=', $result['emailAddress']);
+        	if($linkedinuser->count()) {
+        		return "Cannot Add Linkedin Oauth. User with this email address already exists.";
+        	} else {
+        		$linkedinuserdata = LinkedinUser::create(array(
+        			'user_id'				=> $user_id,
+					'linkedin_id' 			=> $result['id'],
+					'linkedin_name'			=> $result['name'],
+					'linkedin_firstname'	=> $result['firstName'],
+					'linkedin_lastname'		=> $result['lastName'],
+					'linkedin_email'		=> $result['emailAddress'],
+					'linkedin_link'			=> $result['siteStandardProfileRequest']['url'],
+					'linkedin_picture'		=> $result['pictureUrl'],
+					'linkedin_headline'		=> $result['headline'],
+					'linkedin_accesstoken'	=> $result['accesstoken']						
+				));
+				return Redirect::route('oauth-settings')
+                	->with('globalalertmessage', 'Linkedin Oauth Added')
+	            	->with('globalalertclass', 'success');
+        	}				
+
+		}// if not ask for permission first
+		else {
+		    // get linkedinService authorization
+		    $url = $linkedinService->getAuthorizationUri(array('state'=>'DCEEFWF45453sdffef424'));
+
+		    // return to linkedin login url
+		    return Redirect::to( (string)$url );
+		}
+
+	}
+
 
 	/* Autofill Fetched Data from Social Logins */
 	public function getAutofillFetched($oauth_client) {
