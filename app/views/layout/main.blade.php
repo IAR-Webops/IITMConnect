@@ -33,6 +33,7 @@
         <![endif]-->                               
     </head>                                        
 	<body>
+        @include('layout.js.sdkanalytics')
 		
         @if(Auth::check())
 

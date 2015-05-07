@@ -1,4 +1,4 @@
-<div class="col-sm-12 col-md-4 col-lg-3"><!-- START - Navigation Left -->
+        <div class="col-sm-12 col-md-4 col-lg-3"><!-- START - Navigation Left -->
 
           <div class="col-sm-12">
               <div class="todo">
@@ -49,7 +49,24 @@
                   </a>
                 </ul>
               </div><!-- /.todo -->
-            </div>
+              <!-- START - Linkedin Join Group -->
+              <a href="https://www.linkedin.com/groups/IIT-Madras-Alumni-1747/about" target="_alt">
+                <img src="{{ URL::asset('img/linkedin_join_group.png') }}" style="margin:0 10px 10px 0;">
+              </a>
+              <!-- END - Linkedin Join Group -->
+              <!-- START - Facebook Page Plugin -->
+              <!--
+              <div class="fb-page" data-href="https://www.facebook.com/iar.iitmadras/" data-width="250" data-hide-cover="false" data-show-facepile="true" data-show-posts="false">
+                <div class="fb-xfbml-parse-ignore">
+                <blockquote cite="https://www.facebook.com/iar.iitmadras/">
+                <a href="https://www.facebook.com/iar.iitmadras/">International and Alumni Relations, IIT Madras</a>
+                </blockquote>
+                </div>
+              </div>
+              -->
+              <div class="fb-like" data-href="https://www.facebook.com/iar.iitmadras/" data-width="250" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+              <!-- END - Facebook Page Plugin -->              
+          </div>
 
         </div><!-- END - Navigation Left -->
 
