@@ -864,7 +864,11 @@ class AccountController extends BaseController {
 		$basic_info = DB::table('basic_infos')->where('user_id', $user_id)->first();
 		if(!is_null($basic_info)) {	// Skip Autofill since info Basic Info already exists
 
-			return Redirect::route('home');	
+
+			// Redirecting to Basic Info instead of Home Page.
+			return Redirect::route('basic-info');
+
+			//return Redirect::route('home');	
 
 		} else { // Else auto fill since Basic Info is empty
 
@@ -915,7 +919,10 @@ class AccountController extends BaseController {
 				'phone'		=> $phone
 			));
 
-			return Redirect::route('home');
+			// Redirecting to Basic Info instead of Home Page.
+			return Redirect::route('basic-info');
+
+			//return Redirect::route('home');
 				
 		}		
 	}
