@@ -33,8 +33,27 @@
 										<i class="fa fa-facebook"></i> Sign in using Facebook
 									</a>
 								</div>
-								<hr style="color:black; border-style:inset;">
-								<p class="bg-color-text text-center">Kindly disable Ad Blockers if you are unable to see the Sign In Buttons.</p>
+								<hr style="color:black; border-style:inset;">							
+
+								<div class="row bg-color-text">									
+									<div class="col-sm-12 text-center">
+									<h4>
+										<a href="http://iitmconnect.iitmadras.in/aboutus" target="_alt">
+											<span class="glyphicon glyphicon-info-sign" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="About Us"></span>
+										</a>
+										|
+										<a href="#" target="_alt">
+											<span class="glyphicon glyphicon-briefcase" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Terms & Conditions"></span>
+										</a>
+										|
+										<a href="https://github.com/IAR-Webops/IITMConnect/issues" target="_alt">
+											<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Reprot Issue"></span>
+										</a>
+									</h4>
+
+									</div>
+								</div>
+								<p class="bg-color-text text-center">Kindly disable Ad Blockers if you face Sign In Issues</p>
 
 					        </div>        	
 				        </div>
@@ -42,8 +61,14 @@
 	    		</div>
 	       	</div>
         </div>
-        <!-- /.container -->            
+        <!-- /.container -->      
+
+   
 
     @include('layout.login-bottom')
 
+@stop
+
+@section('jscontent')
+	
 @stop

@@ -45,7 +45,7 @@ String.prototype.repeat = function (num) {
     $('[data-toggle="radio"]').radiocheck();
 
     // Tooltips
-    $('[data-toggle=tooltip]').tooltip('show');
+    $('[data-toggle=tooltip]').tooltip();
 
     // jQuery UI Sliders
     var $slider = $('#slider');

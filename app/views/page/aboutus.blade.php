@@ -1,7 +1,6 @@
 @extends('layout.main')
 
 @section('content')
-	@if(Auth::check())
 
 		<div class="container-fluid">
 			<div class="row">
@@ -43,10 +42,7 @@
 			</div>
 		</div>
 
-@else
 		
-		Sorry, not signed in.
 
 
-	@endif
 @stop
