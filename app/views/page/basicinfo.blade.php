@@ -296,7 +296,7 @@
 			        $('#companyname').val("{{ $basic_info->future_field1 }}");
 			        $('#companylocation').val("{{ $basic_info->future_field2 }}");
 			        break;
-			    case "Higher Studies ":
+			    case "Higher Studies":
 			        optionsRadiosFuture_id = "radio4higherstudies";
 			        $('#universityname').val("{{ $basic_info->future_field1 }}");
 			        $('#universitydepartment').val("{{ $basic_info->future_field2 }}");

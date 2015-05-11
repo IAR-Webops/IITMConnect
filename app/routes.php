@@ -96,6 +96,11 @@ Route::group(array('before' => 'auth'), function() {
 				'uses' => 'PageController@postSocialmediaInfo'
 		));
 
+		/* Events Questions Answers Page (POST) */
+		Route::post('/eventsquestionsanswers', 
+			array('as' => 'events-questions-answers-post',
+				'uses' => 'PageController@postEventsQuestionsAnwsers'
+		));
 
 	});
 

@@ -740,6 +740,19 @@ class PageController extends BaseController {
 		}
 		View::share('eventattendance_check', $eventattendance_check);		
 
+		$events_specific_questions = DB::table('events_specific_questions')
+			->where('event_id', $event->event_id)			
+			->get(); 
+		//return dd($events_specific_questions);
+		View::share('events_specific_questions', $events_specific_questions);	
+
+		$events_specific_questions_answers = DB::table('events_specific_questions_answers')
+			->where('event_id', $event->event_id)
+			->where('user_id', $user_id)			
+			->get(); 
+		View::share('events_specific_questions_answers', $events_specific_questions_answers);	
+		//dd($events_specific_questions_answers);
+
 		return View::make('page.eventsname');		
 	}
 
@@ -774,5 +787,33 @@ class PageController extends BaseController {
 		return "Your Attendance has been Cancelled";
 	}
 	
+	/* Events Questions Anwsers Page (POST) */
+	public function postEventsQuestionsAnwsers(){
+
+		$user_id = Auth::id();		
+		$event_id = Input::get('event_id');
+		$event_unique_name = Input::get('event_unique_name');
+
+		$events_specific_questions = DB::table('events_specific_questions')
+			->where('event_id', $event_id)			
+			->get(); 
+		$events_specific_questions_count = (int)count((array)$events_specific_questions);
+		//var_dump(Input::all());
+		for ($i=1; $i <= $events_specific_questions_count ; $i++) { 
+			//echo "Number : ".$i ;
+			// Save Basic Info Data in basic_infos using
+			$events_specific_questions_answers = EventsSpecificQuestionsAnswers::create(array(
+				'user_id'		=> $user_id,				
+				'event_id' 		=> $event_id,			
+				'question_id'	=> $i,
+				'answer_value'	=> Input::get($i)
+			));
+		}
+
+		return Redirect::to('/events/'.$event_unique_name.'/')
+                    ->with('globalalertmessage', 'Event Specific Questions Answered')
+                    ->with('globalalertclass', 'success');
+	
+	}
 
 }

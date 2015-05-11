@@ -13,9 +13,24 @@
 				  		Hi {{$basic_info->firstname}}, we will contact you at <br>
 				  		<span class="fui-mail"></span> : {{$basic_info->email}} <a href="{{ URL::route('basic-info') }}">Edit</a><br>
 				  		<span class="fui-list-small-thumbnails"></span> : {{$basic_info->phone}} <a href="{{ URL::route('basic-info') }}">Edit</a>
-				  	</p>
-				  <div class="col-sm-12 col-md-8 col-md-offset-2 text-center">				  	
-					<a onclick="attendevent({{$event->event_id}})" id="attendeventbtn" style="margin:15px 0 15px 0;" class="btn btn-block btn-lg btn-primary">Attend Event</a>
+				  </p>
+				  <p>
+				  	You must fill the <strong>Event Specific Questions</strong> to become eligible to attend
+				  	the Event. Click on the button below to fill the short questionnaire.
+				  </p>
+				  <div class="col-sm-12 col-md-8 col-md-offset-2 text-center">
+				  	<a href="#fakelink" class="btn btn-block btn-lg btn-inverse" data-toggle="modal" data-target="#esqModal">Event Specific Questions</a>	
+				  	@if(empty($events_specific_questions_answers))
+					  	<p style="font-size:12px" id="esqstatusmessage"><strong>Status : </strong>You have not answered the Event Specific Questions yet.</p>			  	
+					@else
+					  	<p style="font-size:12px" id="esqstatusmessage"><strong>Status : </strong>You have Successfully answered the Event Specific Questions.</p>			  	
+					@endif		
+
+				  	@if(empty($events_specific_questions_answers))
+						<a onclick="attendevent({{$event->event_id}})" id="attendeventbtn" style="margin:15px 0 15px 0;" class="btn btn-block btn-lg btn-primary disabled">Attend Event</a>
+					@else
+						<a onclick="attendevent({{$event->event_id}})" id="attendeventbtn" style="margin:15px 0 15px 0;" class="btn btn-block btn-lg btn-primary">Attend Event</a>					
+					@endif
 					<div id="cancelevent" style="display:none;">
 						<p><strong>You are attending this Event.</strong></p>
 						<a onclick="cancelevent({{$event->event_id}})" id="canceleventbtn" style="margin:15px 0 15px 0;" class="btn btn-block btn-lg btn-danger">Cancel</a>					
@@ -29,9 +44,80 @@
 					<span class="fui-user"></span> - Organizer : {{$event->event_organizer}}
 					<br>
 					<img class="img-rounded img-responsive" style="display:inline; margin-top:15px;" src="{{$event->event_picture}}">
+					<br>  
 				  </div>
 				</div>
 			</div>
+		</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="esqModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+	<form action="{{ URL::route('events-questions-answers-post') }}" class="form-horizontal" role="form" method="post">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Questionnaire for {{$event->event_name}}</h4>
+      </div>
+      <div class="modal-body">
+      	<div class="container-fluid">
+      		Hello {{$basic_info->firstname}},<br>
+	        @if($basic_info->optionsRadiosFuture == "Higher Studies")
+
+		          	<!-- Field - Name -->
+		            <div class="form-group">
+		        	Fill this questionnaire and become eligible to attend the event.			            
+		              <div class="col-sm-12">
+		                <label>University Name :</label>
+		                <input type="text" class="form-control" name="universityname" placeholder="University Name *" value="{{ $basic_info->future_field1 }}" disabled="">
+		              </div>
+		            
+		              <div class="col-sm-12">
+		                <label>Departments Name :</label>		              
+		                <input type="text" class="form-control" name="departmentname" placeholder="Department Name *" value="{{ $basic_info->future_field2 }}" disabled="">
+		              </div>
+		              <p>Change the above values in <a href="{{ URL::route('basic-info') }}"><strong>Basic Information Form</strong></a>.</p>
+		              @if(!is_null($events_specific_questions))
+			              @foreach ($events_specific_questions as $events_specific_question)
+						  <div class="col-sm-12">
+			                <label>{{ $events_specific_question->question_value }}</label>
+			                <input type="text" class="form-control" name="{{ $events_specific_question->question_id }}" placeholder="{{ $events_specific_question->question_placeholder }}" value="" required>
+			              </div>
+						  @endforeach  
+
+			          <input type="text" class="form-control" name="event_id" style="display:none;" value="{{$event->event_id}}">
+			          <input type="text" class="form-control" name="event_unique_name" style="display:none;" value="{{$event->event_unique_name}}">
+
+					  @else
+					  	There are no Event Specific Questions for this event. Just click Save Changes
+					  @endif          
+
+		            </div>
+		          
+	        @else
+	        	This Event is only open for students pursuing Higer studies in the US. 	
+
+	        @endif
+            
+        </div>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	    @if($basic_info->optionsRadiosFuture == "Higher Studies")
+        	<button type="submit" class="btn btn-primary">Save changes</button>
+      	@else
+        	<button type="submit" class="btn btn-primary disabled">Save changes</button>      		
+      	@endif
+      </div>
+
+    	{{ Form::token() }}
+	</form>
+    </div>
+  </div>
+</div>
 			
 
 
