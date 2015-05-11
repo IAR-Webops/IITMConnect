@@ -14,6 +14,11 @@
 				  		<span class="fui-mail"></span> : {{$basic_info->email}} <a href="{{ URL::route('basic-info') }}">Edit</a><br>
 				  		<span class="fui-list-small-thumbnails"></span> : {{$basic_info->phone}} <a href="{{ URL::route('basic-info') }}">Edit</a>
 				  </p>
+				  <p>Get notified about the latest updates by following the Event on Facebook
+				  <br><a target="_alt" href="{{$event->event_fb_event_link}}">
+				  <span class="fui-facebook"></span> | {{$event->event_name}}</a>
+				  </p>
+				  <hr>
 				  <p>
 				  	You must fill the <strong>Event Specific Questions</strong> to become eligible to attend
 				  	the Event. Click on the button below to fill the short questionnaire.
