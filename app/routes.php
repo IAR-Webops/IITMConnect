@@ -208,6 +208,11 @@ Route::group(array('before' => 'auth'), function() {
 		array('as'=>'events-name', 'uses'=>'PageController@getEventsName'
 	));
 
+	/* Admin Page (GET) */
+	Route::get('/admin', 
+	  array('as' => 'admin', 
+	        'uses' => 'PageController@getAdmin'
+	));
 
 });
 
@@ -216,8 +221,8 @@ Route::group(array('before' => 'auth'), function() {
 	No Group - Accessible by All
 */
 
-	/* About Us Page (GET) */
-	Route::get('/aboutus', 
-	  array('as' => 'about-us', 
-	        'uses' => 'PageController@getAboutUs'
-	));
+/* About Us Page (GET) */
+Route::get('/aboutus', 
+  array('as' => 'about-us', 
+        'uses' => 'PageController@getAboutUs'
+));

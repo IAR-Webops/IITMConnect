@@ -9,6 +9,12 @@
 		          <h4 class="text-center">Oauth Settings</h4>        	
 		          <hr>		       				
 		          <p>Your Primary email id is : <strong> {{ $user_email_info->user_email }} </strong></p>
+		          @if($admin_user_check == "True")
+						<p>						
+						Your current Access Level for <a href="{{ URL::route('admin') }}">Admin Page</a> is : 
+						<strong>{{ $admin_user->user_level }}</strong> <br>
+						</p>						
+				  @endif
 					<table class="table">
 				      <caption>Social Oauth Account Settings</caption>
 				      <thead>

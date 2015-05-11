@@ -657,6 +657,12 @@ class PageController extends BaseController {
 
 		View::share('oauth_check', $oauth_check);		
 
+		$admin_user = AdminUser::where('user_id', '=', $user_id)
+			->first();
+		if(!is_null($admin_user)) {	$admin_user_check = "True";	} else { $admin_user_check = "False"; }				
+		View::share('admin_user',$admin_user);
+		View::share('admin_user_check',$admin_user_check);
+
 		return View::make('page.oauthsettings');		
 	}
 
@@ -814,6 +820,20 @@ class PageController extends BaseController {
                     ->with('globalalertmessage', 'Event Specific Questions Answered')
                     ->with('globalalertclass', 'success');
 	
+	}
+
+	/* Admin Page (GET) */
+	public function getAdmin(){
+		$user_id = Auth::id();		
+		
+		$admin_user = AdminUser::where('user_id', '=', $user_id)
+			->first();
+		if(!is_null($admin_user)) {	$admin_user_check = "True";	} else { $admin_user_check = "False"; }				
+		View::share('admin_user',$admin_user);
+		View::share('admin_user_check',$admin_user_check);
+
+		return View::make('admin.adminhome');				
+
 	}
 
 }
