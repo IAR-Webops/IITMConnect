@@ -10,7 +10,8 @@
         <meta name="description" content="IIT Madras Alumni Connect">
         <meta name="keywords" content="IIT,Madras,Alumni,Connect">
         <meta name="author" content="Yash Murty">
-        
+        <meta name="_token" content="{{ csrf_token() }}" />
+
         <link rel="icon" href="{{ URL::asset('img/IIT_Madras_Logo_30.png') }}" type="image/x-icon" />
         <!-- END META SECTION -->
         {{ HTML::style('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'); }}             

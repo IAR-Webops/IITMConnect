@@ -14,6 +14,7 @@
             <!--
             <li><a href="#"><span class="fui-mail"></span> | Messages<span class="navbar-unread">1</span></a></li>
             -->
+            <li><a href="{{ URL::route('events') }}"><span class="fui-calendar-solid"></span> | Events<span class="navbar-unread">1</span></a></li>
             <li><a href="{{ URL::route('about-us') }}">About Us</a></li>
            </ul>
           <form class="navbar-form navbar-left" action="#" role="search">

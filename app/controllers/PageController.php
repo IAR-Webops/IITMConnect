@@ -689,4 +689,90 @@ class PageController extends BaseController {
 		}
 
 	}
+
+	/* Events Page (GET) */
+	public function getEvents()
+	{
+		$events = DB::table('events')->get();
+		View::share('events', $events);		
+
+		// Concluding Basic Infos has been filled if Graduating Year entry exists in DB for that user
+		$user_id = Auth::id();
+		$basic_info = DB::table('basic_infos')->where('user_id', $user_id)->first();
+		if(!empty($basic_info->graduatingyear)) {	$basic_info_check = "True";	} else { $basic_info_check = "False"; }
+		View::share('basic_info_check', $basic_info_check);						
+
+		return View::make('page.events');		
+	}
+
+	/* Events Name Page (GET) */
+	public function getEventsName($event_unique_name)
+	{
+		$event = DB::table('events')->where('event_unique_name', $event_unique_name)->first();
+		if(!is_null($event)) {	
+			//return "Event Found"; 
+		} else { 
+			return "Event Not Found";
+		}		
+		View::share('event', $event);		
+
+		// Concluding Basic Infos has been filled if Graduating Year entry exists in DB for that user
+		$user_id = Auth::id();
+		$basic_info = DB::table('basic_infos')->where('user_id', $user_id)->first();
+		if(!empty($basic_info->graduatingyear)) {	
+			$basic_info_check = "True";	
+		} else { 
+			$basic_info_check = "False"; 
+			return Redirect::route('events')
+                    ->with('globalalertmessage', 'Please fill Basic Information Form before proceeding')
+                    ->with('globalalertclass', 'error');
+		}
+		View::share('basic_info', $basic_info);				
+		
+		$eventattendance = DB::table('events_attendance')
+			->where('user_id', $user_id)
+			->where('event_id', $event->event_id)			
+			->first();
+		if(!empty($eventattendance)) {	
+			$eventattendance_check = "True";	
+		} else { 
+			$eventattendance_check = "False"; 			
+		}
+		View::share('eventattendance_check', $eventattendance_check);		
+
+		return View::make('page.eventsname');		
+	}
+
+	/* Events Attendance Page (POST) */
+	public function postEventsAttendance(){
+		$user_id = Auth::id();		
+		$event_id = Input::get('event_id');
+		$event_unique_name = "";
+		$event_survey_status = "";		
+
+		// Save Basic Info Data in basic_infos using
+				$eventsattendance = EventsAttendance::create(array(
+					'user_id'				=> $user_id,				
+					'event_id' 				=> $event_id,			
+					'event_unique_name'		=> $event_unique_name,
+					'event_survey_status'	=> $event_survey_status					
+				));
+
+		return "Your Attendance has been Confirmed";
+	}
+
+	/* Events Attendance Page (DELETE) */
+	public function deleteEventsAttendance(){
+		$user_id = Auth::id();		
+		$event_id = Input::get('event_id');
+		
+		$eventsattendance = EventsAttendance::where('user_id', '=', $user_id)
+			->where('event_id', '=', $event_id)
+			->first();
+		$eventsattendance->delete();
+
+		return "Your Attendance has been Cancelled";
+	}
+	
+
 }

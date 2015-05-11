@@ -88,3 +88,12 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+
+/* CSRF Protection Filter for AJAX - by Yash */
+Route::filter('csrf-ajax', function()
+{
+    if (Session::token() != Request::header('X-CSRF-Token'))
+    {
+        throw new Illuminate\Session\TokenMismatchException;
+    }
+});

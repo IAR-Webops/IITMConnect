@@ -99,6 +99,24 @@ Route::group(array('before' => 'auth'), function() {
 
 	});
 
+	/* CSRF protection */
+	Route::group(array('before' => 'csrf-ajax'), function() {
+
+		/* Events Attendance Page (POST) */
+		Route::post('/eventsattendance', 
+			array('as' => 'events-attendance-post',
+				'uses' => 'PageController@postEventsAttendance'
+		));
+
+		/* Events Attendance Page (DELETE) */
+		Route::delete('/eventsattendance', 
+			array('as' => 'events-attendance-delete',
+				'uses' => 'PageController@deleteEventsAttendance'
+		));
+
+	});
+
+
 	/* Sign out (GET) */
 	Route::get('/account/signout', 
 		array('as' => 'account-sign-out',
@@ -174,8 +192,24 @@ Route::group(array('before' => 'auth'), function() {
 			'uses' => 'AccountController@getAddWithLinkedin'
 	));
 
+	/* Events Page (GET) */
+	Route::get('/events', 
+	  array('as' => 'events', 
+	        'uses' => 'PageController@getEvents'
+	));
+
+	/* Events Name (GET) */
+	Route::get('events/{event_unique_name}', 
+		array('as'=>'events-name', 'uses'=>'PageController@getEventsName'
+	));
+
 
 });
+
+###
+/*
+	No Group - Accessible by All
+*/
 
 	/* About Us Page (GET) */
 	Route::get('/aboutus', 
