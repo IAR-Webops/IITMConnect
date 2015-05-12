@@ -700,7 +700,8 @@ class PageController extends BaseController {
 	/* Events Page (GET) */
 	public function getEvents()
 	{
-		$events = DB::table('events')->get();
+		$events = DB::table('events')->where('event_status', "Open")
+			->get();
 		View::share('events', $events);		
 
 		// Concluding Basic Infos has been filled if Graduating Year entry exists in DB for that user
@@ -854,8 +855,56 @@ class PageController extends BaseController {
 			->first();
 		if(!is_null($admin_user)) {	$admin_user_check = "True";	} else { $admin_user_check = "False"; }				
 		View::share('admin_user',$admin_user);
-		View::share('admin_user_check',$admin_user_check);		
-		return View::make('admin.eventmanagement');						
+		View::share('admin_user_check',$admin_user_check);	
+
+		$events = DB::table('events')
+			->get();
+		View::share('events', $events);		
+
+
+		return View::make('admin.eventmanagement');				
 	}
+
+	/* Admin Events Name Registered Users Page (GET) */
+	public function getAdminEventsNameRegisteredUsers($event_unique_name)
+	{	
+		// Check if User has Admin Access		
+		$user_id = Auth::id();				
+		$admin_user = AdminUser::where('user_id', '=', $user_id)
+			->first();
+		if(!is_null($admin_user)) {	$admin_user_check = "True";	} else { $admin_user_check = "False"; }				
+		View::share('admin_user',$admin_user);
+		View::share('admin_user_check',$admin_user_check);	
+
+		$event = DB::table('events')->where('event_unique_name', $event_unique_name)->first();
+		if(!is_null($event)) {	
+			//return "Event Found"; 
+		} else { 
+			return "Event Not Found";
+		}		
+		View::share('event', $event);
+
+		$event_attendance_users = DB::table('events_attendance')
+			->where('event_id', $event->event_id)			
+			->get();
+		foreach ($event_attendance_users as $key => $event_attendance_user) {
+			$event_attendance_user->user_registeration_number = $key + 1;
+			$registered_user = User::find($event_attendance_user->user_id);
+			$event_attendance_user->user_roll_number = $registered_user->rollno;
+			$registered_user_basic_info = BasicInfo::where('user_id', '=', $event_attendance_user->user_id)->first();
+			$event_attendance_user->user_name 		= $registered_user_basic_info->firstname . " " . $registered_user_basic_info->lastname;
+			$event_attendance_user->user_email 		= $registered_user_basic_info->email;
+			$event_attendance_user->user_phone 		= $registered_user_basic_info->phone;
+			$event_attendance_user->user_phonehome 	= $registered_user_basic_info->phonehome;			
+			$event_attendance_user->user_graduatingyear = $registered_user_basic_info->graduatingyear;
+			$event_attendance_user->user_university = $registered_user_basic_info->future_field1;
+			$event_attendance_user->user_department = $registered_user_basic_info->future_field2;
+		}
+		View::share('event_attendance_users', $event_attendance_users);		
+
+		return View::make('admin.eventmanagement_registeredusers');				
+
+	}
+
 
 }

@@ -220,6 +220,11 @@ Route::group(array('before' => 'auth'), function() {
 	        'uses' => 'PageController@getAdminEventManagement'
 	));
 
+	/* Admin (Event Management) Events Name Registered Users (GET) */
+	Route::get('admin/eventmanagement/{event_unique_name}/registeredusers', 
+		array('as'=>'admin-events-name-registered-users', 'uses'=>'PageController@getAdminEventsNameRegisteredUsers'
+	));
+
 });
 
 ###

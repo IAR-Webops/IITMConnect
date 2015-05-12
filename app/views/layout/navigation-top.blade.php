@@ -29,7 +29,7 @@
           </form>
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown" >
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fui-user"></span> | {{ Auth::user()->rollno }} <b class="caret"></b></a>
+              <a href="#" class="dropdown-toggle text-uppercase" data-toggle="dropdown"><span class="fui-user"></span> | {{ Auth::user()->rollno }} <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li><a href="#"><span class="fui-eye"></span> | View Profile</a></li>
                 <li class="divider"></li>

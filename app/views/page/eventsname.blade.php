@@ -28,10 +28,16 @@
 					  	<p style="font-size:12px" id="esqstatusmessage"><strong>Status : </strong>You have Successfully answered the Event Specific Questions.</p>			  	
 					@endif		
 
-				  	@if(empty($events_specific_questions_answers))
-						<a onclick="attendevent({{$event->event_id}})" id="attendeventbtn" style="margin:15px 0 15px 0;" class="btn btn-block btn-lg btn-primary disabled">Attend Event</a>
+					@if($event->event_rsvp_status == "Open")
+					  	@if(empty($events_specific_questions_answers))
+							<a onclick="attendevent({{$event->event_id}})" id="attendeventbtn" style="margin:15px 0 15px 0;" class="btn btn-block btn-lg btn-primary disabled">Attend Event</a>
+						@else
+							<a onclick="attendevent({{$event->event_id}})" id="attendeventbtn" style="margin:15px 0 15px 0;" class="btn btn-block btn-lg btn-primary">Attend Event</a>					
+						@endif
+					@elseif($event->event_rsvp_status == "Closed")					
+						<p><strong>RSVP for the Event has now Closed</strong></p>
 					@else
-						<a onclick="attendevent({{$event->event_id}})" id="attendeventbtn" style="margin:15px 0 15px 0;" class="btn btn-block btn-lg btn-primary">Attend Event</a>					
+						<p><strong>RSVP for the Event will open soon</strong></p>						
 					@endif
 					<div id="cancelevent" style="display:none;">
 						<p><strong>You are attending this Event.</strong></p>
