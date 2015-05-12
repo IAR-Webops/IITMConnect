@@ -657,6 +657,7 @@ class PageController extends BaseController {
 
 		View::share('oauth_check', $oauth_check);		
 
+		// Check if User has Admin Access
 		$admin_user = AdminUser::where('user_id', '=', $user_id)
 			->first();
 		if(!is_null($admin_user)) {	$admin_user_check = "True";	} else { $admin_user_check = "False"; }				
@@ -706,7 +707,14 @@ class PageController extends BaseController {
 		$user_id = Auth::id();
 		$basic_info = DB::table('basic_infos')->where('user_id', $user_id)->first();
 		if(!empty($basic_info->graduatingyear)) {	$basic_info_check = "True";	} else { $basic_info_check = "False"; }
-		View::share('basic_info_check', $basic_info_check);						
+		View::share('basic_info_check', $basic_info_check);				
+
+		// Check if User has Admin Access
+		$admin_user = AdminUser::where('user_id', '=', $user_id)
+			->first();
+		if(!is_null($admin_user)) {	$admin_user_check = "True";	} else { $admin_user_check = "False"; }				
+		View::share('admin_user',$admin_user);
+		View::share('admin_user_check',$admin_user_check);		
 
 		return View::make('page.events');		
 	}
@@ -826,6 +834,7 @@ class PageController extends BaseController {
 	public function getAdmin(){
 		$user_id = Auth::id();		
 		
+		// Check if User has Admin Access		
 		$admin_user = AdminUser::where('user_id', '=', $user_id)
 			->first();
 		if(!is_null($admin_user)) {	$admin_user_check = "True";	} else { $admin_user_check = "False"; }				
@@ -834,6 +843,19 @@ class PageController extends BaseController {
 
 		return View::make('admin.adminhome');				
 
+	}
+
+	/* Admin Event Management Page (GET) */
+	public function getAdminEventManagement(){
+		$user_id = Auth::id();		
+		
+		// Check if User has Admin Access		
+		$admin_user = AdminUser::where('user_id', '=', $user_id)
+			->first();
+		if(!is_null($admin_user)) {	$admin_user_check = "True";	} else { $admin_user_check = "False"; }				
+		View::share('admin_user',$admin_user);
+		View::share('admin_user_check',$admin_user_check);		
+		return View::make('admin.eventmanagement');						
 	}
 
 }

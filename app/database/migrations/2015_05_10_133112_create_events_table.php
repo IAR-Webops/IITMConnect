@@ -21,7 +21,8 @@ class CreateEventsTable extends Migration {
                   $table->string('event_unique_name');
                   $table->string('event_name');
                   $table->string('event_url');
-                  $table->string('event_details'); 
+                  $table->string('event_details_short', 250);
+                  $table->string('event_details', 1000);                    
                   $table->string('event_picture');                       
                   $table->string('event_date');
                   $table->string('event_time');

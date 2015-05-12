@@ -214,6 +214,12 @@ Route::group(array('before' => 'auth'), function() {
 	        'uses' => 'PageController@getAdmin'
 	));
 
+	/* Admin Event Management Page (GET) */
+	Route::get('/admin/eventmanagement', 
+	  array('as' => 'admin-event-management', 
+	        'uses' => 'PageController@getAdminEventManagement'
+	));
+
 });
 
 ###

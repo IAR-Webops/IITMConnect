@@ -27,7 +27,7 @@
 						            <img src="img/icons/svg/gift-box.svg" alt="Event Management" class="tile-image">
 						            <h3 class="tile-title">Event Management</h3>
 						            <p>View Users currently registered for events</p>
-						            <a class="btn btn-primary btn-large btn-block" href="#">View Details</a>
+						            <a class="btn btn-primary btn-large btn-block" href="{{ URL::route('admin-event-management') }}">View Details</a>
 						          </div>
 						        </div>
 

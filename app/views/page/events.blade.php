@@ -8,11 +8,17 @@
 		          <h4 class="text-center">Events</h4>        	
 		          <hr>
 		          @if($basic_info_check == "True")
-		          	Upcoming Events :	       		          	
+		          	Upcoming Events : <br>	          	
 		          @elseif($basic_info_check == "False")
 		          	<strong>Note:</strong> You must fill the <a href="{{ URL::route('basic-info') }}" >
 		          	<strong>Basic Information Form</strong></a> before you can view Details for any Event.
 		          @endif
+
+		          @if($admin_user_check == "True")						
+						Your current Access Level for <a href="{{ URL::route('admin') }}">Admin Page</a> is : 
+						<strong>{{ $admin_user->user_level }}</strong>						
+				  @endif
+		          
 		          <br>
 				  <br>
 				  <div class="col-sm-12">
@@ -25,8 +31,9 @@
 						    	</div>	
 						    	<div class="col-sm-12 col-md-8">
 						            <h3 class="tile-title" style="margin-top:20px;">{{$event->event_name}}</h3>
-						            <p>{{$event->event_details}}
-						            <br>						            
+						            <br>
+						            <p>{{$event->event_details_short}}
+						            <br><br>					            
 						            	<span class="fui-calendar"></span> - {{$event->event_date}}
 						            	|
 						            	<span class="fui-time"></span> - {{$event->event_time}}
