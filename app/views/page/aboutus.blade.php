@@ -32,12 +32,21 @@
 					Project is currently hosted on Github under the 
 					<a href="https://github.com/IAR-Webops" target="_blank">IAR Webops</a> Organization.</p>
 					<div class="text-center">
-						<img src="{{ URL::asset('img/github-search.jpg') }}" height="200" class="text-center">
+						<iframe src="https://ghbtns.com/github-btn.html?user=IAR-Webops&repo=IITMConnect&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
 					</div>
 					<p>If you find any issues/bugs with this app kindly report them under the 
 					<a href="https://github.com/IAR-Webops/IITMConnect/issues" target="_blank">Issues</a>
 					section of the iitmconnect repository. Please include a screenshot of the issue that 
 					you faced along with list of steps that guide us in recreating that issue.</p>
+					<div class="text-center">
+						<img src="{{ URL::asset('img/github-search.jpg') }}" height="200" class="text-center">
+						<!--
+						<p>Built with <span class="fui-heart"></span> by 
+						<iframe style="margin-top:15px;" src="https://ghbtns.com/github-btn.html?user=mdo&type=follow&count=true&size=large" frameborder="0" scrolling="0" width="220px" height="30px"></iframe>
+						</p>
+						-->
+					</div>
+					
 				</div>
 			</div>
 		</div>
