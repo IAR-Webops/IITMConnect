@@ -8,7 +8,7 @@
 		          <hr>
 					@if($admin_user_check == "True")
 						<p>
-						Welcome to Admin's Page, <br>
+						Welcome to <a href="{{ URL::route('admin') }}">Admin Page</a>, <br>
 						Your current Access Level is : <strong>{{ $admin_user->user_level }}</strong> <br>
 						</p>						
 						<div>
@@ -18,7 +18,7 @@
 						            <img src="img/icons/svg/book.svg" alt="Infinity-Loop" class="tile-image">
 						            <h3 class="tile-title">User Management</h3>
 						            <p>View all Users registered on #iitmconnect</p>
-						            <a class="btn btn-primary btn-large btn-block disabled" href="#">View Details</a>
+						            <a class="btn btn-primary btn-large btn-block" href="{{ URL::route('admin-user-management') }}">View Details</a>
 						          </div>
 						        </div>
 

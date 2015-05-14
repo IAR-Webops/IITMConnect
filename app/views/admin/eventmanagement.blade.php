@@ -8,7 +8,7 @@
 		          <hr>
 					@if($admin_user_check == "True")
 						<p>
-						Your current Access Level is : <strong>{{ $admin_user->user_level }}</strong> <br>
+						Your current Access Level to <a href="{{ URL::route('admin') }}">Admin Page</a> is : <strong>{{ $admin_user->user_level }}</strong> <br>
 						</p>					
 
 					<table class="table">

@@ -3,8 +3,8 @@
 @section('content')
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-sm-12 col-md-offset-1 col-md-10">
-		          <h4 class="text-center">Registered Users for {{$event->event_name}}</h4>        	
+				<div class="col-sm-12 col-md-offset-2 col-md-8">
+		          <h4 class="text-center">User Management</h4>        	
 		          <hr>
 					@if($admin_user_check == "True")
 						<p>
@@ -12,33 +12,30 @@
 						</p>					
 
 					<table class="table">
-				      <caption>Registered Users Table</caption>
+				      <caption>User Management Table</caption>
 				      <thead>
 				        <tr>
 				          <th>#</th>
-				          <th>Roll No.</th>
+				          <th>Roll Number</th>
 				          <th>Name</th>
 				          <th>Email ID</th>
+				          <th>RDBMS ID</th>				          
 				          <th>Phone</th>
 				          <th>Phone (Home)</th>
-				          <th>Graduating Year</th>				          
-				          <th>University</th>
-				          <th>Department</th>
+				          <th>Graduating Year</th>
 				        </tr>
 				      </thead>
 				      <tbody>
-						@foreach ($event_attendance_users as $event_attendance_user)
+						@foreach ($users as $user)
 				        <tr>
-				          <th scope="row">{{$event_attendance_user->user_registeration_number}}</th>
-				          <td class="text-uppercase">{{$event_attendance_user->user_roll_number}}</td>
-				          <td>{{$event_attendance_user->user_name}}</td>
-				          <td>{{$event_attendance_user->user_email}}</td>
-				          <td>{{$event_attendance_user->user_phone}}</td>
-				          <td>{{$event_attendance_user->user_phonehome}}</td>
-				          <td>{{$event_attendance_user->user_graduatingyear}}</td>				          
-				          <td>{{$event_attendance_user->user_university}}</td>
-				          <td>{{$event_attendance_user->user_department}}</td>
-
+				          <th scope="row">{{$user->serial_number}}</th>
+				          <td>{{$user->rollno}}</td>
+				          <td>{{$user->user_name}}</td>
+				          <td>{{$user->user_email}}</td>
+  				          <td>{{$user->id}}</td>
+						  <td>{{$user->user_phone}}</td>
+						  <td>{{$user->user_phonehome}}</td>
+						  <td>{{$user->user_graduatingyear}}</td>
 				        </tr>
 						@endforeach	
 

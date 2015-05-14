@@ -208,6 +208,7 @@ Route::group(array('before' => 'auth'), function() {
 		array('as'=>'events-name', 'uses'=>'PageController@getEventsName'
 	));
 
+	### Admin
 	/* Admin Page (GET) */
 	Route::get('/admin', 
 	  array('as' => 'admin', 
@@ -225,6 +226,12 @@ Route::group(array('before' => 'auth'), function() {
 		array('as'=>'admin-events-name-registered-users', 'uses'=>'PageController@getAdminEventsNameRegisteredUsers'
 	));
 
+	/* Admin User Management Page (GET) */
+	Route::get('/admin/usermanagement', 
+	  array('as' => 'admin-user-management', 
+	        'uses' => 'PageController@getAdminUserManagement'
+	));
+
 });
 
 ###
@@ -236,4 +243,12 @@ Route::group(array('before' => 'auth'), function() {
 Route::get('/aboutus', 
   array('as' => 'about-us', 
         'uses' => 'PageController@getAboutUs'
+));
+
+/* Debuggin Page (GET) */
+// Created to see Error Outputs for Oauth Sign in Pages.
+// Tackles Redirect issue.
+Route::get('/debug', 
+  array('as' => 'debug', 
+        'uses' => 'AccountController@getDebug'
 ));

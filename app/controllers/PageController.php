@@ -906,5 +906,33 @@ class PageController extends BaseController {
 
 	}
 
+	/* Admin User Management Page (GET) */
+	public function getAdminUserManagement(){
+		$user_id = Auth::id();		
+		
+		// Check if User has Admin Access		
+		$admin_user = AdminUser::where('user_id', '=', $user_id)
+			->first();
+		if(!is_null($admin_user)) {	$admin_user_check = "True";	} else { $admin_user_check = "False"; }				
+		View::share('admin_user',$admin_user);
+		View::share('admin_user_check',$admin_user_check);	
+
+		$users = DB::table('users')->get();
+		foreach ($users as $key => $user) {
+			$user_basic_info = BasicInfo::where('user_id', '=', $user->id)->first();
+			$user->user_name 			= $user_basic_info->firstname . " " . $user_basic_info->lastname;
+			$user->user_email 			= $user_basic_info->email;
+			$user->user_phone 			= $user_basic_info->phone;
+			$user->user_phonehome 		= $user_basic_info->phonehome;			
+			$user->user_graduatingyear 	= $user_basic_info->graduatingyear;
+			$user->user_university 		= $user_basic_info->future_field1;
+			$user->user_department 		= $user_basic_info->future_field2;
+			$user->serial_number		= $key + 1;
+		}
+		View::share('users', $users);		
+
+
+		return View::make('admin.usermanagement');				
+	}
 
 }

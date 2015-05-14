@@ -62,8 +62,7 @@
 						            <div class="form-group">
 						            	<button class="btn btn-block btn-lg btn-primary">Continue</button>
 						            </div>
-	                                {{ Form::token() }}    
-
+	                                {{ Form::token() }}    	                                
 	                        </form>
 
 					        </div>        	

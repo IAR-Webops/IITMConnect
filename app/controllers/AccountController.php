@@ -135,8 +135,9 @@ class AccountController extends BaseController {
 		);
 
 		if($validator->fails()) {
-			return Redirect::route('account-sign-in-facebook')
+			return Redirect::route('debug')
 				->withErrors($validator)
+	            ->with('errororigin', 'Error Originated from Facebook Oauth')				
 				->withInput();   // fills the field with the old inputs what were correct
 
 		} else {
@@ -412,8 +413,10 @@ class AccountController extends BaseController {
 		);
 
 		if($validator->fails()) {
-			return Redirect::route('account-sign-in-googleplus')
+//			return Redirect::route('account-sign-in-googleplus')
+			return Redirect::route('debug')
 				->withErrors($validator)
+	            ->with('errororigin', 'Error Originated from Google Plus Oauth')								
 				->withInput();   // fills the field with the old inputs what were correct
 
 		} else {
@@ -694,8 +697,9 @@ class AccountController extends BaseController {
 		);
 
 		if($validator->fails()) {
-			return Redirect::route('account-sign-in-linkedin')
+			return Redirect::route('debug')
 				->withErrors($validator)
+	            ->with('errororigin', 'Error Originated from Linkedin Oauth')								
 				->withInput();   // fills the field with the old inputs what were correct
 
 		} else {
@@ -947,6 +951,13 @@ class AccountController extends BaseController {
 			return "";
 		}
 		return $emailid;
+	}
+
+	/* Debug Page */
+	public function getDebug() {
+
+       	return View::make('account.debug');
+
 	}
 
 }
