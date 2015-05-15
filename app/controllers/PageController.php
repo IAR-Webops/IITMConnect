@@ -906,6 +906,88 @@ class PageController extends BaseController {
 
 	}
 
+	/* Admin Events Name Registered Users Excel Page (GET) */
+	public function getAdminEventsNameRegisteredUsersExcel($event_unique_name)
+	{
+		// Data Generation
+		// Check if User has Admin Access		
+		$user_id = Auth::id();				
+		$admin_user = AdminUser::where('user_id', '=', $user_id)
+			->first();
+		if(!is_null($admin_user)) {	$admin_user_check = "True";	} 
+		else { $admin_user_check = "False"; return "Your Access Level is Not Admin."; }				
+
+		$event = DB::table('events')->where('event_unique_name', $event_unique_name)->first();
+		if(!is_null($event)) {	
+			//return "Event Found"; 
+		} else { 
+			return "Event Not Found";
+		}		
+
+		$event_attendance_users = DB::table('events_attendance')
+			->where('event_id', $event->event_id)			
+			->get();
+		foreach ($event_attendance_users as $key => $event_attendance_user) {
+			$event_attendance_user->user_registeration_number = $key + 1;
+			$registered_user = User::find($event_attendance_user->user_id);
+			$event_attendance_user->user_roll_number = $registered_user->rollno;
+			$registered_user_basic_info = BasicInfo::where('user_id', '=', $event_attendance_user->user_id)->first();
+			$event_attendance_user->user_name 		= $registered_user_basic_info->firstname . " " . $registered_user_basic_info->lastname;
+			$event_attendance_user->user_email 		= $registered_user_basic_info->email;
+			$event_attendance_user->user_phone 		= $registered_user_basic_info->phone;
+			$event_attendance_user->user_phonehome 	= $registered_user_basic_info->phonehome;			
+			$event_attendance_user->user_graduatingyear = $registered_user_basic_info->graduatingyear;
+			$event_attendance_user->user_university = $registered_user_basic_info->future_field1;
+			$event_attendance_user->user_department = $registered_user_basic_info->future_field2;
+			
+			$event_attendance_user_array[] = (array) $event_attendance_user;
+		}
+		
+		//var_dump($event_attendance_user_array);
+		//echo "<br><br>";
+
+
+		$data = array(
+		    array('data1', 'data2'),
+		    array('data1', 'data2'),		    
+		    array('data3', 'data4', 'data5')
+		);
+		$data = (array) $event_attendance_user_array;
+
+		//var_dump($event_attendance_users);
+		//dd($data);
+
+		// Excel Generation
+		Excel::create($event_unique_name.'_registeredusers', function($excel) use($data) {
+
+		    // Set the title
+		    $excel->setTitle('Data Exported to Excel Format');
+
+		    // Chain the setters
+		    $excel->setCreator('Yash Murty')
+		          ->setCompany('Yash Murty, yashmurty@gmail.com');
+
+		    // Call them separately
+		    $excel->setDescription('Data exported to Excel Format. In case of any
+		    	problems please contact yashmurty@gmail.com');
+
+		    $excel->sheet('Registered Users', function($sheet) use($data) {
+
+		        // Sheet manipulation
+		        $sheet->fromArray($data);
+
+		    });
+
+		})->export('xls');
+		
+		//})->export('xls');
+
+		// or
+		//->download('xls');
+		
+		return "Excel";
+	}
+
 	/* Admin User Management Page (GET) */
 	public function getAdminUserManagement(){
 		$user_id = Auth::id();		

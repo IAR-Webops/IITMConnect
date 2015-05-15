@@ -9,7 +9,8 @@
 					@if($admin_user_check == "True")
 						<p>
 						Your current Access Level to <a href="{{ URL::route('admin') }}">Admin Page</a> is : <strong>{{ $admin_user->user_level }}</strong> <br>
-						</p>					
+						</p>
+						<p><a href="{{ URL::to('/') }}/admin/eventmanagement/{{$event->event_unique_name}}/registeredusers/excel" class="btn btn-primary btn-large">Export to Excel</a></p>					
 
 					<table class="table">
 				      <caption>Registered Users Table</caption>
