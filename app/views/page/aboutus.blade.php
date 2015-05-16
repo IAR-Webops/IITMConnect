@@ -39,14 +39,23 @@
 					section of the iitmconnect repository. Please include a screenshot of the issue that 
 					you faced along with list of steps that guide us in recreating that issue.</p>
 					<div class="text-center">
+						<a href="https://github.com/yashmurty" target="_alt">
 						<img src="{{ URL::asset('img/github-search.jpg') }}" height="200" class="text-center">
+						</a>
 						<!--
 						<p>Built with <span class="fui-heart"></span> by 
 						<iframe style="margin-top:15px;" src="https://ghbtns.com/github-btn.html?user=mdo&type=follow&count=true&size=large" frameborder="0" scrolling="0" width="220px" height="30px"></iframe>
 						</p>
 						-->
+						
 					</div>
-					
+					<p>
+						If you discover a <strong>Security Vulnerability</strong> within #iitmconnect, 
+						please disclose the information responsibly by sending an email to Yash Murty at
+			        	<strong><a href="mailto:yashmurty@gmail.com?Subject=Urgent%20Security%20Vulnerability%20iitmconnect" target="_alt">
+			        	yashmurty@gmail.com</a></strong> and not by creating a github issue.
+			        	All security vulnerabilities will be promptly addressed.
+			        </p>
 				</div>
 			</div>
 		</div>

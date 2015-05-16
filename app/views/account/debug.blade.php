@@ -7,10 +7,11 @@
 				<div class="col-sm-12 col-md-offset-3 col-md-6">
 		          <h4 class="text-center">Debug</h4>        	
 		          <hr>		       
-		          <p><strong>Oops!</strong> Looks like something went wrong. Please take a screenshot of this page and mail it to 
-		          <strong><a href="mailto:yashmurty@gmail.com?Subject=Error%20iitmconnect" target="_alt">yashmurty@gmail.com</a></strong> <br>
-		          You can also report this issue on <a href="https://github.com/IAR-Webops/IITMConnect/issues">Github</a> for
-		          easier tracking of the bug.
+		          <p>
+		          	<strong>Oops!</strong> Looks like something went wrong. Please take a screenshot of this page and 
+					report it on <a href="https://github.com/IAR-Webops/IITMConnect/issues">Github</a> under the
+					Issues section for easier tracking of the bug. <br>
+					Make sure to attach the screenshot while filing the Issue, else your request will be ignored.
 		          </p>
 				  <p>Go back to <a href="{{ URL::route('home') }}"><strong>Home Page</strong></a></p>
 					
@@ -143,6 +144,14 @@
 						You Entered : {{ Input::old('rollno') }} <br>
 					@endif
 				  <hr>
+
+				  <p>
+					If you discover a <strong>Security Vulnerability</strong> within #iitmconnect, 
+					please disclose the information responsibly by sending an email to Yash Murty at
+		        	<strong><a href="mailto:yashmurty@gmail.com?Subject=Urgent%20Security%20Vulnerability%20iitmconnect" target="_alt">
+		        	yashmurty@gmail.com</a></strong> and not by creating a github issue.
+		        	All security vulnerabilities will be promptly addressed.
+			      </p>
 
 				</div>
 			</div>

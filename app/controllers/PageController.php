@@ -940,18 +940,11 @@ class PageController extends BaseController {
 			$event_attendance_user->user_university = $registered_user_basic_info->future_field1;
 			$event_attendance_user->user_department = $registered_user_basic_info->future_field2;
 			
-			$event_attendance_user_array[] = (array) $event_attendance_user;
+			$event_attendance_user_array_row = (array) $event_attendance_user;
+			$event_attendance_user_array_row_delete = array_splice($event_attendance_user_array_row, 0, 6);
+
+			$event_attendance_user_array[] = $event_attendance_user_array_row;
 		}
-		
-		//var_dump($event_attendance_user_array);
-		//echo "<br><br>";
-
-
-		$data = array(
-		    array('data1', 'data2'),
-		    array('data1', 'data2'),		    
-		    array('data3', 'data4', 'data5')
-		);
 		$data = (array) $event_attendance_user_array;
 
 		//var_dump($event_attendance_users);

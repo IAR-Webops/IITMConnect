@@ -16,4 +16,4 @@ Author : [yashmurty](http://yashmurty.com/)
 
 ## Security Vulnerabilities
 
-If you discover a security vulnerability within #iitmconnect, please send an e-mail to Yash Murty at yashmurty@gmail.com. All security vulnerabilities will be promptly addressed.
+If you discover a security vulnerability within #iitmconnect, please disclose the information responsibly by sending an email to Yash Murty at yashmurty@gmail.com and not by creating a github issue. All security vulnerabilities will be promptly addressed.

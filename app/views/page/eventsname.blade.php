@@ -145,6 +145,8 @@
 		} 
 
 		function attendevent(event_id){
+			$("#attendeventbtn").addClass('disabled');
+
 			$.ajax({
 			    url: "{{ URL::route('events-attendance-post') }}",
 			    type: 'POST',
@@ -170,6 +172,7 @@
 		}
 
 		function cancelevent(event_id){
+			$("#attendeventbtn").removeClass('disabled');			
 			$.ajax({
 			    url: "{{ URL::route('events-attendance-delete') }}",
 			    type: 'DELETE',
