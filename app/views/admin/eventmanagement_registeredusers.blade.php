@@ -23,8 +23,8 @@
 				          <th>Phone</th>
 				          <th>Phone (Home)</th>
 				          <th>Graduating Year</th>				          
-				          <th>University</th>
-				          <th>Department</th>
+				          <th>University / Company</th>
+				          <th>Department / Company Location</th>
 				        </tr>
 				      </thead>
 				      <tbody>

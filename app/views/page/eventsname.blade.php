@@ -77,27 +77,49 @@
       <div class="modal-body">
       	<div class="container-fluid">
       		Hello {{$basic_info->firstname}},<br>
-	        @if($basic_info->optionsRadiosFuture == "Higher Studies")
 
 		          	<!-- Field - Name -->
 		            <div class="form-group">
 		        	Fill this questionnaire and become eligible to attend the event.			            
 		              <div class="col-sm-12">
-		                <label>University Name :</label>
+		                <label>University Name / Company Name :</label>
 		                <input type="text" class="form-control" name="universityname" placeholder="University Name *" value="{{ $basic_info->future_field1 }}" disabled="">
 		              </div>
 		            
 		              <div class="col-sm-12">
-		                <label>Departments Name :</label>		              
+		                <label>University Departments Name / Company Location :</label>		              
 		                <input type="text" class="form-control" name="departmentname" placeholder="Department Name *" value="{{ $basic_info->future_field2 }}" disabled="">
 		              </div>
 		              <p>Change the above values in <a href="{{ URL::route('basic-info') }}"><strong>Basic Information Form</strong></a>.</p>
-		              @if(!is_null($events_specific_questions))
+		              @if(!empty($events_specific_questions))
 			              @foreach ($events_specific_questions as $events_specific_question)
-						  <div class="col-sm-12">
-			                <label>{{ $events_specific_question->question_value }}</label>
-			                <input type="text" class="form-control" name="{{ $events_specific_question->question_id }}" placeholder="{{ $events_specific_question->question_placeholder }}" value="" required>
-			              </div>
+			              	@if($events_specific_question->question_type == "text" )
+							  <div class="col-sm-12">
+				                <label>{{ $events_specific_question->question_value }}</label>
+				                <input type="text" class="form-control" name="{{ $events_specific_question->question_id }}" placeholder="{{ $events_specific_question->question_placeholder }}" value="" required>
+				              </div>
+			              	@elseif($events_specific_question->question_type == "textarea" )				            
+							  <div class="col-sm-12">
+				                <label>{{ $events_specific_question->question_value }}</label>
+							  	<textarea class="form-control" name="{{ $events_specific_question->question_id }}" placeholder="{{ $events_specific_question->question_placeholder }}" value="" required></textarea>
+							  </div>
+			              	@elseif($events_specific_question->question_type == "link" )						
+							  <div class="col-sm-12">
+				                <label>{{ $events_specific_question->question_value }}</label>							  	
+								<a href="{{ $events_specific_question->question_placeholder }}" target="_alt">Click Here</a>
+				                <input type="text" style="display:none;" class="form-control" name="{{ $events_specific_question->question_id }}" placeholder="{{ $events_specific_question->question_placeholder }}" value="{{ $events_specific_question->question_placeholder }}" required>								
+							  </div>
+							@elseif($events_specific_question->question_type == "checkbox" )				            
+							  <div class="col-sm-12">
+				                <label>{{ $events_specific_question->question_value }}</label>
+							  	<textarea class="form-control" name="{{ $events_specific_question->question_id }}" placeholder="{{ $events_specific_question->question_placeholder }}" value="" required></textarea>
+							  </div>
+							@else
+							  <div class="col-sm-12">
+				                <label>{{ $events_specific_question->question_value }}</label>							  	
+								Something else
+							  </div>
+							@endif  
 						  @endforeach  
 
 			          <input type="text" class="form-control" name="event_id" style="display:none;" value="{{$event->event_id}}">
@@ -108,22 +130,13 @@
 					  @endif          
 
 		            </div>
-		          
-	        @else
-	        	This Event is only open for students pursuing Higer studies in the US. 	
-
-	        @endif
-            
+	      
         </div>
         
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	    @if($basic_info->optionsRadiosFuture == "Higher Studies")
         	<button type="submit" class="btn btn-primary">Save changes</button>
-      	@else
-        	<button type="submit" class="btn btn-primary disabled">Save changes</button>      		
-      	@endif
       </div>
 
     	{{ Form::token() }}
