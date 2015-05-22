@@ -71,6 +71,7 @@ class PageController extends BaseController {
 			$basic_info->optionsRadiosFuture = "";
 			$basic_info->future_field1 = "";
 			$basic_info->future_field2 = "";
+			$basic_info->future_field3 = "";			
 
 		} 
 		View::share('basic_info',$basic_info);		
@@ -116,13 +117,16 @@ class PageController extends BaseController {
 
 			if ($optionsRadiosFuture == 'Job') {
 				$future_field1 		= Input::get('companyname');
-				$future_field2 		= Input::get('companylocation');
+				$future_field2 		= Input::get('companytitle');
+				$future_field3 		= Input::get('companylocation');				
 			} elseif ($optionsRadiosFuture == 'Higher Studies') {
 				$future_field1 		= Input::get('universityname');
 				$future_field2 		= Input::get('universitydepartment');
+				$future_field3 		= Input::get('universitylocation');				
 			} elseif ($optionsRadiosFuture == 'Others') {
 				$future_field1 		= Input::get('futureothers');
 				$future_field2		= null;
+				$future_field3		= null;				
 			}
 
 			//var_dump(Input::all());
@@ -148,7 +152,8 @@ class PageController extends BaseController {
 						'graduatingyear'		=> $graduatingyear,
 						'optionsRadiosFuture'	=> $optionsRadiosFuture,
 						'future_field1'			=> $future_field1,
-						'future_field2'			=> $future_field2
+						'future_field2'			=> $future_field2,
+						'future_field3'			=> $future_field3						
 		            ));
 						
 				
@@ -701,6 +706,7 @@ class PageController extends BaseController {
 	public function getEvents()
 	{
 		$events = DB::table('events')->where('event_status', "Open")
+			->orderBy('event_id', 'desc')
 			->get();
 		View::share('events', $events);		
 
@@ -897,8 +903,10 @@ class PageController extends BaseController {
 			$event_attendance_user->user_phone 		= $registered_user_basic_info->phone;
 			$event_attendance_user->user_phonehome 	= $registered_user_basic_info->phonehome;			
 			$event_attendance_user->user_graduatingyear = $registered_user_basic_info->graduatingyear;
-			$event_attendance_user->user_university = $registered_user_basic_info->future_field1;
-			$event_attendance_user->user_department = $registered_user_basic_info->future_field2;
+			$event_attendance_user->user_future_field1 = $registered_user_basic_info->future_field1;
+			$event_attendance_user->user_future_field2 = $registered_user_basic_info->future_field2;
+			$event_attendance_user->user_future_field3 = $registered_user_basic_info->future_field3;
+
 		}
 		View::share('event_attendance_users', $event_attendance_users);		
 

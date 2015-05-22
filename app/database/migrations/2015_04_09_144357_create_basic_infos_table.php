@@ -31,6 +31,7 @@ class CreateBasicInfosTable extends Migration {
             $table->string('optionsRadiosFuture');
             $table->string('future_field1');
             $table->string('future_field2');
+            $table->string('future_field3');
 
             $table->string('created_at');
             $table->string('updated_at');

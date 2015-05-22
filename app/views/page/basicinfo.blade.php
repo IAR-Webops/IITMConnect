@@ -168,30 +168,36 @@
 	        </div>
 	        <!-- Field - Future Plans -->
           	<div class="form-group">
-          	<label>Current Job / Internship Details :</label>
+          	<label>Current Job / Current Internship Details :</label>
           		<div class="col-sm-12 col-md-12">
           			<label class="radio" for="radio4job">
 		                <input type="radio" name="optionsRadiosFuture" data-toggle="radio" value="Job" id="radio4job" required>
-		                 Job
+		                 Company Details
 		            </label>
 		          	<div class="form-group">		            
 			            <div class="col-sm-12 col-md-offset-1 col-md-4">
 			                <input type="text" class="form-control" name="companyname" id="companyname" placeholder="Company's Name" readonly="">
 			            </div>
 			            <div class="col-sm-12 col-md-4">
+			                <input type="text" class="form-control" name="companytitle" id="companytitle" placeholder="Job Title" readonly="">
+			            </div>
+			            <div class="col-sm-12 col-md-3">
 			                <input type="text" class="form-control" name="companylocation" id="companylocation" placeholder="Location" readonly="">
 			            </div>
 			        </div>
 		            <label class="radio" for="radio4higherstudies">
 		                <input type="radio" name="optionsRadiosFuture" data-toggle="radio" value="Higher Studies" id="radio4higherstudies" required>
-		                 Higher Studies
+		                 University Details
 		            </label>
 		            <div class="form-group">		            
 			            <div class="col-sm-12 col-md-offset-1 col-md-4">
 			                <input type="text" class="form-control" name="universityname" id="universityname" placeholder="University Name" readonly="">
 			            </div>
 			            <div class="col-sm-12 col-md-4">
-			                <input type="text" class="form-control" name="universitydepartment" id="universitydepartment" placeholder="Department" readonly="">
+			                <input type="text" class="form-control" name="universitydepartment" id="universitydepartment" placeholder="University Department" readonly="">
+			            </div>
+			            <div class="col-sm-12 col-md-3">
+			                <input type="text" class="form-control" name="universitylocation" id="universitylocation" placeholder="University Location" readonly="">
 			            </div>
 			        </div>
 			        <label class="radio" for="radio4others">
@@ -227,15 +233,17 @@
 
 		$(function(){
 		    $("#radio4job, #radio4higherstudies, #radio4others").change(function(){
-		        $("#companyname, #companylocation, #universityname, #universitydepartment, #futureothers").val("").attr("readonly",true);
+		        $("#companyname, #companytitle, #companylocation, #universityname, #universitydepartment, #universitylocation, #futureothers").val("").attr("readonly",true);
 		        if($("#radio4job").is(":checked")){
 		            $("#companyname").removeAttr("readonly");
+		            $("#companytitle").removeAttr("readonly");		            		            
 		            $("#companylocation").removeAttr("readonly");		            
 		            $("#companyname").focus();
 		        }
 		        else if($("#radio4higherstudies").is(":checked")){
 		            $("#universityname").removeAttr("readonly");
-		            $("#universitydepartment").removeAttr("readonly");		            
+		            $("#universitydepartment").removeAttr("readonly");
+		            $("#universitylocation").removeAttr("readonly");		            		            		            
 		            $("#universityname").focus();
 		        }
 		        else if($("#radio4others").is(":checked")){
@@ -295,12 +303,14 @@
 			    case "Job":
 			        optionsRadiosFuture_id = "radio4job";			       
 			        $('#companyname').val("{{ $basic_info->future_field1 }}");
-			        $('#companylocation').val("{{ $basic_info->future_field2 }}");
+			        $('#companytitle').val("{{ $basic_info->future_field2 }}");			        
+			        $('#companylocation').val("{{ $basic_info->future_field3 }}");
 			        break;
 			    case "Higher Studies":
 			        optionsRadiosFuture_id = "radio4higherstudies";
 			        $('#universityname').val("{{ $basic_info->future_field1 }}");
 			        $('#universitydepartment').val("{{ $basic_info->future_field2 }}");
+			        $('#universitylocation').val("{{ $basic_info->future_field3 }}");			        
 			        break;
 			    case "Others":
 			        optionsRadiosFuture_id = "radio4others";
@@ -310,6 +320,7 @@
 			    default:
 			        optionsRadiosFuture_id = "radio4job";
 			        $("#companyname").removeAttr("readonly");
+		            $("#companytitle").removeAttr("readonly");			        
 		            $("#companylocation").removeAttr("readonly");
 			        break;
 			} 

@@ -24,7 +24,8 @@
 				          <th>Phone (Home)</th>
 				          <th>Graduating Year</th>				          
 				          <th>University / Company</th>
-				          <th>Department / Company Location</th>
+				          <th>University / Company Department</th>				          
+				          <th>Location</th>
 				        </tr>
 				      </thead>
 				      <tbody>
@@ -37,8 +38,9 @@
 				          <td>{{$event_attendance_user->user_phone}}</td>
 				          <td>{{$event_attendance_user->user_phonehome}}</td>
 				          <td>{{$event_attendance_user->user_graduatingyear}}</td>				          
-				          <td>{{$event_attendance_user->user_university}}</td>
-				          <td>{{$event_attendance_user->user_department}}</td>
+				          <td>{{$event_attendance_user->user_future_field1}}</td>
+				          <td>{{$event_attendance_user->user_future_field2}}</td>				          
+				          <td>{{$event_attendance_user->user_future_field3}}</td>
 
 				        </tr>
 						@endforeach	
