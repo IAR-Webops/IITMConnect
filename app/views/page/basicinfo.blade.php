@@ -176,13 +176,13 @@
 		            </label>
 		          	<div class="form-group">		            
 			            <div class="col-sm-12 col-md-offset-1 col-md-4">
-			                <input type="text" class="form-control" name="companyname" id="companyname" placeholder="Company's Name" readonly="">
+			                <input type="text" class="form-control" name="companyname" id="companyname" placeholder="Company's Name" readonly="" required>
 			            </div>
 			            <div class="col-sm-12 col-md-4">
 			                <input type="text" class="form-control" name="companytitle" id="companytitle" placeholder="Job Title" readonly="">
 			            </div>
 			            <div class="col-sm-12 col-md-3">
-			                <input type="text" class="form-control" name="companylocation" id="companylocation" placeholder="Location" readonly="">
+			                <input type="text" class="form-control" name="companylocation" id="companylocation" placeholder="Location" readonly="" required>
 			            </div>
 			        </div>
 		            <label class="radio" for="radio4higherstudies">
@@ -191,13 +191,13 @@
 		            </label>
 		            <div class="form-group">		            
 			            <div class="col-sm-12 col-md-offset-1 col-md-4">
-			                <input type="text" class="form-control" name="universityname" id="universityname" placeholder="University Name" readonly="">
+			                <input type="text" class="form-control" name="universityname" id="universityname" placeholder="University Name" readonly="" required>
 			            </div>
 			            <div class="col-sm-12 col-md-4">
 			                <input type="text" class="form-control" name="universitydepartment" id="universitydepartment" placeholder="University Department" readonly="">
 			            </div>
 			            <div class="col-sm-12 col-md-3">
-			                <input type="text" class="form-control" name="universitylocation" id="universitylocation" placeholder="University Location" readonly="">
+			                <input type="text" class="form-control" name="universitylocation" id="universitylocation" placeholder="University Location" readonly="" required>
 			            </div>
 			        </div>
 			        <label class="radio" for="radio4others">
