@@ -251,9 +251,21 @@ Route::get('/aboutus',
 ));
 
 /* Debuggin Page (GET) */
+
 // Created to see Error Outputs for Oauth Sign in Pages.
 // Tackles Redirect issue.
 Route::get('/debug', 
   array('as' => 'debug', 
         'uses' => 'AccountController@getDebug'
+));
+
+// Test Page
+Route::get('/debug/test', 
+  array('as' => 'debug-test', 
+        'uses' => 'AccountController@getDebugTest'
+));
+// Test Page
+Route::post('/debug/test', 
+  array('as' => 'debug-test-post', 
+        'uses' => 'AccountController@getDebugTestPost'
 ));

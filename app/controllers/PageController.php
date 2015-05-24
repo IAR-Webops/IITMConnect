@@ -71,7 +71,8 @@ class PageController extends BaseController {
 			$basic_info->optionsRadiosFuture = "";
 			$basic_info->future_field1 = "";
 			$basic_info->future_field2 = "";
-			$basic_info->future_field3 = "";			
+			$basic_info->future_field3 = "";	
+			$basic_info->current_city = "";								
 
 		} 
 		View::share('basic_info',$basic_info);		
@@ -128,6 +129,8 @@ class PageController extends BaseController {
 				$future_field2		= null;
 				$future_field3		= null;				
 			}
+			$current_city 	= Input::get('current_city');
+
 
 			//var_dump(Input::all());
 
@@ -153,7 +156,8 @@ class PageController extends BaseController {
 						'optionsRadiosFuture'	=> $optionsRadiosFuture,
 						'future_field1'			=> $future_field1,
 						'future_field2'			=> $future_field2,
-						'future_field3'			=> $future_field3						
+						'future_field3'			=> $future_field3,
+						'current_city'			=> $current_city																		
 		            ));
 						
 				

@@ -179,7 +179,7 @@
 			                <input type="text" class="form-control" name="companyname" id="companyname" placeholder="Company's Name" readonly="" required>
 			            </div>
 			            <div class="col-sm-12 col-md-4">
-			                <input type="text" class="form-control" name="companytitle" id="companytitle" placeholder="Job Title" readonly="">
+			                <input type="text" class="form-control" name="companytitle" id="companytitle" placeholder="Job Title" readonly="" required>
 			            </div>
 			            <div class="col-sm-12 col-md-3">
 			                <input type="text" class="form-control" name="companylocation" id="companylocation" placeholder="Location" readonly="" required>
@@ -194,7 +194,7 @@
 			                <input type="text" class="form-control" name="universityname" id="universityname" placeholder="University Name" readonly="" required>
 			            </div>
 			            <div class="col-sm-12 col-md-4">
-			                <input type="text" class="form-control" name="universitydepartment" id="universitydepartment" placeholder="University Department" readonly="">
+			                <input type="text" class="form-control" name="universitydepartment" id="universitydepartment" placeholder="University Department" readonly="" required>
 			            </div>
 			            <div class="col-sm-12 col-md-3">
 			                <input type="text" class="form-control" name="universitylocation" id="universitylocation" placeholder="University Location" readonly="" required>
@@ -212,6 +212,17 @@
           		</div>
           	</div>
           	<hr>
+          	<!-- Field - Current City Google Maps API -->
+            <div class="form-group">
+            	<div class="col-sm-12 col-md-8">
+              		<div class="input-group">
+		              <span class="input-group-addon"><span class="fui-location"></span></span>
+		              <input type="text" class="form-control" id="current_city" name="current_city" placeholder="Enter you current city *" value="{{ $basic_info->current_city }}" required>
+		            </div>
+		            <p>Make sure to update this when travelling to a different city to get updates 
+		            on the latest happenings and events by the Alumni chapter of that city.</p>
+	            </div>
+            </div>
           	<!-- Field - Submit -->
           	<div class="form-group">
           		<div class="col-sm-12 col-md-6">
@@ -329,6 +340,21 @@
 
 		});
 
+	</script>
+	<!-- Google Maps API -->
+	<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places" type="text/javascript"></script>
+	<script type="text/javascript">
+	   function initialize() {
+	      
+	      var options = {
+		  types: ['(cities)']
+		 };
+
+		 var input = document.getElementById('current_city');
+		 var autocomplete = new google.maps.places.Autocomplete(input, options);
+
+	   }
+	   google.maps.event.addDomListener(window, 'load', initialize);
 	</script>
 
 @stop

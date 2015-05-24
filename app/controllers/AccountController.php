@@ -960,4 +960,16 @@ class AccountController extends BaseController {
 
 	}
 
+	/* Debug Test Page */
+	public function getDebugTest() {
+
+       	return View::make('account.test');
+
+	}
+	/* Debug Test Page (POST) */
+	public function getDebugTestPost() {
+
+		return Input::get('city');
+	}
+
 }

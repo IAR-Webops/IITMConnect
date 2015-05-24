@@ -32,6 +32,7 @@ class CreateBasicInfosTable extends Migration {
             $table->string('future_field1');
             $table->string('future_field2');
             $table->string('future_field3');
+            $table->string('current_city');            
 
             $table->string('created_at');
             $table->string('updated_at');
