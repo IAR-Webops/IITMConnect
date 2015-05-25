@@ -993,6 +993,76 @@ class PageController extends BaseController {
 		return "Excel";
 	}
 
+	/* Admin Events Name Registered Users Responses Page (GET) */
+	public function getAdminEventsNameRegisteredUsersResponses($event_unique_name)
+	{	
+		// Check if User has Admin Access		
+		$user_id = Auth::id();				
+		$admin_user = AdminUser::where('user_id', '=', $user_id)
+			->first();
+		if(!is_null($admin_user)) {	$admin_user_check = "True";	} else { $admin_user_check = "False"; }				
+		View::share('admin_user',$admin_user);
+		View::share('admin_user_check',$admin_user_check);	
+
+		$event = DB::table('events')->where('event_unique_name', $event_unique_name)->first();
+		if(!is_null($event)) {	
+			//return "Event Found"; 
+		} else { 
+			return "Event Not Found";
+		}		
+		View::share('event', $event);
+
+		$events_specific_questions = DB::table('events_specific_questions')
+			->where('event_id', $event->event_id)			
+			->get(); 
+		//return dd($events_specific_questions);
+		View::share('events_specific_questions', $events_specific_questions);	
+
+
+		$event_attendance_users = DB::table('events_attendance')
+			->where('event_id', $event->event_id)			
+			->get();
+		foreach ($event_attendance_users as $key => $event_attendance_user) {
+			$event_attendance_user->user_registeration_number = $key + 1;
+			$registered_user = User::find($event_attendance_user->user_id);
+			$event_attendance_user->user_roll_number = $registered_user->rollno;
+
+			$registered_user_basic_info = BasicInfo::where('user_id', '=', $event_attendance_user->user_id)->first();
+			$event_attendance_user->user_name 		= $registered_user_basic_info->firstname . " " . $registered_user_basic_info->lastname;
+			$event_attendance_user->user_email 		= $registered_user_basic_info->email;
+			$event_attendance_user->user_phone 		= $registered_user_basic_info->phone;
+			$event_attendance_user->user_phonehome 	= $registered_user_basic_info->phonehome;			
+			$event_attendance_user->user_graduatingyear = $registered_user_basic_info->graduatingyear;
+			$event_attendance_user->user_future_field1 = $registered_user_basic_info->future_field1;
+			$event_attendance_user->user_future_field2 = $registered_user_basic_info->future_field2;
+			$event_attendance_user->user_future_field3 = $registered_user_basic_info->future_field3;
+
+			$registered_user_events_specific_questions_answers = EventsSpecificQuestionsAnswers::where('user_id', '=', $event_attendance_user->user_id)
+				->where('event_id', '=', $event->event_id)
+				->get();
+			$event_attendance_user->events_specific_questions_answers = $registered_user_events_specific_questions_answers;
+			/*
+			var_dump($event_attendance_user->events_specific_questions_answers);
+
+			foreach ($event_attendance_user->events_specific_questions_answers as $key => $events_specific_questions_answer) {
+				var_dump($events_specific_questions_answer->answer_value);
+				echo "<hr>";
+			}
+			*/
+			//$event_attendance_user->user_future_field3 = $registered_user_events_specific_questions_answers->answer_value;
+
+			foreach ($events_specific_questions as $ESQkey => $events_specific_question) {
+			//	return $events_specific_question->question_id;
+			}
+		}
+		View::share('event_attendance_users', $event_attendance_users);		
+
+		
+
+		return View::make('admin.eventmanagement_registeredusers_responses');				
+
+	}
+
 	/* Admin User Management Page (GET) */
 	public function getAdminUserManagement(){
 		$user_id = Auth::id();		

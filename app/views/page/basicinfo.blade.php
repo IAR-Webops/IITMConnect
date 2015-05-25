@@ -211,7 +211,6 @@
 			        </div>
           		</div>
           	</div>
-          	<hr>
           	<!-- Field - Current City Google Maps API -->
             <div class="form-group">
             	<div class="col-sm-12 col-md-8">
@@ -220,9 +219,11 @@
 		              <input type="text" class="form-control" id="current_city" name="current_city" placeholder="Enter you current city *" value="{{ $basic_info->current_city }}" required>
 		            </div>
 		            <p>Make sure to update this when travelling to a different city to get updates 
-		            on the latest happenings and events by the Alumni chapter of that city.</p>
+		            on the latest happenings and events by the Alumni chapter of that city.	</p>
 	            </div>
             </div>
+          	<hr>
+            
           	<!-- Field - Submit -->
           	<div class="form-group">
           		<div class="col-sm-12 col-md-6">

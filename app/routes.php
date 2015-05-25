@@ -230,6 +230,11 @@ Route::group(array('before' => 'auth'), function() {
 	Route::get('admin/eventmanagement/{event_unique_name}/registeredusers/excel', 
 		array('as'=>'admin-events-name-registered-users-excel', 'uses'=>'PageController@getAdminEventsNameRegisteredUsersExcel'
 	));
+	
+	/* Admin (Event Management) Registered Users Responses (GET) */
+	Route::get('admin/eventmanagement/{event_unique_name}/registeredusers/responses', 
+		array('as'=>'admin-events-name-registered-users-responses', 'uses'=>'PageController@getAdminEventsNameRegisteredUsersResponses'
+	));
 
 	/* Admin User Management Page (GET) */
 	Route::get('/admin/usermanagement', 
