@@ -25,15 +25,15 @@ return array(
     |
     */
     'properties' => array(
-        'creator'        => 'Maatwebsite',
-        'lastModifiedBy' => 'Maatwebsite',
-        'title'          => 'Spreadsheet',
-        'description'    => 'Default spreadsheet export',
-        'subject'        => 'Spreadsheet export',
-        'keywords'       => 'maatwebsite, excel, export',
+        'creator'        => 'Yash Murty',
+        'lastModifiedBy' => 'Yash Murty',
+        'title'          => 'Data Export to Excel',
+        'description'    => 'Contact yashmurty@gmail.com for errors.',
+        'subject'        => 'Data Export to Excel',
+        'keywords'       => 'yashmurty, excel, export',
         'category'       => 'Excel',
-        'manager'        => 'Maatwebsite',
-        'company'        => 'Maatwebsite',
+        'manager'        => 'Yash Murty',
+        'company'        => 'Yash Murty, IAR WebOps',
     ),
 
     /*
