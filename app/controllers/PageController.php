@@ -868,6 +868,7 @@ class PageController extends BaseController {
 		View::share('admin_user_check',$admin_user_check);	
 
 		$events = DB::table('events')
+			->orderBy('id', 'desc')
 			->get();
 		View::share('events', $events);		
 
