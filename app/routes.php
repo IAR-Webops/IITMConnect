@@ -255,6 +255,12 @@ Route::get('/aboutus',
         'uses' => 'PageController@getAboutUs'
 ));
 
+/* Privacy Policy Page (GET) */
+Route::get('/privacypolicy', 
+  array('as' => 'privacy-policy', 
+        'uses' => 'PageController@getPrivacyPolicy'
+));
+
 /* Debuggin Page (GET) */
 
 // Created to see Error Outputs for Oauth Sign in Pages.

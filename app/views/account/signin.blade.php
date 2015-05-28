@@ -38,12 +38,12 @@
 								<div class="row bg-color-text">									
 									<div class="col-sm-12 text-center">
 									<h4>
-										<a href="http://iitmconnect.iitmadras.in/aboutus" target="_alt">
+										<a href="{{ URL::route('about-us') }}" target="_alt">
 											<span class="glyphicon glyphicon-info-sign" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="About Us"></span>
 										</a>
 										|
-										<a href="#" target="_alt">
-											<span class="glyphicon glyphicon-briefcase" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Terms & Conditions"></span>
+										<a href="{{ URL::route('privacy-policy') }}" target="_alt">
+											<span class="glyphicon glyphicon-briefcase" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Privacy Policy"></span>
 										</a>
 										|
 										<a href="https://github.com/IAR-Webops/IITMConnect/issues" target="_alt">
