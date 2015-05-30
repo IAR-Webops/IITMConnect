@@ -298,6 +298,8 @@ class PageController extends BaseController {
 				$mailcountry 			= Input::get('mailcountry');
 				$mailphonelandline 		= Input::get('mailphonelandline');
 				$mailphonemobile 		= Input::get('mailphonemobile');
+
+				$checkboxmailadd = "False";
 			}
 
 			if ($checkboxmailadd == "True") { // Don't Include Mailing Address while Saving
