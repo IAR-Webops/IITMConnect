@@ -261,6 +261,13 @@ Route::get('/privacypolicy',
         'uses' => 'PageController@getPrivacyPolicy'
 ));
 
+/* Report Issues Page (GET) */
+Route::get('/reportissues', 
+  array('as' => 'report-issues', 
+        'uses' => 'PageController@getReportIssues'
+));
+
+
 /* Debuggin Page (GET) */
 
 // Created to see Error Outputs for Oauth Sign in Pages.

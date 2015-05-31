@@ -46,6 +46,8 @@
                                 <span class="fui-linkedin"></span> | 
                                 <span class="fui-facebook"></span> | 
                                 Oauth Settings </a></li>
+                <li class="divider"></li>
+                <li><a href="{{ URL::route('report-issues') }}"><span class="glyphicon glyphicon-exclamation-sign"></span> | Report Issues</a></li>                
               </ul>
             </li>           
             <li><a href="#"></a></li>

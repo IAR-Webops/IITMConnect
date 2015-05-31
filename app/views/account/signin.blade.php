@@ -46,7 +46,7 @@
 											<span class="glyphicon glyphicon-briefcase" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Privacy Policy"></span>
 										</a>
 										|
-										<a href="https://github.com/IAR-Webops/IITMConnect/issues" target="_alt">
+										<a href="{{ URL::route('report-issues') }}" target="_alt">
 											<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Report Issue"></span>
 										</a>
 									</h4>

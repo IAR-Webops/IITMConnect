@@ -653,6 +653,12 @@ class PageController extends BaseController {
 		return View::make('page.privacypolicy');		
 	}
 
+	/* Report Issues (GET) */
+	public function getReportIssues()
+	{
+		return View::make('page.reportissues');		
+	}
+
 	### OAUTH SETTINGS
 	/* Oauth Settings (GET) */
 	public function getOauthSettings()
