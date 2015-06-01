@@ -47,6 +47,7 @@
                                 <span class="fui-facebook"></span> | 
                                 Oauth Settings </a></li>
                 <li class="divider"></li>
+                <li><a href="{{ URL::route('privacy-policy') }}"><span class="glyphicon glyphicon-briefcase"></span> | Privacy Policy</a></li>                                
                 <li><a href="{{ URL::route('report-issues') }}"><span class="glyphicon glyphicon-exclamation-sign"></span> | Report Issues</a></li>                
               </ul>
             </li>           
