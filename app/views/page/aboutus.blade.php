@@ -11,8 +11,15 @@
 					the I&AR Web Operations Team.</p>
 					<p>The purpose of this project is to help you stay in touch with insti forever.</p>
 					<p>Users registered since April 21, 2015 on <strong>#iitmconnect</strong> : {{$usercount}} </p>
-					<!-- Facebook Like Share Button -->
+					<!-- Linkedin & Facebook Like Share Button -->
 					<div class="text-center">
+						<div>
+						<p>
+							<a href="https://www.linkedin.com/groups/IIT-Madras-Alumni-1747/about" target="_alt">
+			                	<img src="{{ URL::asset('img/linkedin_join_group.png') }}" style="margin:0 10px 10px 0;">
+				            </a>
+						</p>
+						</div>
 						<div class="fb-page" data-href="https://www.facebook.com/iar.iitmadras/" data-width="500" data-hide-cover="false" data-show-facepile="true" data-show-posts="false">
 			                <div class="fb-xfbml-parse-ignore">
 			                <blockquote cite="https://www.facebook.com/iar.iitmadras/">
