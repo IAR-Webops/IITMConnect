@@ -31,7 +31,7 @@
 							            	<input name="facebook_gender" class="form-control" style="display:none;" type="text" value="{{ $result['gender'] }}" readonly="">
 						            </div>
 						            <div class="form-group">
-							            	<input name="facebook_picture" class="form-control" style="display:none;" type="text" value="{{ $result['email'] }}" readonly="">
+							            	<input name="facebook_picture" class="form-control" style="display:none;" type="text" value="{{ $result['picture']['data']['url'] }}" readonly="">
 						            </div>						            
 						            <div class="form-group">
 						            	<div class="input-group">

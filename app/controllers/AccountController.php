@@ -37,7 +37,9 @@ class AccountController extends BaseController {
 	        $accesstoken = $token->getAccessToken();
 
 	        // Send a request with it
-	        $result = json_decode( $fb->request( '/me' ), true );	
+	        $result = json_decode( $fb->request( 
+	        	'/me?fields=id,name,first_name,last_name,picture,gender,email,link' 
+	        	), true );	
 
 	        //Initialize Empty Result Array to avoid missing Oauth return parameters	
 			// Not Including "ID","Email","Access Token"
@@ -46,12 +48,14 @@ class AccountController extends BaseController {
 	        if (!array_key_exists('last_name', $result)) {	$result['last_name'] = "";	}
 	        if (!array_key_exists('gender', $result)) {	$result['gender'] = "";	}			        
 	        if (!array_key_exists('email', $result)) {	$result['email'] = "";	}
-			if (!array_key_exists('email', $result)) { $result['email'] = "";	}
+			if (!array_key_exists('picture', $result)) { $result['picture'] = "";	}
 
-			$result['accesstoken'] = $accesstoken;	      
+			$result['accesstoken'] = $accesstoken;	
+
+			//$result['facebook_picture'] = "Test";      
 	        //Var_dump
 	        //display whole array().
-	        //dd($result);
+	        //dd($result["picture"]["data"]["url"]);
 
 	        View::share('result',$result);
 
@@ -90,7 +94,7 @@ class AccountController extends BaseController {
 						'facebook_lastname'		=> $result['last_name'],
 						'facebook_gender'		=> $result['gender'],						
 						'facebook_email'		=> $result['email'],
-						'facebook_picture'		=> $result['email'],						
+						'facebook_picture'		=> $result['picture']['data']['url'],						
 						'facebook_accesstoken'	=> $result['accesstoken']
 					));
 	        	}
