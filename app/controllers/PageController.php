@@ -1108,4 +1108,35 @@ class PageController extends BaseController {
 		return View::make('admin.usermanagement');				
 	}
 
+	/* Search Box (POST) */
+	public function postSearchBox()
+	{
+		$user_id = Auth::id();		
+		$searchboxvalues = array();
+
+		$users = DB::table('users')->get();
+		foreach ($users as $key => $user) {
+			$user_basic_info = BasicInfo::where('user_id', '=', $user->id)->first();
+			$user->user_name 			= $user_basic_info->firstname . " " . $user_basic_info->lastname;
+			$user->user_email 			= $user_basic_info->email;
+			$user->user_phone 			= $user_basic_info->phone;
+			$user->user_phonehome 		= $user_basic_info->phonehome;			
+			$user->user_graduatingyear 	= $user_basic_info->graduatingyear;
+			$user->user_university 		= $user_basic_info->future_field1;
+			$user->user_department 		= $user_basic_info->future_field2;
+			$user->serial_number		= $key + 1;
+
+			$searchboxvalues[] = "name: $user->user_name";
+			$tokens = array("$user_basic_info->firstname","$user_basic_info->lastname");
+			$arr[] = array('value' => $user->user_name, 'rollno' => $user->rollno);
+
+		}
+
+		header('Content-Type: application/json');
+		json_encode($arr);
+
+		return $arr;
+		return "OK";
+	}
+
 }

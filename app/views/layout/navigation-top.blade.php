@@ -17,16 +17,18 @@
             <li><a href="{{ URL::route('events') }}"><span class="fui-calendar-solid"></span> | Events<span class="navbar-unread">1</span></a></li>
             <li><a href="{{ URL::route('about-us') }}">About Us</a></li>
            </ul>
+           <div class="col-sm-12 col-md-4">
           <form class="navbar-form navbar-left" action="#" role="search">
             <div class="form-group">
-              <div class="input-group">
-                <input class="form-control" id="navbarInput-01" type="search" placeholder="Search">
+              <div class="input-group" id="remote">
+                <input class="form-control typeahead" id="navbarInput-01" type="search" placeholder="Search Users">
                 <span class="input-group-btn">
                   <button type="submit" class="btn"><span class="fui-search"></span></button>
                 </span>
               </div>
             </div>
           </form>
+          </div>
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown" >
               <a href="#" class="dropdown-toggle text-uppercase" data-toggle="dropdown"><span class="fui-user"></span> | {{ Auth::user()->rollno }} <b class="caret"></b></a>

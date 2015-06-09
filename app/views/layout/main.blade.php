@@ -64,10 +64,16 @@
         {{ HTML::script('js/flat-ui.min.js'); }} 
         {{ HTML::script('js/application.js'); }} 
         {{ HTML::script('js/notify.min.js'); }} 
+        <!-- Search Box -->
+        <script src="{{ URL::asset('js/typeahead.bundle.js') }}"></script>        
+        <script src="{{ URL::asset('js/handlebars-v3.0.3.js') }}"></script>
+
 
         @yield('jsmainbodycontent')
         @yield('jsleftnavcontent')
         @yield('jscontent')
+
+        @include('layout.js.searchboxtop')
 
         @if(Session::has('globalalertmessage'))
             <script type="text/javascript">

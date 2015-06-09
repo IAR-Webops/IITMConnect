@@ -25,3 +25,9 @@
 	/* Navy Blue */
 	color: #34495e;
 }
+.searchboxresults {
+	text-align: left;
+	padding: 10px 20px 10px 20px;
+	min-width: 330px;
+	background-color: #fff;
+}

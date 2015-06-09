@@ -8,12 +8,12 @@
 		          <h4 class="text-center">Debug</h4>        	
 		          <hr>		       
 		          <p>
-		          	<strong>Oops!</strong> Looks like something went wrong. Please take a screenshot of this page and 
-					report it on <a href="https://github.com/IAR-Webops/IITMConnect/issues">Github</a> under the
-					Issues section for easier tracking of the bug. <br>
-					Make sure to attach the screenshot while filing the Issue, else your request will be ignored.
+		          	<strong>Oops!</strong> Looks like something went wrong. <br>
+		          	It looks like some fields are missing from your social login. Please make sure 
+		          	that you fill them and then try logging in again. You can find out the exact
+		          	error by looking at the error headings below.
 		          </p>
-				  <p>Go back to <a href="{{ URL::route('home') }}"><strong>Home Page</strong></a></p>
+		          <p>Go back to <a href="{{ URL::route('home') }}"><strong>Home Page</strong></a></p>
 					
 			        @if(Session::has('errororigin'))
 			        	<strong>{{ Session::get('errororigin') }}</strong>
@@ -144,7 +144,13 @@
 						You Entered : {{ Input::old('rollno') }} <br>
 					@endif
 				  <hr>
-
+				  <p>
+		          	If the problem still persists then please take a screenshot of this page and 
+					report it on <a href="https://github.com/IAR-Webops/IITMConnect/issues">Github</a> under the
+					Issues section for easier tracking of the bug. <br>
+					Make sure to attach the screenshot while filing the Issue, else your request will be ignored.
+		          </p>				  
+				  <hr>
 				  <p>
 					If you discover a <strong>Security Vulnerability</strong> within #iitmconnect, 
 					please disclose the information responsibly by sending an email to Yash Murty at

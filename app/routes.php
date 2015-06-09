@@ -242,6 +242,12 @@ Route::group(array('before' => 'auth'), function() {
 	        'uses' => 'PageController@getAdminUserManagement'
 	));
 
+	/* Admin User Management Page (GET) */
+	Route::get('/searchbox', 
+	  array('as' => 'search-box', 
+	        'uses' => 'PageController@postSearchBox'
+	));
+
 });
 
 ###
