@@ -17,11 +17,17 @@
     source: searchboxvalues,
     templates: {
       empty: [
-        '<div class="empty-message">',
-          'Perform Advanced Search',
+        '<div class="searchboxresults">',
+          '<strong>Sorry</strong>, no results found. Please try another name.',
         '</div>'
       ].join('\n'),
-      suggestion: Handlebars.compile('<a href="#"> <div class="searchboxresults"><span class="text-uppercase">@{{rollno}}</span> | <strong>@{{value}}</strong></div> </a>')
+      suggestion: Handlebars.compile(
+        '<a href="#">'+
+          '<div class="searchboxresults">'+
+            '<span class="text-uppercase">@{{rollno}}</span> | <strong>@{{value}}</strong>'+
+          '</div>'+
+        '</a>'
+        )
      //suggestion: Handlebars.compile('<div class="form-group"><select data-toggle="select" class="form-control select select-default"><option>Test</option></select></div>')
        
     }

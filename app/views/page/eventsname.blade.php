@@ -80,7 +80,8 @@
 
 		          	<!-- Field - Name -->
 		            <div class="form-group">
-		        	Fill this questionnaire and become eligible to attend the event.			            
+		        	Fill this questionnaire and become eligible to attend the event.
+		        	<!--			            
 		              <div class="col-sm-12">
 		                <label>Company/University of Internship :</label>
 		                <input type="text" class="form-control" name="universityname" placeholder="University Name *" value="{{ $basic_info->future_field1 }}" disabled="">
@@ -91,6 +92,7 @@
 		                <input type="text" class="form-control" name="departmentname" placeholder="Department Name *" value="{{ $basic_info->future_field3 }}" disabled="">
 		              </div>
 		              <p>Change the above values in <a href="{{ URL::route('basic-info') }}"><strong>Basic Information Form</strong></a>.</p>
+		              -->
 		              @if(!empty($events_specific_questions))
 			              @foreach ($events_specific_questions as $events_specific_question)
 			              	@if($events_specific_question->question_type == "text" )
