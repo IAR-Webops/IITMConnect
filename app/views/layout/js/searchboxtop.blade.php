@@ -13,18 +13,18 @@
    
   $('#remote .typeahead').typeahead(null, {
     name: 'searh-box-values',
-    display: 'value',
+    display: 'username',
     source: searchboxvalues,
     templates: {
       empty: [
         '<div class="searchboxresults">',
-          '<strong>Sorry</strong>, no results found. Please try another name.',
+          '<strong>Sorry</strong>, no results found. Try <a href="#" onclick="ClearLocalStorage()">Clear Cache</a>',
         '</div>'
       ].join('\n'),
       suggestion: Handlebars.compile(
         '<a href="#">'+
           '<div class="searchboxresults">'+
-            '<span class="text-uppercase">@{{rollno}}</span> | <strong>@{{value}}</strong>'+
+            '<span class="text-uppercase">@{{rollno}}</span> | <strong>@{{username}}</strong>'+
           '</div>'+
         '</a>'
         )
@@ -34,4 +34,9 @@
   });
 
   </script>
-
+  <script type="text/javascript">
+  function ClearLocalStorage(){
+    localStorage.clear();
+    location.reload();
+  }
+  </script>

@@ -1126,17 +1126,16 @@ class PageController extends BaseController {
 			$user->user_department 		= $user_basic_info->future_field2;
 			$user->serial_number		= $key + 1;
 
-			$searchboxvalues[] = "name: $user->user_name";
-			$tokens = array("$user_basic_info->firstname","$user_basic_info->lastname");
-			$arr[] = array('value' => $user->user_name, 'rollno' => $user->rollno);
+			//$searchboxvalues[] = "name: $user->user_name";
+			//$tokens = array("$user_basic_info->firstname","$user_basic_info->lastname");
+			$searchboxvalues[] = array('value' => $user->rollno . " " . $user->user_name, 'rollno' => $user->rollno, 'username' => $user->user_name);
 
 		}
 
 		header('Content-Type: application/json');
-		json_encode($arr);
+		json_encode($searchboxvalues);
 
-		return $arr;
-		return "OK";
+		return $searchboxvalues;
 	}
 
 }
