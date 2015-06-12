@@ -1104,8 +1104,13 @@ class PageController extends BaseController {
 		}
 		View::share('users', $users);		
 
-
 		return View::make('admin.usermanagement');				
+	}
+
+	/* Admin Event Management - Create New Event (POST) */
+	public function postAdminEventManagement(){
+
+		return Input::all();
 	}
 
 	/* Search Box (POST) */

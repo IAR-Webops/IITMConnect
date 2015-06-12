@@ -9,7 +9,9 @@
 					@if($admin_user_check == "True")
 						<p>
 						Your current Access Level to <a href="{{ URL::route('admin') }}">Admin Page</a> is : <strong>{{ $admin_user->user_level }}</strong> <br>
-						</p>					
+						</p>				
+				  	<a href="#fakelink" class="btn btn-lg btn-inverse" data-toggle="modal" data-target="#esqModal">Create New Event</a>	
+
 
 					<table class="table">
 				      <caption>Event Management Table</caption>
@@ -57,11 +59,71 @@
 			</div>
 		</div>
 			
+		<!-- Modal -->
+		<div class="modal fade" id="esqModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+			<form action="{{ URL::route('admin-event-management-post') }}" class="form-horizontal" role="form" method="post">
 
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="myModalLabel">Create New Event</h4>
+		      </div>
+		      <div class="modal-body">
+		      	<div class="container-fluid">
+
+				          	<!-- Field - Name -->
+				            <div class="form-group">
+				        	Enter the event details below to begin.
+				        	
+								<div class="col-sm-12">
+									<label>Event Name :</label>
+									<input type="text" class="form-control" id="event_name" name="event_name" placeholder="Event Name" value="" required>
+					            </div>	
+					            <div class="col-sm-12">
+									<label>Event Unique Name :</label>
+									<input type="text" class="form-control text-lowercase" id="event_unique_name" name="event_unique_name" placeholder="Will be used for URL" value="" required>
+					            </div>
+				            </div>
+		        </div>		        
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        	<button type="submit" class="btn btn-primary">Save changes</button>
+		      </div>
+
+		    	{{ Form::token() }}
+			</form>
+		    </div>
+		  </div>
+		</div>
+		<!-- END - Modal -->	
 
 @stop
 
 @section('jscontent')
+<script type="text/javascript">
+	
+	$('#event_name').each(function() {
+	   var elem = $(this);
 
+	   // Save current value of element
+	   elem.data('oldVal', elem.val());
+
+	   // Look for changes in the value
+	   elem.bind("propertychange change click keyup input paste", function(event){
+	      // If value has changed...
+	      if (elem.data('oldVal') != elem.val()) {
+	       // Updated stored value
+	       elem.data('oldVal', elem.val());
+
+	       // Do action
+	       //console.log(elem.data('oldVal'));
+	       document.getElementById("event_unique_name").value = elem.data('oldVal').replace(/ /g,'');
+	     }
+	   });
+	 });
+
+</script>
 	
 @stop

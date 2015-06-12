@@ -102,9 +102,16 @@ Route::group(array('before' => 'auth'), function() {
 				'uses' => 'PageController@postEventsQuestionsAnwsers'
 		));
 
+		### Admin
+		/* Events Questions Answers Page (POST) */
+		Route::post('/admin/eventmanagement', 
+			array('as' => 'admin-event-management-post',
+				'uses' => 'PageController@postAdminEventManagement'
+		));
+
 	});
 
-	/* CSRF protection */
+	/* CSRF protection AJAX */
 	Route::group(array('before' => 'csrf-ajax'), function() {
 
 		/* Events Attendance Page (POST) */
