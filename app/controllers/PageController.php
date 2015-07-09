@@ -1079,6 +1079,35 @@ class PageController extends BaseController {
 
 	}
 
+	/* Admin Events Name Edit Page (GET) */
+	public function getAdminEventsNameEdit($event_unique_name)
+	{	
+		// Check if User has Admin Access		
+		$user_id = Auth::id();				
+		$admin_user = AdminUser::where('user_id', '=', $user_id)
+			->first();
+		if(!is_null($admin_user)) {	$admin_user_check = "True";	} else { $admin_user_check = "False"; }				
+		View::share('admin_user',$admin_user);
+		View::share('admin_user_check',$admin_user_check);	
+
+		$event = DB::table('events')->where('event_unique_name', $event_unique_name)->first();
+		if(!is_null($event)) {	
+			//return "Event Found"; 
+		} else { 
+			return "Event Not Found";
+		}		
+		View::share('event', $event);
+
+		return View::make('admin.eventmanagement_edit');				
+
+	}
+
+	/* Admin Events Name Edit Page (GET) */
+	public function postAdminEventsNameEdit()
+	{
+		return Input::all();
+	}
+
 	/* Admin User Management Page (GET) */
 	public function getAdminUserManagement(){
 		$user_id = Auth::id();		
@@ -1109,9 +1138,61 @@ class PageController extends BaseController {
 
 	/* Admin Event Management - Create New Event (POST) */
 	public function postAdminEventManagement(){
+	
+		$validator = Validator::make(Input::all(),
+			array(
+				'event_name' => 'required',
+				'event_unique_name' => 'required'					
+			)
+		);
 
-		return Input::all();
+		//return var_dump(Input::all());
+		if($validator->fails()) {
+			return Redirect::route('admin-event-management')
+				->withErrors($validator)
+				->with('globalalertmessage', 'Please Fill all the required Information')
+				->with('globalalertclass', 'error')
+				->withInput();   // fills the field with the old inputs what were correct
+
+		} else {
+
+			//return Input::all();
+			$event_name = Input::get('event_name');
+			$event_unique_name = Input::get('event_unique_name');
+
+			$event_info = DB::table('events')->where('event_unique_name', $event_unique_name)->first();
+			if(!is_null($event_info)) {
+				return Redirect::route('admin-event-management')
+					->with('globalalertmessage', 'Event Unique Name already taken')
+					->with('globalalertclass', 'error');
+			} else {
+
+				// Access the Insitlife Info
+				$user_id = Auth::id();
+
+				$events = DB::table('events')
+							->orderBy('event_id', 'desc')
+							->first();
+				//dd($events);
+				$event_id = $events->event_id + 1;
+
+				// Save Basic Info Data in basic_infos using
+				$event = EventsModel::create(array(
+					'user_id'				=> $user_id,				
+					'event_id' 				=> $event_id,			
+					'event_unique_name'		=> $event_unique_name,
+					'event_name'			=> $event_name,
+					'event_status'			=> 'Closed',
+					'event_rsvp_status'		=> 'Closed'
+				));
+
+				return Redirect::route('admin-event-management')
+					->with('globalalertmessage', 'Event Successfully created')
+					->with('globalalertclass', 'success');
+			}
+		}
 	}
+
 
 	/* Search Box (POST) */
 	public function postSearchBox()

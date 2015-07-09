@@ -109,6 +109,11 @@ Route::group(array('before' => 'auth'), function() {
 				'uses' => 'PageController@postAdminEventManagement'
 		));
 
+		/* Admin (Event Management) Events Name Edit (POST) */
+		Route::post('admin/eventmanagement/{event_unique_name}/edit', 
+			array('as'=>'admin-events-name-edit-post', 'uses'=>'PageController@postAdminEventsNameEdit'
+		));
+
 	});
 
 	/* CSRF protection AJAX */
@@ -241,6 +246,11 @@ Route::group(array('before' => 'auth'), function() {
 	/* Admin (Event Management) Registered Users Responses (GET) */
 	Route::get('admin/eventmanagement/{event_unique_name}/registeredusers/responses', 
 		array('as'=>'admin-events-name-registered-users-responses', 'uses'=>'PageController@getAdminEventsNameRegisteredUsersResponses'
+	));
+
+	/* Admin (Event Management) Events Name Edit (GET) */
+	Route::get('admin/eventmanagement/{event_unique_name}/edit', 
+		array('as'=>'admin-events-name-edit', 'uses'=>'PageController@getAdminEventsNameEdit'
 	));
 
 	/* Admin User Management Page (GET) */

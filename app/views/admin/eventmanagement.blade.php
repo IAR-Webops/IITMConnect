@@ -38,7 +38,7 @@
 						  <td>
 						    <a class="btn btn-primary btn-large btn-block vieweventdetailsbtn" href="{{ URL::to('/') }}/events/{{$event->event_unique_name}}">View Event Details</a>
 				          </td>
-				          <td><a href="#" class="btn btn-danger btn-large btn-block disabled">Edit</a></td>
+				          <td><a href="{{ URL::to('/') }}/admin/eventmanagement/{{$event->event_unique_name}}/edit" class="btn btn-danger btn-large btn-block">Edit</a></td>
 				          <td><a href="{{ URL::to('/') }}/admin/eventmanagement/{{$event->event_unique_name}}/registeredusers" class="btn btn-primary btn-large btn-block">Registered Users</a></td>				          
 				        </tr>
 						@endforeach	
@@ -89,7 +89,7 @@
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		        	<button type="submit" class="btn btn-primary">Save changes</button>
+		        	<button type="submit" class="btn btn-primary">Create Event</button>
 		      </div>
 
 		    	{{ Form::token() }}
@@ -119,7 +119,7 @@
 
 	       // Do action
 	       //console.log(elem.data('oldVal'));
-	       document.getElementById("event_unique_name").value = elem.data('oldVal').replace(/ /g,'');
+	       document.getElementById("event_unique_name").value = elem.data('oldVal').replace(/ /g,'').toLowerCase();
 	     }
 	   });
 	 });
