@@ -967,6 +967,30 @@ class PageController extends BaseController {
 			$event_attendance_user->user_graduatingyear = $registered_user_basic_info->graduatingyear;
 			$event_attendance_user->user_university = $registered_user_basic_info->future_field1;
 			$event_attendance_user->user_department = $registered_user_basic_info->future_field2;
+
+			$events_specific_questions = DB::table('events_specific_questions')
+				->where('event_id', $event->event_id)			
+				->get(); 
+			//return dd($events_specific_questions);
+
+
+		    foreach ($events_specific_questions as $ESQkey => $events_specific_question) {
+		    	$registered_user_events_specific_questions_answers = EventsSpecificQuestionsAnswers::where('user_id', '=', $event_attendance_user->user_id)
+					->where('event_id', '=', $event->event_id)
+					->where('question_id', '=', $ESQkey+1)				
+					->get();
+					foreach ($registered_user_events_specific_questions_answers as $ESQAkey => $registered_user_events_specific_questions_answer) {
+			    		$event_attendance_user->{$events_specific_question->question_value} = $registered_user_events_specific_questions_answer->answer_value;						
+						//return dd($registered_user_events_specific_questions_answer->answer_value);
+					}
+		    }
+
+
+
+			
+
+			//$event_attendance_user->events_specific_questions_answers = $registered_user_events_specific_questions_answers;
+			
 			
 			$event_attendance_user_array_row = (array) $event_attendance_user;
 			$event_attendance_user_array_row_delete = array_splice($event_attendance_user_array_row, 0, 6);
