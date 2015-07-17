@@ -78,7 +78,6 @@
       	<div class="container-fluid">
       		Hello {{$basic_info->firstname}},<br>
 
-      			@if($basic_info->graduatingyear == "2015")
 		          	<!-- Field - Name -->
 		        	Fill this questionnaire and become eligible to attend the event.		          	
 		            <div class="form-group">
@@ -133,9 +132,7 @@
 					  @endif          
 
 		            </div>
-		        @else
-		        	This event is only open for students graduating in 2015.
-		        @endif
+		        
 
 	      
         </div>
