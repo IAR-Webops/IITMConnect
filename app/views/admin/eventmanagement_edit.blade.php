@@ -52,6 +52,94 @@
 				                <textarea type="text" class="form-control" name="event_details" placeholder="Event Details Short" required>{{ $event->event_details }}</textarea>
 				              </div>				              
 				            </div>
+				            <!-- Field - Event Picture -->
+				            <div class="form-group">
+				              <div class="col-sm-12 col-md-4 text-right">				            
+				            	<label class="text-right">Event Picture URL :</label>
+				              </div>
+				              <div class="col-sm-12 col-md-8">
+				                <input type="text" class="form-control" name="event_picture" placeholder="Event Picture URL" value="{{ $event->	event_picture }}">
+				              </div>				              
+				            </div>
+				            <!-- Field - Event Data -->
+				            <div class="form-group">
+				              <div class="col-sm-12 col-md-4 text-right">				            
+				            	<label class="text-right">Event Date :</label>
+				              </div>
+				              <div class="col-sm-12 col-md-8">
+				                <input type="text" class="form-control" name="event_date" placeholder="Event Date" value="{{ $event->event_date }}">
+				              </div>				              
+				            </div>
+				            <!-- Field - Event Time -->
+				            <div class="form-group">
+				              <div class="col-sm-12 col-md-4 text-right">				            
+				            	<label class="text-right">Event Time :</label>
+				              </div>
+				              <div class="col-sm-12 col-md-8">
+				                <input type="text" class="form-control" name="event_time" placeholder="Event Time" value="{{ $event->event_time }}">
+				              </div>				              
+				            </div>
+				            <!-- Field - Event Place -->
+				            <div class="form-group">
+				              <div class="col-sm-12 col-md-4 text-right">				            
+				            	<label class="text-right">Event Place :</label>
+				              </div>
+				              <div class="col-sm-12 col-md-8">
+				                <input type="text" class="form-control" name="event_place" placeholder="Event Place" value="{{ $event->event_place }}">
+				              </div>				              
+				            </div>
+				            <!-- Field - Event Facebook Link -->
+				            <div class="form-group">
+				              <div class="col-sm-12 col-md-4 text-right">				            
+				            	<label class="text-right">Event Facebook Link :</label>
+				              </div>
+				              <div class="col-sm-12 col-md-8">
+				                <input type="text" class="form-control" name="event_fb_event_link" placeholder="Event Facebook Link" value="{{ $event->event_fb_event_link }}">
+				              </div>				              
+				            </div>
+				            <!-- Field - Event Organizer -->
+				            <div class="form-group">
+				              <div class="col-sm-12 col-md-4 text-right">				            
+				            	<label class="text-right">Event Organizer :</label>
+				              </div>
+				              <div class="col-sm-12 col-md-8">
+				                <input type="text" class="form-control" name="event_organizer" placeholder="Event Organizer" value="{{ $event->event_organizer }}">
+				              </div>				              
+				            </div>
+				            <!-- Field - Event Status -->	
+				            <div class="form-group">
+				              <div class="col-sm-12 col-md-4 text-right">				            
+				            	<label class="text-right">Event Status :</label>
+				              </div>
+				              <div class="col-sm-12 col-md-8">
+				              	<div class="bootstrap-switch-square">
+				                  <input type="checkbox" data-toggle="switch" name="event_status" id="event_status" value="Open" />
+				                </div>
+				              </div>				              
+				            </div>	
+				            <!-- Field - Event RSVP Status -->	
+				            <div class="form-group">
+				              <div class="col-sm-12 col-md-4 text-right">				            
+				            	<label class="text-right">Event RSVP Status :</label>
+				              </div>
+				              <div class="col-sm-12 col-md-8">
+				              	<div class="bootstrap-switch-square">
+				                  <input type="checkbox" data-toggle="switch" name="event_rsvp_status" id="event_rsvp_status" value="Open" />
+				                </div>
+				              </div>				              
+				            </div>
+				            <!-- Field - Event Specific Questions -->	
+				            <div class="form-group">
+				              <div class="col-sm-12 col-md-4 text-right">				            
+				            	<label class="text-right">Event has Specific Questions :</label>
+				              </div>
+				              <div class="col-sm-12 col-md-8">
+				              	<div class="bootstrap-switch-square">
+				                  <input type="checkbox" data-toggle="switch" name="event_has_questions" id="event_has_questions" data-on-text="<span class='fui-check'></span>" data-off-text="<span class='fui-cross'></span>" value="Yes" />
+				                </div>
+				              </div>				              
+				            </div>			           
+							
 
 				            <hr>
             
@@ -87,6 +175,23 @@
 @stop
 
 @section('jscontent')
+<script type="text/javascript">
+	if ("{{ $event->event_status }}" == "Open") {
+			$('#event_status').attr('checked', true);
+	} else{
+			$('#event_status').attr('checked', false);
+	};
+	if ("{{ $event->event_rsvp_status }}" == "Open") {
+			$('#event_rsvp_status').attr('checked', true);
+	} else{
+			$('#event_rsvp_status').attr('checked', false);
+	};
+	if ("{{ $event->event_has_questions }}" == "Yes") {
+			$('#event_has_questions').attr('checked', true);
+	} else{
+			$('#event_has_questions').attr('checked', false);
+	};
 
-	
+
+</script>
 @stop
