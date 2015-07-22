@@ -260,6 +260,12 @@ Route::group(array('before' => 'auth'), function() {
 	));
 
 	/* Admin User Management Page (GET) */
+	Route::get('/admin/administrators', 
+	  array('as' => 'admin-administrators', 
+	        'uses' => 'PageController@getAdminAdministrators'
+	));
+
+	/* Admin User Management Page (GET) */
 	Route::get('/searchbox', 
 	  array('as' => 'search-box', 
 	        'uses' => 'PageController@postSearchBox'

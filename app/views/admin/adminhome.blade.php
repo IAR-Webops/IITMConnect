@@ -15,7 +15,7 @@
 							<div class="row">						       
 						        <div class="col-sm-12 col-md-4">
 						          <div class="tile">
-						            <img src="img/icons/svg/book.svg" alt="Infinity-Loop" class="tile-image">
+						            <img src="{{ URL::asset('img/icons/svg/book.svg') }}" alt="Infinity-Loop" class="tile-image">
 						            <h3 class="tile-title">User Management</h3>
 						            <p>View all Users registered on #iitmconnect</p>
 						            <a class="btn btn-primary btn-large btn-block" href="{{ URL::route('admin-user-management') }}">View Details</a>
@@ -24,7 +24,7 @@
 
 						        <div class="col-sm-12 col-md-4">
 						          <div class="tile">
-						            <img src="img/icons/svg/gift-box.svg" alt="Event Management" class="tile-image">
+						            <img src="{{ URL::asset('img/icons/svg/gift-box.svg') }}" alt="Event Management" class="tile-image">
 						            <h3 class="tile-title">Event Management</h3>
 						            <p>View Users currently registered for events</p>
 						            <a class="btn btn-primary btn-large btn-block" href="{{ URL::route('admin-event-management') }}">View Details</a>
@@ -33,13 +33,25 @@
 
 						        <div class="col-sm-12 col-md-4">
 						          <div class="tile">
-						            <img src="img/icons/svg/paper-bag.svg" alt="Mail Management" class="tile-image">
+						            <img src="{{ URL::asset('img/icons/svg/paper-bag.svg') }}" alt="Mail Management" class="tile-image">
 						            <h3 class="tile-title">Mail Management</h3>
-						            <p>Send emails to users registered on #iitmconnect</p>
+						            <p>Send emails to registered users</p>
 						            <a class="btn btn-primary btn-large btn-block disabled" href="#">View Details</a>
 						          </div>
 
 						        </div>
+						    </div>
+						    <div class="row">						       
+						        <div class="col-sm-12 col-md-4">
+						          <div class="tile">
+						            <img src="{{ URL::asset('img/icons/svg/toilet-paper.svg') }}" alt="Infinity-Loop" class="tile-image">
+						            <h3 class="tile-title">Administrators</h3>
+						            <p>Manage Access Levels of Users</p>
+						            <a class="btn btn-primary btn-large btn-block" href="{{ URL::route('admin-administrators') }}">View Details</a>
+						          </div>
+						        </div>
+
+
 						    </div>
 						</div>						
 					@elseif($admin_user_check == "False")
