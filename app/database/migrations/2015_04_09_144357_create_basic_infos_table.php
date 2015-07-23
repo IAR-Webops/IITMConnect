@@ -28,6 +28,8 @@ class CreateBasicInfosTable extends Migration {
             $table->string('phone');                                
             $table->string('phonehome');                                
             $table->string('graduatingyear');
+            $table->string('hostel');
+            $table->string('status');
             $table->string('optionsRadiosFuture');
             $table->string('future_field1');
             $table->string('future_field2');
