@@ -131,7 +131,7 @@
 		            </div>
 	            </div>
             </div>
-            <!-- Field - Graduating Year -->
+            <!-- Field - Graduating Year and Hostel -->
           	<div class="form-group">
           		<div class="col-sm-12 col-md-6">
 		            <select data-toggle="select" class="form-control select select-default" name="graduatingyear" id="graduatingyear" required>
@@ -146,7 +146,25 @@
 		            @else
 		            	<span style="font-size:14px;" >Choose your Graduating Year</span>		            	
 		            @endif
-		    	</div>		    	
+		    	</div>		
+		    	<div class="col-sm-12 col-md-6">
+		            <select data-toggle="select" class="form-control select select-default" name="hostel" id="hostel" required>
+		              <optgroup label="Hostel">
+		              	@foreach ($static_hostels as $static_hostel)
+		                <option value="{{$static_hostel->hostel_name}}">{{$static_hostel->hostel_name}}</option>
+						@endforeach		                
+		              </optgroup>
+		            </select>
+		            @if(!$basic_info->hostel == "")
+		            	<span style="font-size:14px;" >Hostel Saved : {{ $basic_info->hostel }}</span>
+		            @else
+		            	<span style="font-size:14px;" >Choose your Hostel</span>		            	
+		            @endif
+		    	</div>    	
+	        </div>
+	        <!-- Field - Hostel -->
+          	<div class="form-group">
+          		  	
 	        </div>
 	        <!-- Field - Future Plans -->
           	<div class="form-group">
@@ -292,6 +310,8 @@
 			$("#" + optionsRadiosDegree_id).prop("checked", true);
 			// Set Graduating Year
 			$('#graduatingyear').val("{{ $basic_info->graduatingyear }}");
+			// Set Hostel
+			$('#hostel').val("{{ $basic_info->hostel }}");
 			// Set Future Plan
 			switch("{{ $basic_info->optionsRadiosFuture }}") {
 			    case "Job":

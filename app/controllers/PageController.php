@@ -54,6 +54,8 @@ class PageController extends BaseController {
 		View::share('static_departments',$static_departments);
 		$static_minors = DB::table('static_minors')->get();
 		View::share('static_minors',$static_minors);
+		$static_hostels = DB::table('static_hostels')->get();
+		View::share('static_hostels',$static_hostels);
 		
 		$basic_info = DB::table('basic_infos')->where('user_id', $user_id)->first();
 		if(is_null($basic_info)) {
@@ -68,6 +70,7 @@ class PageController extends BaseController {
 			$basic_info->department = "";
 			$basic_info->optionsRadiosDegree = "";
 			$basic_info->graduatingyear = "";
+			$basic_info->hostel = "";
 			$basic_info->optionsRadiosFuture = "";
 			$basic_info->future_field1 = "";
 			$basic_info->future_field2 = "";
@@ -114,6 +117,7 @@ class PageController extends BaseController {
 			$phone 					= Input::get('phone');
 			$phonehome 				= Input::get('phonehome');			
 			$graduatingyear 		= Input::get('graduatingyear');
+			$hostel 				= Input::get('hostel');
 			$optionsRadiosFuture 	= Input::get('optionsRadiosFuture');
 
 			if ($optionsRadiosFuture == 'Job') {
@@ -153,6 +157,7 @@ class PageController extends BaseController {
 						'phone'					=> $phone,
 						'phonehome'				=> $phonehome,						
 						'graduatingyear'		=> $graduatingyear,
+						'hostel'				=> $hostel,
 						'optionsRadiosFuture'	=> $optionsRadiosFuture,
 						'future_field1'			=> $future_field1,
 						'future_field2'			=> $future_field2,
@@ -181,6 +186,7 @@ class PageController extends BaseController {
 					'phone'					=> $phone,
 					'phonehome'				=> $phonehome,											
 					'graduatingyear'		=> $graduatingyear,
+					'hostel'				=> $hostel,
 					'optionsRadiosFuture'	=> $optionsRadiosFuture,
 					'future_field1'			=> $future_field1,
 					'future_field2'			=> $future_field2
