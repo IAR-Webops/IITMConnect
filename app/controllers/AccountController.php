@@ -877,7 +877,7 @@ class AccountController extends BaseController {
 			//return Redirect::route('basic-info');
 			// Redirect the user to the URL they were trying to access before being 
 			// caught by the authentication filter.
-			return Redirect::intended('basic-info');
+			return Redirect::intended('basicinfo');
 
 			//return Redirect::route('home');	
 
