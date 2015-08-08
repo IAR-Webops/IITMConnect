@@ -51,7 +51,10 @@
 					<br>
 					<span class="fui-user"></span> - Organizer : {{$event->event_organizer}}
 					<hr>
-
+					<a href="{{ $event->event_search_url }}" target="_alt">
+					<img class="img-rounded img-responsive" style="display:inline;" src="{{ $event->event_place_url }}">
+					</a>
+					<hr>
 					<p>Get notified about the latest updates by following the Event on Facebook
 					  <br><a target="_alt" href="{{$event->event_fb_event_link}}">
 					  <span class="fui-facebook"></span> | {{$event->event_name}}</a>

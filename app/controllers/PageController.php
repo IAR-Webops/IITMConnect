@@ -756,7 +756,11 @@ class PageController extends BaseController {
 	{
 		$event = DB::table('events')->where('event_unique_name', $event_unique_name)->first();
 		if(!is_null($event)) {	
-			//return "Event Found"; 
+			//return "Event Found";
+			$address = $event->event_place;
+			$address = preg_replace('/\s+/', '+', $address);
+			$event->event_search_url = "https://www.google.co.in/maps/place/".$address."";
+			$event->event_place_url = "https://maps.googleapis.com/maps/api/staticmap?center=".$address."&zoom=14&size=640x640&scale=1&markers=color:blue|".$address."";
 		} else { 
 			return "Event Not Found";
 		}		
