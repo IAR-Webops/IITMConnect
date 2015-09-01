@@ -1136,74 +1136,93 @@ class PageController extends BaseController {
 
 	}
 
-	/* Admin Events Name Edit Page (GET) */
+	/* Admin Events Name Edit Page (POST) */
 	public function postAdminEventsNameEdit($event_unique_name)
 	{
 		//return Input::all();
-		
-		$event_name 			= Input::get('event_name');
-		$event_details_short 	= Input::get('event_details_short');
-		$event_details 			= Input::get('event_details');
-		$event_picture 			= Input::get('event_picture');
-		$event_date 			= Input::get('event_date');
-		$event_time				= Input::get('event_time');
-		$event_place 			= Input::get('event_place');
-		$event_fb_event_link 	= Input::get('event_fb_event_link');
-		$event_organizer 		= Input::get('event_organizer');
-		$event_status 			= Input::get('event_status');
-		$event_rsvp_status 		= Input::get('event_rsvp_status');
-		$event_has_questions 	= Input::get('event_has_questions');
 
-		if (is_null($event_status)) {
-			$event_status = "Closed";
-		} else {
-			$event_status = "Open";			
-		}
-		if (is_null($event_rsvp_status)) {
-			$event_rsvp_status = "Closed";
-		} else {
-			$event_rsvp_status = "Open";			
-		}
-		if (is_null($event_has_questions)) {
-			$event_has_questions = "No";
-		} else {
-			$event_has_questions = "Yes";			
-		}
-		
+		$validator = Validator::make(Input::all(),
+			array(
+				'event_name' => 'required',
+				'event_unique_name' => 'required'					
+			)
+		);
 
-		// Update existing row in basic_infos if it exists. Else create new entry.
-		$event = DB::table('events')->where('event_unique_name', $event_unique_name)->first();
-		if(!is_null($event)) {
+		//return var_dump(Input::all());
+		if($validator->fails()) {
+			return Redirect::route('admin-event-management')
+				->withErrors($validator)
+				->with('globalalertmessage', 'Please Fill all the required Information')
+				->with('globalalertclass', 'error')
+				->withInput();   // fills the field with the old inputs what were correct
 
-			DB::table('events')
-	            ->where('event_unique_name', $event_unique_name)
-	            ->update(array(
-	            	'event_name'			=> $event_name,			
-	            	'event_url'				=> $event_unique_name,
-					'event_details_short' 	=> $event_details_short,			
-					'event_details'			=> $event_details,
-					'event_picture'			=> $event_picture,															
-					'event_date'			=> $event_date,															
-					'event_time'			=> $event_time,															
-					'event_place'			=> $event_place,															
-					'event_fb_event_link'	=> $event_fb_event_link,															
-					'event_organizer'		=> $event_organizer,												
-					'event_status'			=> $event_status,												
-					'event_rsvp_status'		=> $event_rsvp_status,
-					'event_has_questions'		=> $event_has_questions
-	            ));
-					
+		} else {
 			
-			return Redirect::route('admin-event-management')
-                ->with('globalalertmessage', 'Event Information Updated')
-                ->with('globalalertclass', 'success');
-    
+			$event_name 			= Input::get('event_name');
+			$event_details_short 	= Input::get('event_details_short');
+			$event_details 			= Input::get('event_details');
+			$event_picture 			= Input::get('event_picture');
+			$event_date 			= Input::get('event_date');
+			$event_time				= Input::get('event_time');
+			$event_place 			= Input::get('event_place');
+			$event_fb_event_link 	= Input::get('event_fb_event_link');
+			$event_organizer 		= Input::get('event_organizer');
+			$event_status 			= Input::get('event_status');
+			$event_rsvp_status 		= Input::get('event_rsvp_status');
+			$event_has_questions 	= Input::get('event_has_questions');
 
-		} else {
+			if (is_null($event_status)) {
+				$event_status = "Closed";
+			} else {
+				$event_status = "Open";			
+			}
+			if (is_null($event_rsvp_status)) {
+				$event_rsvp_status = "Closed";
+			} else {
+				$event_rsvp_status = "Open";			
+			}
+			if (is_null($event_has_questions)) {
+				$event_has_questions = "No";
+			} else {
+				$event_has_questions = "Yes";			
+			}
+			
 
-			return Redirect::route('admin-event-management')
-                ->with('globalalertmessage', 'Event Not Found')
-                ->with('globalalertclass', 'error');
+			// Update existing row in basic_infos if it exists. Else create new entry.
+			$event = DB::table('events')->where('event_unique_name', $event_unique_name)->first();
+			if(!is_null($event)) {
+
+				DB::table('events')
+		            ->where('event_unique_name', $event_unique_name)
+		            ->update(array(
+		            	'event_name'			=> $event_name,			
+		            	'event_url'				=> $event_unique_name,
+						'event_details_short' 	=> $event_details_short,			
+						'event_details'			=> $event_details,
+						'event_picture'			=> $event_picture,															
+						'event_date'			=> $event_date,															
+						'event_time'			=> $event_time,															
+						'event_place'			=> $event_place,															
+						'event_fb_event_link'	=> $event_fb_event_link,															
+						'event_organizer'		=> $event_organizer,												
+						'event_status'			=> $event_status,												
+						'event_rsvp_status'		=> $event_rsvp_status,
+						'event_has_questions'	=> $event_has_questions
+		            ));
+						
+				
+				return Redirect::route('admin-event-management')
+	                ->with('globalalertmessage', 'Event Information Updated')
+	                ->with('globalalertclass', 'success');
+	    
+
+			} else {
+
+				return Redirect::route('admin-event-management')
+	                ->with('globalalertmessage', 'Event Not Found')
+	                ->with('globalalertclass', 'error');
+			}
+
 		}
 
 	}

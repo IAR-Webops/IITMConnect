@@ -29,7 +29,8 @@
 				            	<div class="col-sm-12 col-md-8">
 				              		<div class="input-group">
 						              <span class="input-group-addon"><span class="fui-credit-card"></span></span>
-						              <input type="text" class="form-control" placeholder="event_unique_name" value="{{ $event->event_unique_name }}" disabled="">
+						              <input type="text" class="form-control" name="event_unique_name" placeholder="event_unique_name" value="{{ $event->event_unique_name }}" disabled="">
+						              <input type="text" class="form-control" name="event_unique_name" value="{{ $event->event_unique_name }}" style="display:none;">
 						            </div>
 					            </div>
 				            </div>
@@ -40,7 +41,7 @@
 				            	<label class="text-right">Event Detail Short :</label>
 				              </div>
 				              <div class="col-sm-12 col-md-8">
-				                <textarea type="text" class="form-control" name="event_details_short" placeholder="Event Details Short" required>{{ $event->event_details_short }}</textarea>
+				                <textarea type="text" class="form-control" name="event_details_short" placeholder="Limit 255 words" required>{{ $event->event_details_short }}</textarea>
 				              </div>				              
 				            </div>
 				            <!-- Field - Event Details Long -->
@@ -49,7 +50,7 @@
 				            	<label class="text-right">Event Detail Long :</label>
 				              </div>
 				              <div class="col-sm-12 col-md-8">
-				                <textarea type="text" class="form-control" name="event_details" placeholder="Event Details Short" required>{{ $event->event_details }}</textarea>
+				                <textarea type="text" class="form-control" name="event_details" placeholder="Limit 2000 words" required>{{ $event->event_details }}</textarea>
 				              </div>				              
 				            </div>
 				            <!-- Field - Event Picture -->
@@ -180,9 +181,53 @@
 				          		</div>
 				          		{{ Form::token() }}
 				          	</div>
-
+				          	<hr>
 				        </form>
-					
+
+				        <div class="col-sm-12">
+				          <h4 class="text-center">Danger Zone</h4>        	
+				          <hr>
+							<p class="text-center">
+								Click the button below to delete this event permanently.<br>
+								Be advised, this action cannot be undone.
+							</p>
+							<p class="text-center">
+						  		<a href="#fakelink" class="btn btn-lg btn-danger" data-toggle="modal" data-target="#deleteEventModal">Delete Event</a>	
+						  	</p>
+						</div>
+
+
+						<!-- Modal -->
+						<div class="modal fade" id="deleteEventModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						  <div class="modal-dialog">
+						    <div class="modal-content">
+							<form action="{{ URL::to('/') }}/admin/eventmanagement/{{$event->event_unique_name}}/edit" class="form-horizontal" role="form" method="post">
+
+						      <div class="modal-header">
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						        <h4 class="modal-title" id="myModalLabel">Delete Event</h4>
+						      </div>
+						      <div class="modal-body">
+						      	<div class="container-fluid">
+
+						          	<!-- Field - Name -->
+						            <div class="form-group">
+						        	Are you sure you want to delete the event permanently?
+									<input type="text" class="form-control" id="event_unique_name" name="event_unique_name" placeholder="Event Name" value="{{$event->event_unique_name}}" style="display:none">
+						            </div>
+						        </div>		        
+						      </div>
+						      <div class="modal-footer">
+						        <button type="submit" class="btn btn-danger">Yes</button>
+						        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+						      </div>
+
+						    	{{ Form::token() }}
+							</form>
+						    </div>
+						  </div>
+						</div>
+						<!-- END - Modal -->	
 
 					@elseif($admin_user_check == "False")
 						<p>
