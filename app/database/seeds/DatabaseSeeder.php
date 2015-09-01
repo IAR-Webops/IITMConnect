@@ -12,6 +12,9 @@ class DatabaseSeeder extends Seeder {
 		Eloquent::unguard();
 
 		// $this->call('UserTableSeeder');
+
+		$this->call('StaticDepartmentTableSeeder');
+        $this->command->info('static_departments table seeded!');
 	}
 
 }
