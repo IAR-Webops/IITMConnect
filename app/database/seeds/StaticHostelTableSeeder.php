@@ -9,6 +9,7 @@ class StaticHostelTableSeeder extends Seeder {
         StaticHostel::create(array('hostel_name' => 'Alakananda',   'hostel_code' => 'AK'));
         StaticHostel::create(array('hostel_name' => 'Brahmaputra',  'hostel_code' => 'BH'));
         StaticHostel::create(array('hostel_name' => 'Cauvery',      'hostel_code' => 'CY'));
+        StaticHostel::create(array('hostel_name' => 'Day Scholar',  'hostel_code' => 'DS'));
         StaticHostel::create(array('hostel_name' => 'Ganga',        'hostel_code' => 'GN'));
         StaticHostel::create(array('hostel_name' => 'Godavari',     'hostel_code' => 'GD'));
         StaticHostel::create(array('hostel_name' => 'Jamuna',       'hostel_code' => 'JM'));
