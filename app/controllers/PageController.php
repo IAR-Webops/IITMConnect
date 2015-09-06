@@ -1136,6 +1136,7 @@ class PageController extends BaseController {
 
 	}
 
+
 	/* Admin Events Name Edit Page (POST) */
 	public function postAdminEventsNameEdit($event_unique_name)
 	{
@@ -1222,6 +1223,44 @@ class PageController extends BaseController {
 	                ->with('globalalertmessage', 'Event Not Found')
 	                ->with('globalalertclass', 'error');
 			}
+
+		}
+
+	}
+
+
+	/* Admin Events Name Delete Page (POST) */
+	public function postAdminEventsNameDelete($event_unique_name)
+	{
+		//return Input::all();
+
+		$validator = Validator::make(Input::all(),
+			array(
+				'event_name' 		=> 'required',
+				'event_unique_name' => 'required'					
+			)
+		);
+
+		//return var_dump(Input::all());
+		if($validator->fails()) {
+			return Redirect::route('admin-event-management')
+				->withErrors($validator)
+				->with('globalalertmessage', 'Delete Failed')
+				->with('globalalertclass', 'error')
+				->withInput();   // fills the field with the old inputs what were correct
+
+		} else {
+			
+			$event_name = Input::get('event_name');
+
+			$deleteevent = EventsModel::where('event_unique_name', '=', $event_unique_name)
+							->where('event_name', '=', $event_name)
+							->first();
+	        $deleteevent->delete();
+
+	        return Redirect::route('admin-event-management')
+	                ->with('globalalertmessage', 'Event Successfully Deleted')
+	                ->with('globalalertclass', 'success');
 
 		}
 

@@ -113,6 +113,11 @@ Route::group(array('before' => 'auth'), function() {
 		Route::post('admin/eventmanagement/{event_unique_name}/edit', 
 			array('as'=>'admin-events-name-edit-post', 'uses'=>'PageController@postAdminEventsNameEdit'
 		));
+		
+		/* Admin (Event Management) Events Name Delete (POST) */
+		Route::post('admin/eventmanagement/{event_unique_name}/delete', 
+			array('as'=>'admin-events-name-delete-post', 'uses'=>'PageController@postAdminEventsNameDelete'
+		));
 
 	});
 

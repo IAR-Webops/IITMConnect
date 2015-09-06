@@ -201,7 +201,7 @@
 						<div class="modal fade" id="deleteEventModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 						  <div class="modal-dialog">
 						    <div class="modal-content">
-							<form action="{{ URL::to('/') }}/admin/eventmanagement/{{$event->event_unique_name}}/edit" class="form-horizontal" role="form" method="post">
+							<form action="{{ URL::to('/') }}/admin/eventmanagement/{{$event->event_unique_name}}/delete" class="form-horizontal" role="form" method="post">
 
 						      <div class="modal-header">
 						        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -214,6 +214,7 @@
 						            <div class="form-group">
 						        	Are you sure you want to delete the event permanently?
 									<input type="text" class="form-control" id="event_unique_name" name="event_unique_name" placeholder="Event Name" value="{{$event->event_unique_name}}" style="display:none">
+									<input type="text" class="form-control" id="event_name" name="event_name" placeholder="Event Name" value="{{ $event->event_name }}" style="display:none">
 						            </div>
 						        </div>		        
 						      </div>
