@@ -17,7 +17,8 @@ class CreateAdminUsersTable extends Migration {
         {
             $table->increments('id');
             $table->string('user_id');
-            $table->string('user_level');            
+            $table->string('user_level');
+            $table->string('DEFCON');
             $table->string('created_at');
             $table->string('updated_at');
         });
