@@ -40,12 +40,24 @@
 							            	<input name="linkedin_link" class="form-control" type="text" value="{{ $result['siteStandardProfileRequest']['url'] }}" style="color:#34495e;" readonly="">
 						            	</div>
 						            </div>
+						            
+						            
+						            @if(empty($result['pictureUrl']))
+						            <div class="form-group text-center">
+						            	<img class="img-rounded" height="100" src="http://www.iconsdb.com/icons/preview/gray/guest-xxl.png">
+						            </div>
+						            <div class="form-group">
+							            <input name="linkedin_picture" class="form-control" style="display:none;" type="text" value="http://www.iconsdb.com/icons/preview/gray/guest-xxl.png" readonly="">							            	
+						            </div>
+						            @else
 						            <div class="form-group text-center">
 						            	<img class="img-rounded" height="100" src="{{ $result['pictureUrl'] }}">
 						            </div>
 						            <div class="form-group">
-							            	<input name="linkedin_picture" class="form-control" style="display:none;" type="text" value="{{ $result['pictureUrl'] }}" readonly="">							            	
+							           	<input name="linkedin_picture" class="form-control" style="display:none;" type="text" value="{{ $result['pictureUrl'] }}" readonly="">							            	
 						            </div>
+						            @endif
+
 						            <div class="form-group">
 							            	<input name="linkedin_headline" class="form-control" style="display:none;" type="text" value="{{ $result['headline'] }}" readonly="">							            	
 						            </div>
