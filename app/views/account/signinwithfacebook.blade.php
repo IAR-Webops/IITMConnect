@@ -30,7 +30,7 @@
 						            <div class="form-group">
 							            	<input name="facebook_gender" class="form-control" style="display:none;" type="text" value="{{ $result['gender'] }}" readonly="">
 						            </div>
-						            <div class="form-group">
+						            <div class="form-group">	
 							            	<input name="facebook_picture" class="form-control" style="display:none;" type="text" value="{{ $result['picture']['data']['url'] }}" readonly="">
 						            </div>						            
 						            <div class="form-group">
@@ -38,6 +38,9 @@
 							            	<span class="input-group-addon"><span class="fui-mail primary-color-text"></span></span>
 							            	<input name="facebook_email" class="form-control" type="text" value="{{ $result['email'] }}" style="color:#34495e;" readonly="">
 						            	</div>
+						            </div>
+						            <div class="form-group text-center">
+						            	<img class="img-rounded" height="100" src="{{ $result['picture']['data']['url'] }}">
 						            </div>
 						            <div class="form-group">
 							            	<input name="facebook_accesstoken" class="form-control" style="display:none;" type="text" value="{{ $result['accesstoken'] }}" readonly="">
