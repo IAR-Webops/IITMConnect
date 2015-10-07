@@ -33,21 +33,47 @@
 							            	<input name="googleplus_email" class="form-control" type="text" value="{{ $result['email'] }}" style="color:#34495e;" readonly="">
 						            	</div>
 						            </div>
+						            
+						            @if(empty($result['link']))
+						            <div class="form-group primary-color-text" >
+							            <div class="input-group">
+							            	<span class="input-group-addon"><span class="fui-google-plus primary-color-text"></span></span>
+							            	<input name="googleplus_link" class="form-control" type="text" value="{{ $result['link'] }}" style="color:#34495e;" required>
+							            </div>
+						            </div>
+						            @else
 						            <div class="form-group">
 						            	<div class="input-group">
 							            	<span class="input-group-addon"><span class="fui-google-plus primary-color-text"></span></span>
-							            	<input name="googleplus_link" class="form-control" type="text" value="{{ $result['link'] }}" style="color:#34495e;" readonly="">
+							            	<input name="googleplus_link" class="form-control" type="text" placeholder="Link to your Googleplus Profile / Website" value="" style="color:#34495e;" readonly="">
 						            	</div>
 						            </div>
+						            @endif
 						            <div class="form-group text-center">
 						            	<img class="img-rounded" height="100" src="{{ $result['picture'] }}">
 						            </div>
 						            <div class="form-group">
 							            	<input name="googleplus_picture" class="form-control" style="display:none;" type="text" value="{{ $result['picture'] }}" readonly="">							            	
 						            </div>
+						            
+						            
+						            @if(empty($result['gender']))
+						            <div class="form-group primary-color-text" >
+						            Please choose your Gender
+						            	<label class="radio" for="radio4a">
+							                <input type="radio" name="googleplus_gender" data-toggle="radio" value="Male" id="radio4a" required checked>
+							                 Male
+							            </label>
+							            <label class="radio" for="radio4b">
+							                <input type="radio" name="googleplus_gender" data-toggle="radio" value="Female" id="radio4b" required>
+							                 Female
+							            </label>
+						            </div>
+						            @else
 						            <div class="form-group">
 							            	<input name="googleplus_gender" class="form-control" style="display:none;" type="text" value="{{ $result['gender'] }}" readonly="">							            	
 						            </div>
+						            @endif
 
 						            <div class="form-group">
 							            	<input name="googleplus_accesstoken" class="form-control" style="display:none;" type="text" value="{{ $result['accesstoken'] }}" readonly="">
