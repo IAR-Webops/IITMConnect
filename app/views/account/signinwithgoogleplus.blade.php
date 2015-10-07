@@ -38,14 +38,14 @@
 						            <div class="form-group primary-color-text" >
 							            <div class="input-group">
 							            	<span class="input-group-addon"><span class="fui-google-plus primary-color-text"></span></span>
-							            	<input name="googleplus_link" class="form-control" type="text" value="{{ $result['link'] }}" style="color:#34495e;" required>
+							            	<input name="googleplus_link" class="form-control" type="text" placeholder="Link to your Googleplus Profile / Website" value="" style="color:#34495e;" required>
 							            </div>
 						            </div>
 						            @else
 						            <div class="form-group">
 						            	<div class="input-group">
 							            	<span class="input-group-addon"><span class="fui-google-plus primary-color-text"></span></span>
-							            	<input name="googleplus_link" class="form-control" type="text" placeholder="Link to your Googleplus Profile / Website" value="" style="color:#34495e;" readonly="">
+							            	<input name="googleplus_link" class="form-control" type="text" placeholder="Link to your Googleplus Profile / Website" value="{{ $result['link'] }}" style="color:#34495e;" readonly="">
 						            	</div>
 						            </div>
 						            @endif
