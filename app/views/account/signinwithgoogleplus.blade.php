@@ -61,11 +61,11 @@
 						            <div class="form-group primary-color-text" >
 						            Please choose your Gender
 						            	<label class="radio" for="radio4a">
-							                <input type="radio" name="googleplus_gender" data-toggle="radio" value="Male" id="radio4a" required checked>
+							                <input type="radio" name="googleplus_gender" data-toggle="radio" value="male" id="radio4a" required checked>
 							                 Male
 							            </label>
 							            <label class="radio" for="radio4b">
-							                <input type="radio" name="googleplus_gender" data-toggle="radio" value="Female" id="radio4b" required>
+							                <input type="radio" name="googleplus_gender" data-toggle="radio" value="female" id="radio4b" required>
 							                 Female
 							            </label>
 						            </div>
