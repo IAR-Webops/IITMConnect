@@ -34,6 +34,9 @@
         <![endif]-->                               
     </head>                                        
 	<body>
+    <div class="wrapper">
+
+
         @include('layout.js.sdkanalytics')
 		
         @if(Auth::check())
@@ -53,6 +56,7 @@
         
        
 
+    </div><!--/wrapper-->
 
 
     <!-- START SCRIPTS -->
