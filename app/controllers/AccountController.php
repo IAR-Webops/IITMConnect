@@ -399,7 +399,6 @@ class AccountController extends BaseController {
 	}
 
 	public function postLoginWithGoogleplus() {
-		
 
 		$validator = Validator::make(Input::all(),
 			array(

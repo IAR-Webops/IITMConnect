@@ -40,7 +40,7 @@
 		            @if(!$basic_info->department == "")
 		            	<span style="font-size:14px;" >Department Saved : {{ $basic_info->department }}</span>
 		            @else
-		            	<span style="font-size:14px;" >Choose your Department</span>		            	
+		            	<span style="font-size:14px;" >Choose your Department *</span>		            	
 		            @endif
 		    	</div>
 		    	<div class="col-sm-12 col-md-6">
@@ -54,7 +54,7 @@
 		            @if(!$basic_info->minor == "")
 		            	<span style="font-size:14px;">Minor Saved : {{ $basic_info->minor }}</span>
 		            @else
-		            	<span style="font-size:14px;" >Choose your Minor</span>		            			            
+		            	<span style="font-size:14px;" >Choose your Minor *</span>		            			            
 		            @endif	            
 		    	</div>
 	        </div>
@@ -144,7 +144,7 @@
 		            @if(!$basic_info->graduatingyear == "")
 		            	<span style="font-size:14px;">Graduating Year : {{ $basic_info->graduatingyear }}</span>
 		            @else
-		            	<span style="font-size:14px;" >Choose your Graduating Year</span>		            	
+		            	<span style="font-size:14px;" >Choose your Graduating Year *</span>		            	
 		            @endif
 		    	</div>		
 		    	<div class="col-sm-12 col-md-6">
@@ -158,7 +158,7 @@
 		            @if(!$basic_info->hostel == "")
 		            	<span style="font-size:14px;" >Hostel Saved : {{ $basic_info->hostel }}</span>
 		            @else
-		            	<span style="font-size:14px;" >Choose your Hostel</span>		            	
+		            	<span style="font-size:14px;" >Choose your Hostel *</span>		            	
 		            @endif
 		    	</div>    	
 	        </div>
@@ -168,7 +168,7 @@
 	        </div>
 	        <!-- Field - Future Plans -->
           	<div class="form-group">
-          	<label>Current Job / Current Internship Details :</label>
+          	<label>Current Job / Current Internship Details : *</label>
           		<div class="col-sm-12 col-md-12">
           			<label class="radio" for="radio4job">
 		                <input type="radio" name="optionsRadiosFuture" data-toggle="radio" value="Job" id="radio4job" required>
