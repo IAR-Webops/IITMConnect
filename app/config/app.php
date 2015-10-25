@@ -123,6 +123,8 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Artdarek\OAuth\OAuthServiceProvider',
 		'Maatwebsite\Excel\ExcelServiceProvider',
+		'LucaDegasperi\OAuth2Server\Storage\FluentStorageServiceProvider',
+		'LucaDegasperi\OAuth2Server\OAuth2ServerServiceProvider',
 
 	),
 
@@ -192,6 +194,7 @@ return array(
 		'View'            => 'Illuminate\Support\Facades\View',
 		'OAuth' 			=> 'Artdarek\OAuth\Facade\OAuth',
 		'Excel' 			=> 'Maatwebsite\Excel\Facades\Excel',
+		'Authorizer' => 'LucaDegasperi\OAuth2Server\Facades\AuthorizerFacade',
 
 	),
 
