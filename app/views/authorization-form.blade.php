@@ -6,5 +6,6 @@
     <input type="hidden" name="redirect_uri" value="{{$params['redirect_uri'];}}">
     <input type="text" name="redirect_uri">
     <input type="password" name="password">
-    <input type="submit" name="approve">
+    <button type="submit" name="approve" value="1">Approve</button>
+	<button type="submit" name="deny" value="1">Deny</button>
 </form>
