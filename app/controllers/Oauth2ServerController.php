@@ -69,7 +69,23 @@ class Oauth2ServerController extends BaseController {
 
 	public function postAccessToken(){
 	    // return AuthorizationServer::performAccessTokenFlow();
-	    return Response::json(Authorizer::issueAccessToken());
+	    $accessTokenResponse = Authorizer::issueAccessToken();
+	    $accessTokenResponseString = json_encode($accessTokenResponse);
+		$accessTokenResponseJSON = json_decode($accessTokenResponseString);
+		// return gettype($accessTokenResponseJSON);
+		// return $accessTokenResponseJSON->access_token;
+
+	    $oauth_access_token = DB::table('oauth_access_tokens')->where('id', $accessTokenResponseJSON->access_token)->first();
+	    if ($oauth_access_token->count()) {
+			
+
+			return $oauth_access_token;	   
+			
+
+	    } else {
+		    return $accessTokenResponse;
+	    }
+
 	}
 	
 
