@@ -974,6 +974,7 @@ class PageController extends BaseController {
 			$event_attendance_user->user_email 		= $registered_user_basic_info->email;
 			$event_attendance_user->user_phone 		= $registered_user_basic_info->phone;
 			$event_attendance_user->user_phonehome 	= $registered_user_basic_info->phonehome;			
+			$event_attendance_user->hostel 			= $registered_user_basic_info->hostel;			
 			$event_attendance_user->user_graduatingyear = $registered_user_basic_info->graduatingyear;
 			$event_attendance_user->user_university = $registered_user_basic_info->future_field1;
 			$event_attendance_user->user_department = $registered_user_basic_info->future_field2;
