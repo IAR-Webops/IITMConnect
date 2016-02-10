@@ -275,7 +275,7 @@ class AccountController extends BaseController {
 					'facebook_lastname'		=> $result['last_name'],
 					'facebook_gender'		=> $result['gender'],						
 					'facebook_email'		=> $result['email'],
-					'facebook_picture'		=> $result['picture'],						
+					'facebook_picture'		=> $result['picture']['data']['url'],						
 					'facebook_accesstoken'	=> $result['accesstoken']
 				));
 				return Redirect::route('oauth-settings')
