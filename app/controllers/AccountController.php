@@ -252,7 +252,8 @@ class AccountController extends BaseController {
 	        if (!array_key_exists('last_name', $result)) {	$result['last_name'] = "";	}
 	        if (!array_key_exists('gender', $result)) {	$result['gender'] = "";	}			        
 	        if (!array_key_exists('email', $result)) {	$result['email'] = "";	}
-			if (!array_key_exists('email', $result)) { $result['email'] = "";	}
+			if (!array_key_exists('picture', $result)) { $result['picture'] = "";	}
+
 
 			$result['accesstoken'] = $accesstoken;	      
 	        //Var_dump
@@ -274,7 +275,7 @@ class AccountController extends BaseController {
 					'facebook_lastname'		=> $result['last_name'],
 					'facebook_gender'		=> $result['gender'],						
 					'facebook_email'		=> $result['email'],
-					'facebook_picture'		=> $result['email'],						
+					'facebook_picture'		=> $result['picture'],						
 					'facebook_accesstoken'	=> $result['accesstoken']
 				));
 				return Redirect::route('oauth-settings')
