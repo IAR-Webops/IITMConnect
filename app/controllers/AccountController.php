@@ -243,7 +243,7 @@ class AccountController extends BaseController {
 	        $accesstoken = $token->getAccessToken();
 
 	        // Send a request with it
-	        $result = json_decode( $fb->request( '/me' ), true );	
+	        $result = json_decode( $fb->request( '/me?fields=id,name,first_name,last_name,picture.width(800).height(800),gender,email,link' ), true );	
 
 	        //Initialize Empty Result Array to avoid missing Oauth return parameters	
 			// Not Including "ID","Email","Access Token"
