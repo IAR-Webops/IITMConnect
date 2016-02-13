@@ -27,6 +27,7 @@
 			                </blockquote>
 			                </div>
 			            </div>
+			            <p>Facing Issues? <a href="{{ URL::route('report-issues') }}">Report here</a></p>
 
 			            <!--
 						<p>Built with <span class="fui-heart"></span> by Yash Murty
