@@ -276,6 +276,12 @@ Route::group(array('before' => 'auth'), function() {
 	        'uses' => 'PageController@postSearchBox'
 	));
 
+	/* Events Page (GET) */
+	Route::get('/accessprogram', 
+	  array('as' => 'access-program', 
+	        'uses' => 'PageController@getAccessProgram'
+	));
+
 });
 
 ###

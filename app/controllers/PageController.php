@@ -1413,4 +1413,9 @@ class PageController extends BaseController {
 		return $searchboxvalues;
 	}
 
+	public function getAccessProgram()
+	{
+		return View::make('page.accessprogram');				
+	}
+
 }
