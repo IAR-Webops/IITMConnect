@@ -275,8 +275,9 @@ Route::group(array('before' => 'auth'), function() {
 	  array('as' => 'search-box', 
 	        'uses' => 'PageController@postSearchBox'
 	));
+	### END - Admin
 
-	/* Events Page (GET) */
+	/* AccessProgram Page (GET) */
 	Route::get('/accessprogram', 
 	  array('as' => 'access-program', 
 	        'uses' => 'PageController@getAccessProgram'

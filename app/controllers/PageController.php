@@ -1415,6 +1415,12 @@ class PageController extends BaseController {
 
 	public function getAccessProgram()
 	{
+		$user_id = Auth::id();
+		$info_check = array();
+		$basic_info = DB::table('basic_infos')->where('user_id', $user_id)->first();
+		
+		View::share('basic_info',$basic_info);
+
 		return View::make('page.accessprogram');				
 	}
 
