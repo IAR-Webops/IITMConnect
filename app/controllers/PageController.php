@@ -1420,12 +1420,6 @@ class PageController extends BaseController {
 		$basic_info = DB::table('basic_infos')->where('user_id', $user_id)->first();
 		
 		$access_programs = DB::table('access_programs')->where('status', 'open')->get();
-		if(!is_null($access_programs)) {	
-			// Find offers via relation
-		} else { 
-			// Do nothing
-		}
-
 		// dd($access_programs);
 
 		View::share('basic_info',$basic_info);
@@ -1436,7 +1430,29 @@ class PageController extends BaseController {
 
 	public function getAccessProgramDetails($accessprogram_unique_name)
 	{
-		return $accessprogram_unique_name;
+		$access_program = DB::table('access_programs')
+							->where('status', 'open')
+							->where('unique_name', $accessprogram_unique_name)
+							->first();
+
+		if(!is_null($access_program)) {	
+			// Find offers via relation
+			// dd($access_program);
+			$access_programs_offers = DB::table('access_programs_offers')
+							->where('status', 'open')
+							->get();
+			// dd($access_programs_offers);
+
+		} else { 
+			// Do nothing
+			$access_programs_offers = null;
+		}
+
+		View::share('access_program',$access_program);
+		View::share('access_programs_offers',$access_programs_offers);
+
+		return View::make('page.accessprogram_details');
+
 	}
 
 }

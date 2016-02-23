@@ -18,8 +18,9 @@ class CreateAccessProgramsTable extends Migration {
             $table->increments('id');
             $table->string('name');
             $table->string('unique_name');
+            $table->string('image');
             $table->string('short_details');
-            $table->string('long_details');
+            $table->string('long_details', 1000);
             $table->string('status');
       
             $table->string('created_at');
