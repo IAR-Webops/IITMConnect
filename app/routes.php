@@ -277,11 +277,19 @@ Route::group(array('before' => 'auth'), function() {
 	));
 	### END - Admin
 
+	### Access Program
 	/* AccessProgram Page (GET) */
 	Route::get('/accessprogram', 
 	  array('as' => 'access-program', 
 	        'uses' => 'PageController@getAccessProgram'
 	));
+
+	/* AccessProgram Details Page (GET) */
+	Route::get('/accessprogram/{accessprogram_unique_name}', 
+	  array('as' => 'access-program-details', 
+	        'uses' => 'PageController@getAccessProgramDetails'
+	));
+
 
 });
 
