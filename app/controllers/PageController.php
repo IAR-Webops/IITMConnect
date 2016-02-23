@@ -1435,13 +1435,28 @@ class PageController extends BaseController {
 							->where('unique_name', $accessprogram_unique_name)
 							->first();
 
+		$user_id = Auth::id();
+
 		if(!is_null($access_program)) {	
 			// Find offers via relation
 			// dd($access_program);
 			$access_programs_offers = DB::table('access_programs_offers')
-							->where('status', 'open')
-							->get();
+										->where('status', 'open')
+										->where('accessprogramId', $access_program->id)
+										->get();
 			// dd($access_programs_offers);
+
+			$access_programs_registration = DB::table('access_programs_registrations')
+											->where('status', 'approved')
+											->where('accessprogramId', $access_program->id)
+											->where('userId', $user_id)
+											->first();
+			if(!is_null($access_programs_registration)) {	
+				$access_programs_registration_status = "true";
+			} else {
+				$access_programs_registration_status = "false";
+			}
+			// return $access_programs_registration_status;
 
 		} else { 
 			// Do nothing
@@ -1450,8 +1465,31 @@ class PageController extends BaseController {
 
 		View::share('access_program',$access_program);
 		View::share('access_programs_offers',$access_programs_offers);
+		View::share('access_programs_registration_status',$access_programs_registration_status);
 
 		return View::make('page.accessprogram_details');
+
+	}
+
+	public function postAccessProgramRegistration()
+	{
+		// return Input::all();
+		$accessprogramId 			= Input::get('accessprogramId');
+		$accessprogram_unique_name 	= Input::get('accessprogram_unique_name');
+		
+		$user_id = Auth::id();
+
+		// Save Basic Info Data in basic_infos using
+		$AccessProgramRegistrationdata = AccessProgramRegistration::create(array(
+			'userId'				=> $user_id,
+			'status'				=> 'approved',
+			'accessprogramId'		=> $accessprogramId
+		));
+
+		// return Redirect::route('basic-info')
+		return Redirect::to('accessprogram/'.$accessprogram_unique_name)
+            ->with('globalalertmessage', 'Successfully applied for the Program')
+            ->with('globalalertclass', 'success');
 
 	}
 

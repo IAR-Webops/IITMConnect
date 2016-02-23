@@ -119,6 +119,12 @@ Route::group(array('before' => 'auth'), function() {
 			array('as'=>'admin-events-name-delete-post', 'uses'=>'PageController@postAdminEventsNameDelete'
 		));
 
+		### AcessProgram
+		/* AcessProgram Register (POST) */
+		Route::post('accessprogramregistration', 
+			array('as'=>'accessprogram-registration-post', 'uses'=>'PageController@postAccessProgramRegistration'
+		));
+
 	});
 
 	/* CSRF protection AJAX */

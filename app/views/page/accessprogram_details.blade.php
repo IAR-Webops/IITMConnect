@@ -15,6 +15,17 @@
 		    	</div>
 		    	<div class="col-sm-12 col-md-8">
 		    		<p>{{ $access_program->long_details }}</p>
+		    		@if($access_programs_registration_status == "true")
+		    			<p>You are registered for this program.</p>
+		    		@else
+		    			<form method="POST" action="{{ URL::route('accessprogram-registration-post') }}">
+		    				<p>You are not registered for this program.</p>
+		    				<input type="hidden" name="accessprogramId" value="{{ $access_program->id }}">
+		    				<input type="hidden" name="accessprogram_unique_name" value="{{ $access_program->unique_name }}">
+		    				<button type="submit" class="btn btn-inverse btn-lg">Register Now</button>
+			          		{{ Form::token() }}
+		    			</form>
+		    		@endif
 		    	</div>
 		    </div>
 			<hr>
@@ -36,10 +47,12 @@
 					    			<strong><span style="color:#fff; background-color:#2f4154; padding:5px 8px; font-size:12px; letter-spacing:1px;">DETAILS</span></strong> 
 					    			<span style="color:#777">{{ $access_programs_offer->long_details }}</span>
 					    		</p>
-					    		<hr>
-					    		<span class="btn-inverse btn-block" style="padding:5px 15px;">Offer Code : {{ $access_programs_offer->offer_code }}</span>
-					    		<!-- <a href="#" class="btn btn-inverse btn-block" style="cursor:default">Offer Code : {{ $access_programs_offer->offer_code }}</a> -->
-					    		<p style="color:#777">{{ $access_programs_offer->offer_code_message }}</p>
+					    		@if($access_programs_registration_status == "true")
+					    			<hr>
+						    		<span class="btn-inverse btn-block" style="padding:5px 15px;">Offer Code : {{ $access_programs_offer->offer_code }}</span>
+						    		<!-- <a href="#" class="btn btn-inverse btn-block" style="cursor:default">Offer Code : {{ $access_programs_offer->offer_code }}</a> -->
+						    		<p style="color:#777">{{ $access_programs_offer->offer_code_message }}</p>
+					    		@endif
 					    	</div>
 					    </div>
 						<hr>
