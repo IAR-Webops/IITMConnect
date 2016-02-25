@@ -121,8 +121,8 @@ Route::group(array('before' => 'auth'), function() {
 
 		### AcessProgram
 		/* AcessProgram Register (POST) */
-		Route::post('accessprogramregistration', 
-			array('as'=>'accessprogram-registration-post', 'uses'=>'PageController@postAccessProgramRegistration'
+		Route::post('affinityprogramregistration', 
+			array('as'=>'affinityprogram-registration-post', 'uses'=>'PageController@postAffinityProgramRegistration'
 		));
 
 	});
@@ -283,17 +283,17 @@ Route::group(array('before' => 'auth'), function() {
 	));
 	### END - Admin
 
-	### Access Program
-	/* AccessProgram Page (GET) */
-	Route::get('/accessprogram', 
-	  array('as' => 'access-program', 
-	        'uses' => 'PageController@getAccessProgram'
+	### Affinity Program
+	/* AffinityProgram Page (GET) */
+	Route::get('/affinityprogram', 
+	  array('as' => 'affinity-program', 
+	        'uses' => 'PageController@getAffinityProgram'
 	));
 
-	/* AccessProgram Details Page (GET) */
-	Route::get('/accessprogram/{accessprogram_unique_name}', 
-	  array('as' => 'access-program-details', 
-	        'uses' => 'PageController@getAccessProgramDetails'
+	/* AffinityProgram Details Page (GET) */
+	Route::get('/affinityprogram/{affinityprogram_unique_name}', 
+	  array('as' => 'affinity-program-details', 
+	        'uses' => 'PageController@getAffinityProgramDetails'
 	));
 
 

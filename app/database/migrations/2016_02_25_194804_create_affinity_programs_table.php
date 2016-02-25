@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAccessProgramsTable extends Migration {
+class CreateAffinityProgramsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -13,7 +13,7 @@ class CreateAccessProgramsTable extends Migration {
 	public function up()
 	{
 		//
-		Schema::create('access_programs', function($table)
+		Schema::create('affinity_programs', function($table)
         {
             $table->increments('id');
             $table->string('name');
@@ -36,7 +36,7 @@ class CreateAccessProgramsTable extends Migration {
 	public function down()
 	{
 		//
-		Schema::drop('access_programs');		
+		Schema::drop('affinity_programs');		
 	}
 
 }

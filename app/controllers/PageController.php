@@ -1413,81 +1413,81 @@ class PageController extends BaseController {
 		return $searchboxvalues;
 	}
 
-	public function getAccessProgram()
+	public function getAffinityProgram()
 	{
 		$user_id = Auth::id();
 		$info_check = array();
 		$basic_info = DB::table('basic_infos')->where('user_id', $user_id)->first();
 		
-		$access_programs = DB::table('access_programs')->where('status', 'open')->get();
-		// dd($access_programs);
+		$affinity_programs = DB::table('affinity_programs')->where('status', 'open')->get();
+		// dd($affinity_programs);
 
 		View::share('basic_info',$basic_info);
-		View::share('access_programs',$access_programs);
+		View::share('affinity_programs',$affinity_programs);
 
-		return View::make('page.accessprogram');				
+		return View::make('page.affinityprogram');				
 	}
 
-	public function getAccessProgramDetails($accessprogram_unique_name)
+	public function getAffinityProgramDetails($affinityprogram_unique_name)
 	{
-		$access_program = DB::table('access_programs')
+		$affinity_program = DB::table('affinity_programs')
 							->where('status', 'open')
-							->where('unique_name', $accessprogram_unique_name)
+							->where('unique_name', $affinityprogram_unique_name)
 							->first();
 
 		$user_id = Auth::id();
 
-		if(!is_null($access_program)) {	
+		if(!is_null($affinity_program)) {	
 			// Find offers via relation
-			// dd($access_program);
-			$access_programs_offers = DB::table('access_programs_offers')
+			// dd($affinity_program);
+			$affinity_programs_offers = DB::table('affinity_programs_offers')
 										->where('status', 'open')
-										->where('accessprogramId', $access_program->id)
+										->where('affinityprogramId', $affinity_program->id)
 										->get();
-			// dd($access_programs_offers);
+			// dd($affinity_programs_offers);
 
-			$access_programs_registration = DB::table('access_programs_registrations')
+			$affinity_programs_registration = DB::table('affinity_programs_registrations')
 											->where('status', 'approved')
-											->where('accessprogramId', $access_program->id)
+											->where('affinityprogramId', $affinity_program->id)
 											->where('userId', $user_id)
 											->first();
-			if(!is_null($access_programs_registration)) {	
-				$access_programs_registration_status = "true";
+			if(!is_null($affinity_programs_registration)) {	
+				$affinity_programs_registration_status = "true";
 			} else {
-				$access_programs_registration_status = "false";
+				$affinity_programs_registration_status = "false";
 			}
-			// return $access_programs_registration_status;
+			// return $affinity_programs_registration_status;
 
 		} else { 
 			// Do nothing
-			$access_programs_offers = null;
+			$affinity_programs_offers = null;
 		}
 
-		View::share('access_program',$access_program);
-		View::share('access_programs_offers',$access_programs_offers);
-		View::share('access_programs_registration_status',$access_programs_registration_status);
+		View::share('affinity_program',$affinity_program);
+		View::share('affinity_programs_offers',$affinity_programs_offers);
+		View::share('affinity_programs_registration_status',$affinity_programs_registration_status);
 
-		return View::make('page.accessprogram_details');
+		return View::make('page.affinityprogram_details');
 
 	}
 
-	public function postAccessProgramRegistration()
+	public function postAffinityProgramRegistration()
 	{
 		// return Input::all();
-		$accessprogramId 			= Input::get('accessprogramId');
-		$accessprogram_unique_name 	= Input::get('accessprogram_unique_name');
+		$affinityprogramId 			= Input::get('affinityprogramId');
+		$affinityprogram_unique_name 	= Input::get('affinityprogram_unique_name');
 		
 		$user_id = Auth::id();
 
 		// Save Basic Info Data in basic_infos using
-		$AccessProgramRegistrationdata = AccessProgramRegistration::create(array(
+		$AffinityProgramRegistrationdata = AffinityProgramRegistration::create(array(
 			'userId'				=> $user_id,
 			'status'				=> 'approved',
-			'accessprogramId'		=> $accessprogramId
+			'affinityprogramId'		=> $affinityprogramId
 		));
 
 		// return Redirect::route('basic-info')
-		return Redirect::to('accessprogram/'.$accessprogram_unique_name)
+		return Redirect::to('affinityprogram/'.$affinityprogram_unique_name)
             ->with('globalalertmessage', 'Successfully applied for the Program')
             ->with('globalalertclass', 'success');
 

@@ -5,20 +5,20 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-sm-12 col-md-offset-3 col-md-6">
-			<h4 class="text-center">Access Program</h4>        	
+			<h4 class="text-center">Affinity Program</h4>        	
 		    <hr>
 			
-			@if(!is_null($access_programs))
-				@foreach ($access_programs as $access_program)
-				<h6>{{ $access_program->name }}</h6>
-				<p>{{ $access_program->short_details }}</p>
-				<a href="{{ URL::to('/') }}/accessprogram/{{$access_program->unique_name}}">
+			@if(!is_null($affinity_programs))
+				@foreach ($affinity_programs as $affinity_program)
+				<h6>{{ $affinity_program->name }}</h6>
+				<p>{{ $affinity_program->short_details }}</p>
+				<a href="{{ URL::to('/') }}/affinityprogram/{{$affinity_program->unique_name}}">
 		        	<div class="card-wrapper"></div>
 				</a>
 				<hr>
 				@endforeach	        
 			@else
-				<p>Sorry! No Access Programs are currently active.</p>
+				<p>Sorry! No Affinity Programs are currently active.</p>
 			@endif
 
         </div>

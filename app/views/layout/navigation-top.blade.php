@@ -16,10 +16,10 @@
             -->
             <li><a href="{{ URL::route('events') }}"><span class="fui-calendar-solid"></span> | Events<span class="navbar-unread">1</span></a></li>
             <li><a href="http://iitmconnect.iitmadras.in/events/yearbook-classof2016">Yearbook 2016</a></li><!-- Temporary -->
-            <li><a href="{{ URL::route('access-program') }}">Access Program</a></li>
+            <li><a href="{{ URL::route('affinity-program') }}">Affinity Program</a></li>
             <!-- <li><a href="{{ URL::route('about-us') }}">About Us</a></li> -->
            </ul>
-           <div class="col-sm-12 col-md-4">
+           <div class="col-sm-12 col-md-2">
           <form class="navbar-form navbar-left" action="#" role="search">
             <div class="form-group">
               <div class="input-group" id="remote">
