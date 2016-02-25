@@ -24,7 +24,7 @@
 
 						        <div class="col-sm-12 col-md-4">
 						          <div class="tile">
-						            <img src="{{ URL::asset('img/icons/svg/gift-box.svg') }}" alt="Event Management" class="tile-image">
+						            <img src="{{ URL::asset('img/icons/svg/clocks.svg') }}" alt="Event Management" class="tile-image">
 						            <h3 class="tile-title">Event Management</h3>
 						            <p>View Users currently registered for events</p>
 						            <a class="btn btn-primary btn-large btn-block" href="{{ URL::route('admin-event-management') }}">View Details</a>
@@ -51,6 +51,14 @@
 						          </div>
 						        </div>
 
+						        <div class="col-sm-12 col-md-4">
+						          <div class="tile">
+						            <img src="{{ URL::asset('img/icons/svg/gift-box.svg') }}" alt="Infinity-Loop" class="tile-image">
+						            <h3 class="tile-title">Affinity Program</h3>
+						            <p>Manage Affinity Program on #iitmconnect</p>
+						            <a class="btn btn-primary btn-large btn-block disabled" href="{{ URL::route('home') }}">View Details</a>
+						          </div>
+						        </div>
 
 						    </div>
 						</div>						
