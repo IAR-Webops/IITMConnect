@@ -1413,6 +1413,7 @@ class PageController extends BaseController {
 		return $searchboxvalues;
 	}
 
+	/* Affinity Program (GET) */
 	public function getAffinityProgram()
 	{
 		$user_id = Auth::id();
@@ -1428,6 +1429,7 @@ class PageController extends BaseController {
 		return View::make('page.affinityprogram');				
 	}
 
+	/* Affinity Program Details (GET) */
 	public function getAffinityProgramDetails($affinityprogram_unique_name)
 	{
 		$affinity_program = DB::table('affinity_programs')
@@ -1471,6 +1473,7 @@ class PageController extends BaseController {
 
 	}
 
+	/* Affinity Program Registrations (POST) */
 	public function postAffinityProgramRegistration()
 	{
 		// return Input::all();
@@ -1491,6 +1494,12 @@ class PageController extends BaseController {
             ->with('globalalertmessage', 'Successfully applied for the Program')
             ->with('globalalertclass', 'success');
 
+	}
+
+	/* Admin Affinity Program (GET) */
+	public function getAdminAffinityProgram()
+	{
+		return "Admin Affinity Program";
 	}
 
 }

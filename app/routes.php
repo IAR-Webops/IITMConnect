@@ -276,11 +276,18 @@ Route::group(array('before' => 'auth'), function() {
 	        'uses' => 'PageController@getAdminAdministrators'
 	));
 
-	/* Admin User Management Page (GET) */
+	/* Admin Searchbox JSON Data (GET) */
 	Route::get('/searchbox', 
 	  array('as' => 'search-box', 
 	        'uses' => 'PageController@postSearchBox'
 	));
+
+	/* Admin AffinityProgram Page (GET) */
+	Route::get('/admin/affinityprogram', 
+	  array('as' => 'admin-affinity-program', 
+	        'uses' => 'PageController@getAdminAffinityProgram'
+	));
+
 	### END - Admin
 
 	### Affinity Program
