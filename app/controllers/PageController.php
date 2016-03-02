@@ -1499,7 +1499,22 @@ class PageController extends BaseController {
 	/* Admin Affinity Program (GET) */
 	public function getAdminAffinityProgram()
 	{
-		return "Admin Affinity Program";
+		$user_id = Auth::id();		
+		
+		// Check if User has Admin Access		
+		$admin_user = AdminUser::where('user_id', '=', $user_id)
+			->first();
+		if(!is_null($admin_user)) {	$admin_user_check = "True";	} else { $admin_user_check = "False"; }				
+		View::share('admin_user',$admin_user);
+		View::share('admin_user_check',$admin_user_check);
+
+		$affinity_programs = DB::table('affinity_programs')
+			->orderBy('id', 'desc')
+			->get();
+		View::share('affinity_programs', $affinity_programs);	
+
+		return View::make('admin.affinityprogram');
+
 	}
 
 }
