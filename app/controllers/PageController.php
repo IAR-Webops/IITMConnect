@@ -1517,4 +1517,12 @@ class PageController extends BaseController {
 
 	}
 
+	/* Admin Affinity Program Registered Users (GET) */
+	public function getAdminAffinityProgramRegisteredUsers($affinityprogram_unique_name)
+	{
+
+		return View::make('admin.affinityprogram_registeredusers');				
+
+	}
+
 }

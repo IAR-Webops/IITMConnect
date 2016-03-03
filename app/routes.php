@@ -303,6 +303,11 @@ Route::group(array('before' => 'auth'), function() {
 	        'uses' => 'PageController@getAffinityProgramDetails'
 	));
 
+	/* Admin (AffinityProgram) Registered Users (GET) */
+	Route::get('admin/affinityprogram/{affinityprogram_unique_name}/registeredusers', 
+		array('as'=>'admin-affinityprogram-registered-users', 'uses'=>'PageController@getAdminAffinityProgramRegisteredUsers'
+	));
+
 
 });
 
