@@ -1520,6 +1520,13 @@ class PageController extends BaseController {
 	/* Admin Affinity Program Registered Users (GET) */
 	public function getAdminAffinityProgramRegisteredUsers($affinityprogram_unique_name)
 	{
+		// Check if User has Admin Access		
+		$user_id = Auth::id();				
+		$admin_user = AdminUser::where('user_id', '=', $user_id)
+			->first();
+		if(!is_null($admin_user)) {	$admin_user_check = "True";	} else { $admin_user_check = "False"; }				
+		View::share('admin_user',$admin_user);
+		View::share('admin_user_check',$admin_user_check);
 
 		return View::make('admin.affinityprogram_registeredusers');				
 
