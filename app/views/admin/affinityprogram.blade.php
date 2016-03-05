@@ -63,7 +63,7 @@
 		<div class="modal fade" id="esqModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		  <div class="modal-dialog">
 		    <div class="modal-content">
-			<form action="#" class="form-horizontal" role="form" method="post">
+			<form action="{{ URL::route('affinityprogram-management-post') }}" class="form-horizontal" role="form" method="post">
 
 		      <div class="modal-header">
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>

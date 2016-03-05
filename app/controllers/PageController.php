@@ -1532,4 +1532,9 @@ class PageController extends BaseController {
 
 	}
 
+	public function postAffinityProgramManagement()
+	{
+		return Input::all();
+	}
+
 }

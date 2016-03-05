@@ -103,7 +103,7 @@ Route::group(array('before' => 'auth'), function() {
 		));
 
 		### Admin
-		/* Events Questions Answers Page (POST) */
+		/* Events Management Page (POST) */
 		Route::post('/admin/eventmanagement', 
 			array('as' => 'admin-event-management-post',
 				'uses' => 'PageController@postAdminEventManagement'
@@ -119,7 +119,13 @@ Route::group(array('before' => 'auth'), function() {
 			array('as'=>'admin-events-name-delete-post', 'uses'=>'PageController@postAdminEventsNameDelete'
 		));
 
-		### AcessProgram
+		### AffinityProgram
+		/* AffinityProgram Management Page (POST) */
+		Route::post('/admin/affinityprogram', 
+			array('as' => 'affinityprogram-management-post',
+				'uses' => 'PageController@postAffinityProgramManagement'
+		));
+
 		/* AcessProgram Register (POST) */
 		Route::post('affinityprogramregistration', 
 			array('as'=>'affinityprogram-registration-post', 'uses'=>'PageController@postAffinityProgramRegistration'
