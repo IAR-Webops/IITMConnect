@@ -38,7 +38,7 @@
 						  <td>
 						    <a class="btn btn-primary btn-large btn-block vieweventdetailsbtn" href="{{ URL::to('/') }}/affinityprogram/{{$affinity_program->unique_name}}">View AP Details</a>
 				          </td>
-				          <td><a href="{{ URL::to('/') }}/admin/affinityprogram/{{$affinity_program->unique_name}}/edit" class="btn btn-danger btn-large btn-block">Edit</a></td>
+				          <td><a href="{{ URL::to('/') }}/admin/affinityprogram/{{$affinity_program->unique_name}}/edit" class="btn btn-danger btn-large btn-block disabled">Edit</a></td>
 				          <td><a href="{{ URL::to('/') }}/admin/affinityprogram/{{$affinity_program->unique_name}}/registeredusers" class="btn btn-primary btn-large btn-block">Registered Users</a></td>				          
 				        </tr>
 						@endforeach	
