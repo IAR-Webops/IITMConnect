@@ -1528,6 +1528,17 @@ class PageController extends BaseController {
 		View::share('admin_user',$admin_user);
 		View::share('admin_user_check',$admin_user_check);
 
+		$affinity_program = DB::table('affinity_programs')->where('unique_name', $affinityprogram_unique_name)->first();
+		if(!is_null($affinity_program)) {	
+			//return "Event Found"; 
+		} else { 
+			return "Affinity Program Not Found";
+		}		
+		View::share('affinity_program', $affinity_program);
+
+			
+
+
 		return View::make('admin.affinityprogram_registeredusers');				
 
 	}
