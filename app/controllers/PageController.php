@@ -1536,7 +1536,13 @@ class PageController extends BaseController {
 		}		
 		View::share('affinity_program', $affinity_program);
 
-			
+		$affinity_programs_registrations = DB::table('affinity_programs_registrations')
+			->where('affinityprogramId', $affinity_program->id)			
+			->get();
+		
+			dd($affinity_programs_registrations);
+
+		View::share('affinity_programs_registrations', $affinity_programs_registrations);	
 
 
 		return View::make('admin.affinityprogram_registeredusers');				
