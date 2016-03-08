@@ -5,7 +5,7 @@
 	<div class="container-fluid">
 			<div class="row">
 				<div class="col-sm-12 col-md-offset-1 col-md-10">
-		          <h4 class="text-center">Registered Users for X</h4>        	
+		          <h4 class="text-center">Registered Users for {{$affinity_program->name}}</h4>        	
 		          <hr>
 					@if($admin_user_check == "True")
 						<p>

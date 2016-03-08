@@ -1557,7 +1557,7 @@ class PageController extends BaseController {
 
 		}
 
-		dd($affinity_programs_registrations);
+		// dd($affinity_programs_registrations);
 
 
 		View::share('affinity_programs_registrations', $affinity_programs_registrations);	
