@@ -1539,8 +1539,26 @@ class PageController extends BaseController {
 		$affinity_programs_registrations = DB::table('affinity_programs_registrations')
 			->where('affinityprogramId', $affinity_program->id)			
 			->get();
-		
-			dd($affinity_programs_registrations);
+
+		foreach ($affinity_programs_registrations as $key => $affinity_programs_registrations_user) {
+			
+			$affinity_programs_registrations_user->user_registeration_number = $key + 1;
+			$registered_user 										= User::find($affinity_programs_registrations_user->userId);
+			$affinity_programs_registrations_user->user_roll_number = $registered_user->rollno;
+			$registered_user_basic_info 							= BasicInfo::where('user_id', '=', $affinity_programs_registrations_user->userId)->first();
+			$affinity_programs_registrations_user->user_name 		= $registered_user_basic_info->firstname . " " . $registered_user_basic_info->lastname;
+			$affinity_programs_registrations_user->user_email 		= $registered_user_basic_info->email;
+			$affinity_programs_registrations_user->user_phone 		= $registered_user_basic_info->phone;
+			$affinity_programs_registrations_user->user_phonehome 	= $registered_user_basic_info->phonehome;			
+			$affinity_programs_registrations_user->user_graduatingyear = $registered_user_basic_info->graduatingyear;
+			$affinity_programs_registrations_user->user_future_field1 = $registered_user_basic_info->future_field1;
+			$affinity_programs_registrations_user->user_future_field2 = $registered_user_basic_info->future_field2;
+			$affinity_programs_registrations_user->user_future_field3 = $registered_user_basic_info->future_field3;
+
+		}
+
+		dd($affinity_programs_registrations);
+
 
 		View::share('affinity_programs_registrations', $affinity_programs_registrations);	
 
