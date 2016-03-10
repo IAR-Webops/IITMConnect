@@ -4,7 +4,7 @@
 
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-sm-12 col-md-offset-3 col-md-6">
+		<div class="col-sm-12 col-md-offset-2 col-md-8">
 			@if(!is_null($affinity_program))
 			<h4 class="text-center">{{ $affinity_program->name }}</h4>        	
 		    <hr>
