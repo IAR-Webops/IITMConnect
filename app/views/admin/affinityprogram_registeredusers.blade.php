@@ -29,7 +29,21 @@
 				        </tr>
 				      </thead>
 				      <tbody>
-						Coming Soon.
+						@foreach ($affinity_programs_registrations as $affinity_programs_registrations_user)
+				        <tr>
+				          <th scope="row">{{$affinity_programs_registrations_user->user_registeration_number}}</th>
+				          <td class="text-uppercase">{{$affinity_programs_registrations_user->user_roll_number}}</td>
+				          <td>{{$affinity_programs_registrations_user->user_name}}</td>
+				          <td>{{$affinity_programs_registrations_user->user_email}}</td>
+				          <td>{{$affinity_programs_registrations_user->user_phone}}</td>
+				          <td>{{$affinity_programs_registrations_user->user_phonehome}}</td>
+				          <td>{{$affinity_programs_registrations_user->user_graduatingyear}}</td>				          
+				          <td>{{$affinity_programs_registrations_user->user_future_field1}}</td>
+				          <td>{{$affinity_programs_registrations_user->user_future_field2}}</td>				          
+				          <td>{{$affinity_programs_registrations_user->user_future_field3}}</td>
+
+				        </tr>
+						@endforeach
 
 				      </tbody>
 				    </table>
