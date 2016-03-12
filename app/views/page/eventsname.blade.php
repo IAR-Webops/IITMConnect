@@ -101,23 +101,23 @@
 			              	@if($events_specific_question->question_type == "text" )
 							  <div class="col-sm-12">
 				                <label>{{ $events_specific_question->question_value }}</label>
-				                <input type="text" class="form-control" name="{{ $events_specific_question->question_id }}" placeholder="{{ $events_specific_question->question_placeholder }}" value="" required>
+				                <input type="text" class="form-control" name="{{ $events_specific_question->question_id }}" id="{{ $events_specific_question->question_id }}" placeholder="{{ $events_specific_question->question_placeholder }}" value="{{ $events_specific_question->events_specific_questions_answer->answer_value }}" required>
 				              </div>
 			              	@elseif($events_specific_question->question_type == "textarea" )				            
 							  <div class="col-sm-12">
 				                <label>{{ $events_specific_question->question_value }}</label>
-							  	<textarea class="form-control" name="{{ $events_specific_question->question_id }}" placeholder="{{ $events_specific_question->question_placeholder }}" value="" required></textarea>
+							  	<textarea class="form-control" name="{{ $events_specific_question->question_id }}" id="{{ $events_specific_question->question_id }}" placeholder="{{ $events_specific_question->question_placeholder }}" value="" required></textarea>
 							  </div>
 			              	@elseif($events_specific_question->question_type == "link" )						
 							  <div class="col-sm-12">
 				                <label>{{ $events_specific_question->question_value }}</label>							  	
 								<a href="{{ $events_specific_question->question_placeholder }}" target="_alt">Click Here</a>
-				                <input type="text" style="display:none;" class="form-control" name="{{ $events_specific_question->question_id }}" placeholder="{{ $events_specific_question->question_placeholder }}" value="{{ $events_specific_question->question_placeholder }}" required>								
+				                <input type="text" style="display:none;" class="form-control" name="{{ $events_specific_question->question_id }}" id="{{ $events_specific_question->question_id }}" placeholder="{{ $events_specific_question->question_placeholder }}" value="{{ $events_specific_question->question_placeholder }}" required>								
 							  </div>
 							@elseif($events_specific_question->question_type == "checkbox" )				            
 							  <div class="col-sm-12">
 				                <label>{{ $events_specific_question->question_value }}</label>
-							  	<textarea class="form-control" name="{{ $events_specific_question->question_id }}" placeholder="{{ $events_specific_question->question_placeholder }}" value="" required></textarea>
+							  	<textarea class="form-control" name="{{ $events_specific_question->question_id }}" id="{{ $events_specific_question->question_id }}" placeholder="{{ $events_specific_question->question_placeholder }}" value="" required></textarea>
 							  </div>
 							@else
 							  <div class="col-sm-12">
@@ -217,4 +217,5 @@
 			});			
 		}
 	</script>
+
 @stop

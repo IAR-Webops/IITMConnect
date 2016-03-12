@@ -793,15 +793,30 @@ class PageController extends BaseController {
 		$events_specific_questions = DB::table('events_specific_questions')
 			->where('event_id', $event->event_id)			
 			->get(); 
-		//return dd($events_specific_questions);
-		View::share('events_specific_questions', $events_specific_questions);	
+		foreach ($events_specific_questions as $key => $events_specific_question) {
+			# code...
+			$events_specific_questions_answer = DB::table('events_specific_questions_answers')
+											->where('event_id', $event->event_id)
+											->where('user_id', $user_id)			
+											->where('question_id', $events_specific_question->question_id)
+											->orderBy('id', 'desc')			
+											->first();
+			if(empty($events_specific_questions_answer)) {
+				$events_specific_questions_answer = new stdClass();	
+				$events_specific_questions_answer->answer_value = null;	
+			}
+			$events_specific_question->events_specific_questions_answer = $events_specific_questions_answer;
+			// var_dump($events_specific_question);
+		}
+		// return dd($events_specific_questions);
+		View::share('events_specific_questions', $events_specific_questions);
 
 		$events_specific_questions_answers = DB::table('events_specific_questions_answers')
 			->where('event_id', $event->event_id)
 			->where('user_id', $user_id)			
 			->get(); 
 		View::share('events_specific_questions_answers', $events_specific_questions_answers);	
-		//dd($events_specific_questions_answers);
+		// dd($events_specific_questions_answers);
 
 		return View::make('page.eventsname');		
 	}
