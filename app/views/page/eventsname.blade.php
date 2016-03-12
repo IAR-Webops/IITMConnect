@@ -106,7 +106,7 @@
 			              	@elseif($events_specific_question->question_type == "textarea" )				            
 							  <div class="col-sm-12">
 				                <label>{{ $events_specific_question->question_value }}</label>
-							  	<textarea class="form-control" name="{{ $events_specific_question->question_id }}" id="{{ $events_specific_question->question_id }}" placeholder="{{ $events_specific_question->question_placeholder }}" value="{{ $events_specific_question->events_specific_questions_answer->answer_value }}" required></textarea>
+							  	<textarea class="form-control" name="{{ $events_specific_question->question_id }}" id="{{ $events_specific_question->question_id }}" placeholder="{{ $events_specific_question->question_placeholder }}" value="{{ $events_specific_question->events_specific_questions_answer->answer_value }}" required>{{ $events_specific_question->events_specific_questions_answer->answer_value }}</textarea>
 							  </div>
 			              	@elseif($events_specific_question->question_type == "link" )						
 							  <div class="col-sm-12">
