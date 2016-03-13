@@ -10,6 +10,6 @@
 	<p>With warm regards,<br>
 	I&AR Team</p>
 
-	<p><strong>PS:</strong> If you face any issues, visit the About Us section to get more details on how to report an Issue.</p>
+	<p><strong>PS:</strong> Facing issues? <a href="{{ URL::route('report-issues') }}">Report here</a></p>
 
 @stop
