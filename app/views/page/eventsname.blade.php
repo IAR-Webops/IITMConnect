@@ -17,22 +17,22 @@
 				  
 				  <hr>
 				  <p>
-				  	You must fill the <strong>Event Specific Questions</strong> to become eligible to attend
+				  	You must fill the <strong>Questionnaire</strong> to become eligible to attend
 				  	the Event. Click on the button below to fill the short questionnaire.
 				  </p>
 				  <div class="col-sm-12 col-md-8 col-md-offset-2 text-center">
-				  	<a href="#fakelink" class="btn btn-block btn-lg btn-inverse" data-toggle="modal" data-target="#esqModal">Event Specific Questions</a>	
+				  	<a href="#fakelink" class="btn btn-block btn-lg btn-inverse" data-toggle="modal" data-target="#esqModal">Questionnaire</a>	
 				  	@if(empty($events_specific_questions_answers))
-					  	<p style="font-size:12px" id="esqstatusmessage"><strong>Status : </strong>You have not answered the Event Specific Questions yet.</p>			  	
+					  	<p style="font-size:12px" id="esqstatusmessage"><strong>Status : </strong>You have not answered the Questionnaire yet.</p>			  	
 					@else
-					  	<p style="font-size:12px" id="esqstatusmessage"><strong>Status : </strong>You have Successfully answered the Event Specific Questions.</p>			  	
+					  	<p style="font-size:12px" id="esqstatusmessage"><strong>Status : </strong>You have Successfully answered the Questionnaire.</p>			  	
 					@endif		
 
 					@if($event->event_rsvp_status == "Open")
 					  	@if(empty($events_specific_questions_answers))
-							<a onclick="attendevent({{$event->event_id}})" id="attendeventbtn" style="margin:15px 0 15px 0;" class="btn btn-block btn-lg btn-primary disabled">Attend Event</a>
+							<a onclick="attendevent({{$event->event_id}})" id="attendeventbtn" style="margin:15px 0 15px 0;" class="btn btn-block btn-lg btn-primary disabled">Register</a>
 						@else
-							<a onclick="attendevent({{$event->event_id}})" id="attendeventbtn" style="margin:15px 0 15px 0;" class="btn btn-block btn-lg btn-primary">Attend Event</a>					
+							<a onclick="attendevent({{$event->event_id}})" id="attendeventbtn" style="margin:15px 0 15px 0;" class="btn btn-block btn-lg btn-primary">Register</a>					
 						@endif
 					@elseif($event->event_rsvp_status == "Closed")					
 						<p><strong>RSVP for the Event has now Closed</strong></p>
@@ -40,7 +40,7 @@
 						<p><strong>RSVP for the Event will open soon</strong></p>						
 					@endif
 					<div id="cancelevent" style="display:none;">
-						<p><strong>You are attending this Event.</strong></p>
+						<p><strong>You have successfully registered.</strong></p>
 						<a onclick="cancelevent({{$event->event_id}})" id="canceleventbtn" style="margin:15px 0 15px 0;" class="btn btn-block btn-lg btn-danger">Cancel</a>					
 					</div>
 					<span class="fui-calendar"></span> - {{$event->event_date}}
