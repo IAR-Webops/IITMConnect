@@ -15,7 +15,7 @@
             <li><a href="#"><span class="fui-mail"></span> | Messages<span class="navbar-unread">1</span></a></li>
             -->
             <li><a href="{{ URL::route('events') }}"><span class="fui-calendar-solid"></span> | Events<span class="navbar-unread">1</span></a></li>
-            <li><a href="http://iitmconnect.iitmadras.in/events/yearbook-classof2016">Yearbook 2016</a></li><!-- Temporary -->
+            <li><a href="http://iitmconnect.iitmadras.in/events/order_yearbook2016">Order Yearbook 2016</a></li><!-- Temporary -->
             <li><a href="{{ URL::route('affinity-program') }}">Affinity Program</a></li>
             <!-- <li><a href="{{ URL::route('about-us') }}">About Us</a></li> -->
            </ul>
