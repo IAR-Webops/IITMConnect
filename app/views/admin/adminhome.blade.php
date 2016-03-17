@@ -60,6 +60,15 @@
 						          </div>
 						        </div>
 
+						        <div class="col-sm-12 col-md-4">
+						          <div class="tile">
+						            <img src="{{ URL::asset('img/Google-OAuth.png') }}" alt="Infinity-Loop" class="tile-image">
+						            <h3 class="tile-title">Oauth 2.0</h3>
+						            <p>Manage Oauth for developers</p>
+						            <a class="btn btn-primary btn-large btn-block disabled" href="#">View Details</a>
+						          </div>
+						        </div>
+
 						    </div>
 						</div>						
 					@elseif($admin_user_check == "False")
