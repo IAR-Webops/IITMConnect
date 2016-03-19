@@ -1334,7 +1334,7 @@ class PageController extends BaseController {
 			$user->serial_number		= $key + 1;
 
 			$user_array_row = (array) $user;
-			$user_array_row_delete = array_splice($user_array_row, 1, 5);
+			$user_array_row_delete = array_splice($user_array_row,2, 5);
 
 			$user_array[] = $user_array_row;
 		}
