@@ -276,6 +276,11 @@ Route::group(array('before' => 'auth'), function() {
 	        'uses' => 'PageController@getAdminUserManagement'
 	));
 
+	/* Admin (User Management) Registered Users Excel (GET) */
+	Route::get('admin/usermanagement/registeredusers/excel', 
+		array('as'=>'admin-user-management-registered-users-excel', 'uses'=>'PageController@getUserManagementRegisteredUsersExcel'
+	));
+
 	/* Admin User Management Page (GET) */
 	Route::get('/admin/administrators', 
 	  array('as' => 'admin-administrators', 

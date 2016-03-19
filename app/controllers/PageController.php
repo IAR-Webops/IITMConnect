@@ -1310,6 +1310,71 @@ class PageController extends BaseController {
 		return View::make('admin.usermanagement');				
 	}
 
+	/* Admin User Management Registered Users Excel Page (GET) */
+	public function getUserManagementRegisteredUsersExcel()
+	{
+		// Data Generation
+		// Check if User has Admin Access		
+		$user_id = Auth::id();				
+		$admin_user = AdminUser::where('user_id', '=', $user_id)
+			->first();
+		if(!is_null($admin_user)) {	$admin_user_check = "True";	} 
+		else { $admin_user_check = "False"; return "Your Access Level is Not Admin."; }				
+
+		$users = DB::table('users')->get();
+		foreach ($users as $key => $user) {
+			$user_basic_info = BasicInfo::where('user_id', '=', $user->id)->first();
+			$user->user_name 			= $user_basic_info->firstname . " " . $user_basic_info->lastname;
+			$user->user_email 			= $user_basic_info->email;
+			$user->user_phone 			= $user_basic_info->phone;
+			$user->user_phonehome 		= $user_basic_info->phonehome;			
+			$user->user_graduatingyear 	= $user_basic_info->graduatingyear;
+			$user->user_university 		= $user_basic_info->future_field1;
+			$user->user_department 		= $user_basic_info->future_field2;
+			$user->serial_number		= $key + 1;
+		}
+			
+			$user_array_row = (array) $user;
+			$user_array_row_delete = array_splice($user_array_row, 1, 5);
+
+			$user_array[] = $user_array_row;
+		
+		$data = (array) $user_array;
+
+		//var_dump($event_attendance_users);
+		//dd($data);
+
+		// Excel Generation
+		Excel::create('usermanagement_registeredusers', function($excel) use($data) {
+
+		    // Set the title
+		    $excel->setTitle('Data Exported to Excel Format');
+
+		    // Chain the setters
+		    $excel->setCreator('Yash Murty')
+		          ->setCompany('Yash Murty, yashmurty@gmail.com');
+
+		    // Call them separately
+		    $excel->setDescription('Data exported to Excel Format. In case of any
+		    	problems please contact yashmurty@gmail.com');
+
+		    $excel->sheet('Registered Users', function($sheet) use($data) {
+
+		        // Sheet manipulation
+		        $sheet->fromArray($data);
+
+		    });
+
+		})->export('xls');
+		
+		//})->export('xls');
+
+		// or
+		//->download('xls');
+		
+		return "Excel";
+	}
+
 	/* Admin Event Management - Create New Event (POST) */
 	public function postAdminEventManagement(){
 	

@@ -10,6 +10,7 @@
 						<p>
 						Your current Access Level to <a href="{{ URL::route('admin') }}">Admin Page</a> is : <strong>{{ $admin_user->user_level }}</strong> <br>
 						</p>					
+						<p><a href="{{ URL::to('/') }}/admin/usermanagement/registeredusers/excel" class="btn btn-primary btn-large">Export to Excel</a></p>					
 
 					<table class="table">
 				      <caption>User Management Table</caption>
