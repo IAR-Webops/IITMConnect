@@ -1332,12 +1332,14 @@ class PageController extends BaseController {
 			$user->user_university 		= $user_basic_info->future_field1;
 			$user->user_department 		= $user_basic_info->future_field2;
 			$user->serial_number		= $key + 1;
-		}
-			
+
 			$user_array_row = (array) $user;
 			$user_array_row_delete = array_splice($user_array_row, 1, 5);
 
 			$user_array[] = $user_array_row;
+		}
+			
+			
 		
 		$data = (array) $user_array;
 
