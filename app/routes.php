@@ -150,6 +150,13 @@ Route::group(array('before' => 'auth'), function() {
 
 	});
 
+	/* POST without CSRF Protection */
+	/* Admin Oauth Management Page (POST) */
+	Route::post('/admin/oauthmanagement', 
+		array('as' => 'admin-oauth-management-post',
+			'uses' => 'PageController@postAdminOauthManagement'
+	));
+
 
 	/* Sign out (GET) */
 	Route::get('/account/signout', 
@@ -285,6 +292,12 @@ Route::group(array('before' => 'auth'), function() {
 	Route::get('/admin/administrators', 
 	  array('as' => 'admin-administrators', 
 	        'uses' => 'PageController@getAdminAdministrators'
+	));
+
+	/* Admin Oauth Management Page (GET) */
+	Route::get('/admin/oauthmanagement', 
+	  array('as' => 'admin-oauthmanagement', 
+	        'uses' => 'PageController@getAdminOauthManagement'
 	));
 
 	/* Admin Searchbox JSON Data (GET) */

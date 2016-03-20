@@ -65,7 +65,7 @@
 						            <img src="{{ URL::asset('img/Google-OAuth.png') }}" alt="Infinity-Loop" class="tile-image">
 						            <h3 class="tile-title">Oauth 2.0</h3>
 						            <p>Manage Oauth for developers</p>
-						            <a class="btn btn-primary btn-large btn-block disabled" href="#">View Details</a>
+						            <a class="btn btn-primary btn-large btn-block" href="{{ URL::route('admin-oauthmanagement') }}">View Details</a>
 						          </div>
 						        </div>
 

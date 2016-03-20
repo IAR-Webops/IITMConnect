@@ -1464,6 +1464,37 @@ class PageController extends BaseController {
 
 	}
 
+	/* Admin Oauth Management Page (GET) */
+	public function getAdminOauthManagement()
+	{
+		$user_id = Auth::id();		
+		
+		// Check if User has Admin Access		
+		$admin_user = AdminUser::where('user_id', '=', $user_id)
+			->first();
+		if(!is_null($admin_user)) {	$admin_user_check = "True";	} else { $admin_user_check = "False"; }				
+		View::share('admin_user',$admin_user);
+		View::share('admin_user_check',$admin_user_check);
+
+		// Get Administrators
+		$oauth_clients = DB::table('oauth_clients')->get();
+		foreach ($oauth_clients as $key => $oauth_client) {
+			$oauth_client_endpoint = DB::table('oauth_client_endpoints')
+										->where('client_id', '=', $oauth_client->id)
+										->first();
+			$oauth_client->redirect_uri 	= $oauth_client_endpoint->redirect_uri;
+		}
+		View::share('oauth_clients', $oauth_clients);
+
+		return View::make('admin.oauthmanagement');				
+
+	}
+
+	public function postAdminOauthManagement()
+	{
+		return Input::all();
+	}
+
 
 	/* Search Box (POST) */
 	public function postSearchBox()
