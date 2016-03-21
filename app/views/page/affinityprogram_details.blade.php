@@ -37,7 +37,7 @@
 					@foreach ($affinity_programs_offers as $affinity_programs_offer)
 						<div class="row">
 					    	<div class="col-sm-12 col-md-4 text-center"  >
-					    		<img src="{{ $affinity_programs_offer->image }}" style="height:150px;">
+					    		<img src="{{ $affinity_programs_offer->image }}" style="height:150px; max-width:265px;">
 					    	</div>
 					    	<div class="col-sm-12 col-md-8" style="border-left:medium #AAA solid; ">
 					    		<p>{{ $affinity_programs_offer->name }}</p>
