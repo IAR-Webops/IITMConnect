@@ -1328,6 +1328,7 @@ class PageController extends BaseController {
 			$user->user_email 			= $user_basic_info->email;
 			$user->user_phone 			= $user_basic_info->phone;
 			$user->user_phonehome 		= $user_basic_info->phonehome;			
+			$user->hostel 				= $user_basic_info->hostel;			
 			$user->user_graduatingyear 	= $user_basic_info->graduatingyear;
 			$user->user_university 		= $user_basic_info->future_field1;
 			$user->user_department 		= $user_basic_info->future_field2;
