@@ -13,6 +13,17 @@ class CreateOauthDevelopersTable extends Migration {
 	public function up()
 	{
 		//
+		Schema::create('oauth_developers', function($table)
+        {
+            $table->increments('id');
+            $table->string('developer_id');
+            $table->string('developer_name');
+            $table->string('developer_email');
+            $table->string('client_id');
+      
+            $table->string('created_at');
+            $table->string('updated_at');
+        });
 	}
 
 	/**
