@@ -34,6 +34,7 @@ class CreateOauthDevelopersTable extends Migration {
 	public function down()
 	{
 		//
+		Schema::drop('oauth_developers');		
 	}
 
 }
