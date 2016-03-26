@@ -86,6 +86,11 @@
 									<input type="text" class="form-control text-lowercase" id="redirect_uri" name="redirect_uri" placeholder="Will be used for Redirect" value="" required>
 					            </div>
 				            </div>
+
+				            <input type="hidden" name="developer_id" value="admin-oauth">
+				            <input type="hidden" name="developer_name" value="Oauth Management">
+				            <input type="hidden" name="developer_email" value="yashmurty@gmail.com">
+
 		        </div>		        
 		      </div>
 		      <div class="modal-footer">
