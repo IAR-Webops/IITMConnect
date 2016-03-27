@@ -1493,7 +1493,24 @@ class PageController extends BaseController {
 
 	public function postAdminOauthManagement()
 	{
+
+		$validator = Validator::make(Input::all(),
+			array(
+				'app_name' 		=> 'required',
+				'redirect_uri'	=> 'required',
+				'developer_id'	=> 'required',
+				'developer_name'=> 'required'
+			)
+		);
+
+		//return var_dump(Input::all());
+
+		if($validator->fails()) {
+			return "Missing app_name or redirect_uri";
+		} 
+
 		return Input::all();
+
 	}
 
 
