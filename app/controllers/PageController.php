@@ -1509,6 +1509,13 @@ class PageController extends BaseController {
 			return "Missing app_name or redirect_uri";
 		} 
 
+		$app_name 		= Input::get('app_name');
+		$redirect_uri 	= Input::get('redirect_uri');
+		$developer_id 	= Input::get('developer_id');
+		$developer_name = Input::get('developer_name');
+		$developer_email = Input::get('developer_email');
+		$app_name 		= Input::get('app_name');
+
 		return Input::all();
 
 	}

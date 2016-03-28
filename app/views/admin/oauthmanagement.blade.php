@@ -98,7 +98,6 @@
 		        	<button type="submit" class="btn btn-primary">Create App</button>
 		      </div>
 
-		    	{{ Form::token() }}
 			</form>
 		    </div>
 		  </div>
