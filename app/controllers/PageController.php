@@ -1516,6 +1516,19 @@ class PageController extends BaseController {
 		$developer_email = Input::get('developer_email');
 		$app_name 		= Input::get('app_name');
 
+		// Generate Random client_id and client_secret
+		$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		$charactersLength = strlen($characters);
+		$client_id = '';
+		$client_secret = '';
+		$length = 15;
+		for ($i = 0; $i < $length; $i++) {
+	        $client_id 		.= $characters[rand(0, $charactersLength - 1)];
+	        $client_secret 	.= $characters[rand(0, $charactersLength - 1)];
+	    }
+	    echo "Client ID : " . $client_id;
+	    echo "Client Secret : " . $client_secret;
+
 		return Input::all();
 
 	}
