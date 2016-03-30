@@ -1514,7 +1514,7 @@ class PageController extends BaseController {
 		$developer_id 	= Input::get('developer_id');
 		$developer_name = Input::get('developer_name');
 		$developer_email = Input::get('developer_email');
-		$app_name 		= Input::get('app_name');
+		// $app_name 		= Input::get('app_name');
 
 		// Generate Random client_id and client_secret
 		$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -1526,8 +1526,30 @@ class PageController extends BaseController {
 	        $client_id 		.= $characters[rand(0, $charactersLength - 1)];
 	        $client_secret 	.= $characters[rand(0, $charactersLength - 1)];
 	    }
-	    echo "Client ID : " . $client_id;
-	    echo "Client Secret : " . $client_secret;
+	    // echo "Client ID : " . $client_id;
+	    // echo "Client Secret : " . $client_secret;
+
+	    DB::table('oauth_clients')->insert(
+		    array(
+		    	'id' 	=> $client_id, 
+		    	'secret' => $client_secret, 
+		    	'name' 	=> $app_name
+		    	)
+		);
+		DB::table('oauth_client_endpoints')->insert(
+		    array(
+		    	'client_id' 	=> $client_id, 
+		    	'redirect_uri' 	=> $redirect_uri
+		    	)
+		);
+		DB::table('oauth_developers')->insert(
+		    array(
+		    	'developer_id' 		=> $developer_id, 
+		    	'developer_name' 	=> $developer_name, 
+		    	'developer_email' 	=> $developer_email, 
+		    	'client_id' 		=> $client_id
+		    	)
+		);
 
 		return Input::all();
 
