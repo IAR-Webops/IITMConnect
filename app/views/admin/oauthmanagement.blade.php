@@ -21,6 +21,9 @@
 								      <thead>
 								        <tr>
 								          <th>#</th>
+								          <th>Developer Name</th>
+								          <th>Dev ID</th>
+								          <th>Developer Email</th>
 								          <th>App Name</th>
 								          <th>App ID</th>
 								          <th>App Secret</th>
@@ -32,6 +35,9 @@
 										@foreach ($oauth_clients as $key => $oauth_client)
 								        <tr>
 								          <th scope="row">{{ $key + 1 }}</th>
+								          <td>{{$oauth_client->developer_name}}</td>
+								          <td>{{$oauth_client->developer_id}}</td>
+								          <td>{{$oauth_client->developer_email}}</td>
 								          <td>{{$oauth_client->name}}</td>
 								          <td>{{$oauth_client->id}}</td>
 								          <td>{{$oauth_client->secret}}</td>

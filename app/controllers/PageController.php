@@ -1484,6 +1484,13 @@ class PageController extends BaseController {
 										->where('client_id', '=', $oauth_client->id)
 										->first();
 			$oauth_client->redirect_uri 	= $oauth_client_endpoint->redirect_uri;
+			$oauth_developer = DB::table('oauth_developers')
+										->where('client_id', '=', $oauth_client->id)
+										->first();
+			$oauth_client->developer_id 	= $oauth_developer->developer_id;
+			$oauth_client->developer_name 	= $oauth_developer->developer_name;
+			$oauth_client->developer_email 	= $oauth_developer->developer_email;
+
 		}
 		View::share('oauth_clients', $oauth_clients);
 
