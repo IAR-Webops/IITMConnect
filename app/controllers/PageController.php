@@ -1558,7 +1558,14 @@ class PageController extends BaseController {
 		    	)
 		);
 
-		return Input::all();
+		// return Input::all();
+		if ($developer_id == "admin-oauth") {
+			return Redirect::route('admin-oauthmanagement')
+					->with('globalalertmessage', 'Successfully Created Oauth App')
+		            ->with('globalalertclass', 'success');
+		} else {
+			return "success";
+		}
 
 	}
 
