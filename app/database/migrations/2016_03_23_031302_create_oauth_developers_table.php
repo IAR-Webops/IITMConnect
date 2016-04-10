@@ -20,6 +20,7 @@ class CreateOauthDevelopersTable extends Migration {
             $table->string('developer_name');
             $table->string('developer_email');
             $table->string('client_id');
+            $table->string('client_secret');
       
             $table->string('created_at');
             $table->string('updated_at');

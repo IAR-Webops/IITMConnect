@@ -1554,7 +1554,8 @@ class PageController extends BaseController {
 		    	'developer_id' 		=> $developer_id, 
 		    	'developer_name' 	=> $developer_name, 
 		    	'developer_email' 	=> $developer_email, 
-		    	'client_id' 		=> $client_id
+		    	'client_id' 		=> $client_id,
+		    	'client_secret' 	=> $client_secret
 		    	)
 		);
 
