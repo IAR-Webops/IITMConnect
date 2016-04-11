@@ -1570,6 +1570,29 @@ class PageController extends BaseController {
 
 	}
 
+	public function postIITMDeveloperApps()
+	{
+
+		$validator = Validator::make(Input::all(),
+			array(
+				'developer_id'	=> 'required',
+				'developer_email'=> 'required'
+			)
+		);
+
+		//return var_dump(Input::all());
+
+		if($validator->fails()) {
+			return "Missing developer_id or developer_email";
+		} 
+
+		$developer_id 	= Input::get('developer_id');
+		$developer_email = Input::get('developer_email');
+
+		return "Test";
+
+	}
+
 
 	/* Search Box (POST) */
 	public function postSearchBox()

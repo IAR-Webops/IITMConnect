@@ -157,6 +157,13 @@ Route::group(array('before' => 'auth'), function() {
 			'uses' => 'PageController@postAdminOauthManagement'
 	));
 
+	/* Admin Oauth Management Page (POST) */
+	Route::post('/oauth/iitmdeveloperapps', 
+		array('as' => 'iitm-developer-apps-post',
+			'uses' => 'PageController@postIITMDeveloperApps'
+	));
+
+
 
 	/* Sign out (GET) */
 	Route::get('/account/signout', 
