@@ -13,6 +13,13 @@
 					<div class="text-center">
 						<iframe src="https://ghbtns.com/github-btn.html?user=IAR-Webops&repo=IITMConnect&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
 					</div>
+					<div class="text-center">
+						Powered by :
+						<a href="https://baikal.io/yashmurty/iitmconnect" target="_alt"><img src="https://s3-us-west-2.amazonaws.com/nerpa-static/brand/baikal-banner.svg" alt="yashmurty/iitmconnect at Baikal" /></a>
+						<br>
+						<a href="https://baikal.io/yashmurty/iitmconnect" target="_alt"><img alt="support" src="https://baikal.io/badges/yashmurty/iitmconnect"/></a>
+						<hr>
+					</div>
 					<p>If you find any issues/bugs with this app kindly report them under the 
 					<a href="https://github.com/IAR-Webops/IITMConnect/issues" target="_blank"><strong>Issues</strong> (Click Here) </a>
 					section of the iitmconnect repository. Please include a screenshot of the issue that 
