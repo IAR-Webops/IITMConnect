@@ -1,5 +1,7 @@
 ## IITMConnect
 
+[![support](https://baikal.io/badges/yashmurty/iitmconnect)](https://baikal.io/yashmurty/iitmconnect)
+
 **Repository for #iitmconnect**
 
 The #iitmconnect Project was initiated by the I&AR Web Operations team in April 2015.
