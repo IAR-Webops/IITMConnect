@@ -22,7 +22,9 @@ class ProfileController extends BaseController {
 		if(!is_null($user)) {
 			// return dd($user);
             $basic_info = DB::table('basic_infos')->where('user_id', $user->id)->first();
-            return dd($basic_info);
+            // return dd($basic_info);
+            View::share('basic_info', $basic_info);
+            return View::make('profile.profile_user');
 
 		} else {
 			return "User Not Found";
