@@ -18,19 +18,19 @@ Route::group(array('before' => 'guest'), function() {
 	Route::group(array('before' => 'csrf'), function() {
 
 		/* Sign in with Facebook (POST) */
-		Route::post('/account/signinwithfacebook', 
+		Route::post('/account/signinwithfacebook',
 			array('as' => 'account-sign-in-facebook-post',
 				'uses' => 'AccountController@postLoginWithFacebook'
 		));
 
 		/* Sign in with Google Plus (POST) */
-		Route::post('/account/signinwithgoogleplus', 
+		Route::post('/account/signinwithgoogleplus',
 			array('as' => 'account-sign-in-googleplus-post',
 				'uses' => 'AccountController@postLoginWithGoogleplus'
 		));
 
 		/* Sign in with Linkedin (POST) */
-		Route::post('/account/signinwithlinkedin', 
+		Route::post('/account/signinwithlinkedin',
 			array('as' => 'account-sign-in-linkedin-post',
 				'uses' => 'AccountController@postLoginWithLinkedin'
 		));
@@ -38,28 +38,29 @@ Route::group(array('before' => 'guest'), function() {
 	});
 
 	/* Sign in (GET) */
-	Route::get('/account/signin', 
+	Route::get('/account/signin',
 		array('as' => 'account-sign-in',
 			'uses' => 'AccountController@getSignIn'
 	));
 
 	/* Sign in with Facebook (GET) */
-	Route::get('/account/signinwithfacebook', 
+	Route::get('/account/signinwithfacebook',
 		array('as' => 'account-sign-in-facebook',
 			'uses' => 'AccountController@getLoginWithFacebook'
 	));
 
 	/* Sign in with Google Plus (GET) */
-	Route::get('/account/signinwithgoogleplus', 
+	Route::get('/account/signinwithgoogleplus',
 		array('as' => 'account-sign-in-googleplus',
 			'uses' => 'AccountController@getLoginWithGoogle'
 	));
 
 	/* Sign in with Linkedin (GET) */
-	Route::get('/account/signinwithlinkedin', 
+	Route::get('/account/signinwithlinkedin',
 		array('as' => 'account-sign-in-linkedin',
 			'uses' => 'AccountController@getLoginWithLinkedin'
 	));
+
 
 });
 
@@ -72,62 +73,62 @@ Route::group(array('before' => 'auth'), function() {
 	Route::group(array('before' => 'csrf'), function() {
 
 		/* Basic Info Page (POST) */
-		Route::post('/basicinfo', 
+		Route::post('/basicinfo',
 			array('as' => 'basic-info-post',
 				'uses' => 'PageController@postBasicInfo'
 		));
 
 		/* Home Info Page (POST) */
-		Route::post('/homeinfo', 
+		Route::post('/homeinfo',
 			array('as' => 'home-info-post',
 				'uses' => 'PageController@postHomeInfo'
 		));
 
 		/* Instilife Info Page (POST) */
-		Route::post('/instilifeinfo', 
+		Route::post('/instilifeinfo',
 			array('as' => 'instilife-info-post',
 				'uses' => 'PageController@postInstilifeInfo'
 		));
 
-		
+
 		/* Socialmedia Info Page (POST) */
-		Route::post('/socialmediainfo', 
+		Route::post('/socialmediainfo',
 			array('as' => 'socialmedia-info-post',
 				'uses' => 'PageController@postSocialmediaInfo'
 		));
 
 		/* Events Questions Answers Page (POST) */
-		Route::post('/eventsquestionsanswers', 
+		Route::post('/eventsquestionsanswers',
 			array('as' => 'events-questions-answers-post',
 				'uses' => 'PageController@postEventsQuestionsAnwsers'
 		));
 
 		### Admin
 		/* Events Management Page (POST) */
-		Route::post('/admin/eventmanagement', 
+		Route::post('/admin/eventmanagement',
 			array('as' => 'admin-event-management-post',
 				'uses' => 'PageController@postAdminEventManagement'
 		));
 
 		/* Admin (Event Management) Events Name Edit (POST) */
-		Route::post('admin/eventmanagement/{event_unique_name}/edit', 
+		Route::post('admin/eventmanagement/{event_unique_name}/edit',
 			array('as'=>'admin-events-name-edit-post', 'uses'=>'PageController@postAdminEventsNameEdit'
 		));
-		
+
 		/* Admin (Event Management) Events Name Delete (POST) */
-		Route::post('admin/eventmanagement/{event_unique_name}/delete', 
+		Route::post('admin/eventmanagement/{event_unique_name}/delete',
 			array('as'=>'admin-events-name-delete-post', 'uses'=>'PageController@postAdminEventsNameDelete'
 		));
 
 		### AffinityProgram
 		/* AffinityProgram Management Page (POST) */
-		Route::post('/admin/affinityprogram', 
+		Route::post('/admin/affinityprogram',
 			array('as' => 'affinityprogram-management-post',
 				'uses' => 'PageController@postAffinityProgramManagement'
 		));
 
 		/* AcessProgram Register (POST) */
-		Route::post('affinityprogramregistration', 
+		Route::post('affinityprogramregistration',
 			array('as'=>'affinityprogram-registration-post', 'uses'=>'PageController@postAffinityProgramRegistration'
 		));
 
@@ -137,13 +138,13 @@ Route::group(array('before' => 'auth'), function() {
 	Route::group(array('before' => 'csrf-ajax'), function() {
 
 		/* Events Attendance Page (POST) */
-		Route::post('/eventsattendance', 
+		Route::post('/eventsattendance',
 			array('as' => 'events-attendance-post',
 				'uses' => 'PageController@postEventsAttendance'
 		));
 
 		/* Events Attendance Page (DELETE) */
-		Route::delete('/eventsattendance', 
+		Route::delete('/eventsattendance',
 			array('as' => 'events-attendance-delete',
 				'uses' => 'PageController@deleteEventsAttendance'
 		));
@@ -152,13 +153,13 @@ Route::group(array('before' => 'auth'), function() {
 
 	/* POST without CSRF Protection */
 	/* Admin Oauth Management Page (POST) */
-	Route::post('/admin/oauthmanagement', 
+	Route::post('/admin/oauthmanagement',
 		array('as' => 'admin-oauth-management-post',
 			'uses' => 'PageController@postAdminOauthManagement'
 	));
 
 	/* Admin Oauth Management Page (POST) */
-	Route::post('/oauth/iitmdeveloperapps', 
+	Route::post('/oauth/iitmdeveloperapps',
 		array('as' => 'iitm-developer-apps-post',
 			'uses' => 'PageController@postIITMDeveloperApps'
 	));
@@ -166,156 +167,156 @@ Route::group(array('before' => 'auth'), function() {
 
 
 	/* Sign out (GET) */
-	Route::get('/account/signout', 
+	Route::get('/account/signout',
 		array('as' => 'account-sign-out',
 			'uses' => 'AccountController@getSignOut'
 	));
 
 	/* Home Page (GET) */
-	Route::get('/', 
-	  array('as' => 'home', 
+	Route::get('/',
+	  array('as' => 'home',
 	        'uses' => 'PageController@getHome'
 	));
 
 	/* Basic Info Page (GET) */
-	Route::get('/basicinfo', 
-	  array('as' => 'basic-info', 
+	Route::get('/basicinfo',
+	  array('as' => 'basic-info',
 	        'uses' => 'PageController@getBasicInfo'
 	));
 
 	/* Home Info Page (GET) */
-	Route::get('/homeinfo', 
-	  array('as' => 'home-info', 
+	Route::get('/homeinfo',
+	  array('as' => 'home-info',
 	        'uses' => 'PageController@getHomeInfo'
 	));
 
 	/* Insti Life Info Page (GET) */
-	Route::get('/instilifeinfo', 
-	  array('as' => 'instilife-info', 
+	Route::get('/instilifeinfo',
+	  array('as' => 'instilife-info',
 	        'uses' => 'PageController@getInstiLifeInfo'
 	));
 
 	/* Instilife Info Page (DELETE) */
-	Route::delete('/instilifeinfo', 
+	Route::delete('/instilifeinfo',
 		array('as' => 'instilife-info-delete',
 			'uses' => 'PageController@deleteInstilifeInfo'
 	));
 
 
 	/* Social Media Info Page (GET) */
-	Route::get('/socialmediainfo', 
-	  array('as' => 'socialmedia-info', 
+	Route::get('/socialmediainfo',
+	  array('as' => 'socialmedia-info',
 	        'uses' => 'PageController@getSocialMediaInfo'
 	));
 
-	
+
 
 	/* Oauth Settings Page (GET) */
-	Route::get('/oauthsettings', 
-	  array('as' => 'oauth-settings', 
+	Route::get('/oauthsettings',
+	  array('as' => 'oauth-settings',
 	        'uses' => 'PageController@getOauthSettings'
 	));
 
 	/* Oauth Settings Page (DELETE) */
-	Route::delete('/oauthsettings', 
+	Route::delete('/oauthsettings',
 		array('as' => 'oauth-settings-delete',
 			'uses' => 'PageController@deleteOauthSettings'
 	));
 
 	/* Add with Facebook (GET) */
-	Route::get('/account/addwithfacebook', 
+	Route::get('/account/addwithfacebook',
 		array('as' => 'account-add-facebook',
 			'uses' => 'AccountController@getAddWithFacebook'
 	));
 
 	/* Add Google Plus (GET) */
-	Route::get('/account/addwithgoogleplus', 
+	Route::get('/account/addwithgoogleplus',
 		array('as' => 'account-add-googleplus',
 			'uses' => 'AccountController@getAddWithGoogle'
 	));
 
 	/* Add Linkedin (GET) */
-	Route::get('/account/addwithlinkedin', 
+	Route::get('/account/addwithlinkedin',
 		array('as' => 'account-add-linkedin',
 			'uses' => 'AccountController@getAddWithLinkedin'
 	));
 
 	/* Events Page (GET) */
-	Route::get('/events', 
-	  array('as' => 'events', 
+	Route::get('/events',
+	  array('as' => 'events',
 	        'uses' => 'PageController@getEvents'
 	));
 
 	/* Events Name (GET) */
-	Route::get('events/{event_unique_name}', 
+	Route::get('events/{event_unique_name}',
 		array('as'=>'events-name', 'uses'=>'PageController@getEventsName'
 	));
 
 	### Admin
 	/* Admin Page (GET) */
-	Route::get('/admin', 
-	  array('as' => 'admin', 
+	Route::get('/admin',
+	  array('as' => 'admin',
 	        'uses' => 'PageController@getAdmin'
 	));
 
 	/* Admin Event Management Page (GET) */
-	Route::get('/admin/eventmanagement', 
-	  array('as' => 'admin-event-management', 
+	Route::get('/admin/eventmanagement',
+	  array('as' => 'admin-event-management',
 	        'uses' => 'PageController@getAdminEventManagement'
 	));
 
 	/* Admin (Event Management) Events Name Registered Users (GET) */
-	Route::get('admin/eventmanagement/{event_unique_name}/registeredusers', 
+	Route::get('admin/eventmanagement/{event_unique_name}/registeredusers',
 		array('as'=>'admin-events-name-registered-users', 'uses'=>'PageController@getAdminEventsNameRegisteredUsers'
 	));
 
 	/* Admin (Event Management) Registered Users Excel (GET) */
-	Route::get('admin/eventmanagement/{event_unique_name}/registeredusers/excel', 
+	Route::get('admin/eventmanagement/{event_unique_name}/registeredusers/excel',
 		array('as'=>'admin-events-name-registered-users-excel', 'uses'=>'PageController@getAdminEventsNameRegisteredUsersExcel'
 	));
-	
+
 	/* Admin (Event Management) Registered Users Responses (GET) */
-	Route::get('admin/eventmanagement/{event_unique_name}/registeredusers/responses', 
+	Route::get('admin/eventmanagement/{event_unique_name}/registeredusers/responses',
 		array('as'=>'admin-events-name-registered-users-responses', 'uses'=>'PageController@getAdminEventsNameRegisteredUsersResponses'
 	));
 
 	/* Admin (Event Management) Events Name Edit (GET) */
-	Route::get('admin/eventmanagement/{event_unique_name}/edit', 
+	Route::get('admin/eventmanagement/{event_unique_name}/edit',
 		array('as'=>'admin-events-name-edit', 'uses'=>'PageController@getAdminEventsNameEdit'
 	));
 
 	/* Admin User Management Page (GET) */
-	Route::get('/admin/usermanagement', 
-	  array('as' => 'admin-user-management', 
+	Route::get('/admin/usermanagement',
+	  array('as' => 'admin-user-management',
 	        'uses' => 'PageController@getAdminUserManagement'
 	));
 
 	/* Admin (User Management) Registered Users Excel (GET) */
-	Route::get('admin/usermanagement/registeredusers/excel', 
+	Route::get('admin/usermanagement/registeredusers/excel',
 		array('as'=>'admin-user-management-registered-users-excel', 'uses'=>'PageController@getUserManagementRegisteredUsersExcel'
 	));
 
 	/* Admin User Management Page (GET) */
-	Route::get('/admin/administrators', 
-	  array('as' => 'admin-administrators', 
+	Route::get('/admin/administrators',
+	  array('as' => 'admin-administrators',
 	        'uses' => 'PageController@getAdminAdministrators'
 	));
 
 	/* Admin Oauth Management Page (GET) */
-	Route::get('/admin/oauthmanagement', 
-	  array('as' => 'admin-oauthmanagement', 
+	Route::get('/admin/oauthmanagement',
+	  array('as' => 'admin-oauthmanagement',
 	        'uses' => 'PageController@getAdminOauthManagement'
 	));
 
 	/* Admin Searchbox JSON Data (GET) */
-	Route::get('/searchbox', 
-	  array('as' => 'search-box', 
+	Route::get('/searchbox',
+	  array('as' => 'search-box',
 	        'uses' => 'PageController@postSearchBox'
 	));
 
 	/* Admin AffinityProgram Page (GET) */
-	Route::get('/admin/affinityprogram', 
-	  array('as' => 'admin-affinity-program', 
+	Route::get('/admin/affinityprogram',
+	  array('as' => 'admin-affinity-program',
 	        'uses' => 'PageController@getAdminAffinityProgram'
 	));
 
@@ -323,19 +324,19 @@ Route::group(array('before' => 'auth'), function() {
 
 	### Affinity Program
 	/* AffinityProgram Page (GET) */
-	Route::get('/affinityprogram', 
-	  array('as' => 'affinity-program', 
+	Route::get('/affinityprogram',
+	  array('as' => 'affinity-program',
 	        'uses' => 'PageController@getAffinityProgram'
 	));
 
 	/* AffinityProgram Details Page (GET) */
-	Route::get('/affinityprogram/{affinityprogram_unique_name}', 
-	  array('as' => 'affinity-program-details', 
+	Route::get('/affinityprogram/{affinityprogram_unique_name}',
+	  array('as' => 'affinity-program-details',
 	        'uses' => 'PageController@getAffinityProgramDetails'
 	));
 
 	/* Admin (AffinityProgram) Registered Users (GET) */
-	Route::get('admin/affinityprogram/{affinityprogram_unique_name}/registeredusers', 
+	Route::get('admin/affinityprogram/{affinityprogram_unique_name}/registeredusers',
 		array('as'=>'admin-affinityprogram-registered-users', 'uses'=>'PageController@getAdminAffinityProgramRegisteredUsers'
 	));
 
@@ -348,21 +349,28 @@ Route::group(array('before' => 'auth'), function() {
 */
 
 /* About Us Page (GET) */
-Route::get('/aboutus', 
-  array('as' => 'about-us', 
+Route::get('/aboutus',
+  array('as' => 'about-us',
         'uses' => 'PageController@getAboutUs'
 ));
 
 /* Privacy Policy Page (GET) */
-Route::get('/privacypolicy', 
-  array('as' => 'privacy-policy', 
+Route::get('/privacypolicy',
+  array('as' => 'privacy-policy',
         'uses' => 'PageController@getPrivacyPolicy'
 ));
 
 /* Report Issues Page (GET) */
-Route::get('/reportissues', 
-  array('as' => 'report-issues', 
+Route::get('/reportissues',
+  array('as' => 'report-issues',
         'uses' => 'PageController@getReportIssues'
+));
+
+
+/* Public Profiles (GET) */
+Route::get('/profile/{user_id}',
+	array('as' => 'profile-user-id',
+		'uses' => 'ProfileController@getProfileUserId'
 ));
 
 
@@ -370,37 +378,37 @@ Route::get('/reportissues',
 
 // Created to see Error Outputs for Oauth Sign in Pages.
 // Tackles Redirect issue.
-Route::get('/debug', 
-  array('as' => 'debug', 
+Route::get('/debug',
+  array('as' => 'debug',
         'uses' => 'AccountController@getDebug'
 ));
 
 // Test Page
-Route::get('/debug/test', 
-  array('as' => 'debug-test', 
+Route::get('/debug/test',
+  array('as' => 'debug-test',
         'uses' => 'AccountController@getDebugTest'
 ));
 // Test Page
-Route::post('/debug/test', 
-  array('as' => 'debug-test-post', 
+Route::post('/debug/test',
+  array('as' => 'debug-test-post',
         'uses' => 'AccountController@getDebugTestPost'
 ));
 
 
 /* Oauth2 */
 
-Route::get('/oauth/authorize', 
-	array('before' => 'check-authorization-params|auth', 
+Route::get('/oauth/authorize',
+	array('before' => 'check-authorization-params|auth',
     		'uses' => 'Oauth2ServerController@getAuthCodeForm'
 
 ));
 
-Route::post('/oauth/authorize', 
-	array('before' => 'check-authorization-params|auth', 
+Route::post('/oauth/authorize',
+	array('before' => 'check-authorization-params|auth',
     		'uses' => 'Oauth2ServerController@postAuthCodeForm'
 ));
 
 
-Route::post('oauth/access_token', 
+Route::post('oauth/access_token',
 	array('uses' => 'Oauth2ServerController@postAccessToken'
 ));
