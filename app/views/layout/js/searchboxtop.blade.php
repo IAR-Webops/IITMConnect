@@ -10,7 +10,7 @@
       //wildcard: '%QUERY'
     //}
   });
-   
+
   $('#remote .typeahead').typeahead(null, {
     name: 'searh-box-values',
     display: 'username',
@@ -22,14 +22,14 @@
         '</div>'
       ].join('\n'),
       suggestion: Handlebars.compile(
-        '<a href="#">'+
+        '<a href=\'{{ url("/profile/") }}/@{{rollno}}\' target="_alt">'+
           '<div class="searchboxresults">'+
             '<span class="text-uppercase">@{{rollno}}</span> | <strong>@{{username}}</strong>'+
           '</div>'+
         '</a>'
         )
      //suggestion: Handlebars.compile('<div class="form-group"><select data-toggle="select" class="form-control select select-default"><option>Test</option></select></div>')
-       
+
     }
   });
 
