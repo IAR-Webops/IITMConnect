@@ -132,6 +132,12 @@ Route::group(array('before' => 'auth'), function() {
 			array('as'=>'affinityprogram-registration-post', 'uses'=>'PageController@postAffinityProgramRegistration'
 		));
 
+		/* Admin (AffinityProgram) Edit (POST) */
+		Route::post('admin/affinityprogram/{affinityprogram_unique_name}/edit',
+			array('as'=>'admin-affinityprogram-edit-post', 'uses'=>'PageController@postAdminAffinityProgramEdit'
+		));
+
+
 	});
 
 	/* CSRF protection AJAX */
@@ -320,7 +326,6 @@ Route::group(array('before' => 'auth'), function() {
 	        'uses' => 'PageController@getAdminAffinityProgram'
 	));
 
-	### END - Admin
 
 	### Affinity Program
 	/* AffinityProgram Page (GET) */
@@ -340,6 +345,12 @@ Route::group(array('before' => 'auth'), function() {
 		array('as'=>'admin-affinityprogram-registered-users', 'uses'=>'PageController@getAdminAffinityProgramRegisteredUsers'
 	));
 
+	/* Admin (AffinityProgram) Edit (GET) */
+	Route::get('admin/affinityprogram/{affinityprogram_unique_name}/edit',
+		array('as'=>'admin-affinityprogram-edit', 'uses'=>'PageController@getAdminAffinityProgramEdit'
+	));
+
+	### END - Admin
 
 });
 

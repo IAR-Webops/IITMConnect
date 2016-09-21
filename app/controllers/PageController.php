@@ -4,7 +4,7 @@ class PageController extends BaseController {
 
 	/* Home Page (GET) */
 	public function getHome()
-	{	
+	{
 		// START - Checklist For Left Menu
 		// !DRY :( - Check alternative
 		// got alternative, will update later. :)
@@ -22,8 +22,8 @@ class PageController extends BaseController {
 		// END - Checklist For Left Menu
 
 		// Will use firstname to show customized welcome message
-		// NOTE: Taking variable from basic_info of Left menu checklist. Make sure to solve this dependency 
-		// while drying the Code. 
+		// NOTE: Taking variable from basic_info of Left menu checklist. Make sure to solve this dependency
+		// while drying the Code.
 		View::share('basic_info',$basic_info);
 
 		return View::make('page.homebody');
@@ -45,7 +45,7 @@ class PageController extends BaseController {
 		if(!is_null($instilife_info)) {	$info_check['instilife'] = "True";	} else { $info_check['instilife'] = "False"; }
 		$socialmedia_info = DB::table('socialmedia_infos')->where('user_id', $user_id)->first();
 		if(!is_null($socialmedia_info)) {	$info_check['socialmedia'] = "True";	} else { $info_check['socialmedia'] = "False"; }
-		View::share('info_check',$info_check);		
+		View::share('info_check',$info_check);
 		// END - Checklist For Left Menu
 
 		$user_id = Auth::id();
@@ -56,7 +56,7 @@ class PageController extends BaseController {
 		View::share('static_minors',$static_minors);
 		$static_hostels = DB::table('static_hostels')->get();
 		View::share('static_hostels',$static_hostels);
-		
+
 		$basic_info = DB::table('basic_infos')->where('user_id', $user_id)->first();
 		if(is_null($basic_info)) {
 			$basic_info = new stdClass();
@@ -66,7 +66,7 @@ class PageController extends BaseController {
 			$basic_info->projectguide = "";
 			$basic_info->email = "";
 			$basic_info->phone = "";
-			$basic_info->phonehome = "";			
+			$basic_info->phonehome = "";
 			$basic_info->department = "";
 			$basic_info->optionsRadiosDegree = "";
 			$basic_info->graduatingyear = "";
@@ -74,11 +74,11 @@ class PageController extends BaseController {
 			$basic_info->optionsRadiosFuture = "";
 			$basic_info->future_field1 = "";
 			$basic_info->future_field2 = "";
-			$basic_info->future_field3 = "";	
-			$basic_info->current_city = "";								
+			$basic_info->future_field3 = "";
+			$basic_info->current_city = "";
 
-		} 
-		View::share('basic_info',$basic_info);		
+		}
+		View::share('basic_info',$basic_info);
 
 		return View::make('page.basicinfo');
 	}
@@ -115,7 +115,7 @@ class PageController extends BaseController {
 			$projectguide 			= Input::get('projectguide');
 			$email 					= Input::get('email');
 			$phone 					= Input::get('phone');
-			$phonehome 				= Input::get('phonehome');			
+			$phonehome 				= Input::get('phonehome');
 			$graduatingyear 		= Input::get('graduatingyear');
 			$hostel 				= Input::get('hostel');
 			$optionsRadiosFuture 	= Input::get('optionsRadiosFuture');
@@ -123,15 +123,15 @@ class PageController extends BaseController {
 			if ($optionsRadiosFuture == 'Job') {
 				$future_field1 		= Input::get('companyname');
 				$future_field2 		= Input::get('companytitle');
-				$future_field3 		= Input::get('companylocation');				
+				$future_field3 		= Input::get('companylocation');
 			} elseif ($optionsRadiosFuture == 'Higher Studies') {
 				$future_field1 		= Input::get('universityname');
 				$future_field2 		= Input::get('universitydepartment');
-				$future_field3 		= Input::get('universitylocation');				
+				$future_field3 		= Input::get('universitylocation');
 			} elseif ($optionsRadiosFuture == 'Others') {
 				$future_field1 		= Input::get('futureothers');
 				$future_field2		= null;
-				$future_field3		= null;				
+				$future_field3		= null;
 			}
 			$current_city 	= Input::get('current_city');
 
@@ -145,8 +145,8 @@ class PageController extends BaseController {
 				DB::table('basic_infos')
 		            ->where('user_id', $user_id)
 		            ->update(array(
-		            	'user_id'				=> $user_id,				
-						'firstname' 			=> $firstname,			
+		            	'user_id'				=> $user_id,
+						'firstname' 			=> $firstname,
 						'middlename'			=> $middlename,
 						'lastname'				=> $lastname,
 						'department'			=> $department,
@@ -155,27 +155,27 @@ class PageController extends BaseController {
 						'projectguide'			=> $projectguide,
 						'email'					=> $email,
 						'phone'					=> $phone,
-						'phonehome'				=> $phonehome,						
+						'phonehome'				=> $phonehome,
 						'graduatingyear'		=> $graduatingyear,
 						'hostel'				=> $hostel,
 						'optionsRadiosFuture'	=> $optionsRadiosFuture,
 						'future_field1'			=> $future_field1,
 						'future_field2'			=> $future_field2,
 						'future_field3'			=> $future_field3,
-						'current_city'			=> $current_city																		
+						'current_city'			=> $current_city
 		            ));
-						
-				
+
+
 				return Redirect::route('basic-info')
                     ->with('globalalertmessage', 'Basic Information Updated')
                     ->with('globalalertclass', 'success');
-        
+
 
 			} else {
 				// Save Basic Info Data in basic_infos using
 				$userdata = BasicInfo::create(array(
-					'user_id'				=> $user_id,				
-					'firstname' 			=> $firstname,			
+					'user_id'				=> $user_id,
+					'firstname' 			=> $firstname,
 					'middlename'			=> $middlename,
 					'lastname'				=> $lastname,
 					'department'			=> $department,
@@ -184,7 +184,7 @@ class PageController extends BaseController {
 					'projectguide'			=> $projectguide,
 					'email'					=> $email,
 					'phone'					=> $phone,
-					'phonehome'				=> $phonehome,											
+					'phonehome'				=> $phonehome,
 					'graduatingyear'		=> $graduatingyear,
 					'hostel'				=> $hostel,
 					'optionsRadiosFuture'	=> $optionsRadiosFuture,
@@ -198,12 +198,12 @@ class PageController extends BaseController {
 			}
 
 
-			
+
 
 			return Redirect::route('home');
 
 		}
-		
+
 	}
 
 	/* ### - Home Info */
@@ -222,7 +222,7 @@ class PageController extends BaseController {
 		if(!is_null($instilife_info)) {	$info_check['instilife'] = "True";	} else { $info_check['instilife'] = "False"; }
 		$socialmedia_info = DB::table('socialmedia_infos')->where('user_id', $user_id)->first();
 		if(!is_null($socialmedia_info)) {	$info_check['socialmedia'] = "True";	} else { $info_check['socialmedia'] = "False"; }
-		View::share('info_check',$info_check);		
+		View::share('info_check',$info_check);
 		// END - Checklist For Left Menu
 
 		$user_id = Auth::id();
@@ -249,8 +249,8 @@ class PageController extends BaseController {
 			$home_info->mailcountry = "";
 			$home_info->mailphonelandline = "";
 			$home_info->mailphonemobile = "";
-		} 
-		View::share('home_info',$home_info);	
+		}
+		View::share('home_info',$home_info);
 
 		return View::make('page.homeinfo');
 	}
@@ -317,8 +317,8 @@ class PageController extends BaseController {
 					DB::table('home_infos')
 			            ->where('user_id', $user_id)
 			            ->update(array(
-			            	'user_id'				=> $user_id,				
-							'fathersname' 			=> $fathersname,			
+			            	'user_id'				=> $user_id,
+							'fathersname' 			=> $fathersname,
 							'mothersname'			=> $mothersname,
 							'permaddline1'			=> $permaddline1,
 							'permaddline2'			=> $permaddline2,
@@ -329,19 +329,19 @@ class PageController extends BaseController {
 							'permphonelandline'		=> $permphonelandline,
 							'permphonemobile'		=> $permphonemobile,
 							'checkboxmailadd'		=> $checkboxmailadd
-							
+
 			            ));
-							
+
 					return Redirect::route('home-info')
                     	->with('globalalertmessage', 'Home Information Updated')
                     	->with('globalalertclass', 'success');
 
-				} else { 
+				} else {
 
 					// Save Home Info Data in home_infos using
 					$userdata = HomeInfo::create(array(
-						'user_id'				=> $user_id,				
-						'fathersname' 			=> $fathersname,			
+						'user_id'				=> $user_id,
+						'fathersname' 			=> $fathersname,
 						'mothersname'			=> $mothersname,
 						'permaddline1'			=> $permaddline1,
 						'permaddline2'			=> $permaddline2,
@@ -368,8 +368,8 @@ class PageController extends BaseController {
 					DB::table('home_infos')
 			            ->where('user_id', $user_id)
 			            ->update(array(
-			            	'user_id'				=> $user_id,				
-							'fathersname' 			=> $fathersname,			
+			            	'user_id'				=> $user_id,
+							'fathersname' 			=> $fathersname,
 							'mothersname'			=> $mothersname,
 							'permaddline1'			=> $permaddline1,
 							'permaddline2'			=> $permaddline2,
@@ -389,9 +389,9 @@ class PageController extends BaseController {
 							'mailcountry'			=> $mailcountry,
 							'mailphonelandline'		=> $mailphonelandline,
 							'mailphonemobile'		=> $mailphonemobile
-							
+
 			            ));
-							
+
 					return Redirect::route('home-info')
                     	->with('globalalertmessage', 'Home Information Updated')
                     	->with('globalalertclass', 'success');
@@ -399,8 +399,8 @@ class PageController extends BaseController {
 				} else {
 					// Save Home Info Data in home_infos using
 					$userdata = HomeInfo::create(array(
-						'user_id'				=> $user_id,				
-						'fathersname' 			=> $fathersname,			
+						'user_id'				=> $user_id,
+						'fathersname' 			=> $fathersname,
 						'mothersname'			=> $mothersname,
 						'permaddline1'			=> $permaddline1,
 						'permaddline2'			=> $permaddline2,
@@ -450,13 +450,13 @@ class PageController extends BaseController {
 		if(!is_null($instilife_info)) {	$info_check['instilife'] = "True";	} else { $info_check['instilife'] = "False"; }
 		$socialmedia_info = DB::table('socialmedia_infos')->where('user_id', $user_id)->first();
 		if(!is_null($socialmedia_info)) {	$info_check['socialmedia'] = "True";	} else { $info_check['socialmedia'] = "False"; }
-		View::share('info_check',$info_check);		
+		View::share('info_check',$info_check);
 		// END - Checklist For Left Menu
 
 		$instilifedata = DB::table('instilife_infos')->where('user_id', $user_id)->get();
 		//return var_dump($instilifedata);
 		if(!is_null($instilife_info)) {
-			View::share('instilifedata',$instilifedata);		
+			View::share('instilifedata',$instilifedata);
 		}
 
 		//var_dump($instilifedata);
@@ -474,7 +474,7 @@ class PageController extends BaseController {
 		->where('id', $por_id)
 		->where('user_id', $user_id)->first();
 		if(!is_null($instilife_info)) {
-				
+
 				DB::table('instilife_infos')
 					->where('id', $por_id)
 					->where('user_id', $user_id)
@@ -482,7 +482,7 @@ class PageController extends BaseController {
 				return "PoR deleted";
 
 		} else {
-				
+
 				return "Requested PoR doesn't Exist";
 		}
 
@@ -495,7 +495,7 @@ class PageController extends BaseController {
 	{
 		$validator = Validator::make(Input::all(),
 			array(
-				'instilifeinfodata' => 'required'			
+				'instilifeinfodata' => 'required'
 			)
 		);
 
@@ -521,27 +521,27 @@ class PageController extends BaseController {
 			        //echo "<br>";
 			    //}
 
-			    // We will always create new entry will never update existing, because 
-			    // there are multiple PoR's per person. 
-			    // Updating will lead to replacement. 
-				
+			    // We will always create new entry will never update existing, because
+			    // there are multiple PoR's per person.
+			    // Updating will lead to replacement.
+
 				// Save Instilife Info Data in instilife_infos using
 				$userdata = InstilifeInfo::create(array(
-					'user_id'		=> $user_id,				
-					'organization'	=> $organization,			
+					'user_id'		=> $user_id,
+					'organization'	=> $organization,
 					'department'	=> $department,
-					'post'			=> $post	
-				));				
+					'post'			=> $post
+				));
 
 			}
-			
+
 			return Redirect::route('instilife-info')
                     ->with('globalalertmessage', 'Insti Life Information Saved')
                     ->with('globalalertclass', 'success');
 
 
 		}
-		
+
 		return Redirect::route('home');
 
 	}
@@ -561,7 +561,7 @@ class PageController extends BaseController {
 		if(!is_null($instilife_info)) {	$info_check['instilife'] = "True";	} else { $info_check['instilife'] = "False"; }
 		$socialmedia_info = DB::table('socialmedia_infos')->where('user_id', $user_id)->first();
 		if(!is_null($socialmedia_info)) {	$info_check['socialmedia'] = "True";	} else { $info_check['socialmedia'] = "False"; }
-		View::share('info_check',$info_check);		
+		View::share('info_check',$info_check);
 		// END - Checklist For Left Menu
 
 		$user_id = Auth::id();
@@ -571,10 +571,10 @@ class PageController extends BaseController {
 			$socialmedia_info = new stdClass();
 			$socialmedia_info->googleplusprofilelink = "";
 			$socialmedia_info->linkedinprofilelink = "";
-			$socialmedia_info->facebookprofilelink = "";			
+			$socialmedia_info->facebookprofilelink = "";
 
-		} 
-		View::share('socialmedia_info',$socialmedia_info);		
+		}
+		View::share('socialmedia_info',$socialmedia_info);
 
 		return View::make('page.socialmediainfo');
 	}
@@ -584,7 +584,7 @@ class PageController extends BaseController {
 	{
 		$validator = Validator::make(Input::all(),
 			array(
-							
+
 			)
 		);
 
@@ -610,25 +610,25 @@ class PageController extends BaseController {
 				DB::table('socialmedia_infos')
 		            ->where('user_id', $user_id)
 		            ->update(array(
-		            	'user_id'				=> $user_id,				
-						'googleplusprofilelink' => $googleplusprofilelink,			
+		            	'user_id'				=> $user_id,
+						'googleplusprofilelink' => $googleplusprofilelink,
 						'linkedinprofilelink'	=> $linkedinprofilelink,
-						'facebookprofilelink'	=> $facebookprofilelink						
+						'facebookprofilelink'	=> $facebookprofilelink
 		            ));
-						
-				
+
+
 				return Redirect::route('socialmedia-info')
                     ->with('globalalertmessage', 'Social Media Information Updated')
                     ->with('globalalertclass', 'success');
-        
+
 
 			} else {
 				// Save Socialmedia Info Data in socialmedia_infos using
 				$userdata = SocialmediaInfo::create(array(
-					'user_id'				=> $user_id,				
-					'googleplusprofilelink' => $googleplusprofilelink,			
+					'user_id'				=> $user_id,
+					'googleplusprofilelink' => $googleplusprofilelink,
 					'linkedinprofilelink'	=> $linkedinprofilelink,
-					'facebookprofilelink'	=> $facebookprofilelink	
+					'facebookprofilelink'	=> $facebookprofilelink
 				));
 
 				return Redirect::route('socialmedia-info')
@@ -647,22 +647,22 @@ class PageController extends BaseController {
 		$user = DB::table('users')->orderBy('created_at', 'desc')->first();
 		$usercount = (int) $user->id;
 		//return $usercount;
-		View::share('usercount', $usercount);		
+		View::share('usercount', $usercount);
 
-		return View::make('page.aboutus');		
+		return View::make('page.aboutus');
 	}
 
 	/* Privacy Policy Page (GET) */
 	public function getPrivacyPolicy()
-	{	
+	{
 
-		return View::make('page.privacypolicy');		
+		return View::make('page.privacypolicy');
 	}
 
 	/* Report Issues (GET) */
 	public function getReportIssues()
 	{
-		return View::make('page.reportissues');		
+		return View::make('page.reportissues');
 	}
 
 	### OAUTH SETTINGS
@@ -670,31 +670,31 @@ class PageController extends BaseController {
 	public function getOauthSettings()
 	{
 		$user_id = Auth::id();
-		$oauth_check = array();		
+		$oauth_check = array();
 		$googleplus_info = DB::table('googleplus_users')->where('user_id', $user_id)->first();
 		if(!is_null($googleplus_info)) { $oauth_check['googleplus'] = "True"; } else { $oauth_check['googleplus'] = "False"; }
 		$linkedin_info = DB::table('linkedin_users')->where('user_id', $user_id)->first();
 		if(!is_null($linkedin_info)) { $oauth_check['linkedin'] = "True"; } else { $oauth_check['linkedin'] = "False"; }
 		$facebook_info = DB::table('facebook_users')->where('user_id', $user_id)->first();
 		if(!is_null($facebook_info)) { $oauth_check['facebook'] = "True"; } else { $oauth_check['facebook'] = "False"; }
-		
+
 		$user_email_info = DB::table('user_emails')->where('user_id', $user_id)->first();
-		View::share('user_email_info', $user_email_info);		
+		View::share('user_email_info', $user_email_info);
 
-		View::share('googleplus_info', $googleplus_info);		
-		View::share('linkedin_info', $linkedin_info);		
-		View::share('facebook_info', $facebook_info);						
+		View::share('googleplus_info', $googleplus_info);
+		View::share('linkedin_info', $linkedin_info);
+		View::share('facebook_info', $facebook_info);
 
-		View::share('oauth_check', $oauth_check);		
+		View::share('oauth_check', $oauth_check);
 
 		// Check if User has Admin Access
 		$admin_user = AdminUser::where('user_id', '=', $user_id)
 			->first();
-		if(!is_null($admin_user)) {	$admin_user_check = "True";	} else { $admin_user_check = "False"; }				
+		if(!is_null($admin_user)) {	$admin_user_check = "True";	} else { $admin_user_check = "False"; }
 		View::share('admin_user',$admin_user);
 		View::share('admin_user_check',$admin_user_check);
 
-		return View::make('page.oauthsettings');		
+		return View::make('page.oauthsettings');
 	}
 
 	/* Oauth Settings (DELETE) */
@@ -719,7 +719,7 @@ class PageController extends BaseController {
 	        	$facebookuser->delete();
 	        	return "Facebook Oauth Account Deleted";
 				break;
-			
+
 			default:
 				return "No Oauth Detected. Contact Webops Team";
 				break;
@@ -733,77 +733,77 @@ class PageController extends BaseController {
 		$events = DB::table('events')->where('event_status', "Open")
 			->orderBy('event_id', 'desc')
 			->get();
-		View::share('events', $events);		
+		View::share('events', $events);
 
 		// Concluding Basic Infos has been filled if Graduating Year entry exists in DB for that user
 		$user_id = Auth::id();
 		$basic_info = DB::table('basic_infos')->where('user_id', $user_id)->first();
 		if(!empty($basic_info->graduatingyear)) {	$basic_info_check = "True";	} else { $basic_info_check = "False"; }
-		View::share('basic_info_check', $basic_info_check);				
+		View::share('basic_info_check', $basic_info_check);
 
 		// Check if User has Admin Access
 		$admin_user = AdminUser::where('user_id', '=', $user_id)
 			->first();
-		if(!is_null($admin_user)) {	$admin_user_check = "True";	} else { $admin_user_check = "False"; }				
+		if(!is_null($admin_user)) {	$admin_user_check = "True";	} else { $admin_user_check = "False"; }
 		View::share('admin_user',$admin_user);
-		View::share('admin_user_check',$admin_user_check);		
+		View::share('admin_user_check',$admin_user_check);
 
-		return View::make('page.events');		
+		return View::make('page.events');
 	}
 
 	/* Events Name Page (GET) */
 	public function getEventsName($event_unique_name)
 	{
 		$event = DB::table('events')->where('event_unique_name', $event_unique_name)->first();
-		if(!is_null($event)) {	
+		if(!is_null($event)) {
 			//return "Event Found";
 			$address = $event->event_place;
 			$address = preg_replace('/\s+/', '+', $address);
 			$event->event_search_url = "https://www.google.co.in/maps/place/".$address."";
 			$event->event_place_url = "https://maps.googleapis.com/maps/api/staticmap?center=".$address."&zoom=14&size=640x640&scale=1&markers=color:blue|".$address."";
-		} else { 
+		} else {
 			return "Event Not Found";
-		}		
-		View::share('event', $event);		
+		}
+		View::share('event', $event);
 
 		// Concluding Basic Infos has been filled if Graduating Year entry exists in DB for that user
 		$user_id = Auth::id();
 		$basic_info = DB::table('basic_infos')->where('user_id', $user_id)->first();
-		if(!empty($basic_info->graduatingyear)) {	
-			$basic_info_check = "True";	
-		} else { 
-			$basic_info_check = "False"; 
+		if(!empty($basic_info->graduatingyear)) {
+			$basic_info_check = "True";
+		} else {
+			$basic_info_check = "False";
 			return Redirect::route('events')
                     ->with('globalalertmessage', 'Please fill Basic Information Form before proceeding')
                     ->with('globalalertclass', 'error');
 		}
-		View::share('basic_info', $basic_info);				
-		
+		View::share('basic_info', $basic_info);
+
 		$eventattendance = DB::table('events_attendance')
 			->where('user_id', $user_id)
-			->where('event_id', $event->event_id)			
+			->where('event_id', $event->event_id)
 			->first();
-		if(!empty($eventattendance)) {	
-			$eventattendance_check = "True";	
-		} else { 
-			$eventattendance_check = "False"; 			
+		if(!empty($eventattendance)) {
+			$eventattendance_check = "True";
+		} else {
+			$eventattendance_check = "False";
 		}
-		View::share('eventattendance_check', $eventattendance_check);		
+		View::share('eventattendance_check', $eventattendance_check);
 
 		$events_specific_questions = DB::table('events_specific_questions')
-			->where('event_id', $event->event_id)			
-			->get(); 
+			->where('event_id', $event->event_id)
+			->get();
 		foreach ($events_specific_questions as $key => $events_specific_question) {
 			# code...
 			$events_specific_questions_answer = DB::table('events_specific_questions_answers')
 											->where('event_id', $event->event_id)
-											->where('user_id', $user_id)			
+											->where('user_id', $user_id)
 											->where('question_id', $events_specific_question->question_id)
-											->orderBy('id', 'desc')			
+											->orderBy('id', 'desc')
 											->first();
 			if(empty($events_specific_questions_answer)) {
-				$events_specific_questions_answer = new stdClass();	
-				$events_specific_questions_answer->answer_value = null;	
+				$events_specific_questions_answer = new stdClass();
+				$events_specific_questions_answer->answer_value = null;
 			}
 			$events_specific_question->events_specific_questions_answer = $events_specific_questions_answer;
 			// var_dump($events_specific_question);
@@ -813,27 +813,27 @@ class PageController extends BaseController {
 
 		$events_specific_questions_answers = DB::table('events_specific_questions_answers')
 			->where('event_id', $event->event_id)
-			->where('user_id', $user_id)			
-			->get(); 
-		View::share('events_specific_questions_answers', $events_specific_questions_answers);	
+			->where('user_id', $user_id)
+			->get();
+		View::share('events_specific_questions_answers', $events_specific_questions_answers);
 		// dd($events_specific_questions_answers);
 
-		return View::make('page.eventsname');		
+		return View::make('page.eventsname');
 	}
 
 	/* Events Attendance Page (POST) */
 	public function postEventsAttendance(){
-		$user_id = Auth::id();		
+		$user_id = Auth::id();
 		$event_id = Input::get('event_id');
 		$event_unique_name = "";
-		$event_survey_status = "";		
+		$event_survey_status = "";
 
 		// Save Basic Info Data in basic_infos using
 				$eventsattendance = EventsAttendance::create(array(
-					'user_id'				=> $user_id,				
-					'event_id' 				=> $event_id,			
+					'user_id'				=> $user_id,
+					'event_id' 				=> $event_id,
 					'event_unique_name'		=> $event_unique_name,
-					'event_survey_status'	=> $event_survey_status					
+					'event_survey_status'	=> $event_survey_status
 				));
 
 		return "Your Attendance has been Confirmed";
@@ -841,9 +841,9 @@ class PageController extends BaseController {
 
 	/* Events Attendance Page (DELETE) */
 	public function deleteEventsAttendance(){
-		$user_id = Auth::id();		
+		$user_id = Auth::id();
 		$event_id = Input::get('event_id');
-		
+
 		$eventsattendance = EventsAttendance::where('user_id', '=', $user_id)
 			->where('event_id', '=', $event_id)
 			->first();
@@ -851,25 +851,25 @@ class PageController extends BaseController {
 
 		return "Your Attendance has been Cancelled";
 	}
-	
+
 	/* Events Questions Anwsers Page (POST) */
 	public function postEventsQuestionsAnwsers(){
 
-		$user_id = Auth::id();		
+		$user_id = Auth::id();
 		$event_id = Input::get('event_id');
 		$event_unique_name = Input::get('event_unique_name');
 
 		$events_specific_questions = DB::table('events_specific_questions')
-			->where('event_id', $event_id)			
-			->get(); 
+			->where('event_id', $event_id)
+			->get();
 		$events_specific_questions_count = (int)count((array)$events_specific_questions);
 		//var_dump(Input::all());
-		for ($i=1; $i <= $events_specific_questions_count ; $i++) { 
+		for ($i=1; $i <= $events_specific_questions_count ; $i++) {
 			//echo "Number : ".$i ;
 			// Save Basic Info Data in basic_infos using
 			$events_specific_questions_answers = EventsSpecificQuestionsAnswers::create(array(
-				'user_id'		=> $user_id,				
-				'event_id' 		=> $event_id,			
+				'user_id'		=> $user_id,
+				'event_id' 		=> $event_id,
 				'question_id'	=> $i,
 				'answer_value'	=> Input::get($i)
 			));
@@ -878,65 +878,65 @@ class PageController extends BaseController {
 		return Redirect::to('/events/'.$event_unique_name.'/')
                     ->with('globalalertmessage', 'Event Specific Questions Answered')
                     ->with('globalalertclass', 'success');
-	
+
 	}
 
 	/* Admin Page (GET) */
 	public function getAdmin(){
-		$user_id = Auth::id();		
-		
-		// Check if User has Admin Access		
+		$user_id = Auth::id();
+
+		// Check if User has Admin Access
 		$admin_user = AdminUser::where('user_id', '=', $user_id)
 			->first();
-		if(!is_null($admin_user)) {	$admin_user_check = "True";	} else { $admin_user_check = "False"; }				
+		if(!is_null($admin_user)) {	$admin_user_check = "True";	} else { $admin_user_check = "False"; }
 		View::share('admin_user',$admin_user);
 		View::share('admin_user_check',$admin_user_check);
 
-		return View::make('admin.adminhome');				
+		return View::make('admin.adminhome');
 
 	}
 
 	/* Admin Event Management Page (GET) */
 	public function getAdminEventManagement(){
-		$user_id = Auth::id();		
-		
-		// Check if User has Admin Access		
+		$user_id = Auth::id();
+
+		// Check if User has Admin Access
 		$admin_user = AdminUser::where('user_id', '=', $user_id)
 			->first();
-		if(!is_null($admin_user)) {	$admin_user_check = "True";	} else { $admin_user_check = "False"; }				
+		if(!is_null($admin_user)) {	$admin_user_check = "True";	} else { $admin_user_check = "False"; }
 		View::share('admin_user',$admin_user);
-		View::share('admin_user_check',$admin_user_check);	
+		View::share('admin_user_check',$admin_user_check);
 
 		$events = DB::table('events')
 			->orderBy('id', 'desc')
 			->get();
-		View::share('events', $events);		
+		View::share('events', $events);
 
 
-		return View::make('admin.eventmanagement');				
+		return View::make('admin.eventmanagement');
 	}
 
 	/* Admin Events Name Registered Users Page (GET) */
 	public function getAdminEventsNameRegisteredUsers($event_unique_name)
-	{	
-		// Check if User has Admin Access		
-		$user_id = Auth::id();				
+	{
+		// Check if User has Admin Access
+		$user_id = Auth::id();
 		$admin_user = AdminUser::where('user_id', '=', $user_id)
 			->first();
-		if(!is_null($admin_user)) {	$admin_user_check = "True";	} else { $admin_user_check = "False"; }				
+		if(!is_null($admin_user)) {	$admin_user_check = "True";	} else { $admin_user_check = "False"; }
 		View::share('admin_user',$admin_user);
-		View::share('admin_user_check',$admin_user_check);	
+		View::share('admin_user_check',$admin_user_check);
 
 		$event = DB::table('events')->where('event_unique_name', $event_unique_name)->first();
-		if(!is_null($event)) {	
-			//return "Event Found"; 
-		} else { 
+		if(!is_null($event)) {
+			//return "Event Found";
+		} else {
 			return "Event Not Found";
-		}		
+		}
 		View::share('event', $event);
 
 		$event_attendance_users = DB::table('events_attendance')
-			->where('event_id', $event->event_id)			
+			->where('event_id', $event->event_id)
 			->get();
 		foreach ($event_attendance_users as $key => $event_attendance_user) {
 			$event_attendance_user->user_registeration_number = $key + 1;
@@ -946,16 +946,16 @@ class PageController extends BaseController {
 			$event_attendance_user->user_name 		= $registered_user_basic_info->firstname . " " . $registered_user_basic_info->lastname;
 			$event_attendance_user->user_email 		= $registered_user_basic_info->email;
 			$event_attendance_user->user_phone 		= $registered_user_basic_info->phone;
-			$event_attendance_user->user_phonehome 	= $registered_user_basic_info->phonehome;			
+			$event_attendance_user->user_phonehome 	= $registered_user_basic_info->phonehome;
 			$event_attendance_user->user_graduatingyear = $registered_user_basic_info->graduatingyear;
 			$event_attendance_user->user_future_field1 = $registered_user_basic_info->future_field1;
 			$event_attendance_user->user_future_field2 = $registered_user_basic_info->future_field2;
 			$event_attendance_user->user_future_field3 = $registered_user_basic_info->future_field3;
 
 		}
-		View::share('event_attendance_users', $event_attendance_users);		
+		View::share('event_attendance_users', $event_attendance_users);
 
-		return View::make('admin.eventmanagement_registeredusers');				
+		return View::make('admin.eventmanagement_registeredusers');
 
 	}
 
@@ -963,22 +963,22 @@ class PageController extends BaseController {
 	public function getAdminEventsNameRegisteredUsersExcel($event_unique_name)
 	{
 		// Data Generation
-		// Check if User has Admin Access		
-		$user_id = Auth::id();				
+		// Check if User has Admin Access
+		$user_id = Auth::id();
 		$admin_user = AdminUser::where('user_id', '=', $user_id)
 			->first();
-		if(!is_null($admin_user)) {	$admin_user_check = "True";	} 
-		else { $admin_user_check = "False"; return "Your Access Level is Not Admin."; }				
+		if(!is_null($admin_user)) {	$admin_user_check = "True";	}
+		else { $admin_user_check = "False"; return "Your Access Level is Not Admin."; }
 
 		$event = DB::table('events')->where('event_unique_name', $event_unique_name)->first();
-		if(!is_null($event)) {	
-			//return "Event Found"; 
-		} else { 
+		if(!is_null($event)) {
+			//return "Event Found";
+		} else {
 			return "Event Not Found";
-		}		
+		}
 
 		$event_attendance_users = DB::table('events_attendance')
-			->where('event_id', $event->event_id)			
+			->where('event_id', $event->event_id)
 			->get();
 		foreach ($event_attendance_users as $key => $event_attendance_user) {
 			$event_attendance_user->user_registeration_number = $key + 1;
@@ -988,36 +988,36 @@ class PageController extends BaseController {
 			$event_attendance_user->user_name 		= $registered_user_basic_info->firstname . " " . $registered_user_basic_info->lastname;
 			$event_attendance_user->user_email 		= $registered_user_basic_info->email;
 			$event_attendance_user->user_phone 		= $registered_user_basic_info->phone;
-			$event_attendance_user->user_phonehome 	= $registered_user_basic_info->phonehome;			
-			$event_attendance_user->hostel 			= $registered_user_basic_info->hostel;			
+			$event_attendance_user->user_phonehome 	= $registered_user_basic_info->phonehome;
+			$event_attendance_user->hostel 			= $registered_user_basic_info->hostel;
 			$event_attendance_user->user_graduatingyear = $registered_user_basic_info->graduatingyear;
 			$event_attendance_user->user_university = $registered_user_basic_info->future_field1;
 			$event_attendance_user->user_department = $registered_user_basic_info->future_field2;
 
 			$events_specific_questions = DB::table('events_specific_questions')
-				->where('event_id', $event->event_id)			
-				->get(); 
+				->where('event_id', $event->event_id)
+				->get();
 			//return dd($events_specific_questions);
 
 
 		    foreach ($events_specific_questions as $ESQkey => $events_specific_question) {
 		    	$registered_user_events_specific_questions_answers = EventsSpecificQuestionsAnswers::where('user_id', '=', $event_attendance_user->user_id)
 					->where('event_id', '=', $event->event_id)
-					->where('question_id', '=', $ESQkey+1)				
+					->where('question_id', '=', $ESQkey+1)
 					->get();
 					foreach ($registered_user_events_specific_questions_answers as $ESQAkey => $registered_user_events_specific_questions_answer) {
-			    		$event_attendance_user->{$events_specific_question->question_value} = $registered_user_events_specific_questions_answer->answer_value;						
+			    		$event_attendance_user->{$events_specific_question->question_value} = $registered_user_events_specific_questions_answer->answer_value;
 						//return dd($registered_user_events_specific_questions_answer->answer_value);
 					}
 		    }
 
 
 
-			
+
 
 			//$event_attendance_user->events_specific_questions_answers = $registered_user_events_specific_questions_answers;
-			
-			
+
+
 			$event_attendance_user_array_row = (array) $event_attendance_user;
 			$event_attendance_user_array_row_delete = array_splice($event_attendance_user_array_row, 0, 6);
 
@@ -1050,43 +1050,43 @@ class PageController extends BaseController {
 		    });
 
 		})->export('xls');
-		
+
 		//})->export('xls');
 
 		// or
 		//->download('xls');
-		
+
 		return "Excel";
 	}
 
 	/* Admin Events Name Registered Users Responses Page (GET) */
 	public function getAdminEventsNameRegisteredUsersResponses($event_unique_name)
-	{	
-		// Check if User has Admin Access		
-		$user_id = Auth::id();				
+	{
+		// Check if User has Admin Access
+		$user_id = Auth::id();
 		$admin_user = AdminUser::where('user_id', '=', $user_id)
 			->first();
-		if(!is_null($admin_user)) {	$admin_user_check = "True";	} else { $admin_user_check = "False"; }				
+		if(!is_null($admin_user)) {	$admin_user_check = "True";	} else { $admin_user_check = "False"; }
 		View::share('admin_user',$admin_user);
-		View::share('admin_user_check',$admin_user_check);	
+		View::share('admin_user_check',$admin_user_check);
 
 		$event = DB::table('events')->where('event_unique_name', $event_unique_name)->first();
-		if(!is_null($event)) {	
-			//return "Event Found"; 
-		} else { 
+		if(!is_null($event)) {
+			//return "Event Found";
+		} else {
 			return "Event Not Found";
-		}		
+		}
 		View::share('event', $event);
 
 		$events_specific_questions = DB::table('events_specific_questions')
-			->where('event_id', $event->event_id)			
-			->get(); 
+			->where('event_id', $event->event_id)
+			->get();
 		//return dd($events_specific_questions);
-		View::share('events_specific_questions', $events_specific_questions);	
+		View::share('events_specific_questions', $events_specific_questions);
 
 
 		$event_attendance_users = DB::table('events_attendance')
-			->where('event_id', $event->event_id)			
+			->where('event_id', $event->event_id)
 			->get();
 		foreach ($event_attendance_users as $key => $event_attendance_user) {
 			$event_attendance_user->user_registeration_number = $key + 1;
@@ -1097,7 +1097,7 @@ class PageController extends BaseController {
 			$event_attendance_user->user_name 		= $registered_user_basic_info->firstname . " " . $registered_user_basic_info->lastname;
 			$event_attendance_user->user_email 		= $registered_user_basic_info->email;
 			$event_attendance_user->user_phone 		= $registered_user_basic_info->phone;
-			$event_attendance_user->user_phonehome 	= $registered_user_basic_info->phonehome;			
+			$event_attendance_user->user_phonehome 	= $registered_user_basic_info->phonehome;
 			$event_attendance_user->user_graduatingyear = $registered_user_basic_info->graduatingyear;
 			$event_attendance_user->user_future_field1 = $registered_user_basic_info->future_field1;
 			$event_attendance_user->user_future_field2 = $registered_user_basic_info->future_field2;
@@ -1121,34 +1121,34 @@ class PageController extends BaseController {
 			//	return $events_specific_question->question_id;
 			}
 		}
-		View::share('event_attendance_users', $event_attendance_users);		
+		View::share('event_attendance_users', $event_attendance_users);
 
-		
 
-		return View::make('admin.eventmanagement_registeredusers_responses');				
+
+		return View::make('admin.eventmanagement_registeredusers_responses');
 
 	}
 
 	/* Admin Events Name Edit Page (GET) */
 	public function getAdminEventsNameEdit($event_unique_name)
-	{	
-		// Check if User has Admin Access		
-		$user_id = Auth::id();				
+	{
+		// Check if User has Admin Access
+		$user_id = Auth::id();
 		$admin_user = AdminUser::where('user_id', '=', $user_id)
 			->first();
-		if(!is_null($admin_user)) {	$admin_user_check = "True";	} else { $admin_user_check = "False"; }				
+		if(!is_null($admin_user)) {	$admin_user_check = "True";	} else { $admin_user_check = "False"; }
 		View::share('admin_user',$admin_user);
-		View::share('admin_user_check',$admin_user_check);	
+		View::share('admin_user_check',$admin_user_check);
 
 		$event = DB::table('events')->where('event_unique_name', $event_unique_name)->first();
-		if(!is_null($event)) {	
-			//return "Event Found"; 
-		} else { 
+		if(!is_null($event)) {
+			//return "Event Found";
+		} else {
 			return "Event Not Found";
-		}		
+		}
 		View::share('event', $event);
 
-		return View::make('admin.eventmanagement_edit');				
+		return View::make('admin.eventmanagement_edit');
 
 	}
 
@@ -1161,7 +1161,7 @@ class PageController extends BaseController {
 		$validator = Validator::make(Input::all(),
 			array(
 				'event_name' => 'required',
-				'event_unique_name' => 'required'					
+				'event_unique_name' => 'required'
 			)
 		);
 
@@ -1174,7 +1174,7 @@ class PageController extends BaseController {
 				->withInput();   // fills the field with the old inputs what were correct
 
 		} else {
-			
+
 			$event_name 			= Input::get('event_name');
 			$event_details_short 	= Input::get('event_details_short');
 			$event_details 			= Input::get('event_details');
@@ -1191,19 +1191,19 @@ class PageController extends BaseController {
 			if (is_null($event_status)) {
 				$event_status = "Closed";
 			} else {
-				$event_status = "Open";			
+				$event_status = "Open";
 			}
 			if (is_null($event_rsvp_status)) {
 				$event_rsvp_status = "Closed";
 			} else {
-				$event_rsvp_status = "Open";			
+				$event_rsvp_status = "Open";
 			}
 			if (is_null($event_has_questions)) {
 				$event_has_questions = "No";
 			} else {
-				$event_has_questions = "Yes";			
+				$event_has_questions = "Yes";
 			}
-			
+
 
 			// Update existing row in basic_infos if it exists. Else create new entry.
 			$event = DB::table('events')->where('event_unique_name', $event_unique_name)->first();
@@ -1212,26 +1212,26 @@ class PageController extends BaseController {
 				DB::table('events')
 		            ->where('event_unique_name', $event_unique_name)
 		            ->update(array(
-		            	'event_name'			=> $event_name,			
+		            	'event_name'			=> $event_name,
 		            	'event_url'				=> $event_unique_name,
-						'event_details_short' 	=> $event_details_short,			
+						'event_details_short' 	=> $event_details_short,
 						'event_details'			=> $event_details,
-						'event_picture'			=> $event_picture,															
-						'event_date'			=> $event_date,															
-						'event_time'			=> $event_time,															
-						'event_place'			=> $event_place,															
-						'event_fb_event_link'	=> $event_fb_event_link,															
-						'event_organizer'		=> $event_organizer,												
-						'event_status'			=> $event_status,												
+						'event_picture'			=> $event_picture,
+						'event_date'			=> $event_date,
+						'event_time'			=> $event_time,
+						'event_place'			=> $event_place,
+						'event_fb_event_link'	=> $event_fb_event_link,
+						'event_organizer'		=> $event_organizer,
+						'event_status'			=> $event_status,
 						'event_rsvp_status'		=> $event_rsvp_status,
 						'event_has_questions'	=> $event_has_questions
 		            ));
-						
-				
+
+
 				return Redirect::route('admin-event-management')
 	                ->with('globalalertmessage', 'Event Information Updated')
 	                ->with('globalalertclass', 'success');
-	    
+
 
 			} else {
 
@@ -1253,7 +1253,7 @@ class PageController extends BaseController {
 		$validator = Validator::make(Input::all(),
 			array(
 				'event_name' 		=> 'required',
-				'event_unique_name' => 'required'					
+				'event_unique_name' => 'required'
 			)
 		);
 
@@ -1266,7 +1266,7 @@ class PageController extends BaseController {
 				->withInput();   // fills the field with the old inputs what were correct
 
 		} else {
-			
+
 			$event_name = Input::get('event_name');
 
 			$deleteevent = EventsModel::where('event_unique_name', '=', $event_unique_name)
@@ -1284,14 +1284,14 @@ class PageController extends BaseController {
 
 	/* Admin User Management Page (GET) */
 	public function getAdminUserManagement(){
-		$user_id = Auth::id();		
-		
-		// Check if User has Admin Access		
+		$user_id = Auth::id();
+
+		// Check if User has Admin Access
 		$admin_user = AdminUser::where('user_id', '=', $user_id)
 			->first();
-		if(!is_null($admin_user)) {	$admin_user_check = "True";	} else { $admin_user_check = "False"; }				
+		if(!is_null($admin_user)) {	$admin_user_check = "True";	} else { $admin_user_check = "False"; }
 		View::share('admin_user',$admin_user);
-		View::share('admin_user_check',$admin_user_check);	
+		View::share('admin_user_check',$admin_user_check);
 
 		$users = DB::table('users')->get();
 		foreach ($users as $key => $user) {
@@ -1299,27 +1299,27 @@ class PageController extends BaseController {
 			$user->user_name 			= $user_basic_info->firstname . " " . $user_basic_info->lastname;
 			$user->user_email 			= $user_basic_info->email;
 			$user->user_phone 			= $user_basic_info->phone;
-			$user->user_phonehome 		= $user_basic_info->phonehome;			
+			$user->user_phonehome 		= $user_basic_info->phonehome;
 			$user->user_graduatingyear 	= $user_basic_info->graduatingyear;
 			$user->user_university 		= $user_basic_info->future_field1;
 			$user->user_department 		= $user_basic_info->future_field2;
 			$user->serial_number		= $key + 1;
 		}
-		View::share('users', $users);		
+		View::share('users', $users);
 
-		return View::make('admin.usermanagement');				
+		return View::make('admin.usermanagement');
 	}
 
 	/* Admin User Management Registered Users Excel Page (GET) */
 	public function getUserManagementRegisteredUsersExcel()
 	{
 		// Data Generation
-		// Check if User has Admin Access		
-		$user_id = Auth::id();				
+		// Check if User has Admin Access
+		$user_id = Auth::id();
 		$admin_user = AdminUser::where('user_id', '=', $user_id)
 			->first();
-		if(!is_null($admin_user)) {	$admin_user_check = "True";	} 
-		else { $admin_user_check = "False"; return "Your Access Level is Not Admin."; }				
+		if(!is_null($admin_user)) {	$admin_user_check = "True";	}
+		else { $admin_user_check = "False"; return "Your Access Level is Not Admin."; }
 
 		$users = DB::table('users')->get();
 		foreach ($users as $key => $user) {
@@ -1327,8 +1327,8 @@ class PageController extends BaseController {
 			$user->user_name 			= $user_basic_info->firstname . " " . $user_basic_info->lastname;
 			$user->user_email 			= $user_basic_info->email;
 			$user->user_phone 			= $user_basic_info->phone;
-			$user->user_phonehome 		= $user_basic_info->phonehome;			
-			$user->hostel 				= $user_basic_info->hostel;			
+			$user->user_phonehome 		= $user_basic_info->phonehome;
+			$user->hostel 				= $user_basic_info->hostel;
 			$user->user_graduatingyear 	= $user_basic_info->graduatingyear;
 			$user->user_university 		= $user_basic_info->future_field1;
 			$user->user_department 		= $user_basic_info->future_field2;
@@ -1339,9 +1339,9 @@ class PageController extends BaseController {
 
 			$user_array[] = $user_array_row;
 		}
-			
-			
-		
+
+
+
 		$data = (array) $user_array;
 
 		//var_dump($event_attendance_users);
@@ -1369,22 +1369,22 @@ class PageController extends BaseController {
 		    });
 
 		})->export('xls');
-		
+
 		//})->export('xls');
 
 		// or
 		//->download('xls');
-		
+
 		return "Excel";
 	}
 
 	/* Admin Event Management - Create New Event (POST) */
 	public function postAdminEventManagement(){
-	
+
 		$validator = Validator::make(Input::all(),
 			array(
 				'event_name' => 'required',
-				'event_unique_name' => 'required'					
+				'event_unique_name' => 'required'
 			)
 		);
 
@@ -1420,8 +1420,8 @@ class PageController extends BaseController {
 
 				// Save Basic Info Data in basic_infos using
 				$event = EventsModel::create(array(
-					'user_id'				=> $user_id,				
-					'event_id' 				=> $event_id,			
+					'user_id'				=> $user_id,
+					'event_id' 				=> $event_id,
 					'event_unique_name'		=> $event_unique_name,
 					'event_name'			=> $event_name,
 					'event_status'			=> 'Closed',
@@ -1437,12 +1437,12 @@ class PageController extends BaseController {
 
 	/* Admin Administrators Page (GET) */
 	public function getAdminAdministrators(){
-		$user_id = Auth::id();		
-		
-		// Check if User has Admin Access		
+		$user_id = Auth::id();
+
+		// Check if User has Admin Access
 		$admin_user = AdminUser::where('user_id', '=', $user_id)
 			->first();
-		if(!is_null($admin_user)) {	$admin_user_check = "True";	} else { $admin_user_check = "False"; }				
+		if(!is_null($admin_user)) {	$admin_user_check = "True";	} else { $admin_user_check = "False"; }
 		View::share('admin_user',$admin_user);
 		View::share('admin_user_check',$admin_user_check);
 
@@ -1453,27 +1453,27 @@ class PageController extends BaseController {
 			$user->user_name 			= $user_basic_info->firstname . " " . $user_basic_info->lastname;
 			$user->user_email 			= $user_basic_info->email;
 			$user->user_phone 			= $user_basic_info->phone;
-			$user->user_phonehome 		= $user_basic_info->phonehome;			
+			$user->user_phonehome 		= $user_basic_info->phonehome;
 			$user->user_graduatingyear 	= $user_basic_info->graduatingyear;
 			$user->user_university 		= $user_basic_info->future_field1;
 			$user->user_department 		= $user_basic_info->future_field2;
 			$user->serial_number		= $key + 1;
 		}
-		View::share('users', $users);		
+		View::share('users', $users);
 
-		return View::make('admin.administrators');				
+		return View::make('admin.administrators');
 
 	}
 
 	/* Admin Oauth Management Page (GET) */
 	public function getAdminOauthManagement()
 	{
-		$user_id = Auth::id();		
-		
-		// Check if User has Admin Access		
+		$user_id = Auth::id();
+
+		// Check if User has Admin Access
 		$admin_user = AdminUser::where('user_id', '=', $user_id)
 			->first();
-		if(!is_null($admin_user)) {	$admin_user_check = "True";	} else { $admin_user_check = "False"; }				
+		if(!is_null($admin_user)) {	$admin_user_check = "True";	} else { $admin_user_check = "False"; }
 		View::share('admin_user',$admin_user);
 		View::share('admin_user_check',$admin_user_check);
 
@@ -1494,7 +1494,7 @@ class PageController extends BaseController {
 		}
 		View::share('oauth_clients', $oauth_clients);
 
-		return View::make('admin.oauthmanagement');				
+		return View::make('admin.oauthmanagement');
 
 	}
 
@@ -1514,7 +1514,7 @@ class PageController extends BaseController {
 
 		if($validator->fails()) {
 			return "Missing app_name or redirect_uri";
-		} 
+		}
 
 		$app_name 		= Input::get('app_name');
 		$redirect_uri 	= Input::get('redirect_uri');
@@ -1538,22 +1538,22 @@ class PageController extends BaseController {
 
 	    DB::table('oauth_clients')->insert(
 		    array(
-		    	'id' 	=> $client_id, 
-		    	'secret' => $client_secret, 
+		    	'id' 	=> $client_id,
+		    	'secret' => $client_secret,
 		    	'name' 	=> $app_name
 		    	)
 		);
 		DB::table('oauth_client_endpoints')->insert(
 		    array(
-		    	'client_id' 	=> $client_id, 
+		    	'client_id' 	=> $client_id,
 		    	'redirect_uri' 	=> $redirect_uri
 		    	)
 		);
 		DB::table('oauth_developers')->insert(
 		    array(
-		    	'developer_id' 		=> $developer_id, 
-		    	'developer_name' 	=> $developer_name, 
-		    	'developer_email' 	=> $developer_email, 
+		    	'developer_id' 		=> $developer_id,
+		    	'developer_name' 	=> $developer_name,
+		    	'developer_email' 	=> $developer_email,
 		    	'client_id' 		=> $client_id,
 		    	'client_secret' 	=> $client_secret
 		    	)
@@ -1584,7 +1584,7 @@ class PageController extends BaseController {
 
 		if($validator->fails()) {
 			return "Missing developer_id or developer_email";
-		} 
+		}
 
 		$developer_id 	= Input::get('developer_id');
 		$developer_email = Input::get('developer_email');
@@ -1597,7 +1597,7 @@ class PageController extends BaseController {
 	/* Search Box (POST) */
 	public function postSearchBox()
 	{
-		$user_id = Auth::id();		
+		$user_id = Auth::id();
 		$searchboxvalues = array();
 
 		$users = DB::table('users')->get();
@@ -1606,7 +1606,7 @@ class PageController extends BaseController {
 			$user->user_name 			= $user_basic_info->firstname . " " . $user_basic_info->lastname;
 			$user->user_email 			= $user_basic_info->email;
 			$user->user_phone 			= $user_basic_info->phone;
-			$user->user_phonehome 		= $user_basic_info->phonehome;			
+			$user->user_phonehome 		= $user_basic_info->phonehome;
 			$user->user_graduatingyear 	= $user_basic_info->graduatingyear;
 			$user->user_university 		= $user_basic_info->future_field1;
 			$user->user_department 		= $user_basic_info->future_field2;
@@ -1630,14 +1630,14 @@ class PageController extends BaseController {
 		$user_id = Auth::id();
 		$info_check = array();
 		$basic_info = DB::table('basic_infos')->where('user_id', $user_id)->first();
-		
+
 		$affinity_programs = DB::table('affinity_programs')->where('status', 'open')->get();
 		// dd($affinity_programs);
 
 		View::share('basic_info',$basic_info);
 		View::share('affinity_programs',$affinity_programs);
 
-		return View::make('page.affinityprogram');				
+		return View::make('page.affinityprogram');
 	}
 
 	/* Affinity Program Details (GET) */
@@ -1650,7 +1650,7 @@ class PageController extends BaseController {
 
 		$user_id = Auth::id();
 
-		if(!is_null($affinity_program)) {	
+		if(!is_null($affinity_program)) {
 			// Find offers via relation
 			// dd($affinity_program);
 			$affinity_programs_offers = DB::table('affinity_programs_offers')
@@ -1664,14 +1664,14 @@ class PageController extends BaseController {
 											->where('affinityprogramId', $affinity_program->id)
 											->where('userId', $user_id)
 											->first();
-			if(!is_null($affinity_programs_registration)) {	
+			if(!is_null($affinity_programs_registration)) {
 				$affinity_programs_registration_status = "true";
 			} else {
 				$affinity_programs_registration_status = "false";
 			}
 			// return $affinity_programs_registration_status;
 
-		} else { 
+		} else {
 			// Do nothing
 			$affinity_programs_offers = null;
 		}
@@ -1690,7 +1690,7 @@ class PageController extends BaseController {
 		// return Input::all();
 		$affinityprogramId 			= Input::get('affinityprogramId');
 		$affinityprogram_unique_name 	= Input::get('affinityprogram_unique_name');
-		
+
 		$user_id = Auth::id();
 
 		// Save Basic Info Data in basic_infos using
@@ -1710,19 +1710,19 @@ class PageController extends BaseController {
 	/* Admin Affinity Program (GET) */
 	public function getAdminAffinityProgram()
 	{
-		$user_id = Auth::id();		
-		
-		// Check if User has Admin Access		
+		$user_id = Auth::id();
+
+		// Check if User has Admin Access
 		$admin_user = AdminUser::where('user_id', '=', $user_id)
 			->first();
-		if(!is_null($admin_user)) {	$admin_user_check = "True";	} else { $admin_user_check = "False"; }				
+		if(!is_null($admin_user)) {	$admin_user_check = "True";	} else { $admin_user_check = "False"; }
 		View::share('admin_user',$admin_user);
 		View::share('admin_user_check',$admin_user_check);
 
 		$affinity_programs = DB::table('affinity_programs')
 			->orderBy('id', 'desc')
 			->get();
-		View::share('affinity_programs', $affinity_programs);	
+		View::share('affinity_programs', $affinity_programs);
 
 		return View::make('admin.affinityprogram');
 
@@ -1731,28 +1731,28 @@ class PageController extends BaseController {
 	/* Admin Affinity Program Registered Users (GET) */
 	public function getAdminAffinityProgramRegisteredUsers($affinityprogram_unique_name)
 	{
-		// Check if User has Admin Access		
-		$user_id = Auth::id();				
+		// Check if User has Admin Access
+		$user_id = Auth::id();
 		$admin_user = AdminUser::where('user_id', '=', $user_id)
 			->first();
-		if(!is_null($admin_user)) {	$admin_user_check = "True";	} else { $admin_user_check = "False"; }				
+		if(!is_null($admin_user)) {	$admin_user_check = "True";	} else { $admin_user_check = "False"; }
 		View::share('admin_user',$admin_user);
 		View::share('admin_user_check',$admin_user_check);
 
 		$affinity_program = DB::table('affinity_programs')->where('unique_name', $affinityprogram_unique_name)->first();
-		if(!is_null($affinity_program)) {	
-			//return "Event Found"; 
-		} else { 
+		if(!is_null($affinity_program)) {
+			//return "Event Found";
+		} else {
 			return "Affinity Program Not Found";
-		}		
+		}
 		View::share('affinity_program', $affinity_program);
 
 		$affinity_programs_registrations = DB::table('affinity_programs_registrations')
-			->where('affinityprogramId', $affinity_program->id)			
+			->where('affinityprogramId', $affinity_program->id)
 			->get();
 
 		foreach ($affinity_programs_registrations as $key => $affinity_programs_registrations_user) {
-			
+
 			$affinity_programs_registrations_user->user_registeration_number = $key + 1;
 			$registered_user 										= User::find($affinity_programs_registrations_user->userId);
 			$affinity_programs_registrations_user->user_roll_number = $registered_user->rollno;
@@ -1760,7 +1760,7 @@ class PageController extends BaseController {
 			$affinity_programs_registrations_user->user_name 		= $registered_user_basic_info->firstname . " " . $registered_user_basic_info->lastname;
 			$affinity_programs_registrations_user->user_email 		= $registered_user_basic_info->email;
 			$affinity_programs_registrations_user->user_phone 		= $registered_user_basic_info->phone;
-			$affinity_programs_registrations_user->user_phonehome 	= $registered_user_basic_info->phonehome;			
+			$affinity_programs_registrations_user->user_phonehome 	= $registered_user_basic_info->phonehome;
 			$affinity_programs_registrations_user->user_graduatingyear = $registered_user_basic_info->graduatingyear;
 			$affinity_programs_registrations_user->user_future_field1 = $registered_user_basic_info->future_field1;
 			$affinity_programs_registrations_user->user_future_field2 = $registered_user_basic_info->future_field2;
@@ -1771,16 +1771,45 @@ class PageController extends BaseController {
 		// dd($affinity_programs_registrations);
 
 
-		View::share('affinity_programs_registrations', $affinity_programs_registrations);	
+		View::share('affinity_programs_registrations', $affinity_programs_registrations);
 
 
-		return View::make('admin.affinityprogram_registeredusers');				
+		return View::make('admin.affinityprogram_registeredusers');
 
 	}
 
 	public function postAffinityProgramManagement()
 	{
 		return Input::all();
+	}
+
+	/* Admin - Edit Affinity Program (GET) */
+	public function getAdminAffinityProgramEdit($affinityprogram_unique_name)
+	{
+		// Check if User has Admin Access
+		$user_id = Auth::id();
+		$admin_user = AdminUser::where('user_id', '=', $user_id)
+			->first();
+		if(!is_null($admin_user)) {	$admin_user_check = "True";	} else { $admin_user_check = "False"; }
+		View::share('admin_user',$admin_user);
+		View::share('admin_user_check',$admin_user_check);
+
+		$affinity_program = DB::table('affinity_programs')->where('unique_name', $affinityprogram_unique_name)->first();
+		if(!is_null($affinity_program)) {
+			//return "Event Found";
+		} else {
+			return "Affinity Program Not Found";
+		}
+		View::share('affinity_program', $affinity_program);
+
+		return View::make('admin.affinityprogram_edit');
+	}
+
+	/* Admin - Edit Affinity Program (POST) */
+	public function postAdminAffinityProgramEdit($value='')
+	{
+		return Input::all();
+
 	}
 
 }
