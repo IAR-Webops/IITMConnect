@@ -19,9 +19,7 @@
 				        <tr>
 				          <th>AP ID</th>
 				          <th>AP Name</th>
-				          <th>AP Date</th>
 				          <th>AP Status</th>
-				          <th>RSVP Status</th>
 				          <th>View AP</th>
 				          <th>Edit AP</th>
 				          <th>View Registrations</th>
@@ -32,9 +30,7 @@
 				        <tr>
 				          <th scope="row">{{$affinity_program->id}}</th>
 				          <td>{{$affinity_program->name}}</td>
-				          <td>{{$affinity_program->name}}</td>
 				          <td>{{$affinity_program->status}}</td>
-  				          <td>{{$affinity_program->name}}</td>
 						  <td>
 						    <a class="btn btn-primary btn-large btn-block vieweventdetailsbtn" href="{{ URL::to('/') }}/affinityprogram/{{$affinity_program->unique_name}}">View AP Details</a>
 				          </td>

@@ -1806,9 +1806,31 @@ class PageController extends BaseController {
 	}
 
 	/* Admin - Edit Affinity Program (POST) */
-	public function postAdminAffinityProgramEdit($value='')
+	public function postAdminAffinityProgramEdit($affinityprogram_unique_name)
 	{
-		return Input::all();
+		// return Input::all();
+		$name 			= Input::get('name');
+		$unique_name 	= Input::get('unique_name');
+		$image 			= Input::get('image');
+		$short_details 	= Input::get('short_details');
+		$long_details	= Input::get('long_details');
+		$status 		= Input::get('status');
+
+		DB::table('affinity_programs')
+			->where('unique_name', $unique_name)
+			->update(array(
+				'name'			=> $name,
+				'image' 		=> $image,
+				'short_details'	=> $short_details,
+				'long_details'	=> $long_details,
+				'status'		=> $status
+			));
+
+
+		return Redirect::route('admin-affinity-program')
+			->with('globalalertmessage', 'Affinity Program Information Updated')
+			->with('globalalertclass', 'success');
+
 
 	}
 
