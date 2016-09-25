@@ -1797,10 +1797,18 @@ class PageController extends BaseController {
 		$affinity_program = DB::table('affinity_programs')->where('unique_name', $affinityprogram_unique_name)->first();
 		if(!is_null($affinity_program)) {
 			//return "Event Found";
+			$affinity_programs_offers = DB::table('affinity_programs_offers')->where('affinityprogramId', $affinity_program->id)->get();
+			if(is_null($affinity_programs_offers)) {
+				$affinity_programs_offers = null;
+			} else {
+				// Do nothing
+				// dd($affinity_programs_offers);
+			}
 		} else {
 			return "Affinity Program Not Found";
 		}
 		View::share('affinity_program', $affinity_program);
+		View::share('affinity_programs_offers', $affinity_programs_offers);
 
 		return View::make('admin.affinityprogram_edit');
 	}
@@ -1831,6 +1839,63 @@ class PageController extends BaseController {
 			->with('globalalertmessage', 'Affinity Program Information Updated')
 			->with('globalalertclass', 'success');
 
+
+	}
+
+	public function getAdminAffinityProgramOfferEdit($affinityprogram_unique_id, $affinityprogram_offer_id)
+	{
+		// Check if User has Admin Access
+		$user_id = Auth::id();
+		$admin_user = AdminUser::where('user_id', '=', $user_id)
+			->first();
+		if(!is_null($admin_user)) {	$admin_user_check = "True";	} else { $admin_user_check = "False"; }
+		View::share('admin_user',$admin_user);
+		View::share('admin_user_check',$admin_user_check);
+
+		$affinity_program_offer = DB::table('affinity_programs_offers')
+									->where('affinityprogramId', $affinityprogram_unique_id)
+									->where('id', $affinityprogram_offer_id)
+									->first();
+		if(!is_null($affinity_program_offer)) {
+			//return "Event Found";
+			// dd($affinity_program_offer);
+		} else {
+			return "Affinity Program Offer Not Found";
+		}
+		View::share('affinity_program_offer', $affinity_program_offer);
+
+		return View::make('admin.affinityprogram_offer_edit');
+	}
+
+	public function postAdminAffinityProgramOfferEdit($affinityprogram_unique_id, $affinityprogram_offer_id)
+	{
+		// return Input::all();
+		$name 			= Input::get('name');
+		$image 			= Input::get('image');
+		$short_details 	= Input::get('short_details');
+		$long_details	= Input::get('long_details');
+		$offer_code 		= Input::get('offer_code');
+		$offer_code_message = Input::get('offer_code_message');
+		$status 		= Input::get('status');
+
+
+		DB::table('affinity_programs_offers')
+			->where('affinityprogramId', $affinityprogram_unique_id)
+			->where('id', $affinityprogram_offer_id)
+			->update(array(
+				'name'			=> $name,
+				'image' 		=> $image,
+				'short_details'	=> $short_details,
+				'long_details'	=> $long_details,
+				'offer_code'	=> $offer_code,
+				'offer_code_message'=> $offer_code_message,
+				'status'		=> $status
+			));
+
+
+		return Redirect::route('admin-affinity-program')
+			->with('globalalertmessage', 'Affinity Program Information Updated')
+			->with('globalalertclass', 'success');
 
 	}
 
