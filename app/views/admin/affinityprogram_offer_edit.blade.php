@@ -89,7 +89,7 @@
                                 <label class="text-right">offer_code_message</label>
                               </div>
                               <div class="col-sm-12 col-md-8">
-                                <textarea type="text" class="form-control" name="offer_code_message" placeholder="Short Details *" value="" required>{{$affinity_program_offer->offer_code_message}}</textarea>
+                                <textarea type="text" class="form-control" name="offer_code_message" placeholder="offer_code_message *" value="">{{$affinity_program_offer->offer_code_message}}</textarea>
                               </div>
                             </div>
 
