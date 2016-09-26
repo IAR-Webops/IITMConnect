@@ -1834,12 +1834,9 @@ class PageController extends BaseController {
 				'status'		=> $status
 			));
 
-
 		return Redirect::route('admin-affinity-program')
 			->with('globalalertmessage', 'Affinity Program Information Updated')
 			->with('globalalertclass', 'success');
-
-
 	}
 
 	public function getAdminAffinityProgramOfferEdit($affinityprogram_unique_id, $affinityprogram_offer_id)
@@ -1892,11 +1889,65 @@ class PageController extends BaseController {
 				'status'		=> $status
 			));
 
-
 		return Redirect::route('admin-affinity-program')
 			->with('globalalertmessage', 'Affinity Program Information Updated')
 			->with('globalalertclass', 'success');
+	}
 
+	public function getAdminAffinityProgramOfferNew($affinityprogram_unique_id)
+	{
+		// Check if User has Admin Access
+		$user_id = Auth::id();
+		$admin_user = AdminUser::where('user_id', '=', $user_id)
+			->first();
+		if(!is_null($admin_user)) {	$admin_user_check = "True";	} else { $admin_user_check = "False"; }
+		View::share('admin_user',$admin_user);
+		View::share('admin_user_check',$admin_user_check);
+
+		View::share('affinityprogram_unique_id',$affinityprogram_unique_id);
+
+		return View::make('admin.affinityprogram_offer_new');
+	}
+
+	public function postAdminAffinityProgramOfferNew($affinityprogram_unique_id)
+	{
+		// return Input::all();
+		$name 			= Input::get('name');
+		$image 			= Input::get('image');
+		$short_details 	= Input::get('short_details');
+		$long_details	= Input::get('long_details');
+		$offer_code 		= Input::get('offer_code');
+		$offer_code_message = Input::get('offer_code_message');
+		$status 		= Input::get('status');
+
+		DB::table('affinity_programs_offers')
+			->insert(array(
+				'name'			=> $name,
+				'image' 		=> $image,
+				'short_details'	=> $short_details,
+				'long_details'	=> $long_details,
+				'offer_code'	=> $offer_code,
+				'offer_code_message'=> $offer_code_message,
+				'status'		=> $status,
+				'affinityprogramId' => $affinityprogram_unique_id
+			));
+
+		return Redirect::route('admin-affinity-program')
+			->with('globalalertmessage', 'Affinity Program Offer Created')
+			->with('globalalertclass', 'success');
+
+	}
+
+	public function postAdminAffinityProgramOfferDelete($affinityprogram_unique_id, $affinityprogram_offer_id)
+	{
+		DB::table('affinity_programs_offers')
+			->where('affinityprogramId', $affinityprogram_unique_id)
+			->where('id', $affinityprogram_offer_id)
+			->delete();
+
+		return Redirect::route('admin-affinity-program')
+			->with('globalalertmessage', 'Affinity Program Offer Deleted')
+			->with('globalalertclass', 'success');
 	}
 
 }

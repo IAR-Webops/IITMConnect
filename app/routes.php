@@ -142,6 +142,16 @@ Route::group(array('before' => 'auth'), function() {
 			array('as'=>'admin-affinityprogram-offer-edit-post', 'uses'=>'PageController@postAdminAffinityProgramOfferEdit'
 		));
 
+		/* Admin (AffinityProgram) Offer New (POST) */
+		Route::post('admin/affinityprogram/{affinityprogram_unique_id}/offer/new',
+			array('as'=>'admin-affinityprogram-offer-new-post', 'uses'=>'PageController@postAdminAffinityProgramOfferNew'
+		));
+
+		/* Admin (AffinityProgram) Offer Delete (POST) */
+		Route::post('admin/affinityprogram/{affinityprogram_unique_id}/{affinityprogram_offer_id}/delete',
+			array('as'=>'admin-affinityprogram-offer-delete-post', 'uses'=>'PageController@postAdminAffinityProgramOfferDelete'
+		));
+
 
 	});
 
@@ -358,6 +368,11 @@ Route::group(array('before' => 'auth'), function() {
 	/* Admin (AffinityProgram) Offer Edit (GET) */
 	Route::get('admin/affinityprogram/{affinityprogram_unique_id}/{affinityprogram_offer_id}/edit',
 		array('as'=>'admin-affinityprogram-offer-edit', 'uses'=>'PageController@getAdminAffinityProgramOfferEdit'
+	));
+
+	/* Admin (AffinityProgram) Offer New (GET) */
+	Route::get('admin/affinityprogram/{affinityprogram_unique_id}/offer/new',
+		array('as'=>'admin-affinityprogram-offer-new', 'uses'=>'PageController@getAdminAffinityProgramOfferNew'
 	));
 
 	### END - Admin

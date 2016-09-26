@@ -16,7 +16,7 @@
 				          	<!-- Field - AP Name -->
 				            <div class="form-group">
 				              <div class="col-sm-12 col-md-4 text-right">
-				            	<label class="text-right">AP Name :</label>
+				            	<label class="text-right">Offer Name :</label>
 				              </div>
 				              <div class="col-sm-12 col-md-8">
 				                <input type="text" class="form-control" name="name" placeholder="AP Name *" value="{{$affinity_program_offer->name}}" required>
@@ -107,6 +107,53 @@
                             </div>
 
                         </form>
+
+						<div class="col-sm-12">
+				          <h4 class="text-center">Danger Zone</h4>
+				          <hr>
+							<p class="text-center">
+								Click the button below to delete this Offer permanently.<br>
+								Be advised, this action cannot be undone.
+							</p>
+							<p class="text-center">
+						  		<a href="#fakelink" class="btn btn-lg btn-danger" data-toggle="modal" data-target="#deleteEventModal">Delete Event</a>
+						  	</p>
+						</div>
+
+
+						<!-- Modal -->
+						<div class="modal fade" id="deleteEventModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						  <div class="modal-dialog">
+						    <div class="modal-content">
+							<form action="{{ URL::to('/') }}/admin/affinityprogram/{{ $affinity_program_offer->affinityprogramId }}/{{$affinity_program_offer->id}}/delete" class="form-horizontal" role="form" method="post">
+
+						      <div class="modal-header">
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						        <h4 class="modal-title" id="myModalLabel">Delete Offer</h4>
+						      </div>
+						      <div class="modal-body">
+						      	<div class="container-fluid">
+
+						          	<!-- Field - Name -->
+						            <div class="form-group">
+						        	Are you sure you want to delete the Offer permanently?
+									<input type="text" class="form-control" id="name" name="name" placeholder="Offer Name" value="{{$affinity_program_offer->name}}" style="display:none">
+									<input type="text" class="form-control" id="offer_id" name="offer_id" placeholder="Offer ID" value="{{$affinity_program_offer->id}}" style="display:none">
+						            </div>
+						        </div>
+						      </div>
+						      <div class="modal-footer">
+						        <button type="submit" class="btn btn-danger">Yes</button>
+						        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+						      </div>
+
+						    	{{ Form::token() }}
+							</form>
+						    </div>
+						  </div>
+						</div>
+						<!-- END - Modal -->
+
 
 					@elseif($admin_user_check == "False")
 						<p>
