@@ -19,12 +19,12 @@ class CreateAffinityProgramsOffersTable extends Migration {
             $table->string('name');
             $table->string('image');
             $table->string('short_details');
-            $table->string('long_details', 1000);
+            $table->string('long_details', 4000);
             $table->string('offer_code');
             $table->string('offer_code_message');
             $table->string('status');
             $table->string('affinityprogramId');
-      
+
             $table->string('created_at');
             $table->string('updated_at');
         });
@@ -38,7 +38,7 @@ class CreateAffinityProgramsOffersTable extends Migration {
 	public function down()
 	{
 		//
-		Schema::drop('affinity_programs_offers');		
+		Schema::drop('affinity_programs_offers');
 	}
 
 }
