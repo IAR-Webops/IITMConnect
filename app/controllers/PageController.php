@@ -1656,6 +1656,7 @@ class PageController extends BaseController {
 			$affinity_programs_offers = DB::table('affinity_programs_offers')
 										->where('status', 'open')
 										->where('affinityprogramId', $affinity_program->id)
+										->orderBy('id', 'desc')
 										->get();
 			// dd($affinity_programs_offers);
 
