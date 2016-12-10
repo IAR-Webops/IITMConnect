@@ -16,9 +16,10 @@ class CreateYearbookTable extends Migration {
         {
             $table->increments('id');
             $table->integer('user_id');
-			$table->string('remember_insti_for', 8000);
+			$table->string('insti_remember_for', 8000);
 			$table->string('insti_name');
 			$table->string('insti_life_icons');
+			$table->string('insti_craziest_moment');
 			$table->string('grad_year');
 
 			$table->string('created_at');

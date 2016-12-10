@@ -152,6 +152,12 @@ Route::group(array('before' => 'auth'), function() {
 			array('as'=>'admin-affinityprogram-offer-delete-post', 'uses'=>'PageController@postAdminAffinityProgramOfferDelete'
 		));
 
+		/* Yearbook Edit (POST) */
+		Route::post('/yearbook/{rollno}/edit',
+			array('as' => 'yearbook-roll-no-edit-post',
+				'uses' => 'YearbookController@postYearbookRollNoEdit'
+		));
+
 
 	});
 
@@ -377,6 +383,23 @@ Route::group(array('before' => 'auth'), function() {
 
 	### END - Admin
 
+	### START - Yearbook
+	
+	/* Yearbook (GET) */
+	Route::get('/yearbook',
+		array('as' => 'yearbook-home',
+			'uses' => 'YearbookController@getYearbookHome'
+	));
+
+
+	/* Yearbook Edit (GET) */
+	Route::get('/yearbook/{rollno}/edit',
+		array('as' => 'yearbook-rollno-edit',
+			'uses' => 'YearbookController@getYearbookRollNoEdit'
+	));
+
+	### END - Yearbook
+
 });
 
 ###
@@ -409,16 +432,10 @@ Route::get('/profile/{user_id}',
 		'uses' => 'ProfileController@getProfileUserId'
 ));
 
-/* Public Yearbook (GET) */
-Route::get('/yearbook/{user_id}',
-	array('as' => 'yearbook-user-id',
-		'uses' => 'YearbookController@getYearbookUserId'
-));
-
-/* Public Yearbook (GET) */
-Route::get('/yearbook/{user_id}/edit',
-	array('as' => 'yearbook-user-id-edit',
-		'uses' => 'YearbookController@getYearbookUserIdEdit'
+/* Public User Yearbook (GET) */
+Route::get('/yearbook/{rollno}',
+	array('as' => 'yearbook-roll-no',
+		'uses' => 'YearbookController@getYearbookRollNo'
 ));
 
 

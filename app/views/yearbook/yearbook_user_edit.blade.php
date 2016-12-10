@@ -6,23 +6,32 @@
           <h4>Yearbook Information Edit</h4>
           <hr>
 		  <p>
-			  Personal Email : <a href="#" class="">Edit</a> <br>
-			  Graduating Year : <a href="#" class="">Edit</a>
+			  Personal Email : <strong>{{ $basic_info->email }}</strong> <a href="{{ URL::route('basic-info') }}" class="btn btn-sm btn-warning">Edit</a> <br>
+			  Graduating Year : <strong>{{ $basic_info->graduatingyear }}</strong> <a href="{{ URL::route('basic-info') }}" class="btn btn-sm btn-warning">Edit</a>
 		  </p>
-          <form action="{{ url('/') }}" class="form-horizontal" role="form" method="post">
+          <form action="{{ url('/') }}/yearbook/{{ $rollno }}/edit" class="form-horizontal" role="form" method="post">
             <div class="form-group">
             	<div class="col-sm-12 col-md-12">
                     <label>I'll always remember Insti for ...</label>
-                        <textarea class="form-control" name="remember_insti_for" placeholder="Your message here"></textarea>
+                        <textarea class="form-control" name="insti_remember_for" placeholder="Your message here" required="">{{ $user_yearbook->insti_remember_for }}</textarea>
 	            </div>
             </div>
 
             <div class="form-group">
                 <div class="col-sm-12 col-md-12">
                     <label>Insti Nickname</label>
-                      <input type="text" class="form-control" name="insti_name" placeholder="Insti Name" value="">
+                      <input type="text" class="form-control" name="insti_name" placeholder="Insti Name" value="{{ $user_yearbook->insti_name }}" required="">
                 </div>
             </div>
+
+			<div class="form-group">
+            	<div class="col-sm-12 col-md-12">
+                    <label>Craziest moment in Insti life ...</label>
+                        <textarea class="form-control" name="insti_craziest_moment" placeholder="Your message here">{{ $user_yearbook->insti_craziest_moment }}</textarea>
+	            </div>
+            </div>
+
+			<input type="hidden" class="form-control" name="grad_year" value="{{ $basic_info->graduatingyear }}" required="">
 
             <hr>
           	<!-- Field - Submit -->
