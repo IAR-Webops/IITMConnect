@@ -409,6 +409,18 @@ Route::get('/profile/{user_id}',
 		'uses' => 'ProfileController@getProfileUserId'
 ));
 
+/* Public Yearbook (GET) */
+Route::get('/yearbook/{user_id}',
+	array('as' => 'yearbook-user-id',
+		'uses' => 'YearbookController@getYearbookUserId'
+));
+
+/* Public Yearbook (GET) */
+Route::get('/yearbook/{user_id}/edit',
+	array('as' => 'yearbook-user-id-edit',
+		'uses' => 'YearbookController@getYearbookUserIdEdit'
+));
+
 
 /* Debuggin Page (GET) */
 

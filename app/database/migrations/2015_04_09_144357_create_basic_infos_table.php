@@ -16,17 +16,17 @@ class CreateBasicInfosTable extends Migration {
 		Schema::create('basic_infos', function($table)
         {
             $table->increments('id');
-            $table->integer('user_id');            
+            $table->integer('user_id');
             $table->string('firstname');
             $table->string('middlename');
             $table->string('lastname');
             $table->string('department');
             $table->string('minor');
             $table->string('optionsRadiosDegree');
-            $table->string('projectguide');                                
-            $table->string('email');                                
-            $table->string('phone');                                
-            $table->string('phonehome');                                
+            $table->string('projectguide');
+            $table->string('email');
+            $table->string('phone');
+            $table->string('phonehome');
             $table->string('graduatingyear');
             $table->string('hostel');
             $table->string('status');
