@@ -5,8 +5,11 @@
 		<div class="col-sm-12 col-md-11">
           <h4>Yearbook Information Edit</h4>
           <hr>
+		  <p>
+			  Personal Email : <a href="#" class="">Edit</a> <br>
+			  Graduating Year : <a href="#" class="">Edit</a>
+		  </p>
           <form action="{{ url('/') }}" class="form-horizontal" role="form" method="post">
-          	<!-- Field - Google Plus Profile Link -->
             <div class="form-group">
             	<div class="col-sm-12 col-md-12">
                     <label>I'll always remember Insti for ...</label>
