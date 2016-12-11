@@ -40,7 +40,7 @@
           			<input class="btn btn-block btn-lg btn-primary" type="submit" value="Save">
           		</div>
           		<div class="col-sm-12 col-md-6">
-			        <a class="btn btn-block btn-lg btn-danger" href="{{ URL::route('home') }}">Cancel</a>
+			        <a class="btn btn-block btn-lg btn-danger" href="{{ URL::route('yearbook-home') }}">Cancel</a>
           		</div>
           		{{ Form::token() }}
           	</div>
