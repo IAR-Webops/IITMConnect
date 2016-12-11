@@ -136,7 +136,7 @@
           		<div class="col-sm-12 col-md-6">
 		            <select data-toggle="select" class="form-control select select-default" name="graduatingyear" id="graduatingyear" required>
 		              <optgroup label="Graduating Year">
-		              @for ($i=2020; $i > 1970; $i--)
+		              @for ($i=2025; $i > 1970; $i--)
 		              	<option value="{{$i}}">{{$i}}</option>
 		              @endfor
 		              </optgroup>
