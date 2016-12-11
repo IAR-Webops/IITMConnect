@@ -1,9 +1,9 @@
 @extends('page.home')
 
 @section('mainbodycontent')
-	
+
 		<div class="col-sm-12 col-md-11">
-          <h4>Basic Information</h4>        	
+          <h4>Basic Information</h4>
           <hr>
           <form action="{{ URL::route('basic-info-post') }}" class="form-horizontal" role="form" method="post">
           	<!-- Field - Name -->
@@ -34,33 +34,33 @@
 		              <optgroup label="Department">
 		              	@foreach ($static_departments as $static_department)
 		                <option value="{{$static_department->deptartment_name}}">{{$static_department->deptartment_name}}</option>
-						@endforeach		                
+						@endforeach
 		              </optgroup>
 		            </select>
 		            @if(!$basic_info->department == "")
 		            	<span style="font-size:14px;" >Department Saved : {{ $basic_info->department }}</span>
 		            @else
-		            	<span style="font-size:14px;" >Choose your Department *</span>		            	
+		            	<span style="font-size:14px;" >Choose your Department *</span>
 		            @endif
 		    	</div>
 		    	<div class="col-sm-12 col-md-6">
 		            <select data-toggle="select" class="form-control select select-default" name="minor" id="minor" required>
 		              <optgroup label="Minor">
 		              	@foreach ($static_minors as $static_minor)
-		                <option value="{{$static_minor->minor_name}}">{{$static_minor->minor_name}}</option>		                
-						@endforeach		                
+		                <option value="{{$static_minor->minor_name}}">{{$static_minor->minor_name}}</option>
+						@endforeach
 		              </optgroup>
 		            </select>
 		            @if(!$basic_info->minor == "")
 		            	<span style="font-size:14px;">Minor Saved : {{ $basic_info->minor }}</span>
 		            @else
-		            	<span style="font-size:14px;" >Choose your Minor *</span>		            			            
-		            @endif	            
+		            	<span style="font-size:14px;" >Choose your Minor *</span>
+		            @endif
 		    	</div>
 	        </div>
           	<!-- Field - Degree Type -->
-          	<div class="form-group">            
-	          	<div class="col-sm-12 col-md-6"> 
+          	<div class="form-group">
+	          	<div class="col-sm-12 col-md-6">
 	              <label class="radio" for="radio4a">
 	                <input type="radio" name="optionsRadiosDegree" data-toggle="radio" value="B. Tech" id="radio4a" required checked>
 	                 B. Tech
@@ -94,7 +94,7 @@
 	                 M.Sc
 	              </label>
 	            </div>
-            </div>            
+            </div>
             <!-- Field - Email -->
             <div class="form-group">
             	<div class="col-sm-12 col-md-8">
@@ -144,27 +144,27 @@
 		            @if(!$basic_info->graduatingyear == "")
 		            	<span style="font-size:14px;">Graduating Year : {{ $basic_info->graduatingyear }}</span>
 		            @else
-		            	<span style="font-size:14px;" >Choose your Graduating Year *</span>		            	
+		            	<span style="font-size:14px;" >Choose your Graduating Year *</span>
 		            @endif
-		    	</div>		
+		    	</div>
 		    	<div class="col-sm-12 col-md-6">
 		            <select data-toggle="select" class="form-control select select-default" name="hostel" id="hostel" required>
 		              <optgroup label="Hostel">
 		              	@foreach ($static_hostels as $static_hostel)
 		                <option value="{{$static_hostel->hostel_name}}">{{$static_hostel->hostel_name}}</option>
-						@endforeach		                
+						@endforeach
 		              </optgroup>
 		            </select>
 		            @if(!$basic_info->hostel == "")
 		            	<span style="font-size:14px;" >Hostel Saved : {{ $basic_info->hostel }}</span>
 		            @else
-		            	<span style="font-size:14px;" >Choose your Hostel *</span>		            	
+		            	<span style="font-size:14px;" >Choose your Hostel *</span>
 		            @endif
-		    	</div>    	
+		    	</div>
 	        </div>
 	        <!-- Field - Hostel -->
           	<div class="form-group">
-          		  	
+
 	        </div>
 	        <!-- Field - Future Plans -->
           	<div class="form-group">
@@ -174,7 +174,7 @@
 		                <input type="radio" name="optionsRadiosFuture" data-toggle="radio" value="Job" id="radio4job" required>
 		                 Company Details
 		            </label>
-		          	<div class="form-group">		            
+		          	<div class="form-group">
 			            <div class="col-sm-12 col-md-offset-1 col-md-4">
 			                <input type="text" class="form-control" name="companyname" id="companyname" placeholder="Company's Name" readonly="" required>
 			            </div>
@@ -189,7 +189,7 @@
 		                <input type="radio" name="optionsRadiosFuture" data-toggle="radio" value="Higher Studies" id="radio4higherstudies" required>
 		                 University Details
 		            </label>
-		            <div class="form-group">		            
+		            <div class="form-group">
 			            <div class="col-sm-12 col-md-offset-1 col-md-4">
 			                <input type="text" class="form-control" name="universityname" id="universityname" placeholder="University Name" readonly="" required>
 			            </div>
@@ -204,10 +204,10 @@
 		                <input type="radio" name="optionsRadiosFuture" data-toggle="radio" value="Others" id="radio4others" required>
 		                 Others
 		            </label>
-		            <div class="form-group">		            
+		            <div class="form-group">
 			            <div class="col-sm-12 col-md-offset-1 col-md-4">
 			                <input type="text" class="form-control" name="futureothers" id="futureothers" placeholder="Other Plans" readonly="">
-			            </div>			            
+			            </div>
 			        </div>
           		</div>
           	</div>
@@ -218,24 +218,24 @@
 		              <span class="input-group-addon"><span class="fui-location"></span></span>
 		              <input type="text" class="form-control" id="current_city" name="current_city" placeholder="Enter you current city *" value="{{ $basic_info->current_city }}" required>
 		            </div>
-		            <p>Make sure to update this when travelling to a different city to get updates 
+		            <p>Make sure to update this when travelling to a different city to get updates
 		            on the latest happenings and events by the Alumni chapter of that city.	</p>
 	            </div>
             </div>
           	<hr>
-            
+
           	<!-- Field - Submit -->
           	<div class="form-group">
           		<div class="col-sm-12 col-md-6">
           			<input class="btn btn-block btn-lg btn-primary" type="submit" value="Save">
           		</div>
           		<div class="col-sm-12 col-md-6">
-			        <a class="btn btn-block btn-lg btn-danger" href="{{ URL::route('home') }}">Cancel</a>          			
+			        <a class="btn btn-block btn-lg btn-danger" href="{{ URL::route('home') }}">Cancel</a>
           		</div>
           		{{ Form::token() }}
           	</div>
           </form>
-        </div> 
+        </div>
 
 @stop
 
@@ -248,14 +248,14 @@
 		        $("#companyname, #companytitle, #companylocation, #universityname, #universitydepartment, #universitylocation, #futureothers").val("").attr("readonly",true);
 		        if($("#radio4job").is(":checked")){
 		            $("#companyname").removeAttr("readonly");
-		            $("#companytitle").removeAttr("readonly");		            		            
-		            $("#companylocation").removeAttr("readonly");		            
+		            $("#companytitle").removeAttr("readonly");
+		            $("#companylocation").removeAttr("readonly");
 		            $("#companyname").focus();
 		        }
 		        else if($("#radio4higherstudies").is(":checked")){
 		            $("#universityname").removeAttr("readonly");
 		            $("#universitydepartment").removeAttr("readonly");
-		            $("#universitylocation").removeAttr("readonly");		            		            		            
+		            $("#universitylocation").removeAttr("readonly");
 		            $("#universityname").focus();
 		        }
 		        else if($("#radio4others").is(":checked")){
@@ -275,8 +275,10 @@
 			//alert($('#department').val());
 			// Set the Department
 			$('#department').val("{{ $basic_info->department }}");
+			$('#department').change();
 			// Set the Minor
 			$('#minor').val("{{ $basic_info->minor }}");
+			$('#minor').change();
 			// Set the Degree Type
 			switch("{{ $basic_info->optionsRadiosDegree }}") {
 			    case "B. Tech":
@@ -302,29 +304,31 @@
 			        break;
 			    case "M.Sc":
 			        optionsRadiosDegree_id = "radio4h";
-			        break;    
+			        break;
 			    default:
 			        optionsRadiosDegree_id = "radio4a";
 			        break;
-			} 
+			}
 			$("#" + optionsRadiosDegree_id).prop("checked", true);
 			// Set Graduating Year
 			$('#graduatingyear').val("{{ $basic_info->graduatingyear }}");
+			$('#graduatingyear').change();
 			// Set Hostel
 			$('#hostel').val("{{ $basic_info->hostel }}");
+			$('#hostel').change();
 			// Set Future Plan
 			switch("{{ $basic_info->optionsRadiosFuture }}") {
 			    case "Job":
-			        optionsRadiosFuture_id = "radio4job";			       
+			        optionsRadiosFuture_id = "radio4job";
 			        $('#companyname').val("{{ $basic_info->future_field1 }}");
-			        $('#companytitle').val("{{ $basic_info->future_field2 }}");			        
+			        $('#companytitle').val("{{ $basic_info->future_field2 }}");
 			        $('#companylocation').val("{{ $basic_info->future_field3 }}");
 			        break;
 			    case "Higher Studies":
 			        optionsRadiosFuture_id = "radio4higherstudies";
 			        $('#universityname').val("{{ $basic_info->future_field1 }}");
 			        $('#universitydepartment').val("{{ $basic_info->future_field2 }}");
-			        $('#universitylocation').val("{{ $basic_info->future_field3 }}");			        
+			        $('#universitylocation').val("{{ $basic_info->future_field3 }}");
 			        break;
 			    case "Others":
 			        optionsRadiosFuture_id = "radio4others";
@@ -334,10 +338,10 @@
 			    default:
 			        optionsRadiosFuture_id = "radio4job";
 			        $("#companyname").removeAttr("readonly");
-		            $("#companytitle").removeAttr("readonly");			        
+		            $("#companytitle").removeAttr("readonly");
 		            $("#companylocation").removeAttr("readonly");
 			        break;
-			} 
+			}
 			$("#" + optionsRadiosFuture_id).prop("checked", true);
 
 
@@ -348,7 +352,7 @@
 	<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places" type="text/javascript"></script>
 	<script type="text/javascript">
 	   function initialize() {
-	      
+
 	      var options = {
 		  types: ['(cities)']
 		 };
