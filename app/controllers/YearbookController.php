@@ -20,6 +20,10 @@ class YearbookController extends BaseController {
 	{
 		$basic_info = DB::table('basic_infos')->where('user_id', Auth::id() )->first();
 		// return dd($basic_info);
+		// Concluding Basic Infos has been filled if Graduating Year entry exists in DB for that user
+		if(!empty($basic_info->graduatingyear)) {	$basic_info_check = "True";	} else { $basic_info_check = "False"; }
+		View::share('basic_info_check', $basic_info_check);
+
 		View::share('basic_info', $basic_info);
 
 		$user_yearbook = DB::table('yearbook')->where('user_id', Auth::id() )->first();
