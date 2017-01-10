@@ -25,6 +25,7 @@ class YearbookController extends BaseController {
 		View::share('basic_info_check', $basic_info_check);
 
 		View::share('basic_info', $basic_info);
+		// dd($basic_info);
 
 		$user_yearbook = DB::table('yearbook')->where('user_id', Auth::id() )->first();
 		View::share('user_yearbook', $user_yearbook);

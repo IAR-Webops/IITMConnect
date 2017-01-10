@@ -25,6 +25,21 @@
 			</p>
 			<hr>
 			<h6 class="text-center">Your Yearbook entry</h6>
+			<!-- Profile Photo  -->
+			<form class="form-horizontal">
+				<div class="form-group" style="margin-bottom:15px;">
+					<strong for="profile_photo" class="col-sm-12 col-md-4 control-label">Profile Photo: </strong>
+					<div class="col-sm-12 col-md-8">
+						@if(empty($basic_info->profile_image))
+						<img style="max-height:250px; max-width:250px" src="http://1plusx.com/app/mu-plugins/all-in-one-seo-pack-pro/images/default-user-image.png">
+						@else
+						<img style="max-height:250px; max-width:250px" src="{{ $basic_info->profile_image }}">
+						@endif
+						<br>
+						<a style="width:250px;" href="#" class="btn btn-inverse">Edit Photo</a>
+					</div>
+				</div>
+			</form>
 			@if(is_null($user_yearbook))
 				<p>
 					Your Yearbook entry is currently empty. <a class="" href="{{ url('/yearbook') }}/{{ Auth::user()->rollno }}/edit">Click here</a> to fill it.
