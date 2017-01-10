@@ -90,7 +90,7 @@
 
 	@elseif($basic_info_check == "False")
 		<strong>Note:</strong> You must fill the <a href="{{ URL::route('basic-info') }}" >
-		<strong>Basic Information Form</strong></a> before you can view Details for any Event.
+		<strong>Basic Information Form</strong></a> before you can edit the Yearbook Entry.
 		<br>This Information is required for us to be able to contact you.
 	@endif
 @stop
