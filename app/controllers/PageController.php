@@ -206,6 +206,51 @@ class PageController extends BaseController {
 
 	}
 
+	public function getBasicInfoProfilePhoto()
+	{
+		// START - Checklist For Left Menu
+		// !DRY :( - Check alternative
+		$user_id = Auth::id();
+		$info_check = array();
+		$basic_info = DB::table('basic_infos')->where('user_id', $user_id)->first();
+		if(!is_null($basic_info)) {	$info_check['basic'] = "True";	} else { $info_check['basic'] = "False"; }
+		$home_info = DB::table('home_infos')->where('user_id', $user_id)->first();
+		if(!is_null($home_info)) {	$info_check['home'] = "True";	} else { $info_check['home'] = "False"; }
+		$instilife_info = DB::table('instilife_infos')->where('user_id', $user_id)->first();
+		if(!is_null($instilife_info)) {	$info_check['instilife'] = "True";	} else { $info_check['instilife'] = "False"; }
+		$socialmedia_info = DB::table('socialmedia_infos')->where('user_id', $user_id)->first();
+		if(!is_null($socialmedia_info)) {	$info_check['socialmedia'] = "True";	} else { $info_check['socialmedia'] = "False"; }
+		View::share('info_check',$info_check);
+		// END - Checklist For Left Menu
+
+		$user_id = Auth::id();
+
+		$basic_info = DB::table('basic_infos')->where('user_id', $user_id)->first();
+		if(is_null($basic_info)) {
+			$basic_info = new stdClass();
+			$basic_info->firstname = "";
+			$basic_info->middlename = "";
+			$basic_info->lastname = "";
+			$basic_info->projectguide = "";
+			$basic_info->email = "";
+			$basic_info->phone = "";
+			$basic_info->phonehome = "";
+			$basic_info->department = "";
+			$basic_info->optionsRadiosDegree = "";
+			$basic_info->graduatingyear = "";
+			$basic_info->hostel = "";
+			$basic_info->optionsRadiosFuture = "";
+			$basic_info->future_field1 = "";
+			$basic_info->future_field2 = "";
+			$basic_info->future_field3 = "";
+			$basic_info->current_city = "";
+
+		}
+		View::share('basic_info',$basic_info);
+
+		return View::make('page.basicinfo-profile-photo');
+	}
+
 	/* ### - Home Info */
 	/* Home Info Page (GET) */
 	public function getHomeInfo()

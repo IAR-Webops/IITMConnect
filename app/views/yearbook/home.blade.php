@@ -36,7 +36,7 @@
 						<img style="max-height:250px; max-width:250px" src="{{ $basic_info->profile_image }}">
 						@endif
 						<br>
-						<a style="width:250px;" href="#" class="btn btn-inverse">Edit Photo</a>
+						<a style="width:250px;" href="{{ URL::route('basic-info-profile-photo') }}" class="btn btn-inverse">Edit Photo</a>
 					</div>
 				</div>
 			</form>

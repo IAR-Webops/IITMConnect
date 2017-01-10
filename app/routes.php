@@ -211,6 +211,12 @@ Route::group(array('before' => 'auth'), function() {
 	        'uses' => 'PageController@getBasicInfo'
 	));
 
+	/* Basic Info Page - Profile Photo (GET) */
+	Route::get('/basicinfo/profile-photo',
+	  array('as' => 'basic-info-profile-photo',
+	        'uses' => 'PageController@getBasicInfoProfilePhoto'
+	));
+
 	/* Home Info Page (GET) */
 	Route::get('/homeinfo',
 	  array('as' => 'home-info',
@@ -384,7 +390,7 @@ Route::group(array('before' => 'auth'), function() {
 	### END - Admin
 
 	### START - Yearbook
-	
+
 	/* Yearbook (GET) */
 	Route::get('/yearbook',
 		array('as' => 'yearbook-home',
