@@ -6,7 +6,7 @@
   js = d.createElement(s); js.id = id;
   js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3&appId=1420493024920982";
   fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>	
+}(document, 'script', 'facebook-jssdk'));</script>
 
 <!-- Google Analytics -->
 <script>
@@ -18,4 +18,18 @@
   ga('create', 'UA-60229077-2', 'auto');
   ga('send', 'pageview');
 
+</script>
+
+
+<script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDXM8dfiMTmDse4yLBw1IWGte3l4UyUtDM",
+    authDomain: "iitmconnect.firebaseapp.com",
+    databaseURL: "https://iitmconnect.firebaseio.com",
+    storageBucket: "iitmconnect.appspot.com",
+    messagingSenderId: "841746887047"
+  };
+  firebase.initializeApp(config);
 </script>
