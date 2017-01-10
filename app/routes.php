@@ -78,6 +78,12 @@ Route::group(array('before' => 'auth'), function() {
 				'uses' => 'PageController@postBasicInfo'
 		));
 
+		/* Basic Info Page (POST) */
+		Route::post('/basicinfo/profile-photo',
+			array('as' => 'basic-info-profile-photo-post',
+				'uses' => 'PageController@postBasicInfoProfilePhoto'
+		));
+
 		/* Home Info Page (POST) */
 		Route::post('/homeinfo',
 			array('as' => 'home-info-post',

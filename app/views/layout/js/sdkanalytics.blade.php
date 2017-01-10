@@ -20,7 +20,7 @@
 
 </script>
 
-
+<!-- Firebase Config -->
 <script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>
 <script>
   // Initialize Firebase
@@ -32,4 +32,9 @@
     messagingSenderId: "841746887047"
   };
   firebase.initializeApp(config);
+
+  // Create a root reference
+  var storageRef = firebase.storage().ref();
+
+  console.log(storageRef);
 </script>

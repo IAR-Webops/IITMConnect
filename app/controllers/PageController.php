@@ -251,6 +251,42 @@ class PageController extends BaseController {
 		return View::make('page.basicinfo-profile-photo');
 	}
 
+	public function postBasicInfoProfilePhoto()
+	{
+		// return Input::all();
+
+		// Access the Basic Info
+		$user_id 	= Auth::id();
+		$image_url 	= Input::get('image_url');
+
+		// Update existing row in basic_infos if it exists. Else create new entry.
+		$basic_info = DB::table('basic_infos')->where('user_id', $user_id)->first();
+		if(!is_null($basic_info)) {
+
+			DB::table('basic_infos')
+				->where('user_id', $user_id)
+				->update(array(
+					'profile_image'	=> $image_url
+				));
+
+			return Redirect::route('basic-info-profile-photo')
+				->with('globalalertmessage', 'Profile Photo Updated')
+				->with('globalalertclass', 'success');
+
+		} else {
+			// Save Basic Info Data in basic_infos using
+			$userdata = BasicInfo::create(array(
+				'user_id'				=> $user_id,
+				'profile_image'	=> $image_url
+			));
+
+			return Redirect::route('basic-info-profile-photo')
+				->with('globalalertmessage', 'Profile Photo Saved')
+				->with('globalalertclass', 'success');
+		}
+
+	}
+
 	/* ### - Home Info */
 	/* Home Info Page (GET) */
 	public function getHomeInfo()
