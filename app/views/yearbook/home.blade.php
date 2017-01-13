@@ -42,7 +42,9 @@
 						<img style="max-height:50px; max-width:50px; margin-right:10px;" src="http://1plusx.com/app/mu-plugins/all-in-one-seo-pack-pro/images/default-user-image.png">
 						<img style="max-height:50px; max-width:50px; margin-right:10px;" src="http://1plusx.com/app/mu-plugins/all-in-one-seo-pack-pro/images/default-user-image.png">
 						@else
-						<img style="max-height:50px; max-width:50px" src="{{ $basic_info->profile_image }}">
+						<img style="max-height:50px; max-width:50px; margin-right:10px;" src="{{ URL::asset('img/icons/yearbook_icons') }}/{{ $yearbook_icons_array[0] }}">
+						<img style="max-height:50px; max-width:50px; margin-right:10px;" src="{{ URL::asset('img/icons/yearbook_icons') }}/{{ $yearbook_icons_array[1] }}">
+						<img style="max-height:50px; max-width:50px; margin-right:10px;" src="{{ URL::asset('img/icons/yearbook_icons') }}/{{ $yearbook_icons_array[2] }}">
 						@endif
 						<br>
 						<a style="width:178px; margin-top:10px;" data-toggle="modal" data-target="#yearbookIconsModal" class="btn btn-inverse">Edit Yearbook Icons</a>
@@ -133,9 +135,104 @@
 		      </div>
 		      <div class="modal-body">
 		        Choose three icons that best describe you.
+				<br>
+				<br>
+				<div class="col-sm-12">
+				<form action="{{ url('/') }}/yearbook/{{ Auth::user()->rollno }}/icons/edit" id="form_yearbook_icons" role="form" method="post">
+
+				  <label class="checkbox col-sm-6 col-md-3" >
+		            <input type="checkbox" value="artist.png" id="artist.png" name="yearbook_icons[]" data-toggle="checkbox">
+					<img style="max-height:50px; max-width:50px; margin-top:-16px;" src="{{ URL::asset('img/icons/yearbook_icons/artist.png') }}">
+		          </label>
+
+				  <label class="checkbox col-sm-6 col-md-3" >
+		            <input type="checkbox" value="athelectics.png" id="athelectics.png" name="yearbook_icons[]" data-toggle="checkbox">
+					<img style="max-height:50px; max-width:50px; margin-top:-16px;" src="{{ URL::asset('img/icons/yearbook_icons/athelectics.png') }}">
+		          </label>
+
+				  <label class="checkbox col-sm-6 col-md-3" >
+		            <input type="checkbox" value="badminton.png" id="badminton.png" name="yearbook_icons[]" data-toggle="checkbox">
+					<img style="max-height:50px; max-width:50px; margin-top:-16px;" src="{{ URL::asset('img/icons/yearbook_icons/badminton.png') }}">
+		          </label>
+
+				  <label class="checkbox col-sm-6 col-md-3" >
+		            <input type="checkbox" value="basketball.png" id="basketball.png" name="yearbook_icons[]" data-toggle="checkbox">
+					<img style="max-height:50px; max-width:50px; margin-top:-16px;" src="{{ URL::asset('img/icons/yearbook_icons/basketball.png') }}">
+		          </label>
+
+				  <label class="checkbox col-sm-6 col-md-3" >
+		            <input type="checkbox" value="coder.png" id="coder.png" name="yearbook_icons[]" data-toggle="checkbox">
+					<img style="max-height:50px; max-width:50px; margin-top:-16px;" src="{{ URL::asset('img/icons/yearbook_icons/coder.png') }}">
+		          </label>
+
+				  <label class="checkbox col-sm-6 col-md-3" >
+		            <input type="checkbox" value="cook.png" id="cook.png" name="yearbook_icons[]" data-toggle="checkbox">
+					<img style="max-height:50px; max-width:50px; margin-top:-16px;" src="{{ URL::asset('img/icons/yearbook_icons/cook.png') }}">
+		          </label>
+
+				  <label class="checkbox col-sm-6 col-md-3" >
+		            <input type="checkbox" value="cricket.png" id="cricket.png" name="yearbook_icons[]" data-toggle="checkbox">
+					<img style="max-height:50px; max-width:50px; margin-top:-16px;" src="{{ URL::asset('img/icons/yearbook_icons/cricket.png') }}">
+		          </label>
+
+				  <label class="checkbox col-sm-6 col-md-3" >
+		            <input type="checkbox" value="debate_speaker.png" id="debate_speaker.png" name="yearbook_icons[]" data-toggle="checkbox">
+					<img style="max-height:50px; max-width:50px; margin-top:-16px;" src="{{ URL::asset('img/icons/yearbook_icons/debate_speaker.png') }}">
+		          </label>
+
+				  <label class="checkbox col-sm-6 col-md-3" >
+		            <input type="checkbox" value="dramatists.png" id="dramatists.png" name="yearbook_icons[]" data-toggle="checkbox">
+					<img style="max-height:50px; max-width:50px; margin-top:-16px;" src="{{ URL::asset('img/icons/yearbook_icons/dramatists.png') }}">
+		          </label>
+
+				  <label class="checkbox col-sm-6 col-md-3" >
+		            <input type="checkbox" value="foodie.png" id="foodie.png" name="yearbook_icons[]" data-toggle="checkbox">
+					<img style="max-height:50px; max-width:50px; margin-top:-16px;" src="{{ URL::asset('img/icons/yearbook_icons/foodie.png') }}">
+		          </label>
+
+				  <label class="checkbox col-sm-6 col-md-3" >
+		            <input type="checkbox" value="football.png" id="football.png" name="yearbook_icons[]" data-toggle="checkbox">
+					<img style="max-height:50px; max-width:50px; margin-top:-16px;" src="{{ URL::asset('img/icons/yearbook_icons/football.png') }}">
+		          </label>
+
+				  <label class="checkbox col-sm-6 col-md-3" >
+		            <input type="checkbox" value="gamer.png" id="gamer.png" name="yearbook_icons[]" data-toggle="checkbox">
+					<img style="max-height:50px; max-width:50px; margin-top:-16px;" src="{{ URL::asset('img/icons/yearbook_icons/gamer.png') }}">
+		          </label>
+
+				  <label class="checkbox col-sm-6 col-md-3" >
+		            <input type="checkbox" value="graphic_designer.png" id="graphic_designer.png" name="yearbook_icons[]" data-toggle="checkbox">
+					<img style="max-height:50px; max-width:50px; margin-top:-16px;" src="{{ URL::asset('img/icons/yearbook_icons/graphic_designer.png') }}">
+		          </label>
+
+				  <label class="checkbox col-sm-6 col-md-3" >
+		            <input type="checkbox" value="hockey.png" id="hockey.png" name="yearbook_icons[]" data-toggle="checkbox">
+					<img style="max-height:50px; max-width:50px; margin-top:-16px;" src="{{ URL::asset('img/icons/yearbook_icons/hockey.png') }}">
+		          </label>
+
+				  <label class="checkbox col-sm-6 col-md-3" >
+		            <input type="checkbox" value="instrumental_artist.png" id="instrumental_artist.png" name="yearbook_icons[]" data-toggle="checkbox">
+					<img style="max-height:50px; max-width:50px; margin-top:-16px;" src="{{ URL::asset('img/icons/yearbook_icons/instrumental_artist.png') }}">
+		          </label>
+
+				  <label class="checkbox col-sm-6 col-md-3" >
+		            <input type="checkbox" value="lawn_tennis.png" id="lawn_tennis.png" name="yearbook_icons[]" data-toggle="checkbox">
+					<img style="max-height:50px; max-width:50px; margin-top:-16px;" src="{{ URL::asset('img/icons/yearbook_icons/lawn_tennis.png') }}">
+		          </label>
+
+				  <div class="col-sm-12 col-md-6">
+            		<!-- <input class="btn btn-block btn-lg btn-primary" type="submit" value="Save"> -->
+
+            	  </div>
+
+				  {{ Form::token() }}
+			  	</form>
+		        </div>
+
 		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		      <div class="" style="margin:15px">
+				  <button type="button" class="btn btn-primary" onclick="saveYearbookIcons()">Save Icons</button>
+				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 		      </div>
 		    </div>
 		  </div>
@@ -146,4 +243,25 @@
 		<strong>Basic Information Form</strong></a> before you can edit the Yearbook Entry.
 		<br>This Information is required for us to be able to contact you.
 	@endif
+@stop
+
+@section('jscontent')
+<script>
+var limit = 3;
+$('input[type=checkbox]').on('change', function (e) {
+    if ($('input[type=checkbox]:checked').length > limit) {
+        $(this).prop('checked', false);
+		$.notify("Sorry, You can select only Three icons", "error");
+    }
+});
+
+function saveYearbookIcons() {
+	if ($('input[type=checkbox]:checked').length == limit) {
+		document.getElementById("form_yearbook_icons").submit();
+    } else {
+		$.notify("Sorry, You must select Three icons", "error");
+
+	}
+}
+</script>
 @stop

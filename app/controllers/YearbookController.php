@@ -30,6 +30,16 @@ class YearbookController extends BaseController {
 		$user_yearbook = DB::table('yearbook')->where('user_id', Auth::id() )->first();
 		View::share('user_yearbook', $user_yearbook);
 
+		if(empty($user_yearbook->insti_life_icons)){
+			// Do Nothing
+		} else {
+			// Convert to Array
+			$yearbook_icons_array = explode(",",$user_yearbook->insti_life_icons);
+			// dd($yearbook_icons_array);
+			View::share('yearbook_icons_array', $yearbook_icons_array);
+		}
+
+
 		return View::make('yearbook.home');
 	}
 
@@ -142,6 +152,56 @@ class YearbookController extends BaseController {
 				->with('globalalertclass', 'success');
 		}
 
+	}
+
+	public function postYearbookRollNoIconsEdit($rollno)
+	{
+		// START - Check if user is editing his own data
+		$auth_rollno = Auth::user()->rollno;
+		if( strcasecmp($auth_rollno, $rollno) == 0){
+			// Do Nothing
+		} else {
+			return "Nice try. But you shall not pass @yashmurty";
+		}
+		// END - Check if user is editing his own data
+
+		$user_id = Auth::id();
+
+		// return Input::all();
+		$yearbook_icons 	= Input::get('yearbook_icons');
+		if(sizeof($yearbook_icons) == 3){
+			$yearbook_icons_string = implode(",",$yearbook_icons);
+			// dd($yearbook_icons_string);
+
+			$user_yearbook = DB::table('yearbook')
+								->where('user_id', $user_id)
+								->first();
+
+			if(!is_null($user_yearbook)) {
+
+				DB::table('yearbook')
+					->where('user_id', $user_id)
+					->update(array(
+						'insti_life_icons' 	=> $yearbook_icons_string
+					));
+
+				return Redirect::route('yearbook-home')
+					->with('globalalertmessage', 'Yearbook Icons Updated')
+					->with('globalalertclass', 'success');
+
+			} else {
+
+				return Redirect::route('yearbook-home')
+					->with('globalalertmessage', 'Failed. Please create Yearbook Entry first.')
+					->with('globalalertclass', 'error');
+			}
+
+		} else {
+			# code...
+			return Redirect::route('yearbook-home')
+				->with('globalalertmessage', 'Failed. Looks like you did not select Three icons.')
+				->with('globalalertclass', 'error');
+		}
 
 
 	}

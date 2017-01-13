@@ -164,6 +164,12 @@ Route::group(array('before' => 'auth'), function() {
 				'uses' => 'YearbookController@postYearbookRollNoEdit'
 		));
 
+		/* Yearbook Edit - Icons (POST) */
+		Route::post('/yearbook/{rollno}/icons/edit',
+			array('as' => 'yearbook-roll-no-icons-edit-post',
+				'uses' => 'YearbookController@postYearbookRollNoIconsEdit'
+		));
+
 
 	});
 
