@@ -37,6 +37,7 @@
 				<div class="form-group" style="margin-bottom:15px;">
 					<strong for="profile_photo" class="col-sm-12 col-md-4 control-label">Yearbook Icons: </strong>
 					<div class="col-sm-12 col-md-8">
+						Choose three icons that best describe you. <br>
 						@if(empty($user_yearbook->insti_life_icons))
 						<img style="max-height:50px; max-width:50px; margin-right:10px;" src="http://1plusx.com/app/mu-plugins/all-in-one-seo-pack-pro/images/default-user-image.png">
 						<img style="max-height:50px; max-width:50px; margin-right:10px;" src="http://1plusx.com/app/mu-plugins/all-in-one-seo-pack-pro/images/default-user-image.png">
@@ -76,17 +77,40 @@
 			<br>
 			<hr>
 			<p>
-				Would you like to contribute to the Batch Project?
-				<br>
+
 				@if(is_null($user_yearbook))
-					<span style="font-size:22px; font-weight:900;">Yes</span><br>
+					Would you like to contribute to the Batch Project?
+					<br>
+					<span style="font-size:22px; font-weight:900;">Not Decided</span><br>
 					To change your answer, kindly fill your Yearbook entry first.
 				@else
-					<!-- Button trigger modal -->
-					<span style="font-size:22px; font-weight:900;">Yes</span>
-					<a class="" data-toggle="modal" data-target="#myModal">
-					(Click here to change response)
-					</a>
+					@if($user_yearbook->order_status == "null")
+						Would you like to contribute to the Batch Project?
+						<br>
+						<!-- Button trigger modal -->
+						<span style="font-size:22px; font-weight:900;">Not Decided</span>
+						<a class="" data-toggle="modal" data-target="#myModal">
+						(Click here to change response)
+						</a>
+					@elseif($user_yearbook->order_status == "no")
+						Would you like to contribute to the Batch Project?
+						<br>
+						<!-- Button trigger modal -->
+						<span style="font-size:22px; font-weight:900;">No</span>
+						<a class="" data-toggle="modal" data-target="#myModal">
+						(Click here to change response)
+						</a>
+					@elseif($user_yearbook->order_status == "yes")
+						<!-- Would you like to contribute to the Batch Project?
+						<br> -->
+						<!-- Button trigger modal -->
+						<!-- <span style="font-size:22px; font-weight:900;">Yes</span>
+						<a class="" data-toggle="modal" data-target="#myModal">
+						(Click here to change response)
+						</a> -->
+					@endif
+
+
 				@endif
 			</p>
 
@@ -104,14 +128,19 @@
 		        Would you like to contribute to the Batch Project?
 				<div class="row">
 					<div class="col-sm-12 col-md-6 col-md-offset-3" style="margin-top:20px;">
-						<a class="btn btn-block btn-success btn-lg">Yes, I would.</a>
+						<a id="order_status_yes" class="btn btn-block btn-success btn-lg">Yes, I would.</a>
 					</div>
 					<div class="col-sm-12 text-center" style="margin-top:20px;">
 						OR
 					</div>
 					<div class="col-sm-12 col-md-6 col-md-offset-3" style="margin-top:20px;">
-						<a class="btn btn-block btn-danger btn-lg">No. I don't</a>
+						<a id="order_status_no" class="btn btn-block btn-danger btn-lg">No. I don't</a>
 					</div>
+					<form action="{{ url('/') }}/yearbook/{{ Auth::user()->rollno }}/order-status/edit" id="form_yearbook_order_status" role="form" method="post">
+						<input value="" type="hidden" name="order_status_value" id="order_status_value">
+						{{ Form::token() }}
+					</form>
+
 				</div>
 				<p>
 					<br>
@@ -262,6 +291,18 @@ function saveYearbookIcons() {
 		$.notify("Sorry, You must select Three icons", "error");
 
 	}
+}
+
+$("#order_status_yes").click(function() {
+	saveOrderStatus("yes");
+});
+$("#order_status_no").click(function() {
+	saveOrderStatus("no");
+});
+
+function saveOrderStatus(order_value){
+	$("#order_status_value").val(order_value);
+	document.getElementById("form_yearbook_order_status").submit();
 }
 </script>
 @stop

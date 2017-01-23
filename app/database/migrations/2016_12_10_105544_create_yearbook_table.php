@@ -21,6 +21,7 @@ class CreateYearbookTable extends Migration {
 			$table->string('insti_life_icons');
 			$table->string('insti_craziest_moment', 8000);
 			$table->string('grad_year');
+			$table->string('order_status');
 
 			$table->string('created_at');
             $table->string('updated_at');

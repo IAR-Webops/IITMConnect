@@ -170,6 +170,12 @@ Route::group(array('before' => 'auth'), function() {
 				'uses' => 'YearbookController@postYearbookRollNoIconsEdit'
 		));
 
+		/* Yearbook Edit - Order status (POST) */
+		Route::post('/yearbook/{rollno}/order-status/edit',
+			array('as' => 'yearbook-roll-no-order-status-edit-post',
+				'uses' => 'YearbookController@postYearbookRollNoOrderStatusEdit'
+		));
+
 
 	});
 

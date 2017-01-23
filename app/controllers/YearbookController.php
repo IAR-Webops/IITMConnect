@@ -129,7 +129,8 @@ class YearbookController extends BaseController {
 					'insti_remember_for' 	=> $insti_remember_for,
 					'insti_name'			=> $insti_name,
 					'insti_craziest_moment'	=> $insti_craziest_moment,
-					'grad_year'				=> $grad_year
+					'grad_year'				=> $grad_year,
+					'order_status'			=> "null"
 				));
 
 			return Redirect::route('yearbook-home')
@@ -144,7 +145,8 @@ class YearbookController extends BaseController {
 					'insti_remember_for' 	=> $insti_remember_for,
 					'insti_name'			=> $insti_name,
 					'insti_craziest_moment'	=> $insti_craziest_moment,
-					'grad_year' 			=> $grad_year
+					'grad_year' 			=> $grad_year,
+					'order_status'			=> "null"
 				));
 
 			return Redirect::route('yearbook-home')
@@ -200,6 +202,48 @@ class YearbookController extends BaseController {
 			# code...
 			return Redirect::route('yearbook-home')
 				->with('globalalertmessage', 'Failed. Looks like you did not select Three icons.')
+				->with('globalalertclass', 'error');
+		}
+
+
+	}
+
+	public function postYearbookRollNoOrderStatusEdit($rollno)
+	{
+		// START - Check if user is editing his own data
+		$auth_rollno = Auth::user()->rollno;
+		if( strcasecmp($auth_rollno, $rollno) == 0){
+			// Do Nothing
+		} else {
+			return "Nice try. But you shall not pass @yashmurty";
+		}
+		// END - Check if user is editing his own data
+
+		$user_id = Auth::id();
+
+		// return Input::all();
+		$order_status_value	= Input::get('order_status_value');
+
+		$user_yearbook = DB::table('yearbook')
+							->where('user_id', $user_id)
+							->first();
+
+		if(!is_null($user_yearbook)) {
+
+			DB::table('yearbook')
+				->where('user_id', $user_id)
+				->update(array(
+					'order_status' 	=> $order_status_value
+				));
+
+			return Redirect::route('yearbook-home')
+				->with('globalalertmessage', 'Yearbook Order Updated')
+				->with('globalalertclass', 'success');
+
+		} else {
+
+			return Redirect::route('yearbook-home')
+				->with('globalalertmessage', 'Failed. Please create Yearbook Entry first.')
 				->with('globalalertclass', 'error');
 		}
 
