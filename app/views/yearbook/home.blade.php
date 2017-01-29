@@ -249,6 +249,76 @@
 					<img style="max-height:50px; max-width:50px; margin-top:-16px;" src="{{ URL::asset('img/icons/yearbook_icons/lawn_tennis.png') }}">
 		          </label>
 
+				  <label class="checkbox col-sm-6 col-md-3" >
+		            <input type="checkbox" value="maggu.png" id="maggu.png" name="yearbook_icons[]" data-toggle="checkbox">
+					<img style="max-height:50px; max-width:50px; margin-top:-16px;" src="{{ URL::asset('img/icons/yearbook_icons/maggu.png') }}">
+		          </label>
+
+				  <label class="checkbox col-sm-6 col-md-3" >
+		            <input type="checkbox" value="photographer.png" id="photographer.png" name="yearbook_icons[]" data-toggle="checkbox">
+					<img style="max-height:50px; max-width:50px; margin-top:-16px;" src="{{ URL::asset('img/icons/yearbook_icons/photographer.png') }}">
+		          </label>
+
+				  <label class="checkbox col-sm-6 col-md-3" >
+		            <input type="checkbox" value="playboy_love.png" id="playboy_love.png" name="yearbook_icons[]" data-toggle="checkbox">
+					<img style="max-height:50px; max-width:50px; margin-top:-16px;" src="{{ URL::asset('img/icons/yearbook_icons/playboy_love.png') }}">
+		          </label>
+
+				  <label class="checkbox col-sm-6 col-md-3" >
+		            <input type="checkbox" value="quizzer.png" id="quizzer.png" name="yearbook_icons[]" data-toggle="checkbox">
+					<img style="max-height:50px; max-width:50px; margin-top:-16px;" src="{{ URL::asset('img/icons/yearbook_icons/quizzer.png') }}">
+		          </label>
+
+				  <label class="checkbox col-sm-6 col-md-3" >
+		            <input type="checkbox" value="scientists_research.png" id="scientists_research.png" name="yearbook_icons[]" data-toggle="checkbox">
+					<img style="max-height:50px; max-width:50px; margin-top:-16px;" src="{{ URL::asset('img/icons/yearbook_icons/scientists_research.png') }}">
+		          </label>
+
+				  <label class="checkbox col-sm-6 col-md-3" >
+		            <input type="checkbox" value="serial_addict.png" id="serial_addict.png" name="yearbook_icons[]" data-toggle="checkbox">
+					<img style="max-height:50px; max-width:50px; margin-top:-16px;" src="{{ URL::asset('img/icons/yearbook_icons/serial_addict.png') }}">
+		          </label>
+
+				  <label class="checkbox col-sm-6 col-md-3" >
+		            <input type="checkbox" value="singer_music.png" id="singer_music.png" name="yearbook_icons[]" data-toggle="checkbox">
+					<img style="max-height:50px; max-width:50px; margin-top:-16px;" src="{{ URL::asset('img/icons/yearbook_icons/singer_music.png') }}">
+		          </label>
+
+				  <label class="checkbox col-sm-6 col-md-3" >
+		            <input type="checkbox" value="swimming.png" id="swimming.png" name="yearbook_icons[]" data-toggle="checkbox">
+					<img style="max-height:50px; max-width:50px; margin-top:-16px;" src="{{ URL::asset('img/icons/yearbook_icons/swimming.png') }}">
+		          </label>
+
+				  <label class="checkbox col-sm-6 col-md-3" >
+		            <input type="checkbox" value="table_tennis.png" id="table_tennis.png" name="yearbook_icons[]" data-toggle="checkbox">
+					<img style="max-height:50px; max-width:50px; margin-top:-16px;" src="{{ URL::asset('img/icons/yearbook_icons/table_tennis.png') }}">
+		          </label>
+
+				  <label class="checkbox col-sm-6 col-md-3" >
+		            <input type="checkbox" value="traveller.png" id="traveller.png" name="yearbook_icons[]" data-toggle="checkbox">
+					<img style="max-height:50px; max-width:50px; margin-top:-16px;" src="{{ URL::asset('img/icons/yearbook_icons/traveller.png') }}">
+		          </label>
+
+				  <label class="checkbox col-sm-6 col-md-3" >
+		            <input type="checkbox" value="vollyball.png" id="vollyball.png" name="yearbook_icons[]" data-toggle="checkbox">
+					<img style="max-height:50px; max-width:50px; margin-top:-16px;" src="{{ URL::asset('img/icons/yearbook_icons/vollyball.png') }}">
+		          </label>
+
+				  <label class="checkbox col-sm-6 col-md-3" >
+		            <input type="checkbox" value="waterpolo.png" id="waterpolo.png" name="yearbook_icons[]" data-toggle="checkbox">
+					<img style="max-height:50px; max-width:50px; margin-top:-16px;" src="{{ URL::asset('img/icons/yearbook_icons/waterpolo.png') }}">
+		          </label>
+
+				  <label class="checkbox col-sm-6 col-md-3" >
+		            <input type="checkbox" value="weight_lifting.png" id="weight_lifting.png" name="yearbook_icons[]" data-toggle="checkbox">
+					<img style="max-height:50px; max-width:50px; margin-top:-16px;" src="{{ URL::asset('img/icons/yearbook_icons/weight_lifting.png') }}">
+		          </label>
+
+				  <label class="checkbox col-sm-6 col-md-3" >
+		            <input type="checkbox" value="writter.png" id="writter.png" name="yearbook_icons[]" data-toggle="checkbox">
+					<img style="max-height:50px; max-width:50px; margin-top:-16px;" src="{{ URL::asset('img/icons/yearbook_icons/writter.png') }}">
+		          </label>
+				  
 				  <div class="col-sm-12 col-md-6">
             		<!-- <input class="btn btn-block btn-lg btn-primary" type="submit" value="Save"> -->
 
