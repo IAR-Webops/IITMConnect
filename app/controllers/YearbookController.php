@@ -129,8 +129,7 @@ class YearbookController extends BaseController {
 					'insti_remember_for' 	=> $insti_remember_for,
 					'insti_name'			=> $insti_name,
 					'insti_craziest_moment'	=> $insti_craziest_moment,
-					'grad_year'				=> $grad_year,
-					'order_status'			=> "null"
+					'grad_year'				=> $grad_year
 				));
 
 			return Redirect::route('yearbook-home')
