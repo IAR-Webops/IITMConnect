@@ -10,7 +10,14 @@
 			<p class="text-center">
 			  Graduating Year : <strong>{{ $basic_info->graduatingyear }}</strong> <a href="{{ URL::route('basic-info') }}" class="btn btn-sm btn-warning">Edit</a>
 			</p>
-
+			<p>
+				@if($basic_info->graduatingyear != "2017")
+  			  		<p>
+						<strong>NOTE : </strong> Your graduating year is not 2017,
+						If you still want a copy of the Yearbook, you would be required to pay for it.
+					</p>
+  			  	@endif
+		  	</p>
 			<hr>
 			<h6 class="text-center">Your Yearbook entry</h6>
 			<!-- Profile Photo  -->
@@ -318,7 +325,7 @@
 		            <input type="checkbox" value="writter.png" id="writter.png" name="yearbook_icons[]" data-toggle="checkbox">
 					<img style="max-height:50px; max-width:50px; margin-top:-16px;" src="{{ URL::asset('img/icons/yearbook_icons/writter.png') }}">
 		          </label>
-				  
+
 				  <div class="col-sm-12 col-md-6">
             		<!-- <input class="btn btn-block btn-lg btn-primary" type="submit" value="Save"> -->
 
