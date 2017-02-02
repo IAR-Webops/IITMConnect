@@ -13,14 +13,14 @@
             <div class="form-group">
             	<div class="col-sm-12 col-md-12">
                     <label>I'll always remember Insti for ...</label>
-                        <textarea class="form-control" name="insti_remember_for" placeholder="Your message here" required="">{{ $user_yearbook->insti_remember_for }}</textarea>
+                        <textarea class="form-control" name="insti_remember_for" placeholder="Your message here" >{{ $user_yearbook->insti_remember_for }}</textarea>
 	            </div>
             </div>
 
             <div class="form-group">
                 <div class="col-sm-12 col-md-12">
-                    <label>Insti Nickname</label>
-                      <input type="text" class="form-control" name="insti_name" placeholder="Insti Name" value="{{ $user_yearbook->insti_name }}" required="">
+                    <label>Insti Nickname <strong>*</strong></label>
+                      <input type="text" class="form-control" name="insti_name" placeholder="Insti Name is a required field. If you don't have one, type NA." value="{{ $user_yearbook->insti_name }}" required="">
                 </div>
             </div>
 
