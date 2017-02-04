@@ -245,7 +245,82 @@ class YearbookController extends BaseController {
 				->with('globalalertmessage', 'Failed. Please create Yearbook Entry first.')
 				->with('globalalertclass', 'error');
 		}
+	}
 
+	public function getYearbookRollNoEditInstiStory($rollno)
+	{
+		// START - Check if user is editing his own data
+		$auth_rollno = Auth::user()->rollno;
+		if( strcasecmp($auth_rollno, $rollno) == 0){
+			// Do Nothing
+		} else {
+			return Redirect::to('/yearbook/'.$auth_rollno.'/edit-insti-story')
+				->with('globalalertmessage', 'Sorry, you can edit only your Yearbook data.')
+				->with('globalalertclass', 'error');
+		}
+		// END - Check if user is editing his own data
+
+		$user = DB::table('users')->where('rollno', $rollno)->first();
+		if(!is_null($user)) {
+			// return dd($user);
+            $basic_info = DB::table('basic_infos')->where('user_id', $user->id)->first();
+            // return dd($basic_info);
+			View::share('basic_info', $basic_info);
+            View::share('rollno', $rollno);
+
+			$user_yearbook = DB::table('yearbook')->where('user_id', $user->id)->first();
+			if(is_null($user_yearbook)) {
+				return Redirect::to('/yearbook/')
+					->with('globalalertmessage', 'Sorry, you need to create Yearbook Entry first.')
+					->with('globalalertclass', 'error');
+			}
+			View::share('user_yearbook', $user_yearbook);
+
+            return View::make('yearbook.yearbook_user_edit_insti_story');
+
+		} else {
+			return "User Not Found";
+		}
+	}
+
+	public function postYearbookRollNoEditInstiStory($rollno)
+	{
+		// START - Check if user is editing his own data
+		$auth_rollno = Auth::user()->rollno;
+		if( strcasecmp($auth_rollno, $rollno) == 0){
+			// Do Nothing
+		} else {
+			return "Nice try. But you shall not pass @yashmurty";
+		}
+		// END - Check if user is editing his own data
+
+		$user_id = Auth::id();
+
+		// return Input::all();
+		$insti_story	= Input::get('insti_story');
+
+		$user_yearbook = DB::table('yearbook')
+							->where('user_id', $user_id)
+							->first();
+
+		if(!is_null($user_yearbook)) {
+
+			DB::table('yearbook')
+				->where('user_id', $user_id)
+				->update(array(
+					'insti_story' 	=> $insti_story
+				));
+
+			return Redirect::route('yearbook-home')
+				->with('globalalertmessage', 'Yearbook Insti Story Updated')
+				->with('globalalertclass', 'success');
+
+		} else {
+
+			return Redirect::route('yearbook-home')
+				->with('globalalertmessage', 'Failed. Please create Yearbook Entry first.')
+				->with('globalalertclass', 'error');
+		}
 
 	}
 

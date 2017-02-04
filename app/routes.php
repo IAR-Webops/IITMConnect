@@ -176,6 +176,11 @@ Route::group(array('before' => 'auth'), function() {
 				'uses' => 'YearbookController@postYearbookRollNoOrderStatusEdit'
 		));
 
+		/* Yearbook Edit - Insti Story (POST) */
+		Route::post('/yearbook/{rollno}/edit-insti-story',
+			array('as' => 'yearbook-roll-no-edit-insti-story-post',
+				'uses' => 'YearbookController@postYearbookRollNoEditInstiStory'
+		));
 
 	});
 
@@ -420,6 +425,12 @@ Route::group(array('before' => 'auth'), function() {
 	Route::get('/yearbook/{rollno}/edit',
 		array('as' => 'yearbook-rollno-edit',
 			'uses' => 'YearbookController@getYearbookRollNoEdit'
+	));
+
+	/* Yearbook Edit (GET) */
+	Route::get('/yearbook/{rollno}/edit-insti-story',
+		array('as' => 'yearbook-rollno-edit-insti-story',
+			'uses' => 'YearbookController@getYearbookRollNoEditInstiStory'
 	));
 
 	### END - Yearbook

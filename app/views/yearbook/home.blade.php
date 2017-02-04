@@ -80,6 +80,41 @@
 			<div class="col-sm-12 text-center">
 				<a href="{{ url('/yearbook') }}/{{ Auth::user()->rollno }}/edit" class="btn btn-primary">Make changes to your Yearbook entry</a>
 			</div>
+			<br>
+			<hr>
+			<form class="form-horizontal">
+				<div class="form-group" style="margin-bottom:15px;">
+					<strong for="profile_photo" class="col-sm-12 col-md-4 control-label">Group Photos: </strong>
+					<div class="col-sm-12 col-md-8">
+						Add three group photos<br>
+						@if(empty($basic_info->profile_image))
+						<img style="max-height:250px; max-width:250px" src="http://1plusx.com/app/mu-plugins/all-in-one-seo-pack-pro/images/default-user-image.png">
+						@else
+						<img style="max-height:250px; max-width:250px" src="{{ $basic_info->profile_image }}">
+						@endif
+
+						<br>
+						<a style="width:250px;" href="{{ URL::route('basic-info-profile-photo') }}" class="btn btn-inverse">Edit Group Photo 1</a>
+					</div>
+				</div>
+				<div class="form-group">
+					<strong for="insti_story" class="col-sm-12 col-md-4 control-label">Insti Story: </strong>
+					<div class="col-sm-12 col-md-8">
+						@if(empty($user_yearbook->insti_story))
+						<span>You have not entered your insti story yet!</span>
+						@else
+						<span id="insti_story">{{ $user_yearbook->insti_story }}</span>
+						@endif
+					</div>
+				</div>
+			</form>
+			<div class="col-sm-12 text-center">
+				<a href="{{ url('/yearbook') }}/{{ Auth::user()->rollno }}/edit-insti-story" class="btn btn-primary">Make changes to Insti Story entry</a>
+			</div>
+
+
+
+
 			@endif
 			<br>
 			<hr>
