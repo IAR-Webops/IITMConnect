@@ -182,6 +182,12 @@ Route::group(array('before' => 'auth'), function() {
 				'uses' => 'YearbookController@postYearbookRollNoEditInstiStory'
 		));
 
+		/* Yearbook Edit - Insti Story (POST) */
+		Route::post('/yearbook/{rollno}/edit-group-photo/{group_pic_id}',
+			array('as' => 'yearbook-roll-no-edit-group-photo-post',
+				'uses' => 'YearbookController@postYearbookRollNoEditGroupPhoto'
+		));
+
 	});
 
 	/* CSRF protection AJAX */
@@ -431,6 +437,12 @@ Route::group(array('before' => 'auth'), function() {
 	Route::get('/yearbook/{rollno}/edit-insti-story',
 		array('as' => 'yearbook-rollno-edit-insti-story',
 			'uses' => 'YearbookController@getYearbookRollNoEditInstiStory'
+	));
+
+	/* Yearbook Edit (GET) */
+	Route::get('/yearbook/{rollno}/edit-group-photo/{group_pic_id}',
+		array('as' => 'yearbook-rollno-edit-group-photo',
+			'uses' => 'YearbookController@getYearbookRollNoEditGroupPic'
 	));
 
 	### END - Yearbook

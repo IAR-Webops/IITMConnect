@@ -87,14 +87,35 @@
 					<strong for="profile_photo" class="col-sm-12 col-md-4 control-label">Group Photos: </strong>
 					<div class="col-sm-12 col-md-8">
 						Add three group photos<br>
-						@if(empty($basic_info->profile_image))
+						@if(empty($user_yearbook->group_pic_1))
 						<img style="max-height:250px; max-width:250px" src="http://1plusx.com/app/mu-plugins/all-in-one-seo-pack-pro/images/default-user-image.png">
 						@else
-						<img style="max-height:250px; max-width:250px" src="{{ $basic_info->profile_image }}">
+						<img style="max-height:250px; max-width:250px" src="{{ $user_yearbook->group_pic_1 }}">
 						@endif
-
 						<br>
-						<a style="width:250px;" href="{{ URL::route('basic-info-profile-photo') }}" class="btn btn-inverse">Edit Group Photo 1</a>
+						<a style="width:250px;" href="{{ URL::route('yearbook-home') }}/{{ Auth::user()->rollno }}/edit-group-photo/1" class="btn btn-inverse">Edit Group Photo 1</a>
+						<br>
+						<br>
+
+						@if(empty($user_yearbook->group_pic_2))
+						<img style="max-height:250px; max-width:250px" src="http://1plusx.com/app/mu-plugins/all-in-one-seo-pack-pro/images/default-user-image.png">
+						@else
+						<img style="max-height:250px; max-width:250px" src="{{ $user_yearbook->group_pic_2 }}">
+						@endif
+						<br>
+						<a style="width:250px;" href="{{ URL::route('yearbook-home') }}/{{ Auth::user()->rollno }}/edit-group-photo/2" class="btn btn-inverse">Edit Group Photo 2</a>
+						<br>
+						<br>
+
+						@if(empty($user_yearbook->group_pic_3))
+						<img style="max-height:250px; max-width:250px" src="http://1plusx.com/app/mu-plugins/all-in-one-seo-pack-pro/images/default-user-image.png">
+						@else
+						<img style="max-height:250px; max-width:250px" src="{{ $user_yearbook->group_pic_3 }}">
+						@endif
+						<br>
+						<a style="width:250px;" href="{{ URL::route('yearbook-home') }}/{{ Auth::user()->rollno }}/edit-group-photo/3" class="btn btn-inverse">Edit Group Photo 3</a>
+						<br>
+
 					</div>
 				</div>
 				<div class="form-group">

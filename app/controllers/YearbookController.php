@@ -321,7 +321,103 @@ class YearbookController extends BaseController {
 				->with('globalalertmessage', 'Failed. Please create Yearbook Entry first.')
 				->with('globalalertclass', 'error');
 		}
+	}
 
+	public function getYearbookRollNoEditGroupPic($rollno, $group_pic_id)
+	{
+		# code...
+		// START - Check if user is editing his own data
+		$auth_rollno = Auth::user()->rollno;
+		if( strcasecmp($auth_rollno, $rollno) == 0){
+			// Do Nothing
+		} else {
+			return Redirect::to('/yearbook/'.$auth_rollno.'/edit-insti-story')
+				->with('globalalertmessage', 'Sorry, you can edit only your Yearbook data.')
+				->with('globalalertclass', 'error');
+		}
+		// END - Check if user is editing his own data
+
+		$user = DB::table('users')->where('rollno', $rollno)->first();
+		if(!is_null($user)) {
+			// return dd($user);
+            $basic_info = DB::table('basic_infos')->where('user_id', $user->id)->first();
+            // return dd($basic_info);
+			View::share('basic_info', $basic_info);
+            View::share('rollno', $rollno);
+
+			$user_yearbook = DB::table('yearbook')->where('user_id', $user->id)->first();
+			if(is_null($user_yearbook)) {
+				return Redirect::to('/yearbook/')
+					->with('globalalertmessage', 'Sorry, you need to create Yearbook Entry first.')
+					->with('globalalertclass', 'error');
+			}
+			View::share('user_yearbook', $user_yearbook);
+			View::share('group_pic_id', $group_pic_id);
+
+            return View::make('yearbook.yearbook_user_edit_group_pic');
+
+		} else {
+			return "User Not Found";
+		}
+
+	}
+
+	public function postYearbookRollNoEditGroupPhoto($rollno, $group_pic_id)
+	{
+		// START - Check if user is editing his own data
+		$auth_rollno = Auth::user()->rollno;
+		if( strcasecmp($auth_rollno, $rollno) == 0){
+			// Do Nothing
+		} else {
+			return "Nice try. But you shall not pass @yashmurty";
+		}
+		// END - Check if user is editing his own data
+
+		$user_id = Auth::id();
+
+		// return Input::all();
+		$image_url 	= Input::get('image_url');
+
+		switch ($group_pic_id) {
+			case '1':
+				# code...
+				DB::table('yearbook')
+					->where('user_id', $user_id)
+					->update(array(
+						'group_pic_1'	=> $image_url
+					));
+
+				break;
+
+			case '2':
+				# code...
+				DB::table('yearbook')
+					->where('user_id', $user_id)
+					->update(array(
+						'group_pic_2'	=> $image_url
+					));
+				break;
+
+			case '3':
+				# code...
+				DB::table('yearbook')
+					->where('user_id', $user_id)
+					->update(array(
+						'group_pic_3'	=> $image_url
+					));
+				break;
+
+			default:
+				# code...
+				return Redirect::route('yearbook-home')
+					->with('globalalertmessage', 'Group Photo Not Updated')
+					->with('globalalertclass', 'error');
+				break;
+		}
+
+		return Redirect::route('yearbook-home')
+			->with('globalalertmessage', 'Group Photo Updated')
+			->with('globalalertclass', 'success');
 	}
 
 }
