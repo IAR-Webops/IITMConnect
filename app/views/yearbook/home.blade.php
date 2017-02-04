@@ -141,7 +141,7 @@
 						OR
 					</div>
 					<div class="col-sm-12 col-md-6 col-md-offset-3" style="margin-top:20px;">
-						<a id="order_status_no" class="btn btn-block btn-danger btn-lg">No. I don't</a>
+						<a id="" class="btn btn-block btn-danger btn-lg" data-toggle="modal" data-target="#noConfirmationModal">No. I don't</a>
 					</div>
 					<form action="{{ url('/') }}/yearbook/{{ Auth::user()->rollno }}/order-status/edit" id="form_yearbook_order_status" role="form" method="post">
 						<input value="" type="hidden" name="order_status_value" id="order_status_value">
@@ -160,6 +160,45 @@
 		    </div>
 		  </div>
 		</div>
+
+		<!-- Modal -->
+		<div class="modal fade" id="noConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="myModalLabel">Order Yearbook?</h4>
+		      </div>
+		      <div class="modal-body">
+		        Are you sure you do not wish to order your yearbook?
+				<div class="row">
+					<div class="col-sm-12 col-md-6 col-md-offset-3" style="margin-top:20px;">
+						<a id="order_status_no" class="btn btn-block btn-success btn-lg">Yes, I am sure.</a>
+					</div>
+					<div class="col-sm-12 text-center" style="margin-top:20px;">
+						OR
+					</div>
+					<div class="col-sm-12 col-md-6 col-md-offset-3" style="margin-top:20px;">
+						<a id="" class="btn btn-block btn-danger btn-lg" data-dismiss="modal">No. Take me back.</a>
+					</div>
+					<form action="{{ url('/') }}/yearbook/{{ Auth::user()->rollno }}/order-status/edit" id="form_yearbook_order_status" role="form" method="post">
+						<input value="" type="hidden" name="order_status_value" id="order_status_value">
+						{{ Form::token() }}
+					</form>
+
+				</div>
+				<p>
+					<br>
+					If you choose YES here, you will not receive the Yearbook.
+				</p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
 
 		<!-- Modal -->
 		<div class="modal fade" id="yearbookIconsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
