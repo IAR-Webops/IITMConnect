@@ -176,6 +176,44 @@
 
 				@endif
 			</p>
+			<hr>
+			<p>
+
+				@if(is_null($user_yearbook))
+					Which batch project would you like to contribute to?
+					<br>
+					<span style="font-size:22px; font-weight:900;">Not Decided</span><br>
+					To change your answer, kindly fill your Yearbook entry first.
+				@else
+					@if($user_yearbook->order_status == "null")
+						Which batch project would you like to contribute to?
+						<br>
+						<!-- Button trigger modal -->
+						<span style="font-size:22px; font-weight:900;">Not Decided</span>
+						<a class="" data-toggle="modal" data-target="#myModal">
+						(Click here to change response)
+						</a>
+					@elseif($user_yearbook->order_status == "no")
+						Which batch project would you like to contribute to?
+						<br>
+						<!-- Button trigger modal -->
+						<span style="font-size:22px; font-weight:900;">No</span>
+						<a class="" data-toggle="modal" data-target="#myModal">
+						(Click here to change response)
+						</a>
+					@elseif($user_yearbook->order_status == "yes")
+						<!-- Would you like to contribute to the Batch Project?
+						<br> -->
+						<!-- Button trigger modal -->
+						<!-- <span style="font-size:22px; font-weight:900;">Yes</span>
+						<a class="" data-toggle="modal" data-target="#myModal">
+						(Click here to change response)
+						</a> -->
+					@endif
+
+
+				@endif
+			</p>
 
         </div>
 
