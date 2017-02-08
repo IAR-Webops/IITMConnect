@@ -421,4 +421,45 @@ class YearbookController extends BaseController {
 			->with('globalalertclass', 'success');
 	}
 
+	public function postYearbookRollNoBatchProjectEdit($rollno)
+	{
+		// START - Check if user is editing his own data
+		$auth_rollno = Auth::user()->rollno;
+		if( strcasecmp($auth_rollno, $rollno) == 0){
+			// Do Nothing
+		} else {
+			return "Nice try. But you shall not pass @yashmurty";
+		}
+		// END - Check if user is editing his own data
+
+		$user_id = Auth::id();
+
+		// return Input::all();
+		$batch_project_value	= Input::get('batch_project_value');
+
+		$user_yearbook = DB::table('yearbook')
+							->where('user_id', $user_id)
+							->first();
+
+		if(!is_null($user_yearbook)) {
+
+			DB::table('yearbook')
+				->where('user_id', $user_id)
+				->update(array(
+					'batch_project' 	=> $batch_project_value
+				));
+
+			return Redirect::route('yearbook-home')
+				->with('globalalertmessage', 'Yearbook Order Updated')
+				->with('globalalertclass', 'success');
+
+		} else {
+
+			return Redirect::route('yearbook-home')
+				->with('globalalertmessage', 'Failed. Please create Yearbook Entry first.')
+				->with('globalalertclass', 'error');
+		}
+	}
+
+
 }

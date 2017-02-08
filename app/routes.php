@@ -188,6 +188,12 @@ Route::group(array('before' => 'auth'), function() {
 				'uses' => 'YearbookController@postYearbookRollNoEditGroupPhoto'
 		));
 
+		/* Yearbook Edit - Batch Project (POST) */
+		Route::post('/yearbook/{rollno}/batch-project/edit',
+			array('as' => 'yearbook-roll-no-batch-project-edit-post',
+				'uses' => 'YearbookController@postYearbookRollNoBatchProjectEdit'
+		));
+
 	});
 
 	/* CSRF protection AJAX */
