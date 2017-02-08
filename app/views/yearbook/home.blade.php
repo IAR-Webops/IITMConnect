@@ -185,30 +185,23 @@
 					<span style="font-size:22px; font-weight:900;">Not Decided</span><br>
 					To change your answer, kindly fill your Yearbook entry first.
 				@else
-					@if($user_yearbook->order_status == "null")
+					@if($user_yearbook->batch_project == "null")
 						Which batch project would you like to contribute to?
 						<br>
 						<!-- Button trigger modal -->
 						<span style="font-size:22px; font-weight:900;">Not Decided</span>
-						<a class="" data-toggle="modal" data-target="#myModal">
+						<a class="" data-toggle="modal" data-target="#myBatchProjectModal">
 						(Click here to change response)
 						</a>
-					@elseif($user_yearbook->order_status == "no")
+					@else
 						Which batch project would you like to contribute to?
 						<br>
 						<!-- Button trigger modal -->
-						<span style="font-size:22px; font-weight:900;">No</span>
-						<a class="" data-toggle="modal" data-target="#myModal">
+						<span style="font-size:22px; font-weight:900;">{{ $user_yearbook->batch_project }}</span>
+						<a class="" data-toggle="modal" data-target="#myBatchProjectModal">
 						(Click here to change response)
 						</a>
-					@elseif($user_yearbook->order_status == "yes")
-						<!-- Would you like to contribute to the Batch Project?
-						<br> -->
-						<!-- Button trigger modal -->
-						<!-- <span style="font-size:22px; font-weight:900;">Yes</span>
-						<a class="" data-toggle="modal" data-target="#myModal">
-						(Click here to change response)
-						</a> -->
+
 					@endif
 
 
@@ -252,6 +245,71 @@
 		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 		      </div>
 		    </div>
+		  </div>
+		</div>
+
+		<!-- Modal - Which Batch Project -->
+		<div class="modal fade" id="myBatchProjectModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog" role="document">
+			<div class="modal-content">
+			  <div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="myModalLabel">Batch Project?</h4>
+			  </div>
+			  <div class="modal-body">
+				  Which batch project would you like to contribute to?
+				<div class="row">
+					<div class="col-sm-12" style="margin-top:20px;">
+						<div class="col-sm-8">
+							Lounge in new academic complex
+						</div>
+						<div class="col-sm-4">
+							<a id="choose_project_1" class="btn btn-block btn-inverse btn-lg">Choose</a>
+						</div>
+					</div>
+
+					<div class="col-sm-12" style="margin-top:20px;">
+						<div class="col-sm-8">
+							Institute Chair Professorship
+						</div>
+						<div class="col-sm-4">
+							<a id="choose_project_2" class="btn btn-block btn-inverse btn-lg">Choose</a>
+						</div>
+					</div>
+
+					<div class="col-sm-12" style="margin-top:20px;">
+						<div class="col-sm-8">
+							Naming rights for bus shelter
+						</div>
+						<div class="col-sm-4">
+							<a id="choose_project_3" class="btn btn-block btn-inverse btn-lg">Choose</a>
+						</div>
+					</div>
+
+					<div class="col-sm-12" style="margin-top:20px;">
+						<div class="col-sm-8">
+							MCM scholarships for students
+						</div>
+						<div class="col-sm-4">
+							<a id="choose_project_4" class="btn btn-block btn-inverse btn-lg">Choose</a>
+						</div>
+					</div>
+
+					<form action="{{ url('/') }}/yearbook/{{ Auth::user()->rollno }}/batch-project/edit" id="form_batch_project" role="form" method="post">
+						<input value="" type="hidden" name="batch_project_value" id="batch_project_value">
+						{{ Form::token() }}
+					</form>
+
+				</div>
+				<p>
+					<br>
+					If you choose NO, you will not receive the Yearbook.
+				</p>
+			  </div>
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			  </div>
+			</div>
 		  </div>
 		</div>
 
@@ -513,6 +571,27 @@ $("#order_status_no").click(function() {
 function saveOrderStatus(order_value){
 	$("#order_status_value").val(order_value);
 	document.getElementById("form_yearbook_order_status").submit();
+}
+
+$("#choose_project_1").click(function() {
+	saveBatchProject("Lounge in new academic complex");
+});
+$("#choose_project_2").click(function() {
+	saveBatchProject("Institute Chair Professorship");
+});
+$("#choose_project_3").click(function() {
+	saveBatchProject("Naming rights for bus shelter");
+});
+$("#choose_project_4").click(function() {
+	saveBatchProject("MCM scholarships for students");
+});
+
+
+function saveBatchProject(batch_project_value) {
+	// alert(batch_project_value);
+	$("#batch_project_value").val(batch_project_value);
+	document.getElementById("form_batch_project").submit();
+
 }
 </script>
 @stop
